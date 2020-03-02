@@ -22,7 +22,8 @@ private:
     //Variables
     bool attacking;
     
-
+    sf::Texture weapon;
+    sf::Sprite Weapon; 
 
 public:
 
@@ -42,7 +43,7 @@ public:
     
      void update(const float& dt);
      void updateAnimation(const float& dt);
-     void render(sf::RenderTarget& target,sf::Shader* shader = NULL, const bool render_hitbox = false);
+     void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const bool render_hitbox = false);
 
     
 };

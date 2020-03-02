@@ -8,6 +8,7 @@
 
 #ifndef MainMenuState_hpp
 #define MainMenuState_hpp
+
 #include "GameState.hpp"
 #include "EditorState.hpp"
 #include "GUI.hpp"
@@ -43,6 +44,12 @@ private:
         sf::Font font;
         sf::RectangleShape background;
         sf::Texture backgroundTexture;
+    sf::SoundBuffer click1;
+    sf::SoundBuffer click2;
+    
+    sf::Sound click_active;
+    sf::Sound click_released; 
+       
    
     
         std::map<std::string, GUI::Button*> buttons;

@@ -14,6 +14,7 @@
 class SettingsState : public State
 {
 private:
+    
         //Functions
          void initkeybinds();
          void initFonts();
@@ -22,12 +23,12 @@ private:
          void initvariables();
        
     
-    //Variables
-     sf::Font font;
-     sf::RectangleShape background;
+       //Variables
+    sf::Font font;
+    sf::RectangleShape background;
     
-     sf::Texture backgroundTexture;
-     sf::Text option_text;
+    sf::Texture backgroundTexture;
+    sf::Text option_text;
     std::map<std::string, GUI::Button*> buttons;
     std::map<std::string, GUI::DropDownList*> dropdownlists;
     std::vector<sf::VideoMode> modes;

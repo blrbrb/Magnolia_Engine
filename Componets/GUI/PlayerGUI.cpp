@@ -33,7 +33,6 @@ void PlayerGUI::initHPbar()
     float y = GUI::pixelpercentY(6.0, vm);
     this->hpbarMaxWidth = width;
     
-   
     this->HPbarExterior.setSize(sf::Vector2f(width, height));
     this->HPbarExterior.setFillColor(sf::Color(50,50,50,200));
     this->HPbarExterior.setPosition(x,y);
@@ -41,7 +40,8 @@ void PlayerGUI::initHPbar()
     this->HPbarInterior.setSize(sf::Vector2f(width, height));
     this->HPbarInterior.setFillColor(sf::Color(250,20,20,200));
     this->HPbarInterior.setPosition(this->HPbarExterior.getPosition());
-    
+
+
     this->HPbarText.setFont(this->font);
     this->HPbarText.setCharacterSize(GUI::calcCharSize(vm, 100));
     this->HPbarText.setPosition(this->HPbarInterior.getPosition().x + GUI::pixelpercentX(1.4, vm), this->HPbarInterior.getPosition().y + GUI::pixelpercentY(2, vm));
@@ -151,6 +151,7 @@ void PlayerGUI::renderLevelTag(sf::RenderTarget& target)
 
 void PlayerGUI::renderHPbar(sf::RenderTarget& target)
 {
+
     target.draw(this->HPbarExterior);
     target.draw(this->HPbarInterior);
     target.draw(this->HPbarText);

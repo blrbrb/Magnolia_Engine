@@ -17,6 +17,8 @@ private:
     sf::SoundBuffer buffer;
     sf::Sound Levelsound;
     
+    
+    
     void initsounds(); 
  
 public:

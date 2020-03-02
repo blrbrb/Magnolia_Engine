@@ -195,25 +195,55 @@ void GameState::updatebuttons()
 
 void GameState::updateView(const float &dt)
 {
+    /**
+                @brief Function that updates the area of the tilemap, or current level visible to the player at any one point
+                @param const float detlaTime
+                @returns void
+     
+     */
+    
+    
     this->view.setCenter(std::floor(this->player->getPosition().x + static_cast<float>(this->state_data->gfxsettings->resolution.width / 20)), std::floor(this->player->getPosition().y +                                                                        static_cast<float>(this->state_data->gfxsettings->resolution.height / 20)));
     
     
-    if(this->view.getCenter().x - this->view.getSize().x / 2.f < 0.f)
+    
+    
+    if(this->Tilemap->getMaxSize().x >= this->view.getSize().x)
     {
-        this->view.setCenter(0.f + this->view.getSize().x / 2.f, this->view.getCenter().y);
+        
+        if(this->view.getCenter().x - this->view.getSize().x / 2.f < 0.f)
+        {
+            this->view.setCenter(0.f + this->view.getSize().x / 2.f, this->view.getCenter().y);
+        }
+        
+        else if(this->view.getCenter().x + this->view.getSize().x / 2.f > 10000.f)
+        {
+            this->view.setCenter(3000.f - this->view.getSize().x / 2.f, this->view.getCenter().y);
+        }
+        
     }
-    else if(this->view.getCenter().x + this->view.getSize().x / 2.f > 3000.f)
+    
+    
+    if(this->Tilemap->getMaxSize().y >= this->view.getSize().y)
     {
-        this->view.setCenter(3000.f - this->view.getSize().x / 2.f, this->view.getCenter().y);
+    
+        if (this->view.getCenter().y - this->view.getSize().y / 2.f  < 0.f)
+        {
+            this->view.setCenter(this->view.getCenter().x, 0.f + this->view.getSize().y / 2.f);
+        }
+        
+        else if (this->view.getCenter().y + this->view.getSize().y / 2.f > 10000.f)
+        {
+            this->view.setCenter(this->view.getCenter().x, 10000.f - this->view.getSize().y / 2.f);
+        }
+        
     }
-    if (this->view.getCenter().y - this->view.getSize().y / 2.f  < 0.f)
-    {
-        this->view.setCenter(this->view.getCenter().x, 0.f + this->view.getSize().y / 2.f);
-    }
-    else if (this->view.getCenter().y + this->view.getSize().y / 2.f > 3000.f)
-    {
-        this->view.setCenter(this->view.getCenter().x, 3000.f - this->view.getSize().y / 2.f);
-    }
+    
+
+    //Update the GridPosition view
+    this->ViewGridPosition.x = static_cast<int>(this->view.getCenter().x) / static_cast<int>(this->state_data->gridsize);
+    
+    this->ViewGridPosition.y = static_cast<int>(this->view.getCenter().y) / static_cast<int>(this->state_data->gridsize);
 }
 
 void GameState::updatePlayerGUI(const float &dt)
@@ -261,12 +291,12 @@ void GameState::render(sf::RenderTarget* target) {
     this->rendertexture.setView(this->view);
     
     
-    this->Tilemap->render(this->rendertexture,this->player->getGridPosition(static_cast<int>(this->gridsize)), false, &this->core_shader, this->player->getPosition());
+    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, false, &this->core_shader, this->player->getPosition());
     
      this->player->render(this->rendertexture, &this->core_shader, false);
  
     
-    this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader, this->player->getPosition());
+    this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this-> player->getPosition());
     
     
     this->rendertexture.setView(this->rendertexture.getDefaultView());

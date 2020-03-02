@@ -18,9 +18,9 @@ class Player;
 class PlayerGUI
 {
 private:
-    Player* player;
     
-    sf::VideoMode& vm; 
+    Player* player;
+    sf::VideoMode& vm;
     
     //Level Tag
     std::string LevelTagstring;
@@ -28,11 +28,11 @@ private:
     sf::RectangleShape LevelTagExterior;
         
     //Exp bar
-     float EXPbarMaxWidth; 
-     std::string EXPstring;
-     sf::Text EXPbarText;
-     sf::RectangleShape EXPbarExterior;
-     sf::RectangleShape EXPbarInterior;
+    float EXPbarMaxWidth;
+    std::string EXPstring;
+    sf::Text EXPbarText;
+    sf::RectangleShape EXPbarExterior;
+    sf::RectangleShape EXPbarInterior;
     
     //Health bar
     float hpbarMaxWidth;
@@ -42,14 +42,16 @@ private:
     sf::RectangleShape HPbarExterior;
     sf::RectangleShape HPbarInterior;
     
-
+ 
     
+
     void initfont();
     void initLevelTag();
     void initHPbar();
     void initEXPbar(); 
     
 public:
+    
     PlayerGUI(Player* player, sf::VideoMode& vm);
     virtual ~PlayerGUI();
     

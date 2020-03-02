@@ -22,8 +22,7 @@ EditorState::EditorState(StateData* state_data)
     this->initpausemenu();
     
     this->initGUI();
-    
-    
+
 }
 
 EditorState::~EditorState() {
@@ -91,9 +90,9 @@ void EditorState::initpausemenu()
     
     this->pMenu = new PauseMenu(this->state_data->gfxsettings->resolution, this->font);
     
-    this->pMenu->addbutton("Editor_Pause_Quit_Button", GUI::calcCharSize(vm), "Quit", GUI::pixelpercentX(13.f, vm), GUI::pixelpercentY(6.f, vm), 150.f);
-    this->pMenu->addbutton("Editor_Pause_Save_Button", GUI::calcCharSize(vm), "Save", GUI::pixelpercentX(13.f, vm), GUI::pixelpercentY(6.f, vm), 400.f);
-    this->pMenu->addbutton("Editor_Pause_Load_Button", GUI::calcCharSize(vm), "Load", GUI::pixelpercentX(13.f, vm), GUI::pixelpercentY(6.f, vm), 650.f);
+    this->pMenu->addbutton("Editor_Pause_Quit_Button", GUI::calcCharSize(vm), "Quit", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 150.f);
+    this->pMenu->addbutton("Editor_Pause_Save_Button", GUI::calcCharSize(vm), "Save", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 400.f);
+    this->pMenu->addbutton("Editor_Pause_Load_Button", GUI::calcCharSize(vm), "Load", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 650.f);
    
 }
 
@@ -185,11 +184,22 @@ void EditorState::initGUI()
 
 void EditorState::inittext()
 {
-   
+    sf::VideoMode vm = this->state_data->gfxsettings->resolution;
+    
+    
        this->cursortext.setFont(this->font);
        this->cursortext.setFillColor(sf::Color::White);
-       this->cursortext.setCharacterSize(12);
+       this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
        this->cursortext.setOutlineThickness(1.f);
+       this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
+    
+        
+    
+       this->text_container.setSize(sf::Vector2f(400.f, 200.f));
+       this->text_container.setFillColor(sf::Color(50,50,50,100));
+       this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
+       this->text_container.setOutlineThickness(1.f);
+       this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
 }
 
 
@@ -271,12 +281,12 @@ void EditorState::updateInput(const float& dt) {
     //Zoom the World Builder View in or out
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L))
     {
-        this->mainview.zoom(1.1);
+        this->mainview.zoom(1.01);
     }
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
     {
-        this->mainview.zoom(0.9);
+        this->mainview.zoom(0.8);
     }
    
 
@@ -297,24 +307,41 @@ void EditorState::updateInput(const float& dt) {
 
 void EditorState::updateEditorinput(const float &dt)
 {
+    /*!
+                @brief Update the user's Input while inside the editor state
+                @param const float deltaTime
+                @return void
+     */
     
-    //Add A tile
+   
     if((sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("PLACE"))) && this->getkeytime()))
     {
-        //if the user's mouse is not on the sidebar
+    //if the user's mouse is not on the sidebar
+        
     if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(this->MousePosWindow)))
-     {
-         //if the user's mouse is not inside the texture selector
-        if(!this->texture_selector->getActive())
+    {
+        //if the texure selector is not active
+         if(!this->texture_selector->getActive())
          {
-                    //if the cursor is over a valid tile, ok to place
                  if(this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) != -1)
                  {
-                 
-                      this->Tilemap->addTile(static_cast<int>(this->MousePosGrid.x), static_cast<int>(this->MousePosGrid.y), 0, this->TextureRect, this->collision, this->type);
+                     //if adding tiles is locked to one layer
+                       if (this->Tilemap->lock_layer)
+                       {
+                            if (this->Tilemap->TileEmpty(MousePosGrid.x, MousePosGrid.y, 0))
+                             {
+                                 this->Tilemap->addTile(MousePosGrid.x, MousePosGrid.y, 0, this->TextureRect, collision, type);
+                             }
+                             else
+                             {
+                                 this->Tilemap->addTile(MousePosGrid.x, MousePosGrid.y, 0, this->TextureRect, collision, type);
+                             }
+                             
+                       }
                  }
              
-                    //else play UI invalid sound
+                //else play UI invalid sound for invalid tile placement
+             
                  else if(this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) == -1)
                  {
                      this->UI_invalid.play();
@@ -388,6 +415,17 @@ void EditorState::updateEditorinput(const float &dt)
         --this->type;
     }
     
+    
+    
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::O))
+    {
+        if(this->Tilemap->lock_layer)
+        this->Tilemap->lock_layer = false;
+        
+      else
+          this->Tilemap->lock_layer = true;
+    }
+    
 
 }
 
@@ -405,7 +443,8 @@ void EditorState::updatebuttons()
 
 void EditorState::updateGUI(const float& dt)
 {
- 
+    sf::VideoMode vm = this->state_data->gfxsettings->resolution;
+    
     this->texture_selector->update(this->MousePosWindow, dt);
     
     if(!this->texture_selector->getActive())
@@ -418,7 +457,7 @@ void EditorState::updateGUI(const float& dt)
     
 
     //set the cursor text
-    this->cursortext.setPosition(this->MousePosView.x + 100.f, this->MousePosView.y - 50.f);
+    
     
     std::stringstream cursor_text;
     cursor_text << this->MousePosView.x << " " << this->MousePosView.y
@@ -491,9 +530,11 @@ void EditorState::renderGUI(sf::RenderTarget &target)
     target.setView(this->window->getDefaultView());
     this->texture_selector->render(target);
     target.draw(this->sidebar);
+    target.draw(this->cursortext);
+    target.draw(this->text_container);
     
     target.setView(this->mainview);
-    target.draw(this->cursortext);
+    
     
 
 

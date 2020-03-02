@@ -80,13 +80,9 @@ void MainMenuState::initGUI() {
 
 void MainMenuState::resetGUI()
 {
- /* Clear all of the GUI elements and refresh
-  *
-  *
-  *
-  *
-  * @return void
-  *
+ /*!
+        @brief clear all GUI elements
+  
   */
     
     auto it = buttons.begin();
@@ -119,11 +115,27 @@ void MainMenuState::initbackground()
 {
 
     this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y)));
+  
+    unsigned r = 1;
+    unsigned g = 1;
+    unsigned b = 1;
+    
+    for(int x = this->MousePosGrid.x; x > 0; x++)
+    {
+    
+        r++;
+        g++;
+        b++;
+        
+         this->background.setFillColor(sf::Color(r, g, b, 200));
+    }
+    
+   
     
     if (!this->backgroundTexture.loadFromFile(resourcePath() + "EngineLogo.png"))
     {
         std::cout << "ERROR: MAINMENUSTATE::INITBACKGROUND unable to load background" << std::endl;
-        throw std::runtime_error("ERROR CODE 06: MAINMENUSTATE::INITBACKGROUND unable to load background");
+        throw std::runtime_error("ERROR CODE 06: MAINMENUSTATE::INITBACKGROND unable to load background");
         
     }
     
@@ -156,6 +168,8 @@ void MainMenuState::render(sf::RenderTarget* target)
     
     if (!target)
         target = this->window;
+    
+
     
    target->draw(this->background);
     this->renderbuttons(*target);

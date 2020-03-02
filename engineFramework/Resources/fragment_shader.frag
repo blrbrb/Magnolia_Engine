@@ -1,6 +1,5 @@
 #version 120
-
-vec4 vert_pos;
+  vec4 vert_pos;
 
 uniform sampler2D texture;
 uniform bool hasTexture;
@@ -9,7 +8,7 @@ uniform vec2 light;
 void main()
 {
  //Ambient lightPos
- vec4 ambient = vec4(0.02, 0.02, 0.02, 1);
+ vec4 ambient = vec4(1.0, 0.5, 0.0, 1);
 
  //Convert lightPos to view coords
  vec2 light_tmp =  (gl_ModelViewProjectionMatrix * vec4(light, 0, 1)).xy;
@@ -19,7 +18,7 @@ void main()
     lightToFrag.y = lightToFrag.y;
 
  //Length of the vector (distance)
- float vecLength = clamp(length(lightToFrag) * 1, 0, 1);
+ float vecLength = clamp(length(lightToFrag) * 4, 0.9, 0.9);
 
  //lookup the pixel in the texture
  vec4 pixel = texture2D(texture, gl_TexCoord[0].xy);

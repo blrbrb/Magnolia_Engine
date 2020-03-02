@@ -28,6 +28,10 @@ Player::Player(float x, float y, sf::Texture& texturesheet)
     this->animtioncomponet->add_animation("WALK_UP_RIGHT", 5.f, 0, 7, 13, 7, 39, 54);
     this->animtioncomponet->add_animation("WALK_DOWN_LEFT", 5.f, 0, 8, 13, 8, 39, 54);
    
+    this->weapon.loadFromFile("icon.png");
+    this->Weapon.setTexture(weapon);
+    
+    
     
 }
 
@@ -133,16 +137,14 @@ void Player::render(sf::RenderTarget &target, sf::Shader* shader,const bool rend
 {
     if (shader)
     {
-    shader->setUniform("hasTexture", true);
-    shader->setUniform("light", this->getCenter());
-    target.draw(this->sprite, shader);
-        
+        shader->setUniform("hasTexture", true);
+        shader->setUniform("light", this->getCenter());
+        target.draw(this->sprite, shader);
     }
     
-    else
-        
-    if(render_hitbox)
-    this->hitbox->render(target);
+
+    else if(render_hitbox) {
+        this->hitbox->render(target); }
     
 }
 

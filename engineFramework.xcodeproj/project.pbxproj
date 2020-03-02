@@ -112,6 +112,9 @@
 		45DB9A5723DD22E400F8693E /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45DB9A5623DD22E400F8693E /* sansation.ttf */; };
 		45E01759240AF23500EC8E1D /* red_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318CD2409FEFC00433CD7 /* red_button02.png */; };
 		45E0175D240AF37600EC8E1D /* redBoxCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E0175C240AF37600EC8E1D /* redBoxCheck.png */; };
+		45E01762240D7C7600EC8E1D /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E01760240D7C7600EC8E1D /* Item.cpp */; };
+		45E01765240D7D5500EC8E1D /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E01763240D7D5500EC8E1D /* Weapon.cpp */; };
+		45E01769240D80D800EC8E1D /* Sword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E01767240D80D800EC8E1D /* Sword.cpp */; };
 		45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F5E8CF23E6053500307E48 /* EditorState.cpp */; };
 		45F5E8D423E60A5300307E48 /* HitBoxComponet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F5E8D223E60A5300307E48 /* HitBoxComponet.cpp */; };
 		45F8E41A23EB59470037EBD5 /* SettingsState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F8E41823EB59470037EBD5 /* SettingsState.cpp */; };
@@ -260,6 +263,12 @@
 		45DB9A4E23DD162100F8693E /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
 		45DB9A5623DD22E400F8693E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
 		45E0175C240AF37600EC8E1D /* redBoxCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redBoxCheck.png; sourceTree = "<group>"; };
+		45E01760240D7C7600EC8E1D /* Item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		45E01761240D7C7600EC8E1D /* Item.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
+		45E01763240D7D5500EC8E1D /* Weapon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
+		45E01764240D7D5500EC8E1D /* Weapon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Weapon.hpp; sourceTree = "<group>"; };
+		45E01767240D80D800EC8E1D /* Sword.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sword.cpp; sourceTree = "<group>"; };
+		45E01768240D80D800EC8E1D /* Sword.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sword.hpp; sourceTree = "<group>"; };
 		45F5E8CF23E6053500307E48 /* EditorState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EditorState.cpp; sourceTree = "<group>"; };
 		45F5E8D023E6053500307E48 /* EditorState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EditorState.hpp; sourceTree = "<group>"; };
 		45F5E8D223E60A5300307E48 /* HitBoxComponet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HitBoxComponet.cpp; sourceTree = "<group>"; };
@@ -344,6 +353,7 @@
 		454A702823D770B4003FEB4F /* engineFramework */ = {
 			isa = PBXGroup;
 			children = (
+				45E0175E240D7C2E00EC8E1D /* Items */,
 				454A703023D770B4003FEB4F /* Resources */,
 				458A1D3123ECCEF900F2F8ED /* Tiles  */,
 				454A702E23D770B4003FEB4F /* main.cpp */,
@@ -611,6 +621,35 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		45E0175E240D7C2E00EC8E1D /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				45E0175F240D7C4400EC8E1D /* Weapons */,
+				45E01760240D7C7600EC8E1D /* Item.cpp */,
+				45E01761240D7C7600EC8E1D /* Item.hpp */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		45E0175F240D7C4400EC8E1D /* Weapons */ = {
+			isa = PBXGroup;
+			children = (
+				45E01766240D80CC00EC8E1D /* Sword */,
+				45E01763240D7D5500EC8E1D /* Weapon.cpp */,
+				45E01764240D7D5500EC8E1D /* Weapon.hpp */,
+			);
+			path = Weapons;
+			sourceTree = "<group>";
+		};
+		45E01766240D80CC00EC8E1D /* Sword */ = {
+			isa = PBXGroup;
+			children = (
+				45E01767240D80D800EC8E1D /* Sword.cpp */,
+				45E01768240D80D800EC8E1D /* Sword.hpp */,
+			);
+			path = Sword;
+			sourceTree = "<group>";
+		};
 		45F8E41C23EB634E0037EBD5 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +852,8 @@
 				455808E024009CC500E36DFA /* StatusComponet.cpp in Sources */,
 				455FB37B2404729600146C3A /* PlayerGUI.cpp in Sources */,
 				45F8E41F23EB635C0037EBD5 /* GUI.cpp in Sources */,
+				45E01762240D7C7600EC8E1D /* Item.cpp in Sources */,
+				45E01765240D7D5500EC8E1D /* Weapon.cpp in Sources */,
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,
 				45B989D323E0909400B3C087 /* Player.cpp in Sources */,
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,
@@ -821,6 +862,7 @@
 				4553BC3C23EE2D99002C68C0 /* GraphicsSettings.cpp in Sources */,
 				450CA31123D9187800FF039F /* GameState.cpp in Sources */,
 				454A702F23D770B4003FEB4F /* main.cpp in Sources */,
+				45E01769240D80D800EC8E1D /* Sword.cpp in Sources */,
 				4543923923E1BFBB00D7A0F5 /* MovementComponets.cpp in Sources */,
 				454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */,
 				451BD30C23DA10E200426643 /* Entity.cpp in Sources */,

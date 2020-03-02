@@ -44,9 +44,6 @@ void Game::initkeys() {
  @return void
 
   */
-    
-    
-    
    std::ifstream ifs(resourcePath() + "Supported_Keys.ini");
 
    if (ifs.is_open())
@@ -65,7 +62,6 @@ void Game::initkeys() {
     
 
 }
-
 
 void Game::initstates() {
     

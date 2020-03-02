@@ -15,27 +15,28 @@
 void TileMap::clear()
 {
     //symmetry orgasim
-    
-    for (int x=0; x < this->MaxSizeWorldGrid.x; x++ )
-         {
-             for (int y=0; y < this->MaxSizeWorldGrid.y; y++ )
+    if(!this->Map.empty())
+    {
+        for (int x=0; x < this->MaxSizeWorldGrid.x; x++ )
              {
-                 for (int z=0; z < this->layers; z++ )
+                 for (int y=0; y < this->MaxSizeWorldGrid.y; y++ )
                  {
-                     for (size_t k=0; k < this->Map[x][y][z].size(); k++)
+                     for (int z=0; z < this->layers; z++ )
                      {
-                           delete this->Map[x][y][z][k];
-                           this->Map[x][y][z][k] = NULL;
+                         for (size_t k=0; k < this->Map[x][y][z].size(); k++)
+                         {
+                               delete this->Map[x][y][z][k];
+                               this->Map[x][y][z][k] = NULL;
+                         }
+                         this->Map[x][y][z].clear();
                      }
-                     this->Map[x][y][z].clear();
+                     this->Map[x][y].clear();
                  }
-                 this->Map[x][y].clear();
+                 this->Map[x].clear();
              }
-             this->Map[x].clear();
-         }
-    this->Map.clear();
-    
-    std::cout << "Map Local Memory Size: " << " " << this->Map.size();
+        this->Map.clear();
+        std::cout << "Map Local Memory Size: " << " " << this->Map.size();
+    }
 }
 
 
@@ -62,7 +63,7 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
     this->grid_sizeF = gridSize;
     this->grid_sizeU = static_cast<unsigned>(gridSize);
     this->gridsizeI = static_cast<int>(gridSize);
-    
+    this->lock_layer = false; 
     
     this->MaxSizeWorldGrid.x = width;
     this->MaxSizeWorldGrid.y = height;
@@ -111,7 +112,30 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
     
 }
 
-TileMap::~TileMap() {
+
+
+TileMap::TileMap(const std::string map_file)
+{
+    
+      this->ToX = 0;
+      this->FromX = 0;
+      this->ToY = 0;
+      this->FromY = 0;
+      this->layer = 0;
+
+    
+     this->loadfromfile(map_file);
+     
+      
+      this->physicsrect.setSize(sf::Vector2f(grid_sizeF,grid_sizeF));
+      this->physicsrect.setFillColor(sf::Color::Transparent);
+      this->physicsrect.setOutlineThickness(1.f);
+      this->physicsrect.setOutlineColor(sf::Color::Red);
+}
+
+
+TileMap::~TileMap()
+{
    
     this->clear();
 }
@@ -186,14 +210,12 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
                        this->renderdefered.push(this->Map[x][y][this->layer][k]);
                    }
                    
+                            
+                   if (shader) {
+                       this->Map[x][y][this->layer][k]->render(target, shader, PlayerPosition); }
+                   else {
+                       this->Map[x][y][this->layer][k]->render(target); }
                    
-                   else
-                   {
-                       if (shader)
-                           this->Map[x][y][this->layer][k]->render(target, shader, PlayerPosition);
-                       else
-                           this->Map[x][y][this->layer][k]->render(target);
-                   }
                     
                        
                    if (render_collision)
@@ -385,6 +407,8 @@ void TileMap::loadfromfile(const std::string filename)
           this->gridsizeI = gridsize;
           this->MaxSizeWorldGrid.x = size.x;
           this->MaxSizeWorldGrid.y =  size.y;
+          this->MaxSizeWorld_F.x = static_cast<float>(size.x) * gridsize;
+          this->MaxSizeWorld_F.y = static_cast<float>(size.y) * gridsize;
           this->layers = layers;
           this->texture_file = texture_file;
         
@@ -611,17 +635,55 @@ void TileMap::DefferedRender(sf::RenderTarget &target, sf::Shader* shader, const
     
     while(!this->renderdefered.empty())
     {
-        if (shader)
-        {
+        if (shader) {
             this->renderdefered.top()->render(target, shader, PlayerPosition);
-            this->renderdefered.pop();
-        }
+            this->renderdefered.pop(); }
         
-        else
+        
+        else {
             this->renderdefered.top()->render(target);
-            this->renderdefered.pop();
+            this->renderdefered.pop(); }
     }
 }
+
+const sf::Vector2i &TileMap::getMaxSizeGrid() const
+{
+    /**
+                    @brief Acessor that returns the maximum size of the Tilemap as a vector of two integers. (width x height)
+                    @return sf::Vector2i     The maximum size of the tilemap as a vector of two integers
+                    @see TileMap::getMaxSize()
+     
+     
+     */
+    return this->MaxSizeWorldGrid;
+}
+
+
+
+
+const sf::Vector2f TileMap::getMaxSize() const
+{ /**
+   @brief Acessor that returnts the maximum size of the TIlemap as a vector of two floating points
+   @return sf::Vector2f the maximum size of the tilemap as a vector of two floaing points
+    @see Tilemap::getMaxSizeGrid()
+   */
+    return this->MaxSizeWorld_F;
+}
+
+const bool TileMap::TileEmpty(const int x, const int y, const int z) const
+{
+    if (x >= 0 && x < this->MaxSizeWorldGrid.x &&
+        y >= 0 && y < this->MaxSizeWorldGrid.y &&
+        z >= 0 && z < this->layers)
+    {
+        return this->Map[x][y][z].empty();
+    }
+    
+    std::cout << "You idiot you fucked it up" << std::endl;
+    
+}
+
+
 
 
 

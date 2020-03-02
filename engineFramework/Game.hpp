@@ -17,7 +17,7 @@ class Game {
 public:
     
     //Constructor et Destructor
-    Game();
+     Game();
     ~Game();
     
     //Misc
@@ -43,7 +43,7 @@ private:
     //private game variables
     std::map<std::string, int> supportedkeys;
     
-  
+
     sf::RenderWindow* window;
     sf::Event event;
     float gridsize; 
@@ -66,12 +66,6 @@ private:
     void initstatedata();
     
 };
-
-
-
-
-
-
 
 
 #endif /* Game_hpp */

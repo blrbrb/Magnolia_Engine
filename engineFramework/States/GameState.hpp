@@ -62,6 +62,10 @@ private:
     //Sounds
     sf::SoundBuffer buffer;
     sf::Sound sound; 
+    sf::Vector2i ViewGridPosition;
+    
+    
+    
     
     //Init Functions
     void initdeferedrender();

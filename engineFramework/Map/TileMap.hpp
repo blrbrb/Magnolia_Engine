@@ -23,6 +23,7 @@ private:
     float grid_sizeF;
     int gridsizeI; 
     int layers;
+   
     
     std::string texture_file;
     sf::Vector2i MaxSizeWorldGrid;
@@ -51,11 +52,19 @@ private:
 public:
     
     TileMap(float gridSize, int width, int height, std::string texture_file);
+    TileMap(const std::string map_file);
     virtual ~TileMap();
+    
+    
+    //Variables
+    bool  lock_layer; 
     
     //Accessors
     const sf::Texture* getTileSheet() const;
+    const bool TileEmpty(const int x, const int y, const int z) const;
     const int getLayerSize(const int x, const int y, const int layer) const;
+    const sf::Vector2i& getMaxSizeGrid() const;
+    const sf::Vector2f getMaxSize() const;
     
     
     //Functions
