@@ -65,7 +65,7 @@ const sf::Vector2f Entity::getCenter() const
 }
 
 // Apply the final movements and animations to the entity
-void Entity::update(const float& dt) {
+void Entity::update(const float& dt, sf::Vector2f& MousePosView) {
    
     if (this->movementcomponets)
     {
@@ -80,6 +80,8 @@ Entity::~Entity() {
     delete this-> movementcomponets;
     delete this->animtioncomponet;
     delete this->attributes;
+    delete this->skillcomponent;
+   
 }
 
 void Entity::initvariables()
@@ -87,7 +89,7 @@ void Entity::initvariables()
     this->texture = NULL;
     this->hitbox = NULL;
     this->movementcomponets = NULL;
-    
+    this->skillcomponent = NULL;
 }
 
 void Entity::settexture(sf::Texture& texture)
@@ -203,6 +205,15 @@ void Entity::stopVelocityY()
     if (this->movementcomponets)
         this->movementcomponets->stopVelocityY();
 }
+
+
+
+
+void Entity::create_skill_component()
+{
+    this->skillcomponent = new SkillComponent(); 
+}
+
 
 
 

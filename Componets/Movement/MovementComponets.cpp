@@ -11,7 +11,8 @@
 
 MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, float Acceleration, float Deceleration) : sprite(sprite), maxVelocity(maxVelocity), Acceleration(Acceleration), Deceleration(Deceleration)
 {
-    
+    this->Velocity.x = 0.f;
+    this->Velocity.y = 0.f;
     
     
 }

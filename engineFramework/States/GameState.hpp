@@ -13,7 +13,9 @@
 #include "PlayerGUI.hpp"
 #include "PauseMenu.hpp"
 #include "TileMap.hpp"
+#include "Enemy.hpp"
 
+class Enemy;
 class PlayerGUI;
 class PauseMenu;
 class Player;
@@ -52,6 +54,7 @@ private:
     PlayerGUI* playerGUI;
     PauseMenu* pMenu;
     TileMap* Tilemap;
+    Enemy* test_enemy; 
     sf::Font font;
     sf::RenderTexture rendertexture;
     sf::Sprite rendersprite;

@@ -9,15 +9,21 @@
 #ifndef Player_hpp
 #define Player_hpp
 #include "Entity.hpp"
+#include "Sword.hpp"
 
 class Entity; 
 
 class Player : public Entity
 {
 private:
+    
     //initalizer functions
     void initvariables();
     void initcomponets();
+    void initanimations(); 
+    
+    Sword sword; 
+    
     
     //Variables
     bool attacking;
@@ -41,7 +47,7 @@ public:
     void gainEXP(const int EXP);
     
     
-     void update(const float& dt);
+     void update(const float& dt, sf::Vector2f& MousePosView);
      void updateAnimation(const float& dt);
      void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const bool render_hitbox = false);
 

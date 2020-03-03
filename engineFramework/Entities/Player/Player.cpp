@@ -15,24 +15,12 @@ Player::Player(float x, float y, sf::Texture& texturesheet)
     
     
     this->initcomponets();
+  
     this->setposition(x, y);
-   
+
     this->create_animation_componet(texturesheet);
-    this->animtioncomponet->add_animation("IDLE_LEFT", 10.f, 0, 0, 35, 0, 34, 54);
-    this->animtioncomponet->add_animation("WALK_RIGHT", 5.f, 0, 1, 13, 1, 39, 54);
-    this->animtioncomponet->add_animation("WALK_LEFT", 5.f, 0, 2, 13, 2, 39, 54);
-    this->animtioncomponet->add_animation("WALK_DOWN", 5.f, 0, 3, 13, 3, 39, 54);
-    this->animtioncomponet->add_animation("WALK_UP", 5.f, 0, 4, 12, 4, 39, 54);
-    this->animtioncomponet->add_animation("WALK_UP_LEFT", 5.f, 0, 5, 13, 5, 39, 54);
-    this->animtioncomponet->add_animation("WALK_DOWN_RIGHT", 5.f, 0, 6, 13, 6, 39, 54);
-    this->animtioncomponet->add_animation("WALK_UP_RIGHT", 5.f, 0, 7, 13, 7, 39, 54);
-    this->animtioncomponet->add_animation("WALK_DOWN_LEFT", 5.f, 0, 8, 13, 8, 39, 54);
-   
-    this->weapon.loadFromFile("icon.png");
-    this->Weapon.setTexture(weapon);
-    
-    
-    
+    this->initanimations();
+
 }
 
 Player::~Player()
@@ -51,13 +39,28 @@ void Player::initcomponets()
     this->createmovementcomponet(150.f , 2000.f, 500.f);
     this->create_hitbox_componet(this->sprite, 0, 0, 39.f, 54.f);
     this->create_attribute_componet(1);
-    
+    this->create_skill_component();
 
 }
 
 void Player::initvariables()
 {
     this->attacking = false; 
+}
+
+void Player::initanimations()
+{
+    
+    this->animtioncomponet->add_animation("IDLE_LEFT", 10.f, 0, 0, 35, 0, 34, 54);
+    this->animtioncomponet->add_animation("WALK_RIGHT", 5.f, 0, 1, 13, 1, 39, 54);
+    this->animtioncomponet->add_animation("WALK_LEFT", 5.f, 0, 2, 13, 2, 39, 54);
+    this->animtioncomponet->add_animation("WALK_DOWN", 5.f, 0, 3, 13, 3, 39, 54);
+    this->animtioncomponet->add_animation("WALK_UP", 5.f, 0, 4, 12, 4, 39, 54);
+    this->animtioncomponet->add_animation("WALK_UP_LEFT", 5.f, 0, 5, 13, 5, 39, 54);
+    this->animtioncomponet->add_animation("WALK_DOWN_RIGHT", 5.f, 0, 6, 13, 6, 39, 54);
+    this->animtioncomponet->add_animation("WALK_UP_RIGHT", 5.f, 0, 7, 13, 7, 39, 54);
+    this->animtioncomponet->add_animation("WALK_DOWN_LEFT", 5.f, 0, 8, 13, 8, 39, 54);
+    
 }
     
 
@@ -109,7 +112,7 @@ void Player::updateAnimation(const float& dt)
 
 
 
-void Player::update(const float& dt)
+void Player::update(const float& dt, sf::Vector2f& MousePosView)
 {
     //debug. Exp gain test
     
@@ -125,10 +128,11 @@ void Player::update(const float& dt)
     this->movementcomponets->update(dt);
     
     
-    
     this->updateAnimation(dt);
     
     this->hitbox->update();
+    
+    this->sword.update(MousePosView, this->getCenter());
     
    
 }
@@ -140,6 +144,7 @@ void Player::render(sf::RenderTarget &target, sf::Shader* shader,const bool rend
         shader->setUniform("hasTexture", true);
         shader->setUniform("light", this->getCenter());
         target.draw(this->sprite, shader);
+        this->sword.render(target, shader);
     }
     
 

@@ -9,13 +9,19 @@
 #ifndef Sword_hpp
 #define Sword_hpp
 #include "Weapon.hpp"
-class Weapon; 
+
+class Weapon;
+
 class Sword : public Weapon
 {
 public:
     
-    Sword();
+    Sword(); 
     virtual ~Sword();
+    
+    //Functions
+    virtual void update(const sf::Vector2f& MousePosView, const sf::Vector2f center);
+    virtual void render(sf::RenderTarget& target, sf::Shader * shader = nullptr);
 
     
 private:

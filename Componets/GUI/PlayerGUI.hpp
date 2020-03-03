@@ -28,19 +28,11 @@ private:
     sf::RectangleShape LevelTagExterior;
         
     //Exp bar
-    float EXPbarMaxWidth;
-    std::string EXPstring;
-    sf::Text EXPbarText;
-    sf::RectangleShape EXPbarExterior;
-    sf::RectangleShape EXPbarInterior;
+    GUI::ProgressBar* ExpBar;
     
     //Health bar
-    float hpbarMaxWidth;
-    std::string HPString; 
-    sf::Text HPbarText; 
     sf::Font font;
-    sf::RectangleShape HPbarExterior;
-    sf::RectangleShape HPbarInterior;
+    GUI::ProgressBar* HPbar; 
     
  
     

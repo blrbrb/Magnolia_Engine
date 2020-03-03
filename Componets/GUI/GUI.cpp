@@ -690,3 +690,78 @@ const float GUI::pixelpercentY(const float percent, const sf::VideoMode& vm)
      return std::floor(static_cast<float>(vm.height) * (percent / 100.f));
 }
 
+
+GUI::ProgressBar::ProgressBar(float x, float y, float width, float height, int MaxValue, sf::VideoMode& vm, sf::Color inner_color, unsigned charSize, sf::Font* font)
+{
+    float widthh = GUI::pixelpercentX(width, vm);          //300.f;
+    float heightt = GUI::pixelpercentY(height, vm);
+    float xx = GUI::pixelpercentX(x, vm);
+    float yy = GUI::pixelpercentY(y, vm);
+    
+    
+    this->MaxVal = MaxValue;
+    this->Max_width = width;
+    
+    this->Exterior.setSize(sf::Vector2f(widthh, heightt));
+    this->Exterior.setFillColor(sf::Color(50,50,50,200));
+    this->Exterior.setPosition(xx,yy);
+    
+    this->Interior.setSize(sf::Vector2f(widthh, heightt));
+    this->Interior.setFillColor(inner_color);
+    this->Interior.setPosition(this->Exterior.getPosition());
+
+    if(font)
+    {
+        this->text.setFont(*font);
+    
+    this->text.setCharacterSize(GUI::calcCharSize(vm, charSize));
+        this->text.setPosition(this->Interior.getPosition().x + GUI::pixelpercentX(1.4, vm), this->Interior.getPosition().y + GUI::pixelpercentY(2, vm));
+    }
+}
+
+
+GUI::ProgressBar::~ProgressBar()
+{
+    
+    
+    
+    
+}
+
+
+
+void GUI::ProgressBar::update(const int current_value)
+{
+    float percent = static_cast<float>(current_value) /
+                    static_cast<float>(MaxVal);
+    
+    
+    this->Interior.setSize(sf::Vector2f(static_cast<float>(std::floor(this->Max_width * percent)), this->Interior.getSize().y));
+    
+    this->hpbarText = std::to_string(current_value) + "/" +
+                     std::to_string(MaxVal);
+    
+    this->text.setString(hpbarText);
+}
+
+
+void GUI::ProgressBar::render(sf::RenderTarget& target)
+{
+
+    target.draw(this->Exterior);
+    target.draw(this->Interior);
+    target.draw(this->text);
+    
+    
+}
+
+
+const float GUI::ProgressBar::getWidth()
+{
+    return this->Max_width;
+}
+
+const sf::Vector2f GUI::ProgressBar::getSize()
+{
+    return this->Interior.getSize(); 
+}

@@ -19,7 +19,16 @@ public:
     Weapon();
     virtual ~Weapon();
     
+    virtual void update(const sf::Vector2f& MousePosView, const sf::Vector2f center) = 0;
+    virtual void render(sf::RenderTarget& target, sf::Shader* shader = nullptr) = 0;
+
     
+protected:
+    sf::Sprite weaponSprite;
+    sf::Texture weaponTexture; 
+    
+    int damageMin;
+    int damageMax; 
     
 private:
     

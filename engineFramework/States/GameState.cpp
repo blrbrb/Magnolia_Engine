@@ -21,6 +21,9 @@ GameState::GameState(StateData* state_data)
     this->initplayers();
     this->initplayerGUI();
     this->inittilemap();
+    
+    this->test_enemy = new Enemy(500.f, 800.f,this->textures["ENEMY_SHEET"]);
+    
  
 }
 
@@ -97,8 +100,14 @@ void GameState::inittextures()
 {
     if (!this->textures["PLAYER_SHEET"].loadFromFile(resourcePath() + "icon.png"))
     {
-        std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_IDLE texture" << std::endl;
-        throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_IDLE texture");
+        std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures" << std::endl;
+        throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures");
+    }
+    
+    if (!this->textures["ENEMY_SHEET"].loadFromFile(resourcePath() + "Blrb.png"))
+    {
+        std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load ENEMY_SHEET textures" << std::endl;
+        throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load ENEMY_SHEET textures");
     }
     
 }
@@ -150,9 +159,9 @@ void GameState::update(const float& dt) {
         this->updatePlayerInput(dt);
         //important to update the player BEFORE the tilemap
            this->updatetilemap(dt);
-        this->player->update(dt);
+        this->player->update(dt, this->MousePosView);
          this->updatePlayerGUI(dt);
-        
+         this->test_enemy->update(dt, this->MousePosView);
          
      }
    
@@ -294,7 +303,8 @@ void GameState::render(sf::RenderTarget* target) {
     this->Tilemap->render(this->rendertexture,this->ViewGridPosition, false, &this->core_shader, this->player->getPosition());
     
      this->player->render(this->rendertexture, &this->core_shader, false);
- 
+    
+    this->test_enemy->render(this->rendertexture, &this->core_shader, false);
     
     this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this-> player->getPosition());
     

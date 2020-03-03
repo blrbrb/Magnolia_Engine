@@ -179,6 +179,32 @@ public:
     
 };
 
+class ProgressBar
+{
+    
+private:
+    
+    std::string hpbarText;
+    sf::Text text;
+    float Max_width;
+    sf::RectangleShape Interior;
+    sf::RectangleShape Exterior;
+    int MaxVal; 
+    
+public:
+    ProgressBar(float x, float y, float width, float height, int MaxValue, sf::VideoMode& vm, sf::Color inner_color, unsigned charsize, sf::Font* font = nullptr);
+    
+    
+    ~ProgressBar();
+    
+    void update(const int current_value);
+    void render(sf::RenderTarget& target);
+  
+    //Accessors
+    const float getWidth();
+    const sf::Vector2f getSize(); 
+};
+
 }
 
 
