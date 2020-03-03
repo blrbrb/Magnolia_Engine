@@ -9,6 +9,8 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 #include "Entity.hpp"
+#include "EnemySpawner.hpp"
+
 class Entity;
 
 class Enemy : public Entity
@@ -18,6 +20,7 @@ public:
     Enemy(float x, float y, sf::Texture& texturesheet);
     virtual ~Enemy();
     
+    EnemySpawner& enemyspawner; 
     
     //Functions
        void loseHP(const int HP);

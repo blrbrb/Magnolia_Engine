@@ -8,7 +8,7 @@
 
 #include "State.hpp"
 
-//Constructor and Destructors
+
 State::State(StateData* state_data) : quit(false), paused(false) {
     
     this->state_data = state_data;
@@ -28,6 +28,15 @@ State::~State() {
 //Acessors
 const bool State::getkeytime()
 {
+    /**
+    @class State
+    @brief Acess the keytime
+        @see updatekeytime()
+     @sa updatekeytime()
+    @discussion You can use this function to create a minimum amount of time that must pass before the user can acess a button, or key again.
+    @return const bool
+     */
+    
     if (this->keytime >= this->keytime_MAX)
     {
         this->keytime = 0.f;
@@ -39,14 +48,28 @@ const bool State::getkeytime()
     
     
 
-const bool & State::getquit()const {
+const bool & State::getquit()const
+{
+    /**
+    @class State
+    @brief Access wether or not the user has opted to quit the application
+    @return const bool
+     */
     
     return this->quit;
     
 }
 
-void State::endstate() {
-    
+void State::endstate()
+{
+    /**
+    @class State
+    @brief End the Current State
+    @discussion   This function changes the value of the "quit" variable to true, which then is constantly updated by  the game, and accessed by  the getquit() function.
+         @see State::getquit()
+    @param   void
+    @return  void
+          */
     this->quit = true;
     
     
@@ -63,7 +86,16 @@ void State::updateInput(const float& dt)
 
 
 
-void State::updateMousePosition(sf::View* view) {
+void State::updateMousePosition(sf::View* view)
+{
+    /**
+    @class State
+    @brief Update the MousePositions
+    @param sf::View* view
+     @sa updatekeytime()
+    @discussion You can use this function to access the position of the User's Mouse relative to either the grid, the view, or the window.
+    @return void
+     */
     
     this->MousePosWindow = sf::Mouse::getPosition();
     this->MousePosScreen = sf::Mouse::getPosition(*this->window);
@@ -81,6 +113,13 @@ void State::updateMousePosition(sf::View* view) {
 
 void State::updatekeytime(const float& dt)
 {
+    /**
+    @class State
+    @brief Update the keytime using the delta time variable from the SF clock
+        @see update()
+        @sa update()
+    @return const bool
+     */
     if (this->keytime < this->keytime_MAX)
     {
         this->keytime += 10.f * dt;
@@ -92,12 +131,13 @@ void State::updatekeytime(const float& dt)
 
 void State::Pause_State()
 {
-    /*
-    * Pause the current state
-    *
-    * @param   NULL
-    *
-    * @return  a true boolean value for paused
+    /**
+     @class State
+     @brief Pause the current state
+        @see Unpause_State()
+                    @sa Unpause_State()
+     @param   NULL
+     @return  a true boolean value for paused
     */
     
     this->paused = true;
@@ -107,12 +147,15 @@ void State::Pause_State()
 void State::Unpause_State()
 {
     
-  /*
-   * Unpause the current state
+  /**
+   *@brief Unpause the current state
+   *@see Pause_State()
+   *      @sa Pause_State()
+   *@param   NULL
    *
-   * @param   NULL
+   *@return void
    *
-   * @return  a false boolean value for paused
+   *@return  a false boolean value for paused
    */
     this->paused = false; 
     

@@ -144,10 +144,7 @@ TileMap::~TileMap()
 
 //Functions
 
-void TileMap::update()
-{
-    
-}
+
 
 
 void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition, const bool render_collision, sf::Shader* shader, const sf::Vector2f PlayerPosition)
@@ -456,7 +453,7 @@ void TileMap::loadfromfile(const std::string filename)
     in.close();
 }
 
-bool TileMap::updateTileCollision(Entity *entity, const float& dt)
+void TileMap::update(Entity *entity, const float& dt)
 {
     //World Bounds
     if(entity->getPosition().x < 0.f )
@@ -521,6 +518,7 @@ bool TileMap::updateTileCollision(Entity *entity, const float& dt)
         {
             for (size_t k=0; k < this->Map[x][y][this->layer].size(); k++)
             {
+                this->Map[x][y][this->layer][k]->update();
                 
             
             sf::FloatRect playerbounds = entity->getGlobalBounds();
@@ -539,7 +537,9 @@ bool TileMap::updateTileCollision(Entity *entity, const float& dt)
                     entity->stopVelocityY();
                     entity->setposition(playerbounds.left, tilebounds.top - playerbounds.height);
                     std::cout << "Collision!" << std::endl;
-                    return true;
+                    
+                    this->isEntityColliding = true;
+                    
                 }
                 //top Collision
             else if (playerbounds.top > tilebounds.top
@@ -550,7 +550,9 @@ bool TileMap::updateTileCollision(Entity *entity, const float& dt)
                     entity->stopVelocityY();
                     entity->setposition(playerbounds.left, tilebounds.top + playerbounds.height);
                     std::cout << "Collision!" << std::endl;
-                    return true;
+                    
+                    this->isEntityColliding = true;
+                    
                 }
                 
                 //Right Collision
@@ -562,7 +564,9 @@ bool TileMap::updateTileCollision(Entity *entity, const float& dt)
                     entity->stopVelocityX();
                     entity->setposition(tilebounds.left - playerbounds.width, playerbounds.top);
                     std::cout << "Collision!" << std::endl;
-                    return true;
+                    
+                    this->isEntityColliding = true;
+                    
                 }
                 
                 //Left Collision 
@@ -574,12 +578,14 @@ bool TileMap::updateTileCollision(Entity *entity, const float& dt)
                     entity->stopVelocityX();
                     entity->setposition(tilebounds.left + playerbounds.width, playerbounds.top);
                     std::cout << "Collision!" << std::endl;
-                    return true;
+                    
+                    this->isEntityColliding = true;
+                   
                 }
                 
                 
-                
-                return false; 
+                this->isEntityColliding = false; 
+            
                 
                }
             }
@@ -682,6 +688,107 @@ const bool TileMap::TileEmpty(const int x, const int y, const int z) const
     std::cout << "You idiot you fucked it up" << std::endl;
     
 }
+
+void TileMap::updateTileSounds(Entity *entity, const float &dt)
+{
+    
+    for (int x = 0; x < this->MaxSizeWorldGrid.x; x++ )
+      {
+          
+          for (int y = 0; y < this->MaxSizeWorldGrid.y; y++ )
+          {
+              
+    
+              for (int z = 0; z < this->layers; z++ )
+              {
+                 
+                  for (size_t k=0; k < this->Map[x][y][z].size(); k++)
+                  {
+                            //if an entity is over a grass material tile
+                          if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::GRASS)
+                          {
+                              //if the entity is currently moving over the tile
+                              if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
+                              {
+                                  //play a walking over grass sound
+                              }
+                              else
+                              {
+                                  //do nothing
+                              }
+                         
+                          }
+                      
+                      
+                            //if an entity is standing over a stone material tile
+                         if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::STONE)
+                         {
+                             //if the entity is currently moving over the tile
+                             if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
+                             {
+                                 //play a walking over stone sound
+                             }
+                             else
+                             {
+                                 //do nothing
+                             }
+                            
+                         }
+                      
+                          //if entity is standing over wood material tile
+                          if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::WOOD)
+                          {
+                              //if the entity is moving over the wood tile
+                              if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
+                              {
+                                  //play a walking over wood sound
+                              }
+                              else
+                              {
+                                  //do nothing
+                              }
+                             
+                          }
+                      
+                         //if entity is standing over dirt material tile
+                         if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::DIRT)
+                         {
+                             //if the entity is moving over the dirt tile
+                             if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
+                             {
+                                 //play a walking over dirt sound
+                             }
+                             else
+                             {
+                                 //do nothing
+                             }
+                            
+                         }
+                          
+                        //if entity is standing over a sand material tile
+                         if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::SAND)
+                         {
+                             //if the entity is currently moving over the tile
+                             if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
+                             {
+                                 //play a walking over sand sound
+                             }
+                             else
+                             {
+                                 //do nothing
+                             }
+                            
+                         }
+                      
+                  }
+                  
+              }
+              
+          }
+      
+      }
+}
+
 
 
 

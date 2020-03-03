@@ -57,7 +57,8 @@ public:
     
     
     //Variables
-    bool  lock_layer; 
+    bool  lock_layer;
+    bool isEntityColliding; 
     
     //Accessors
     const sf::Texture* getTileSheet() const;
@@ -68,7 +69,7 @@ public:
     
     
     //Functions
-    void update();
+   
     void render(sf::RenderTarget& target, const sf::Vector2i& gridposition, const bool render_collision = false, sf::Shader* shader = NULL, const sf::Vector2f PlayerPosition = sf::Vector2f());
     void DefferedRender(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f PlayerPosition = sf::Vector2f());
     void addTile(const int x, const int y, const int z, const sf::IntRect texture_rect, const bool& collision, const short& type);
@@ -76,7 +77,9 @@ public:
     void RemoveTile(const int x, const int y, const int z);
     void savetofile(const std::string filename);
     void loadfromfile(const std::string filename);
-    bool updateTileCollision(Entity* entity, const float& dt);
+    void update(Entity* entity, const float& dt);
+    void updateTileSounds(Entity* entity, const float& dt);
+    
     
     
     };

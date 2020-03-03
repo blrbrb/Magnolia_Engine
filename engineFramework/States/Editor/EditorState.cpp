@@ -52,15 +52,6 @@ void EditorState::initvariables()
     this->cameraspeed = 200.f;
     this->layer = 0;
     
-    
-    
-    
-    //TextureRect.left is how textures are scrolled between. Very important to note that textures can only be selected in mult. of 17.
-    //TO DO: define a variable to switch between rects as always being a mult of 17. for loop?
-    //TO DO: Create a function to switch between texture rects.
-    //NOTE: First 17 in the intrect param = TextureRect.left.
-    //NOTE: reg Grass tile = int 86
-    //NOTE: become more less of a dumb.
 }
 
 
@@ -308,6 +299,7 @@ void EditorState::updateInput(const float& dt) {
 void EditorState::updateEditorinput(const float &dt)
 {
     /*!
+                @class EditorState
                 @brief Update the user's Input while inside the editor state
                 @param const float deltaTime
                 @return void
@@ -432,7 +424,13 @@ void EditorState::updateEditorinput(const float &dt)
 
 void EditorState::updatebuttons()
 {
-
+    /*!
+    @class EditorState
+    @brief Update the user's Input for buttons
+    @param void
+    @return void
+    */
+    
     for (auto &it : this-> buttons)
     {
         it.second->update(this->MousePosWindow);

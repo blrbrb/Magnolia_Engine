@@ -11,6 +11,9 @@
 		450CA31123D9187800FF039F /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450CA30F23D9187800FF039F /* GameState.cpp */; };
 		451BD30C23DA10E200426643 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 451BD30A23DA10E200426643 /* Entity.cpp */; };
 		4543923923E1BFBB00D7A0F5 /* MovementComponets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4543923723E1BFBB00D7A0F5 /* MovementComponets.cpp */; };
+		4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546031C240E93B000EAF628 /* EnemySpawner.cpp */; };
+		4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546032B240ECCC700EAF628 /* EditorModes.cpp */; };
+		45460332240ED01500EAF628 /* DefaultMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45460330240ED01500EAF628 /* DefaultMode.cpp */; };
 		45466C522408919B001F72E0 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 45466C512408919B001F72E0 /* TileMap.png */; };
 		45466C5A2408A5D7001F72E0 /* Retro FootStep Grass 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C592408A5D6001F72E0 /* Retro FootStep Grass 01.wav */; };
 		45466C5C2408A5E1001F72E0 /* Retro FootStep Mud 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C5B2408A5E1001F72E0 /* Retro FootStep Mud 01.wav */; };
@@ -149,6 +152,12 @@
 		451BD30B23DA10E200426643 /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		4543923723E1BFBB00D7A0F5 /* MovementComponets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MovementComponets.cpp; sourceTree = "<group>"; };
 		4543923823E1BFBB00D7A0F5 /* MovementComponets.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MovementComponets.hpp; sourceTree = "<group>"; };
+		4546031C240E93B000EAF628 /* EnemySpawner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemySpawner.cpp; sourceTree = "<group>"; };
+		4546031D240E93B000EAF628 /* EnemySpawner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnemySpawner.hpp; sourceTree = "<group>"; };
+		4546032B240ECCC700EAF628 /* EditorModes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EditorModes.cpp; sourceTree = "<group>"; };
+		4546032C240ECCC700EAF628 /* EditorModes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EditorModes.hpp; sourceTree = "<group>"; };
+		45460330240ED01500EAF628 /* DefaultMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultMode.cpp; sourceTree = "<group>"; };
+		45460331240ED01500EAF628 /* DefaultMode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DefaultMode.hpp; sourceTree = "<group>"; };
 		45466C512408919B001F72E0 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
 		45466C592408A5D6001F72E0 /* Retro FootStep Grass 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Retro FootStep Grass 01.wav"; sourceTree = "<group>"; };
 		45466C5B2408A5E1001F72E0 /* Retro FootStep Mud 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Retro FootStep Mud 01.wav"; sourceTree = "<group>"; };
@@ -303,15 +312,14 @@
 		450CA30E23D9184D00FF039F /* States */ = {
 			isa = PBXGroup;
 			children = (
+				4546032E240ECFEA00EAF628 /* Editor */,
 				450CA30823D9106200FF039F /* State.hpp */,
 				450CA30723D9106200FF039F /* State.cpp */,
 				450CA30F23D9187800FF039F /* GameState.cpp */,
 				450CA31023D9187800FF039F /* GameState.hpp */,
 				45DB9A4D23DD162100F8693E /* MainMenuState.cpp */,
 				45DB9A4E23DD162100F8693E /* MainMenuState.hpp */,
-				45F5E8CF23E6053500307E48 /* EditorState.cpp */,
 				45F8E41923EB59470037EBD5 /* SettingsState.hpp */,
-				45F5E8D023E6053500307E48 /* EditorState.hpp */,
 				457E8A8C23E914820052FB6D /* PauseMenu.cpp */,
 				457E8A8D23E914820052FB6D /* PauseMenu.hpp */,
 				45F8E41823EB59470037EBD5 /* SettingsState.cpp */,
@@ -328,6 +336,19 @@
 				45E01776240DF9FF00EC8E1D /* Player */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		4546032E240ECFEA00EAF628 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				45F5E8D023E6053500307E48 /* EditorState.hpp */,
+				45F5E8CF23E6053500307E48 /* EditorState.cpp */,
+				4546032C240ECCC700EAF628 /* EditorModes.hpp */,
+				4546032B240ECCC700EAF628 /* EditorModes.cpp */,
+				45460330240ED01500EAF628 /* DefaultMode.cpp */,
+				45460331240ED01500EAF628 /* DefaultMode.hpp */,
+			);
+			path = Editor;
 			sourceTree = "<group>";
 		};
 		45466C712408A6F0001F72E0 /* UI */ = {
@@ -610,6 +631,8 @@
 			children = (
 				458A1D3623ECCF5000F2F8ED /* Tile.cpp */,
 				458A1D3723ECCF5000F2F8ED /* Tile.hpp */,
+				4546031C240E93B000EAF628 /* EnemySpawner.cpp */,
+				4546031D240E93B000EAF628 /* EnemySpawner.hpp */,
 			);
 			path = "Tiles ";
 			sourceTree = "<group>";
@@ -907,6 +930,7 @@
 				45E01765240D7D5500EC8E1D /* Weapon.cpp in Sources */,
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,
 				45B989D323E0909400B3C087 /* Player.cpp in Sources */,
+				4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */,
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,
 				45E01774240DD6D400EC8E1D /* Enemy.cpp in Sources */,
 				458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */,
@@ -914,8 +938,10 @@
 				4553BC3C23EE2D99002C68C0 /* GraphicsSettings.cpp in Sources */,
 				450CA31123D9187800FF039F /* GameState.cpp in Sources */,
 				454A702F23D770B4003FEB4F /* main.cpp in Sources */,
+				4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */,
 				45E01769240D80D800EC8E1D /* Sword.cpp in Sources */,
 				4543923923E1BFBB00D7A0F5 /* MovementComponets.cpp in Sources */,
+				45460332240ED01500EAF628 /* DefaultMode.cpp in Sources */,
 				454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */,
 				451BD30C23DA10E200426643 /* Entity.cpp in Sources */,
 				457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */,

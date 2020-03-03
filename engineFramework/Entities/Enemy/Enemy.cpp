@@ -9,11 +9,11 @@
 #include "Enemy.hpp"
 
 
-Enemy::Enemy(float x, float y, sf::Texture& texturesheet)
+Enemy::Enemy(float x, float y, sf::Texture& texturesheet) : enemyspawner(enemyspawner)
 {
       this->createmovementcomponet(150.f , 2000.f, 500.f);
       this->create_animation_componet(texturesheet);
-      this->create_hitbox_componet(this->sprite, 0, 0, 39.f, 54.f);
+      this->create_hitbox_componet(this->sprite, 0, 0, 17.f, 17.f);
       this->initanimations();
       this->sprite.setScale(3.f, 3.f);
       this->sprite.setPosition(x,y);

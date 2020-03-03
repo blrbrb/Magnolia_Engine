@@ -12,10 +12,11 @@
 #include "GUI.hpp"
 #include "PauseMenu.hpp"
 #include "TileMap.hpp"
+#include "EditorModes.hpp"
 
 
 class State;
-
+class EditorModes;
 class PauseMenu;
 class TileMap; 
 
@@ -64,7 +65,6 @@ private:
         //TileMap
         TileMap* Tilemap;
     
-    
         //GUI
         GUI::TextureSelector* texture_selector; 
         sf::RectangleShape select_Rect;
@@ -80,9 +80,7 @@ private:
     
         //Camera
         sf::View mainview;
-    
-   
-     
+
     bool collision;
     short type;
     float cameraspeed;

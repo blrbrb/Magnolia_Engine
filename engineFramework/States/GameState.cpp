@@ -23,7 +23,6 @@ GameState::GameState(StateData* state_data)
     this->inittilemap();
     
     this->test_enemy = new Enemy(500.f, 800.f,this->textures["ENEMY_SHEET"]);
-    
  
 }
 
@@ -185,10 +184,11 @@ void GameState::updateInput(const float& dt)
 
 void GameState::updatetilemap(const float& dt)
 {
-    this->Tilemap->update();
-    if(this->Tilemap->updateTileCollision(this->player, dt))
+    this->Tilemap->update(this->player,dt);
+    
+    if(this->Tilemap->isEntityColliding == true)
     {
-        this->sound.play(); 
+        this->sound.play();
     }
 }
 
@@ -327,7 +327,7 @@ void GameState::render(sf::RenderTarget* target) {
 
 void GameState::checkforendstate() {
     
-   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key (this->keybinds.at("CLOSE")))) {
+   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))) {
           
           return this->quit = true;
         

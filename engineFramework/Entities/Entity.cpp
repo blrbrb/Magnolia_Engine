@@ -18,11 +18,18 @@ Entity::Entity() {
 const sf::Vector2f &Entity::getPosition() const
 {
     /*!
+                            
+               @interface Entity();
+     
+                @class Entity
+     
                 @brief  Fetch the position of the entity relative to the window
     
                 @param  void
      
                 @return const sf::Vector2f&     The position of the entity
+     
+                @see getGridPosition();
 
      */
     
@@ -39,6 +46,8 @@ const sf::Vector2f &Entity::getPosition() const
 const sf::Vector2f Entity::getCenter() const
 {
     /*!
+     @class Entity
+     
      @brief Fetch the center of the entity's sprite
      
      @param void
@@ -172,6 +181,19 @@ const sf::FloatRect Entity::getGlobalBounds() const
 
 const sf::Vector2i Entity::getGridPosition(const int gridSizeI) const
 {
+    /**
+                            
+        @class Entity
+     
+        @brief Retrieve the position of an Entity relative to the tile grid
+     
+        @discussion If the entity has a hitbox element attached, the function will return the position of the hitbox divided by the gridsize, if not and there is only an entity present .The function will return the sprite's position divided by the gridsize
+     
+        @param const int        GridSize
+     
+        @return const sf::Vector2i      The position of the entity relative to the grid
+     
+     */
     if(this->hitbox)
         return sf::Vector2i(static_cast<int>(this->hitbox->getPosition().x) / gridSizeI, static_cast<int>(this->hitbox->getPosition().y) / gridSizeI);
     

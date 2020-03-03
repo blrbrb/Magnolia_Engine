@@ -93,7 +93,14 @@ void StatusComponet::createstats()
 
 
 void StatusComponet::UpdateLevel()
-{
+{ /**
+            @class StatusComponet
+            @brief Updates the level of the entity if enough exp has been accumulated, updates and changes the exp needed to reach the next level
+            @param void
+            @return void
+   
+   */
+    
     if (this->exp >= this->expNextlvl)
     {
         this->Levelsound.play();
@@ -111,6 +118,13 @@ void StatusComponet::UpdateLevel()
 
 void StatusComponet::gainexp(const unsigned exp)
 {
+/**
+    @class StatusComponet
+    @brief adds exp
+    @param const_unsigned exp
+    @return void
+    
+*/
     
     this->exp += exp;
     this->UpdateLevel();
@@ -134,12 +148,12 @@ std::string StatusComponet::debugPrint() const
 void StatusComponet::Debug_test_Algorithim()
 {
     
-  /*
-   * DEBUG: Testing a concept for player exp gain
-   *
-   *
-   *
-   * @returns int   a new value for the expnext
-   */
+ /**
+          @class StatusComponet
+          @brief Debug ignore 
+          @param void
+          @return void
+ 
+ */
 
 }
