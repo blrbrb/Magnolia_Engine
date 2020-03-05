@@ -39,6 +39,8 @@ GameState::~GameState() {
         delete this->activEnemies[i];
     }
     
+   
+    
 }
 
 void GameState::initdeferedrender() {
@@ -92,6 +94,7 @@ void GameState::initkeybinds() {
    
     for (auto i : this->keybinds)
      {
+        
          std::cout << i.first << " " << i.second << "\n";
          
      }
@@ -306,10 +309,7 @@ void GameState::updatePlayerInput(const float& dt) {
             this->player->loseHP(1);
     }
     
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("SHIT"))))
-    {
-        
-    }
+   
 
 }
 

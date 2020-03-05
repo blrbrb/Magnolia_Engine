@@ -21,6 +21,8 @@ class DefaultMode : public EditorModes
 {
     
 private:
+        
+        //interface variables
           sf::Text cursortext;
           GUI::TextureSelector* texture_selector;
           sf::RectangleShape select_Rect;
@@ -28,13 +30,14 @@ private:
           sf::RectangleShape sidebar_texture;
           sf::RectangleShape text_container;
           sf::IntRect TextureRect;
+         
      
-    
+        //Tile variables
           bool collision;
           short type;
-         
-        int layer;
+          int layer;
     
+    //initalizer functions
     void initvariables();
     void inittext();
     void initGUI(); 

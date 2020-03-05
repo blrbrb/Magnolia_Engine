@@ -116,6 +116,7 @@ public:
 class TextureSelector
 {
 private:
+    
     bool active;
     bool hidden;
     bool multi_select; 

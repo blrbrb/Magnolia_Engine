@@ -38,10 +38,14 @@ private:
          sf::RectangleShape text_container;
          sf::IntRect TextureRect;
     
-    //Tile variables
-    bool collision;
-    short type;
     int layer;
+    int type; 
+    //Tile variables
+     
+    int Enemytype;
+    int Enemyamount;
+    int spawn_timer;
+    float maxDistance;
     
     //initalizer functions
     void initGUI();

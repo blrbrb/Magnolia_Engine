@@ -469,7 +469,7 @@ GUI::TextureSelector::~TextureSelector()
 void GUI::TextureSelector::update(const sf::Vector2i& MousePosWindow, const float& dt)
 {
     this->updatekeytime(dt);
-    this->hide->update(static_cast<sf::Vector2i>(MousePosWindow));
+    this->hide->update((MousePosWindow));
     
     
     
@@ -516,8 +516,12 @@ void GUI::TextureSelector::update(const sf::Vector2i& MousePosWindow, const floa
 
 void GUI::TextureSelector::updatekeytime(const float& dt)
 {
-    if (this->keytime < this->keytimeMax)
-    this->keytime += 10.f * dt;
+    if (this->keytime > this->keytimeMax)
+    {
+        this->keytime += 10.f * dt;
+    }
+    
+
     
 }
 

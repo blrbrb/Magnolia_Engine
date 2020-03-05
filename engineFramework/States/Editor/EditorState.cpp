@@ -135,6 +135,11 @@ void EditorState::initkeybinds()
              while (ifs >> key >> key2)
              {
                  this->keybinds[key] = this->supportedkeys->at(key2);
+                 
+                 if (!this->keybinds.at(key))
+                 {
+                     std::cout << this->keybinds.at(key);
+                 }
              }
          }
 
@@ -269,7 +274,7 @@ void EditorState::updateInput(const float& dt) {
         this->mainview.move(0.f, this->cameraspeed * dt);
     }
     
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("SHIT"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds["LOCK"])) && this->getkeytime())
     {
         if(this->Tilemap->lock_layer)
        this->Tilemap->lock_layer = false;
@@ -279,7 +284,7 @@ void EditorState::updateInput(const float& dt) {
     }
     
     
-    std::cout << sf::Keyboard::L << std::endl;
+    /**std::cout << sf::Keyboard::L << std::endl;
     std::cout << "A = "<< " "<< sf::Keyboard::A << std::endl;
     std::cout << "B = "<< " "<< sf::Keyboard::B << std::endl;
     std::cout << "C = "<< " "<< sf::Keyboard::C << std::endl;
@@ -305,36 +310,47 @@ void EditorState::updateInput(const float& dt) {
     std::cout << "W = "<< " "<< sf::Keyboard::W << std::endl;
     std::cout << "X = "<< " "<< sf::Keyboard::X << std::endl;
     std::cout << "Y = "<< " "<< sf::Keyboard::Y << std::endl;
-    std::cout << "Z = "<< " "<< sf::Keyboard::Z << std::endl;
+    std::cout << "Z = "<< " "<< sf::Keyboard::Z << std::endl; */
     
     //Zoom the World Builder View in or out
-   //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("ZOOMOUT"))))
-   // {
-      //  this->mainview.zoom(1.01);
-   // }
+   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::O))
+    {
+        this->mainview.zoom(1.01);
+    }
     
-    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("ZOOMIN"))))
-    //{
-      //  this->mainview.zoom(0.8);
-   // }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P) && this->getkeytime())
+    {
+        this->mainview.zoom(0.5);
+    }
    
-
-
-    
-    
     
     //inc the current editor mode
-    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEF"))) && this->getkeytime())
-    //{
-      //  this->activeMode = EDITOR_MODES::DEFAULT_MODE;
-    //}
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num1))
+    {
+        
+        if (this->activeMode > 0)
+        {
+            this->activeMode--;
+        }
+        else
+        {
+            std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE DOWN!" << "\n";
+        }
+    }
       
     //dec the current editor mode
     
-   // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE"))) && this->getkeytime())
-     //  {
-           //this->activeMode = EDITOR_MODES::DEFAULT_MODE;
-       //}
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num2) && this->getkeytime())
+       {
+           if (this->activeMode < this->modes.size() - 1)
+           {
+               this->activeMode++;
+           }
+           else
+           {
+               std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE UP!" << "\n";
+           }
+       }
     
     
 }
@@ -397,7 +413,7 @@ void EditorState::render(sf::RenderTarget* target)
     this->renderModes(*target);
     //this->renderbuttons(*target);
     
-    this->renderGUI(*target);
+   
     
     if(this->paused)
        {

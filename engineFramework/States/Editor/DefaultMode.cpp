@@ -42,6 +42,8 @@ void DefaultMode::updateInput(const float &dt)
                                 if (this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
                                  {
                                      this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, collision, type);
+                                     
+                                        std::cout << "LOCKED: Tile Added" << std::endl;
                                  }
                                  else
                                  {
@@ -54,6 +56,8 @@ void DefaultMode::updateInput(const float &dt)
                             {
                         
                                 this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, collision, type);
+                                
+                                std::cout << "Tile Added" << std::endl;
                                
                             }
 
@@ -63,7 +67,7 @@ void DefaultMode::updateInput(const float &dt)
                  
                  else if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) == -1)
                      {
-                       
+                         std::cout << "Invalid Tile Space" << std::endl;
                      }
              }
              //else set the selection rect to the texture the user's mouse is on in the texture selector
@@ -98,6 +102,7 @@ void DefaultMode::updateInput(const float &dt)
                               if (!this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
                                {
                                    this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
+                                   std::cout << "LOCKED: Tile Removed" << std::endl;
                                }
                                else
                                {
@@ -105,11 +110,14 @@ void DefaultMode::updateInput(const float &dt)
                                }
                              
                          }
-                       //else if adding tiles is not locked to one layer
+                        //else if adding tiles is not locked to one layer
                          else if (!this->tilemap->lock_layer)
                           {
                       
                               this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
+                              
+                              std::cout << "Tile Removed" << std::endl;
+                              
                           }
                       
                     
@@ -139,6 +147,8 @@ void DefaultMode::updateInput(const float &dt)
                 this->collision = false;
             else
                 this->collision = true;
+            
+            std::cout << "Collision Tog" << std::endl;
         }
         
         
@@ -146,11 +156,13 @@ void DefaultMode::updateInput(const float &dt)
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("TYPE_INCREASE"))) && this->getkeytime())
         {
             ++this->type;
+            std::cout << "Type up" << std::endl;
         }
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("TYPE_DECREASE"))) && this->getkeytime())
         {
             if(this->type > 0)
             --this->type;
+            std::cout << "Type down" << std::endl;
         }
         
         
