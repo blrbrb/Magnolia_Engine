@@ -12,6 +12,7 @@
 
 Game::Game() {
     
+   
     this->initVariables();
     this->initGraphicsSettings();
     this->initwindow();
@@ -49,7 +50,7 @@ void Game::initkeys() {
    if (ifs.is_open())
    {
        std::string key = "";
-       int key_value = 0;
+       int key_value = 0; 
        
        while (ifs >> key >> key_value)
        {
@@ -59,8 +60,10 @@ void Game::initkeys() {
 
    ifs.close();
     
-    
-
+    for (auto i : this->supportedkeys)
+    {
+        std::cout << i.first << " " << i.second << "\n";
+    }
 }
 
 void Game::initstates() {
@@ -92,7 +95,7 @@ void Game::initwindow() {
     
     
     sf::Image icon;
-    if(!icon.loadFromFile(resourcePath() + "icon.png"))
+    if(!icon.loadFromFile(resourcePath() + "Blrb.png"))
     {
         
         std::cout << "ERROR_C_12 GAME::INITWINDOW UNABLE_TO_LOAD_ICON" << std::endl;
@@ -120,7 +123,6 @@ void Game::initstatedata()
     this->state_data.supportedkeys = &this->supportedkeys;
     this->state_data.states = &this->states;
     this->state_data.gridsize = this->gridsize;
-   
 
 }
 
@@ -136,17 +138,16 @@ void Game::resizewindow()
 
 
 
-void Game::load() {
+void Game::load()
+{
     
-   
-
        
 }
 
 
 
-void Game::Update() {
-    
+void Game::Update()
+{
     this->UpdateEvents();
     
     

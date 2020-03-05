@@ -20,6 +20,7 @@ Player::Player(float x, float y, sf::Texture& texturesheet)
 
     this->create_animation_componet(texturesheet);
     this->initanimations();
+    this->sprite.setScale(4, 4);
 
 }
 
@@ -51,9 +52,9 @@ void Player::initvariables()
 void Player::initanimations()
 {
     
-    this->animtioncomponet->add_animation("IDLE_LEFT", 10.f, 0, 0, 35, 0, 34, 54);
-    this->animtioncomponet->add_animation("WALK_RIGHT", 5.f, 0, 1, 13, 1, 39, 54);
-    this->animtioncomponet->add_animation("WALK_LEFT", 5.f, 0, 2, 13, 2, 39, 54);
+    this->animtioncomponet->add_animation("IDLE_LEFT", 10.f, 0, 3, 8, 3, 16, 16);
+    this->animtioncomponet->add_animation("WALK_RIGHT", 5.f, 0, 2, 4, 2, 16, 16);
+    this->animtioncomponet->add_animation("WALK_LEFT", 5.f, 5, 2, 4, 2, 16, 16);
     this->animtioncomponet->add_animation("WALK_DOWN", 5.f, 0, 3, 13, 3, 39, 54);
     this->animtioncomponet->add_animation("WALK_UP", 5.f, 0, 4, 12, 4, 39, 54);
     this->animtioncomponet->add_animation("WALK_UP_LEFT", 5.f, 0, 5, 13, 5, 39, 54);

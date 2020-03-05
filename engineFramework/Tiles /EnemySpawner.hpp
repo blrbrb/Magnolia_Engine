@@ -16,6 +16,7 @@ class EnemySpawner : public Tile
 {
     
 private:
+    
     sf::Vector2i gridPosition;
     sf::RectangleShape tile; 
     int Enemytype;
@@ -24,7 +25,7 @@ private:
     float maxDistance;
     
 public:
-    EnemySpawner(int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect,sf::Vector2i& grid_position, int Enemytype, int Enemyamount, int time_to_spawn, float max_distance);
+    EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect,sf::Vector2i& grid_position, int Enemytype, int Enemyamount, int time_to_spawn, float max_distance);
     virtual ~EnemySpawner();
   
     void clear();
@@ -34,3 +35,4 @@ public:
 };
 
 #endif /* EnemySpawner_hpp */
+

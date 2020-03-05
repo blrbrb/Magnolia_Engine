@@ -9,7 +9,7 @@
 #include "EnemySpawner.hpp"
 
 
-EnemySpawner::EnemySpawner(int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, sf::Vector2i &grid_position, int type, int Enemyamount, int time_to_spawn, float max_distance) : Tile(x, y, gridsize_f, texture, texturerect, false, TileTypes::SPAWNER)
+EnemySpawner::EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, sf::Vector2i &grid_position, int type, int Enemyamount, int time_to_spawn, float max_distance) : Tile(x, y, gridsize_f, texture, texturerect, false, TileTypes::SPAWNER)
 {
     this->tile.setSize(sf::Vector2f(30, 30));
     this->tile.setFillColor(sf::Color::White);

@@ -11,17 +11,18 @@
 EditorState::EditorState(StateData* state_data)
 : State(state_data)
 {
-    
     this->initvariables();
+    this->initeditorstatedata();
     this->initview();
-    this->initkeybinds();
     this->initFonts();
-    this->inittext();
-    this->initbackground();
-    this->inittilemap();
+    this->initkeybinds();
     this->initpausemenu();
-    
+    this->initButtons();
+    this->inittilemap();
     this->initGUI();
+    this->initmodes();
+    this->activeMode = EDITOR_MODES::DEFAULT_MODE;
+     
 
 }
 
@@ -38,7 +39,12 @@ EditorState::~EditorState() {
      
     delete this->Tilemap;
     
-    delete this->texture_selector;
+  
+    
+    for (size_t i = 0; i > this->modes.size(); i++)
+    {
+        delete this->modes[i];
+    }
     
     
 }
@@ -46,17 +52,16 @@ EditorState::~EditorState() {
 //initalization functions
 void EditorState::initvariables()
 {
-    this->TextureRect = sf::IntRect(0, 0, 17, 17);
-    this->collision = false;
-    this->type = TileTypes::DEFAULT;
-    this->cameraspeed = 200.f;
-    this->layer = 0;
+    this->cameraspeed = 175.f; 
     
 }
 
 
 //initalizer functions
-
+void EditorState::initButtons()
+{
+    
+}
 
 void EditorState::inittilemap()
 {
@@ -134,64 +139,42 @@ void EditorState::initkeybinds()
          }
 
          ifs.close();
+    
+    for (auto i : this->keybinds)
+    {
+        std::cout << i.first << " " << i.second << "\n";
+        
+    }
+    
+    
+    
+}
+
+void EditorState::initmodes()
+{
+    this->modes.push_back(new DefaultMode(this->state_data, this->Tilemap, &this->editorstatedata));
+    this->modes.push_back(new EnemyEditorMode(this->state_data, this->Tilemap, &this->editorstatedata));
+    
+    this->activeMode = EDITOR_MODES::DEFAULT_MODE;
 }
 
 void EditorState::initsidebar()
 {
     //config the sidebar
-    this->sidebar.setSize(sf::Vector2f(80.f, static_cast<float>(this->state_data->gfxsettings->resolution.height)));
-    this->sidebar.setFillColor(sf::Color(50,50,50, 100));
-    this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
-    this->sidebar.setOutlineThickness(1.f);
+    
   
 }
 
 void EditorState::initGUI()
 {
      
-    this->initsidebar();
     
-    //config the selection rectangle
-    this->select_Rect.setSize(sf::Vector2f(this->state_data->gridsize, this->state_data->gridsize));
-     this->select_Rect.setTexture(this->Tilemap->getTileSheet());
-    
-    
-    //this->select_Rect.setFillColor(sf::Color::Transparent);
-    //this->select_Rect.setOutlineColor(sf::Color::Green);
-    //this->select_Rect.setOutlineThickness(2);
-    
-    //Config the TextureSelector from GUI.hpp
-    this->texture_selector = new GUI::TextureSelector(20.f, 20.f, 543.f, 560.f, this->state_data->gridsize, this->Tilemap->getTileSheet(), this->font, "X");
-    
-   
-    
-    this->buffer.loadFromFile(resourcePath() + "Beep.wav");
-    this->UI_invalid.setBuffer(buffer);
 
 }
 
 
 /* Initalizer Functions */
 
-void EditorState::inittext()
-{
-    sf::VideoMode vm = this->state_data->gfxsettings->resolution;
-    
-    
-       this->cursortext.setFont(this->font);
-       this->cursortext.setFillColor(sf::Color::White);
-       this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
-       this->cursortext.setOutlineThickness(1.f);
-       this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
-    
-        
-    
-       this->text_container.setSize(sf::Vector2f(400.f, 200.f));
-       this->text_container.setFillColor(sf::Color(50,50,50,100));
-       this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
-       this->text_container.setOutlineThickness(1.f);
-       this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
-}
 
 
 
@@ -217,28 +200,45 @@ void EditorState::initbackground()
     
 }
 
+
+void EditorState::initeditorstatedata()
+{
+    //this->editorstatedata.view = &this->view;
+     this->editorstatedata.keybinds = &this->keybinds; 
+    this->editorstatedata.keytime = &this->keytime;
+    this->editorstatedata.ketyimeMax = &this->keytime_MAX;
+
+    this->editorstatedata.mouseposGrid = &this->MousePosGrid;
+    this->editorstatedata.mousePosView = &this->MousePosView;
+    this->editorstatedata.mousePosWindow = &this->MousePosWindow;
+    this->editorstatedata.mousePosScreen= &this->MousePosScreen;
+    this->editorstatedata.view = &this->mainview;
+    this->editorstatedata.font = &this->font; 
+    
+    
+}
+
 /*Update Functions*/
 
 void EditorState::update(const float& dt) {
     
     this->updateMousePosition(&this->mainview);
     this->updatekeytime(dt);
-    this->updateInput(dt);
+    this->updateEditorinput(dt);
     
+   
    
     if (!this->paused) //Unpaused
     {
-        
         this->updatebuttons();
         this->updateGUI(dt);
-        this->updateEditorinput(dt);
-        
+        this->updateInput(dt);
+        this->updateModes(dt);
     }
     else //Paused
     {
         this->pMenu->update(this->MousePosWindow);
         this->updatepausemenubuttons();
-       
     }
     
 }
@@ -250,6 +250,8 @@ void EditorState::updateInput(const float& dt) {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_RIGHT"))))
     {
         this->mainview.move(this->cameraspeed * dt, 0.f);
+        
+        std::cout << "camera right" << std::endl;
     }
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_CAMERA_LEFT"))))
@@ -267,159 +269,76 @@ void EditorState::updateInput(const float& dt) {
         this->mainview.move(0.f, this->cameraspeed * dt);
     }
     
-    
-    
-    //Zoom the World Builder View in or out
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L))
-    {
-        this->mainview.zoom(1.01);
-    }
-    
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
-    {
-        this->mainview.zoom(0.8);
-    }
-   
-
-    //Pause
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getkeytime())
-    {
-        if (!this->paused)
-            this->Pause_State();
-        
-        else
-            this->Unpause_State();
-    }
-    
-    
-    
-    
-}
-
-void EditorState::updateEditorinput(const float &dt)
-{
-    /*!
-                @class EditorState
-                @brief Update the user's Input while inside the editor state
-                @param const float deltaTime
-                @return void
-     */
-    
-   
-    if((sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("PLACE"))) && this->getkeytime()))
-    {
-    //if the user's mouse is not on the sidebar
-        
-    if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(this->MousePosWindow)))
-    {
-        //if the texure selector is not active
-         if(!this->texture_selector->getActive())
-         {
-                 if(this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) != -1)
-                 {
-                     //if adding tiles is locked to one layer
-                       if (this->Tilemap->lock_layer)
-                       {
-                            if (this->Tilemap->TileEmpty(MousePosGrid.x, MousePosGrid.y, 0))
-                             {
-                                 this->Tilemap->addTile(MousePosGrid.x, MousePosGrid.y, 0, this->TextureRect, collision, type);
-                             }
-                             else
-                             {
-                                 this->Tilemap->addTile(MousePosGrid.x, MousePosGrid.y, 0, this->TextureRect, collision, type);
-                             }
-                             
-                       }
-                 }
-             
-                //else play UI invalid sound for invalid tile placement
-             
-                 else if(this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) == -1)
-                 {
-                     this->UI_invalid.play();
-                 }
-         }
-         //else set the selection rect to the texture the user's mouse is on in the texture selector
-        else
-        {
-            this->TextureRect = this->texture_selector->getTextureRect();
-                     
-        }
-     }
-    
-        
-     
-  }
-    
-
-    
-    //Remove a tile
-    else if ((sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("REMOVE"))) && this->getkeytime()))
- {
-     //if the user's mouse is not on the sidebar
-     if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(this->MousePosWindow)))
-      {
-          //if the user's mouse is not inside the texture selector
-         if(!this->texture_selector->getActive() && !this->sidebar.getGlobalBounds().contains(sf::Vector2f(this->MousePosWindow)))
-          {
-              //if the cursor is over a valid tile, ok to place
-              if(this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) != -1)
-              {
-                  
-                  this->Tilemap->RemoveTile(this->MousePosGrid.x, this->MousePosGrid.y, 0);
-              }
-              
-              //else play UI invalid sound
-              else if(this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) == -1)
-              {
-                  this->UI_invalid.play();
-              }
-          }
-        
-            else
-             {
-             
-             }
-      }
-        
- }
-    
-  
-    
-    //Toggle Collision on Tiles
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TOGGLE_COLLISION"))) && this->getkeytime())
-    {
-        if(this->collision)
-            this->collision = false;
-        else
-            this->collision = true;
-    }
-    
-    
-    //Toggle Type of Tile to increase or decrease
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TYPE_INCREASE"))) && this->getkeytime())
-    {
-        ++this->type;
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TYPE_DECREASE"))) && this->getkeytime())
-    {
-        if(this->type > 0)
-        --this->type;
-    }
-    
-    
-    
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::O))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("SHIT"))))
     {
         if(this->Tilemap->lock_layer)
-        this->Tilemap->lock_layer = false;
+       this->Tilemap->lock_layer = false;
         
       else
           this->Tilemap->lock_layer = true;
     }
     
+    
+    std::cout << sf::Keyboard::L << std::endl;
+    std::cout << "A = "<< " "<< sf::Keyboard::A << std::endl;
+    std::cout << "B = "<< " "<< sf::Keyboard::B << std::endl;
+    std::cout << "C = "<< " "<< sf::Keyboard::C << std::endl;
+    std::cout << "D = "<< " "<< sf::Keyboard::D << std::endl;
+    std::cout << "E = "<< " "<< sf::Keyboard::E << std::endl;
+    std::cout << "F = "<< " "<< sf::Keyboard::F << std::endl;
+    std::cout << "G = "<< " "<< sf::Keyboard::G << std::endl;
+    std::cout << "H = "<< " "<< sf::Keyboard::H << std::endl;
+    std::cout << "I = "<< " "<< sf::Keyboard::I << std::endl;
+    std::cout << "G = "<< " "<< sf::Keyboard::J << std::endl;
+    std::cout << "K = "<< " "<< sf::Keyboard::K << std::endl;
+    std::cout << "L = "<< " "<< sf::Keyboard::L << std::endl;
+    std::cout << "M = "<< " "<< sf::Keyboard::M << std::endl;
+    std::cout << "N = "<< " "<< sf::Keyboard::N << std::endl;
+    std::cout << "O = "<< " "<< sf::Keyboard::O << std::endl;
+    std::cout << "P = "<< " "<< sf::Keyboard::P << std::endl;
+    std::cout << "Q = "<< " "<< sf::Keyboard::Q << std::endl;
+    std::cout << "R = "<< " "<< sf::Keyboard::R << std::endl;
+    std::cout << "S = "<< " "<< sf::Keyboard::S << std::endl;
+    std::cout << "T = "<< " "<< sf::Keyboard::T << std::endl;
+    std::cout << "U = "<< " "<< sf::Keyboard::U << std::endl;
+    std::cout << "V = "<< " "<< sf::Keyboard::V << std::endl;
+    std::cout << "W = "<< " "<< sf::Keyboard::W << std::endl;
+    std::cout << "X = "<< " "<< sf::Keyboard::X << std::endl;
+    std::cout << "Y = "<< " "<< sf::Keyboard::Y << std::endl;
+    std::cout << "Z = "<< " "<< sf::Keyboard::Z << std::endl;
+    
+    //Zoom the World Builder View in or out
+   //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("ZOOMOUT"))))
+   // {
+      //  this->mainview.zoom(1.01);
+   // }
+    
+    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("ZOOMIN"))))
+    //{
+      //  this->mainview.zoom(0.8);
+   // }
+   
 
+
+    
+    
+    
+    //inc the current editor mode
+    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEF"))) && this->getkeytime())
+    //{
+      //  this->activeMode = EDITOR_MODES::DEFAULT_MODE;
+    //}
+      
+    //dec the current editor mode
+    
+   // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MODE"))) && this->getkeytime())
+     //  {
+           //this->activeMode = EDITOR_MODES::DEFAULT_MODE;
+       //}
+    
+    
 }
+
 
 
 void EditorState::updatebuttons()
@@ -439,103 +358,60 @@ void EditorState::updatebuttons()
 }
 
 
+void EditorState::updateEditorinput(const float& dt)
+{
+    
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getkeytime())
+    {
+        if (!this->paused)
+            this->Pause_State();
+        
+        else
+            this->Unpause_State();
+    }
+    
+    
+    
+}
+
+
 void EditorState::updateGUI(const float& dt)
 {
-    sf::VideoMode vm = this->state_data->gfxsettings->resolution;
     
-    this->texture_selector->update(this->MousePosWindow, dt);
-    
-    if(!this->texture_selector->getActive())
-    {
-          //set the selection rectangle position
-        this->select_Rect.setTextureRect(this->TextureRect);
-        this->select_Rect.setPosition(this->MousePosGrid.x * this->state_data->gridsize, this->MousePosGrid.y * this->state_data->gridsize);
-        
-    }
-    
-
-    //set the cursor text
-    
-    
-    std::stringstream cursor_text;
-    cursor_text << this->MousePosView.x << " " << this->MousePosView.y
-    << "\n" << this->MousePosGrid.x << " " << this->MousePosGrid.y
-    << "\n" << this->TextureRect.left << " " << this->TextureRect.top << "Collision: " << this->collision
-    << "\n" << "type" << this->type
-    << "\n" << "Tiles:" << this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer);
-    
-    //If the cursor is on a valid tile, the text color is white
-    if (this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) != -1)
-    {
-        this->cursortext.setFillColor(sf::Color::White);
-    }
-    
-    //if the cursor is not on a valid tile, the text color is red
-    else if (this->Tilemap->getLayerSize(this->MousePosGrid.x, this->MousePosGrid.y, this->layer) == -1 )
-    {
-        this->cursortext.setFillColor(sf::Color::Red);
-    }
-
-    this->cursortext.setString(cursor_text.str());
-    
-   }
-
-
+}
 
 
 /*Render Functions*/
 
-void EditorState::render(sf::RenderTarget* target) {
-    
+void EditorState::render(sf::RenderTarget* target)
+{
     if (!target)
         target = this->window;
     
     //Tilemap Camera (same as game camera)
     this->window->setView(this->mainview);
     this->Tilemap->render(*target, this->MousePosGrid);
-    
+        
     //Buttons Camera
     this->window->setView(this->window->getDefaultView());
-    this->renderbuttons(*target);
+    this->renderModes(*target);
+    //this->renderbuttons(*target);
     
     this->renderGUI(*target);
     
-    
     if(this->paused)
-    {
-        this->window->setView(this->window->getDefaultView());
-        this->pMenu->render(*target);
-    }
-    
-
-    //render the Scroller text
-   
-    
-    //render the gui sidebar
-   
+       {
+           this->window->setView(this->window->getDefaultView());
+           this->pMenu->render(*target);
+       }
     
 }
 
 void EditorState::renderGUI(sf::RenderTarget &target)
 {
-    if (!this->texture_selector->getActive())
-    {
-        target.setView(this->mainview);
-        target.draw(this->select_Rect);
-        
-    }
     
-    target.setView(this->window->getDefaultView());
-    this->texture_selector->render(target);
-    target.draw(this->sidebar);
-    target.draw(this->cursortext);
-    target.draw(this->text_container);
-    
-    target.setView(this->mainview);
-    
-    
-
-
+   
+   
 }
 
 
@@ -547,4 +423,17 @@ void EditorState::renderbuttons(sf::RenderTarget& target)
     
        }
 }
+
+void EditorState::updateModes(const float &dt)
+{
+    this->modes[this->activeMode]->update(dt);
+    
+}
+
+void EditorState::renderModes(sf::RenderTarget &target)
+{
+     this->modes[this->activeMode]->render(target);
+}
+
+
 

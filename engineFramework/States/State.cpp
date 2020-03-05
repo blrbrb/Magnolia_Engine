@@ -11,8 +11,8 @@
 
 State::State(StateData* state_data) : quit(false), paused(false) {
     
-    this->state_data = state_data;
     this->supportedkeys = state_data->supportedkeys;
+    this->state_data = state_data;
     this->states = state_data->states;
     this->window = state_data->window;
     this->keytime = 0.f; 

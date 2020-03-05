@@ -17,11 +17,11 @@ void TileMap::clear()
     //symmetry orgasim
     if(!this->Map.empty())
     {
-        for (int x=0; x < this->MaxSizeWorldGrid.x; x++ )
+        for (int x=0; x < this->Map.size(); x++ )
              {
-                 for (int y=0; y < this->MaxSizeWorldGrid.y; y++ )
+                 for (int y=0; y < this->Map[x].size(); y++ )
                  {
-                     for (int z=0; z < this->layers; z++ )
+                     for (int z=0; z < this->Map[x][y].size(); z++ )
                      {
                          for (size_t k=0; k < this->Map[x][y][z].size(); k++)
                          {

@@ -14,6 +14,9 @@
 		4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546031C240E93B000EAF628 /* EnemySpawner.cpp */; };
 		4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546032B240ECCC700EAF628 /* EditorModes.cpp */; };
 		45460332240ED01500EAF628 /* DefaultMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45460330240ED01500EAF628 /* DefaultMode.cpp */; };
+		45460336240EDFBD00EAF628 /* Blrb.png in Resources */ = {isa = PBXBuildFile; fileRef = 45460335240EDFBD00EAF628 /* Blrb.png */; };
+		4546033A240F521E00EAF628 /* Hero.png in Resources */ = {isa = PBXBuildFile; fileRef = 45460339240F521E00EAF628 /* Hero.png */; };
+		45460340241005B100EAF628 /* EnemyEditorMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546033E241005B100EAF628 /* EnemyEditorMode.cpp */; };
 		45466C522408919B001F72E0 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 45466C512408919B001F72E0 /* TileMap.png */; };
 		45466C5A2408A5D7001F72E0 /* Retro FootStep Grass 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C592408A5D6001F72E0 /* Retro FootStep Grass 01.wav */; };
 		45466C5C2408A5E1001F72E0 /* Retro FootStep Mud 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C5B2408A5E1001F72E0 /* Retro FootStep Mud 01.wav */; };
@@ -29,7 +32,6 @@
 		45466C702408A6E5001F72E0 /* Water Drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C6F2408A6E5001F72E0 /* Water Drop.wav */; };
 		454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 454A702B23D770B4003FEB4F /* ResourcePath.mm */; };
 		454A702F23D770B4003FEB4F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454A702E23D770B4003FEB4F /* main.cpp */; };
-		454A703823D770B4003FEB4F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 454A703723D770B4003FEB4F /* icon.png */; };
 		454A704923D8C30A003FEB4F /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454A704723D8C30A003FEB4F /* Game.cpp */; };
 		455318E02409FEFD00433CD7 /* grey_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318C42409FEFB00433CD7 /* grey_button02.png */; };
 		455318E12409FEFD00433CD7 /* red_button04.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318C52409FEFB00433CD7 /* red_button04.png */; };
@@ -121,7 +123,6 @@
 		45E0176D240DA78800EC8E1D /* sword.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E0176C240DA78800EC8E1D /* sword.png */; };
 		45E01771240DACF400EC8E1D /* SkillComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E0176F240DACF400EC8E1D /* SkillComponent.cpp */; };
 		45E01774240DD6D400EC8E1D /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E01772240DD6D400EC8E1D /* Enemy.cpp */; };
-		45E0177A240DFA6400EC8E1D /* Blrb.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E01779240DFA6400EC8E1D /* Blrb.png */; };
 		45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F5E8CF23E6053500307E48 /* EditorState.cpp */; };
 		45F5E8D423E60A5300307E48 /* HitBoxComponet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F5E8D223E60A5300307E48 /* HitBoxComponet.cpp */; };
 		45F8E41A23EB59470037EBD5 /* SettingsState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F8E41823EB59470037EBD5 /* SettingsState.cpp */; };
@@ -158,6 +159,10 @@
 		4546032C240ECCC700EAF628 /* EditorModes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EditorModes.hpp; sourceTree = "<group>"; };
 		45460330240ED01500EAF628 /* DefaultMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultMode.cpp; sourceTree = "<group>"; };
 		45460331240ED01500EAF628 /* DefaultMode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DefaultMode.hpp; sourceTree = "<group>"; };
+		45460335240EDFBD00EAF628 /* Blrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blrb.png; sourceTree = "<group>"; };
+		45460339240F521E00EAF628 /* Hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hero.png; sourceTree = "<group>"; };
+		4546033E241005B100EAF628 /* EnemyEditorMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyEditorMode.cpp; sourceTree = "<group>"; };
+		4546033F241005B100EAF628 /* EnemyEditorMode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnemyEditorMode.hpp; sourceTree = "<group>"; };
 		45466C512408919B001F72E0 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
 		45466C592408A5D6001F72E0 /* Retro FootStep Grass 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Retro FootStep Grass 01.wav"; sourceTree = "<group>"; };
 		45466C5B2408A5E1001F72E0 /* Retro FootStep Mud 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Retro FootStep Mud 01.wav"; sourceTree = "<group>"; };
@@ -176,7 +181,6 @@
 		454A702B23D770B4003FEB4F /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		454A702D23D770B4003FEB4F /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		454A702E23D770B4003FEB4F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		454A703723D770B4003FEB4F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		454A704723D8C30A003FEB4F /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		454A704823D8C30A003FEB4F /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		455318C42409FEFB00433CD7 /* grey_button02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_button02.png; sourceTree = "<group>"; };
@@ -287,7 +291,6 @@
 		45E01770240DACF400EC8E1D /* SkillComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SkillComponent.hpp; sourceTree = "<group>"; };
 		45E01772240DD6D400EC8E1D /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		45E01773240DD6D400EC8E1D /* Enemy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
-		45E01779240DFA6400EC8E1D /* Blrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blrb.png; sourceTree = "<group>"; };
 		45F5E8CF23E6053500307E48 /* EditorState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EditorState.cpp; sourceTree = "<group>"; };
 		45F5E8D023E6053500307E48 /* EditorState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EditorState.hpp; sourceTree = "<group>"; };
 		45F5E8D223E60A5300307E48 /* HitBoxComponet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HitBoxComponet.cpp; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				4546032B240ECCC700EAF628 /* EditorModes.cpp */,
 				45460330240ED01500EAF628 /* DefaultMode.cpp */,
 				45460331240ED01500EAF628 /* DefaultMode.hpp */,
+				4546033E241005B100EAF628 /* EnemyEditorMode.cpp */,
+				4546033F241005B100EAF628 /* EnemyEditorMode.hpp */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -411,14 +416,14 @@
 		454A703023D770B4003FEB4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45460335240EDFBD00EAF628 /* Blrb.png */,
+				45460339240F521E00EAF628 /* Hero.png */,
 				45466C512408919B001F72E0 /* TileMap.png */,
 				455FB3A724070A1900146C3A /* vertex_shader.vert */,
 				455FB3A924070AA000146C3A /* fragment_shader.frag */,
-				45E01779240DFA6400EC8E1D /* Blrb.png */,
 				455FB3A32405D2C900146C3A /* atlas.png */,
 				455FB37E2404AB5200146C3A /* Sounds */,
 				458AB8FF23E0D94200C9E397 /* EngineLogo.png */,
-				454A703723D770B4003FEB4F /* icon.png */,
 				45DB9A5323DD226600F8693E /* Fonts */,
 			);
 			path = Resources;
@@ -825,6 +830,7 @@
 				45466C622408A5F6001F72E0 /* Retro FootStep Krushed Landing 01.wav in Resources */,
 				45466C642408A5FB001F72E0 /* Retro FootStep 03.wav in Resources */,
 				455808A2240011DC00E36DFA /* grey_crossGrey.png in Resources */,
+				45460336240EDFBD00EAF628 /* Blrb.png in Resources */,
 				455318EC2409FEFD00433CD7 /* red_button06.png in Resources */,
 				4558082623F21F6900E36DFA /* PressStart2P.ttf in Resources */,
 				4558088F2400113700E36DFA /* red_sliderDown.png in Resources */,
@@ -846,6 +852,7 @@
 				4558088E2400113700E36DFA /* red_sliderUp.png in Resources */,
 				455FB3822404ABCB00146C3A /* LevelUp.wav in Resources */,
 				455318F02409FEFD00433CD7 /* red_button05.png in Resources */,
+				4546033A240F521E00EAF628 /* Hero.png in Resources */,
 				455FB3AA24070AA000146C3A /* fragment_shader.frag in Resources */,
 				4558083523F5CEA000E36DFA /* EditorState_Keys.ini in Resources */,
 				455318EA2409FEFD00433CD7 /* red_button10.png in Resources */,
@@ -854,7 +861,6 @@
 				455318E02409FEFD00433CD7 /* grey_button02.png in Resources */,
 				455318E72409FEFD00433CD7 /* grey_boxTick.png in Resources */,
 				455318E82409FEFD00433CD7 /* red_button11.png in Resources */,
-				45E0177A240DFA6400EC8E1D /* Blrb.png in Resources */,
 				455808902400113700E36DFA /* red_sliderLeft.png in Resources */,
 				45E0175D240AF37600EC8E1D /* redBoxCheck.png in Resources */,
 				455318F62409FEFE00433CD7 /* red_button09.png in Resources */,
@@ -869,7 +875,6 @@
 				455FB38C2404AD5C00146C3A /* Birds.wav in Resources */,
 				455318E42409FEFD00433CD7 /* button.png in Resources */,
 				4553BC3923EE2C23002C68C0 /* Window.ini in Resources */,
-				454A703823D770B4003FEB4F /* icon.png in Resources */,
 				455FB3932404ADCF00146C3A /* License.txt in Resources */,
 				455318F82409FEFE00433CD7 /* red_button13.png in Resources */,
 				455318EE2409FEFD00433CD7 /* grey_button05.png in Resources */,
@@ -941,6 +946,7 @@
 				4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */,
 				45E01769240D80D800EC8E1D /* Sword.cpp in Sources */,
 				4543923923E1BFBB00D7A0F5 /* MovementComponets.cpp in Sources */,
+				45460340241005B100EAF628 /* EnemyEditorMode.cpp in Sources */,
 				45460332240ED01500EAF628 /* DefaultMode.cpp in Sources */,
 				454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */,
 				451BD30C23DA10E200426643 /* Entity.cpp in Sources */,

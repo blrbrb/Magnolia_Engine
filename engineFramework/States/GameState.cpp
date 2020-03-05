@@ -22,7 +22,8 @@ GameState::GameState(StateData* state_data)
     this->initplayerGUI();
     this->inittilemap();
     
-    this->test_enemy = new Enemy(500.f, 800.f,this->textures["ENEMY_SHEET"]);
+    this->activEnemies.push_back(new Enemy(500.f, 800.f,this->textures["ENEMY_SHEET"]));
+    this->activEnemies.push_back(new Enemy(100.f, 300.f, this->textures["ENEMY_SHEET"]));
  
 }
 
@@ -32,6 +33,11 @@ GameState::~GameState() {
     delete this->pMenu;
     delete this->playerGUI;
     delete this->Tilemap;
+    
+    for (size_t i = 0; i < this->activEnemies.size(); i++ )
+    {
+        delete this->activEnemies[i];
+    }
     
 }
 
@@ -83,7 +89,13 @@ void GameState::initkeybinds() {
               this->keybinds[key] = this->supportedkeys->at(key2);
           }
       }
-
+   
+    for (auto i : this->keybinds)
+     {
+         std::cout << i.first << " " << i.second << "\n";
+         
+     }
+   
       ifs.close();
   }
 
@@ -97,7 +109,7 @@ void GameState::initplayerGUI()
 
 void GameState::inittextures()
 {
-    if (!this->textures["PLAYER_SHEET"].loadFromFile(resourcePath() + "icon.png"))
+    if (!this->textures["PLAYER_SHEET"].loadFromFile(resourcePath() + "Hero.png"))
     {
         std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures" << std::endl;
         throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures");
@@ -110,8 +122,6 @@ void GameState::inittextures()
     }
     
 }
-
-
 
 void GameState::initfonts()
 {
@@ -157,10 +167,10 @@ void GameState::update(const float& dt) {
         this->updateView(dt);
         this->updatePlayerInput(dt);
         //important to update the player BEFORE the tilemap
-           this->updatetilemap(dt);
+        this->updatetilemap(dt);
         this->player->update(dt, this->MousePosView);
          this->updatePlayerGUI(dt);
-         this->test_enemy->update(dt, this->MousePosView);
+        
          
      }
    
@@ -189,7 +199,15 @@ void GameState::updatetilemap(const float& dt)
     if(this->Tilemap->isEntityColliding == true)
     {
         this->sound.play();
+    
     }
+    
+    for (auto *i : this->activEnemies)
+    {
+        this->Tilemap->update(i, dt);
+    }
+
+    
 }
 
 
@@ -287,6 +305,11 @@ void GameState::updatePlayerInput(const float& dt) {
         if(this->getkeytime())
             this->player->loseHP(1);
     }
+    
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("SHIT"))))
+    {
+        
+    }
 
 }
 
@@ -304,7 +327,10 @@ void GameState::render(sf::RenderTarget* target) {
     
      this->player->render(this->rendertexture, &this->core_shader, false);
     
-    this->test_enemy->render(this->rendertexture, &this->core_shader, false);
+    for (auto *i : this->activEnemies)
+       {
+           i->render(this->rendertexture, &this->core_shader, true);
+       }
     
     this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this-> player->getPosition());
     

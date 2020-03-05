@@ -54,7 +54,7 @@ private:
     PlayerGUI* playerGUI;
     PauseMenu* pMenu;
     TileMap* Tilemap;
-    Enemy* test_enemy; 
+    
     sf::Font font;
     sf::RenderTexture rendertexture;
     sf::Sprite rendersprite;
@@ -68,6 +68,8 @@ private:
     sf::Vector2i ViewGridPosition;
     
     
+    //Enemies
+    std::vector<Enemy*> activEnemies;
     
     
     //Init Functions
@@ -81,6 +83,7 @@ private:
     void initpausemenu();
     void inittilemap();
     void initshaders();
+
     
 };
 #endif /* GameState_hpp */
