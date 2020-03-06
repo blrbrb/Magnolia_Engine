@@ -8,6 +8,7 @@
 
 #include "GameState.hpp"
 
+
 GameState::GameState(StateData* state_data)
 : State(state_data)
 {
@@ -22,8 +23,8 @@ GameState::GameState(StateData* state_data)
     this->initplayerGUI();
     this->inittilemap();
     
-    this->activEnemies.push_back(new Enemy(500.f, 800.f,this->textures["ENEMY_SHEET"]));
-    this->activEnemies.push_back(new Enemy(100.f, 300.f, this->textures["ENEMY_SHEET"]));
+    this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
+    this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
  
 }
 
@@ -37,6 +38,7 @@ GameState::~GameState() {
     for (size_t i = 0; i < this->activEnemies.size(); i++ )
     {
         delete this->activEnemies[i];
+        
     }
     
    
@@ -170,8 +172,12 @@ void GameState::update(const float& dt) {
         this->updateView(dt);
         this->updatePlayerInput(dt);
         //important to update the player BEFORE the tilemap
-        this->updatetilemap(dt);
         this->player->update(dt, this->MousePosView);
+        for (auto *i : this->activEnemies)
+        {
+                  i->update(dt, this->MousePosView);
+        }
+         this->updatetilemap(dt);
          this->updatePlayerGUI(dt);
         
          

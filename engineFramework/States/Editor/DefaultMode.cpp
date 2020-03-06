@@ -101,7 +101,7 @@ void DefaultMode::updateInput(const float &dt)
                          {
                               if (!this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
                                {
-                                   this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
+                                   this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, TileTypes::DEFAULT);
                                    std::cout << "LOCKED: Tile Removed" << std::endl;
                                }
                                else
@@ -114,7 +114,7 @@ void DefaultMode::updateInput(const float &dt)
                          else if (!this->tilemap->lock_layer)
                           {
                       
-                              this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
+                              this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, TileTypes::DEFAULT);
                               
                               std::cout << "Tile Removed" << std::endl;
                               
@@ -124,6 +124,7 @@ void DefaultMode::updateInput(const float &dt)
                   }
                   
                   //else play UI invalid sound
+                // TO DO: Create soundbuffer to load GUI sounds
                   else if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) == -1)
                   {
                       
@@ -196,10 +197,14 @@ void DefaultMode::updateGUI(const float &dt)
 
     //set the cursor text
     std::stringstream cursor_text;
-    cursor_text << this->editorstatedata->mousePosView->x << " " << this->editorstatedata->mousePosView->y
-    << "\n" << this->editorstatedata->mouseposGrid->x << " " << this->editorstatedata->mouseposGrid->y
-    << "\n" << this->TextureRect.left << " " << this->TextureRect.top << "Collision: " << this->collision
-    << "\n" << "type" << this->type
+    cursor_text << "MouseX: " << this->editorstatedata->mousePosView->x << "\n"
+    << "MouseY:" << this->editorstatedata->mousePosView->y
+    << "\n" << "GridX: " << this->editorstatedata->mouseposGrid->x
+    << "\n" << "GridY: " << this->editorstatedata->mouseposGrid->y
+    << "\n" << "TextureRectX: " << this->TextureRect.left
+    << "\n" << "TextureRectY: " << this->TextureRect.top
+    << "\n" << "Collision: " << this->collision
+    << "\n" << "Type: " << this->type
     << "\n" << "Tiles:" << this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
     
     //If the cursor is on a valid tile, the text color is white
@@ -260,19 +265,22 @@ void DefaultMode::inittext()
     
     sf::VideoMode vm = statedata->gfxsettings->resolution;
         
-        
+            //init the cursor text
            this->cursortext.setFont(*this->editorstatedata->font);
            this->cursortext.setFillColor(sf::Color::White);
            this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
            this->cursortext.setOutlineThickness(1.f);
            this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
-        
-           this->text_container.setSize(sf::Vector2f(400.f, 200.f));
+
+            //init the cursor text container
+           this->text_container.setSize(sf::Vector2f(400.f, 300.f));
            this->text_container.setFillColor(sf::Color(50,50,50,100));
            this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
            this->text_container.setOutlineThickness(1.f);
            this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
     
+
+     
 }
     
     

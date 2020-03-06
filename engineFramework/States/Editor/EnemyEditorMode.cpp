@@ -11,8 +11,9 @@
 
 EnemyEditorMode::EnemyEditorMode(StateData *statedata, TileMap *tilemap, EditorStateData *editorstatedata) : EditorModes(statedata, tilemap, editorstatedata)
 {
-    
-    
+    this->initvariables();
+    this->inittext();
+    this->initGUI();
     
 }
 
@@ -26,13 +27,6 @@ void EnemyEditorMode::updateInput(const float &dt)
     if((sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("PLACE"))) && this->getkeytime()))
         {
             
-        //if the user's mouse is not on the sidebar
-            
-        if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorstatedata->mousePosWindow)))
-        {
-            //if the texure selector is not active
-             if(!this->texture_selector->getActive())
-             {
                  if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) != -1)
                      {
                          //if adding tiles is locked to one layer
@@ -68,39 +62,32 @@ void EnemyEditorMode::updateInput(const float &dt)
                      {
                          std::cout << "Invalid Tile Space" << std::endl;
                      }
-             }
+             
              //else set the selection rect to the texture the user's mouse is on in the texture selector
             else
             {
                 this->TextureRect = this->texture_selector->getTextureRect();
                          
             }
-         }
-        
-            
-         
-      }
-        
-
+        }
+    
         
         //Remove a tile
-    else if ((sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("REMOVE"))) && this->getkeytime()))
+    else if ((sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getkeytime()) ||  (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("REMOVE"))) && this->getkeytime()))
      {
-         //if the user's mouse is not on the sidebar
-         if (!this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorstatedata->mousePosWindow)))
-          {
-              //if the user's mouse is not inside the texture selector
-             if(!this->texture_selector->getActive() && !this->sidebar.getGlobalBounds().contains(sf::Vector2f(*this->editorstatedata->mousePosWindow)))
-              {
-                  //if the cursor is over a valid tile, ok to place
-                  if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) != -1)
+         
+            if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) != -1)
                   {
                       
                       if (this->tilemap->lock_layer)
                          {
                               if (!this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
                                {
-                                   this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
+                                   if(this->tilemap->checktype(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, TileTypes::SPAWNER))
+                                   {
+                                         this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, TileTypes::SPAWNER );
+                                       
+                                   }
                                    std::cout << "LOCKED: Tile Removed" << std::endl;
                                }
                                else
@@ -113,7 +100,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                          else if (!this->tilemap->lock_layer)
                           {
                       
-                              this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
+                              this->tilemap->RemoveTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, TileTypes::SPAWNER);
                               
                               std::cout << "Tile Removed" << std::endl;
                               
@@ -127,7 +114,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                   {
                       
                   }
-              }
+              
             
                 else
                  {
@@ -135,11 +122,12 @@ void EnemyEditorMode::updateInput(const float &dt)
                  }
           }
             
-     }
         
-    
-    
 }
+
+
+    
+
 
 void EnemyEditorMode::update(const float &dt)
 {

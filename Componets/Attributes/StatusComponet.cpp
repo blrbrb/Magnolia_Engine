@@ -35,8 +35,9 @@ StatusComponet::StatusComponet(int level)
     
 }
 
-StatusComponet::~StatusComponet() {
-    
+StatusComponet::~StatusComponet()
+{
+   
 }
 
 void StatusComponet::initsounds()

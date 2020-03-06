@@ -220,7 +220,7 @@ void Game::running() {
       
     
         this->UpdateDT();
-        
+        this->runtime();
             this->Update();
           this->render();
     }
@@ -230,8 +230,9 @@ void Game::running() {
 void Game::endapplication()
 {
     
-    std::cout << "Ending the application..." << std::endl;
     
+    std::cout << "Ending the application..." << std::endl;
+    std::cout << "Total RunTime: " << this->runTime << std::endl;
     
 }
 

@@ -404,7 +404,7 @@ void GUI::DropDownList::updateketime(const float& dt)
 /* BEGIN TEXTURE SELECTOR*/
 
 
-GUI::TextureSelector::TextureSelector(float x, float y,float width, float height, float gridsize, const sf::Texture* texture_sheet, sf::Font& font, std::string text) : keytimeMax(3.f), keytime(0.f)
+GUI::TextureSelector::TextureSelector(float x, float y,float width, float height, float gridsize, const sf::Texture* texture_sheet, sf::Font& font, std::string text) : keytimeMax(0.5f), keytime(0.f)
 {
     /*!
                 @brief Construct's the Texture Selector Element

@@ -16,7 +16,7 @@ State::State(StateData* state_data) : quit(false), paused(false) {
     this->states = state_data->states;
     this->window = state_data->window;
     this->keytime = 0.f; 
-    this->keytime_MAX = 4.f;
+    this->keytime_MAX = 2.3f;
     this->gridsize = state_data->gridsize;
 }
 

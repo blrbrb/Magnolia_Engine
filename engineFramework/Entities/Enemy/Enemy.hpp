@@ -17,26 +17,26 @@ class Enemy : public Entity
 {
 public:
     
-    Enemy(float x, float y, sf::Texture& texturesheet);
+    Enemy();
     virtual ~Enemy();
     
-    EnemySpawner& enemyspawner; 
+    //EnemySpawner& enemyspawner; 
     
     //Functions
-       void loseHP(const int HP);
-       void loseEXP(const int EXP);
-       void gainHP(const int HP);
-       void gainEXP(const int EXP);
+      virtual void loseHP(const int HP) = 0;
+      virtual void loseEXP(const int EXP) = 0;
+      virtual void gainHP(const int HP) = 0;
+      virtual void gainEXP(const int EXP) = 0;
     
-    void update(const float& dt, sf::Vector2f& MousePosView);
-    void updateAnimation(const float& dt);
-    void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const bool render_hitbox = false);
+    virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
+    virtual void updateAnimation(const float& dt) = 0;
+    virtual void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const bool render_hitbox = false) = 0;
     
 private:
     //initalizer functions
-    void initvariables();
+   virtual void initvariables() = 0;
    
-    void initanimations(); 
+    virtual void initanimations() = 0;
 };
 
 #endif /* Enemy_hpp */

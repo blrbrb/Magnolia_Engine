@@ -43,7 +43,7 @@ Tile::~Tile()
 
 void Tile::update()
 {
-    this->rect.setColor(sf::Color::Blue);
+    //this->rect.setColor(sf::Color::Blue);
     
 }
 

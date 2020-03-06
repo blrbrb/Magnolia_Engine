@@ -52,7 +52,7 @@ EditorState::~EditorState() {
 //initalization functions
 void EditorState::initvariables()
 {
-    this->cameraspeed = 175.f; 
+    this->cameraspeed = 200.f; 
     
 }
 
@@ -274,7 +274,7 @@ void EditorState::updateInput(const float& dt) {
         this->mainview.move(0.f, this->cameraspeed * dt);
     }
     
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds["LOCK"])) && this->getkeytime())
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L) && this->getkeytime())
     {
         if(this->Tilemap->lock_layer)
        this->Tilemap->lock_layer = false;

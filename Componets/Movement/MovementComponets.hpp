@@ -19,11 +19,29 @@ class MovementComponets {
 private:
    float maxVelocity;
       
+    //Physics Engine Variables
      sf::Vector2f Velocity;
-      float Acceleration;
-        float Deceleration;
+      float AccelerationX;
+    float AccelerationY;
+    float Acceleration; 
+      float Mass;
+    float Density;
+    float Volume; 
+    float Force;
+    float Linear_Inertia;
+    float Power;
+    float Work;
+    float Deceleration;
     float directional_velocity;
+    
+    //Physics Delta Variables
+      float DeltaVelocityX;
+      float DeltaVelocityY;
+    float pastVelX;
+    float pastVelY;
       
+    
+    
       sf::Sprite& sprite;
     
     
@@ -35,6 +53,7 @@ public:
 
     //Functions
      void move(const float x, const float y, const float& dt);
+     void phyiscs(const float& dt); 
      void update(const float&dt);
      void stopVelocity();
      void stopVelocityX();

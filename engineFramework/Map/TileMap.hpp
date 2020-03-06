@@ -64,6 +64,7 @@ public:
     //Accessors
     const sf::Texture* getTileSheet() const;
     const bool TileEmpty(const int x, const int y, const int z) const;
+    const bool checktype(const int x, const int y, const int z, const int type) const;
     const int getLayerSize(const int x, const int y, const int layer) const;
     const sf::Vector2i& getMaxSizeGrid() const;
     const sf::Vector2f getMaxSize() const;
@@ -75,7 +76,7 @@ public:
     void DefferedRender(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f PlayerPosition = sf::Vector2f());
     void addTile(const int x, const int y, const int z, const sf::IntRect texture_rect, const bool& collision, const short& type);
     void addTileX(const int x, const int y, const int z, const sf::IntRect texture_rect, const bool& collision, const short& type);
-    void RemoveTile(const int x, const int y, const int z);
+    void RemoveTile(const int x, const int y, const int z, const int type);
     void savetofile(const std::string filename);
     void loadfromfile(const std::string filename);
     void update(Entity* entity, const float& dt);

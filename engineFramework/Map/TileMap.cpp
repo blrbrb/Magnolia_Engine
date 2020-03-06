@@ -222,8 +222,26 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
                             this->physicsrect.setPosition(this->Map[x][y][this->layer][k]->getposition());
                             target.draw(this->physicsrect);
                         }
+                    
+                   }
+               
+                   if(this->Map[x][y][this->layer][k]->gettype() == TileTypes::SPAWNER)
+                   {
+                       
+                       
+                       this->physicsrect.setPosition(this->Map[x][y][this->layer][k]->getposition());
+                       this->physicsrect.setFillColor(sf::Color(50,20,10,100));
+                       this->physicsrect.setFillColor(sf::Color::Red);
+                       this->physicsrect.setOutlineThickness(1.f);
+                       target.draw(this->physicsrect);
                        
                    }
+               
+               
+               
+               
+               
+               
                }
                
                
@@ -288,17 +306,32 @@ void TileMap::addTileX(const int x, const int y, const int z, const sf::IntRect 
 
 
 
-void TileMap::RemoveTile(const int x, const int y, const int z)
+void TileMap::RemoveTile(const int x, const int y, const int z, const int type)
 {
     
     if ( x < this->MaxSizeWorldGrid.x && x >= 0 && y < this->MaxSizeWorldGrid.y && y >= 0 && z < this->layers && z >= 0 )
        {
            if (!this->Map[x][y][z].empty())
            {
-               /*if okay to remove tile*/
-               delete this->Map[x][y][z][this->Map[x][y][z].size()-1];
-               this->Map[x][y][z].pop_back();
-               std::cout << "Tile Removed" << std::endl;
+               
+               if (this->Map[x][y][z].back()->gettype() == type)
+               {
+    
+                   delete this->Map[x][y][z][this->Map[x][y][z].size() - 1];
+                   this->Map[x][y][z].pop_back();
+                   std::cout << "Spawner Removed" << std::endl;
+                   
+               }
+               else
+               {
+                   
+                   delete this->Map[x][y][z][this->Map[x][y][z].size() - 1];
+                    this->Map[x][y][z].pop_back();
+                   std::cout << "TIle Removed" << std::endl;
+                   
+                   
+               }
+    
            }
            
        }
@@ -788,6 +821,13 @@ void TileMap::updateTileSounds(Entity *entity, const float &dt)
       
       }
 }
+
+const bool TileMap::checktype(const int x, const int y, const int z, const int type) const
+{
+        
+    return this->Map[x][y][this->layer].back()->gettype() == type; 
+}
+
 
 
 

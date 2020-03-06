@@ -19,7 +19,7 @@ void main()
     lightToFrag.y = lightToFrag.y / 1.7;
 
  //Length of the vector (distance)
- float vecLength = clamp(length(lightToFrag) * 4, 0, 1);
+ float vecLength = clamp(length(lightToFrag) * 4, 1, 1);
 
  //lookup the pixel in the texture
  vec4 pixel = texture2D(texture, gl_TexCoord[0].xy);
@@ -27,7 +27,7 @@ void main()
  //multiply it by the color and lighting
  if(hasTexture == true)
  {
-  gl_FragColor = gl_Color * pixel * (clamp(ambient + vec4(1-vecLength, 1-vecLength, 1-vecLength, 1), 0, 1));
+  gl_FragColor = gl_Color * pixel * (clamp(ambient + vec4(1.5-vecLength, 1.5-vecLength, 1.5-vecLength, 1), 0, 1));
  }
  else
  {

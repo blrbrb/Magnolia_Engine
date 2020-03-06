@@ -14,8 +14,10 @@
 #include "PauseMenu.hpp"
 #include "TileMap.hpp"
 #include "Enemy.hpp"
+#include "Enemies_Include.h"
 
 class Enemy;
+class Blrb;
 class PlayerGUI;
 class PauseMenu;
 class Player;
