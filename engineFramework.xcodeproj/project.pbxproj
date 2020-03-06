@@ -116,6 +116,8 @@
 		458A1D3823ECCF5000F2F8ED /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1D3623ECCF5000F2F8ED /* Tile.cpp */; };
 		458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1D3A23ECCFB500F2F8ED /* TileMap.cpp */; };
 		45B989D323E0909400B3C087 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B989D123E0909400B3C087 /* Player.cpp */; };
+		45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4B241283C5001921B4 /* NormalTile.cpp */; };
+		45BE8F512412915D001921B4 /* Blerb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4F2412915D001921B4 /* Blerb.cpp */; };
 		45DB9A4F23DD162100F8693E /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DB9A4D23DD162100F8693E /* MainMenuState.cpp */; };
 		45DB9A5723DD22E400F8693E /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45DB9A5623DD22E400F8693E /* sansation.ttf */; };
 		45E01759240AF23500EC8E1D /* red_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318CD2409FEFC00433CD7 /* red_button02.png */; };
@@ -284,6 +286,11 @@
 		45B989D023E0697100B3C087 /* MONACO.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = MONACO.TTF; sourceTree = "<group>"; };
 		45B989D123E0909400B3C087 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		45B989D223E0909400B3C087 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		45BE8F4B241283C5001921B4 /* NormalTile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NormalTile.cpp; sourceTree = "<group>"; };
+		45BE8F4C241283C5001921B4 /* NormalTile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NormalTile.hpp; sourceTree = "<group>"; };
+		45BE8F4E24129097001921B4 /* Tiles_Include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tiles_Include.h; sourceTree = "<group>"; };
+		45BE8F4F2412915D001921B4 /* Blerb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Blerb.cpp; sourceTree = "<group>"; };
+		45BE8F502412915D001921B4 /* Blerb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Blerb.hpp; sourceTree = "<group>"; };
 		45DB9A4D23DD162100F8693E /* MainMenuState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
 		45DB9A4E23DD162100F8693E /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
 		45DB9A5623DD22E400F8693E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
@@ -648,6 +655,9 @@
 				458A1D3723ECCF5000F2F8ED /* Tile.hpp */,
 				4546031C240E93B000EAF628 /* EnemySpawner.cpp */,
 				4546031D240E93B000EAF628 /* EnemySpawner.hpp */,
+				45BE8F4B241283C5001921B4 /* NormalTile.cpp */,
+				45BE8F4C241283C5001921B4 /* NormalTile.hpp */,
+				45BE8F4E24129097001921B4 /* Tiles_Include.h */,
 			);
 			path = "Tiles ";
 			sourceTree = "<group>";
@@ -726,6 +736,8 @@
 				4548599B2411D95000D97104 /* Blrb.cpp */,
 				4548599C2411D95000D97104 /* Blrb.hpp */,
 				4548599E2411DD4E00D97104 /* Enemies_Include.h */,
+				45BE8F4F2412915D001921B4 /* Blerb.cpp */,
+				45BE8F502412915D001921B4 /* Blerb.hpp */,
 			);
 			path = Enemy;
 			sourceTree = "<group>";
@@ -940,6 +952,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45DB9A4F23DD162100F8693E /* MainMenuState.cpp in Sources */,
+				45BE8F512412915D001921B4 /* Blerb.cpp in Sources */,
 				45F5E8D423E60A5300307E48 /* HitBoxComponet.cpp in Sources */,
 				454A704923D8C30A003FEB4F /* Game.cpp in Sources */,
 				455808E024009CC500E36DFA /* StatusComponet.cpp in Sources */,
@@ -948,6 +961,7 @@
 				45F8E41F23EB635C0037EBD5 /* GUI.cpp in Sources */,
 				45E01762240D7C7600EC8E1D /* Item.cpp in Sources */,
 				45E01765240D7D5500EC8E1D /* Weapon.cpp in Sources */,
+				45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */,
 				4548599D2411D95000D97104 /* Blrb.cpp in Sources */,
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,
 				45B989D323E0909400B3C087 /* Player.cpp in Sources */,

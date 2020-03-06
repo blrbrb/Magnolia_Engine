@@ -9,12 +9,15 @@
 #ifndef TileMap_hpp
 #define TileMap_hpp
 
-#include "Tile.hpp"
+#include "NormalTile.hpp"
 #include "Entity.hpp"
 #include "EnemySpawner.hpp"
 
+
+
 class EnemySpawner; 
 class Tile;
+class NormalTile; 
 class Entity;
 
 
@@ -77,11 +80,17 @@ public:
     void render(sf::RenderTarget& target, const sf::Vector2i& gridposition, const bool render_collision = false, sf::Shader* shader = NULL, const sf::Vector2f PlayerPosition = sf::Vector2f());
     void DefferedRender(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f PlayerPosition = sf::Vector2f());
     void addTile(const int x, const int y, const int z, const sf::IntRect texture_rect, const bool& collision, const short& type);
-    void addTileX(const int x, const int y, const int z, const sf::IntRect texture_rect, const bool& collision, const short& type);
+    void addTile(const int x, const int y, const int z, const sf::IntRect texture_rect, const int enemytype, const int enemyamount, const int timeToSpawn, const int MaxDistance );
     void RemoveTile(const int x, const int y, const int z, const int type);
     void savetofile(const std::string filename);
     void loadfromfile(const std::string filename);
+    
+    //update functions
     void update(Entity* entity, const float& dt);
+    void updateWorldBoundsCollision(Entity* entity, const float& dt);
+    void updateTiles(Entity* entity, const float& dt);
+    void updateTileCollision(Entity* entity, const float& dt);
+    
     void updateTileSounds(Entity* entity, const float& dt);
     
     

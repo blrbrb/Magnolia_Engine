@@ -26,7 +26,6 @@ void EnemyEditorMode::updateInput(const float &dt)
 {
     if((sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("PLACE"))) && this->getkeytime()))
         {
-            
                  if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) != -1)
                      {
                          //if adding tiles is locked to one layer
@@ -34,7 +33,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                            {
                                 if (this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
                                  {
-                                     this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, false, TileTypes::SPAWNER);
+                                     this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, this->Enemytype, this->Enemyamount, this->spawn_timer, this->maxDistance);
                                      
                                         std::cout << "LOCKED: Spawner Added" << std::endl;
                                  }
@@ -48,7 +47,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                            else if (!this->tilemap->lock_layer)
                             {
                         
-                                this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, false, TileTypes::SPAWNER);
+                                this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, this->Enemytype, this->Enemyamount, this->spawn_timer, this->maxDistance);
                                 
                                 std::cout << "Tile Added" << std::endl;
                                
@@ -123,6 +122,49 @@ void EnemyEditorMode::updateInput(const float &dt)
           }
             
         
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && this->getkeytime())
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+        {
+            if (this->Enemyamount > 0)
+                this->Enemyamount--;
+        }
+        
+        if (this->Enemyamount < 100)
+            this->Enemyamount++;
+        else
+            this->Enemyamount = 0;
+    }
+    
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->getkeytime())
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+        {
+            if (this->spawn_timer > 0)
+                this->spawn_timer--;
+        }
+        
+        if (this->spawn_timer < 1000)
+            this->spawn_timer++;
+        
+        else
+            this->spawn_timer = 0;
+    }
+    
+    
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H) && this->getkeytime())
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+        {
+            if (this->type > 0)
+                this->type--;
+        }
+    
+         if (this->Enemytype < 10000)
+             this->Enemyamount++;
+        else
+            this->Enemyamount=0;
+    }
 }
 
 

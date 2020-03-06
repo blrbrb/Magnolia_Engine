@@ -27,12 +27,13 @@ protected:
     
     
 public:
+    
     Tile();
     Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false );
     virtual ~Tile();
     
     //Accessors
-    virtual const std::string asString() const;
+    virtual const std::string asString() const =0;
     virtual const short& gettype() const;
     virtual const sf::Vector2f& getposition() const;
     virtual const bool& getCollision() const;
@@ -40,11 +41,10 @@ public:
     virtual const sf::FloatRect getGlobalBounds() const;
     
     //Functions
-    virtual void update();
-    virtual void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f());
+    virtual void update() =0;
+    virtual void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f())=0;
     
 };
-
 
 
 #endif /* Tile_hpp */

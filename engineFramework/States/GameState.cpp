@@ -23,8 +23,8 @@ GameState::GameState(StateData* state_data)
     this->initplayerGUI();
     this->inittilemap();
     
-    this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
-    this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
+   // this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
+    //this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
  
 }
 
@@ -203,7 +203,9 @@ void GameState::updateInput(const float& dt)
 
 void GameState::updatetilemap(const float& dt)
 {
-    this->Tilemap->update(this->player,dt);
+    this->Tilemap->updateWorldBoundsCollision(this->player, dt);
+    this->Tilemap->updateTileCollision(this->player, dt);
+    this->Tilemap->update(this->player, dt);
     
     if(this->Tilemap->isEntityColliding == true)
     {
@@ -213,7 +215,9 @@ void GameState::updatetilemap(const float& dt)
     
     for (auto *i : this->activEnemies)
     {
-        this->Tilemap->update(i, dt);
+        this->Tilemap->updateWorldBoundsCollision(i, dt);
+        this->Tilemap->updateTileCollision(i, dt);
+        
     }
 
     
@@ -367,6 +371,15 @@ void GameState::checkforendstate() {
   else return this->quit = false;
     
 }
+
+void GameState::updatePlayer(const float &dt) { 
+    <#code#>;
+}
+
+void GameState::updateEnemies(const float &dt) { 
+    <#code#>;
+}
+
 
 
 

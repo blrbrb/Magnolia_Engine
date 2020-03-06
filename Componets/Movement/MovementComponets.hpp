@@ -33,6 +33,8 @@ private:
     float Work;
     float Deceleration;
     float directional_velocity;
+    float Impulse;
+    
     
     //Physics Delta Variables
       float DeltaVelocityX;

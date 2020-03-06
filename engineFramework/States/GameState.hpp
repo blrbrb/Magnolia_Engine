@@ -35,9 +35,13 @@ public:
        
     //Functions
     void updateView(const float& dt);
+    
     void updatePlayerInput(const float& dt);
     void updatePlayerGUI(const float& dt);
+    void updatePlayer(const float& dt);
+    void updateEnemies(const float& dt);
     void update(const float& dt);
+    
     void render(sf::RenderTarget* target = NULL);
     void checkforendstate();
     void updateInput(const float& dt);

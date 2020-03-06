@@ -16,7 +16,7 @@ Tile::Tile()
     
 }
 
-                                                                                                        //Spealing is ronge
+                                                                                        
 Tile::Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled)
 {
     //this->rect.setSize(sf::Vector2f(gridsize_f, gridsize_f));
@@ -36,6 +36,7 @@ Tile::Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, con
 
 Tile::~Tile()
 {
+    
 
 }
 
@@ -59,7 +60,10 @@ void Tile::render(sf::RenderTarget &target, sf::Shader* shader, sf::Vector2f Pla
     
     else
     {
-        target.draw(this->rect); }
+        target.draw(this->rect);
+        
+    }
+    
     }
 
 const std::string Tile::asString() const
