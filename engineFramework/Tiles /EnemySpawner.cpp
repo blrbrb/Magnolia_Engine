@@ -9,11 +9,9 @@
 #include "EnemySpawner.hpp"
 
 
-EnemySpawner::EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, sf::Vector2i &grid_position, int type, int Enemyamount, int time_to_spawn, float max_distance) : Tile(x, y, gridsize_f, texture, texturerect, false, TileTypes::SPAWNER)
+EnemySpawner::EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, int type, int Enemyamount, int time_to_spawn, int max_distance) : Tile(TileTypes::SPAWNER, x, y, gridsize_f, texture, texturerect, false)
 {
     this->tile.setSize(sf::Vector2f(30, 30));
-    this->tile.setFillColor(sf::Color::White);
-    this->gridPosition = grid_position;
     this->type = type;
     this->Enemyamount = Enemyamount;
     this->spawn_timer = time_to_spawn;
@@ -41,3 +39,15 @@ void EnemySpawner::render(sf::RenderTarget &target, sf::Shader* shader, sf::Vect
 {
     target.draw(this->tile);
 }
+
+const std::string EnemySpawner::GetAsString() const
+{
+    std::stringstream ss;
+    
+    ss << this->type << "" << this->rect.getTextureRect().left << "" << this->rect.getTextureRect().top << this->Enemytype <<
+    this->Enemyamount << this->spawn_timer << this->maxDistance; 
+    
+    return ss.str();
+    
+}
+

@@ -17,7 +17,7 @@ Tile::Tile()
 }
 
                                                                                                         //Spealing is ronge
-Tile::Tile(int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled, short type)
+Tile::Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled)
 {
     //this->rect.setSize(sf::Vector2f(gridsize_f, gridsize_f));
     sf::VideoMode vm = sf::VideoMode::getDesktopMode();

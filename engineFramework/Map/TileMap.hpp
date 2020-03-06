@@ -11,7 +11,9 @@
 
 #include "Tile.hpp"
 #include "Entity.hpp"
+#include "EnemySpawner.hpp"
 
+class EnemySpawner; 
 class Tile;
 class Entity;
 

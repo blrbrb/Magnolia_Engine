@@ -28,16 +28,16 @@ protected:
     
 public:
     Tile();
-    Tile(int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false, short type = TileTypes::DEFAULT);
+    Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false );
     virtual ~Tile();
     
     //Accessors
-    const std::string asString() const;
-    const short& gettype() const;
-    const sf::Vector2f& getposition() const;
-    const bool& getCollision() const;
-    const bool intersects(const sf::FloatRect bounds) const;
-    const sf::FloatRect getGlobalBounds() const; 
+    virtual const std::string asString() const;
+    virtual const short& gettype() const;
+    virtual const sf::Vector2f& getposition() const;
+    virtual const bool& getCollision() const;
+    virtual const bool intersects(const sf::FloatRect bounds) const;
+    virtual const sf::FloatRect getGlobalBounds() const;
     
     //Functions
     virtual void update();

@@ -25,9 +25,14 @@ private:
     float maxDistance;
     
 public:
-    EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect,sf::Vector2i& grid_position, int Enemytype, int Enemyamount, int time_to_spawn, float max_distance);
+    EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, int Enemytype, int Enemyamount, int time_to_spawn, int max_distance);
     virtual ~EnemySpawner();
   
+    //Accessors
+    
+    const std::string GetAsString() const; 
+    
+    
     void clear();
     void update();
     void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f());

@@ -102,8 +102,6 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
     }
     
     this->tileTextureSheet.loadFromFile(resourcePath() + texture_file);
-    //add an error check if statement later
-    //create an execption
     
     this->physicsrect.setSize(sf::Vector2f(gridSize,gridSize));
     this->physicsrect.setFillColor(sf::Color::Transparent);
@@ -281,11 +279,9 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
     {
     
             /*if okay to add tile*/
-            this->Map[x][y][z].push_back(new Tile(x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision, type));
+            this->Map[x][y][z].push_back(new Tile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
             std::cout << "Tile Added" << std::endl;
             
-        
-        
     }
     
 }
@@ -297,7 +293,7 @@ void TileMap::addTileX(const int x, const int y, const int z, const sf::IntRect 
     if ( x < this->MaxSizeWorldGrid.x && x >= 0 && y < this->MaxSizeWorldGrid.y && y >= 0 && z < this->layers && z >= 0 )
     {
             /*if okay to add tile*/
-            this->Map[x][y][z * 10].push_back(new Tile(x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision, type));
+            this->Map[x][y][z * 10].push_back(new Tile(type, x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
             std::cout << "Tiles Added" << std::endl;
     
     }
@@ -415,6 +411,7 @@ void TileMap::loadfromfile(const std::string filename)
     in.open(filename);
     
     if (in.is_open())
+   
     {
         sf::Vector2i size;
         int gridsize = 0;
@@ -468,15 +465,34 @@ void TileMap::loadfromfile(const std::string filename)
             std::cout << "ERROR_C_10: TILEMAP::LOADFROMFILE::UNABLE_TO_OPEN_FILE" << std::endl;
             throw std::runtime_error("ERROR_C_10: TILEMAP::LOADFROMFILE::UNABLE_TO_OPEN_FILE");
         }
-          
-        
-        while(in >> x >> y >> z >> textureX >> textureY >> collision >> type)
+        while(in >> type)
         {
-            //leave these as 17, when I figure out how to set the gridsize better use this->grid_sizeU;
-            this->Map[x][y][z].push_back(new Tile(x, y, grid_sizeF, this->tileTextureSheet, sf::IntRect(textureX, textureY, 17, 17), collision, type));
+            if(type == TileTypes::SPAWNER)
+            {
+                int enemy_type, enemyAmount, enemyTimer, enemyMaxDistance;
+                
+                in >> textureX >> textureY >> enemy_type >>
+                enemyAmount >> enemyTimer >> enemyMaxDistance;
+                
+                new EnemySpawner(x, y, this->grid_sizeF, this->tileTextureSheet,
+                                 sf::IntRect(textureX, textureY, 17, 17), enemy_type,
+                                 enemyAmount, enemyTimer, enemyMaxDistance);
+            }
+            
+            else
+            {
+                in >> textureX >> textureY >> collision >> type;
+               
+                
+                this->Map[x][y][z].push_back(new Tile(type, x, y, grid_sizeF, this->tileTextureSheet, sf::IntRect(textureX, textureY, 17, 17), collision));
+            }
         }
+        
+        
     
     }
+    
+    
     else
     {
         std::cout << "ERROR_C_09: TILEMAP::LOADFROMFILE_COULD_NOT_LOAD" << std::endl;
