@@ -138,7 +138,7 @@ void EditorState::initkeybinds()
                  
                  if (!this->keybinds.at(key))
                  {
-                     std::cout << this->keybinds.at(key);
+                     //std::cout << this->keybinds.at(key);
                  }
              }
          }
@@ -147,7 +147,7 @@ void EditorState::initkeybinds()
     
     for (auto i : this->keybinds)
     {
-        std::cout << i.first << " " << i.second << "\n";
+        //std::cout << i.first << " " << i.second << "\n";
         
     }
     

@@ -66,15 +66,7 @@ void Tile::render(sf::RenderTarget &target, sf::Shader* shader, sf::Vector2f Pla
     
     }
 
-const std::string Tile::asString() const
-{
-    std::stringstream out;
-    
-    out << this->rect.getTextureRect().left << " " << this->rect.getTextureRect().top << " " << this->collison_enabled << " " << this->type;
-    
-    
-    return out.str(); 
-}
+
 
 const sf::Vector2f &Tile::getposition() const
 {

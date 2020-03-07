@@ -118,6 +118,8 @@
 		45B989D323E0909400B3C087 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B989D123E0909400B3C087 /* Player.cpp */; };
 		45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4B241283C5001921B4 /* NormalTile.cpp */; };
 		45BE8F512412915D001921B4 /* Blerb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4F2412915D001921B4 /* Blerb.cpp */; };
+		45BE8F542412D345001921B4 /* BattleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F522412D345001921B4 /* BattleState.cpp */; };
+		45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F55241317E7001921B4 /* EnemySystem.cpp */; };
 		45DB9A4F23DD162100F8693E /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DB9A4D23DD162100F8693E /* MainMenuState.cpp */; };
 		45DB9A5723DD22E400F8693E /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45DB9A5623DD22E400F8693E /* sansation.ttf */; };
 		45E01759240AF23500EC8E1D /* red_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318CD2409FEFC00433CD7 /* red_button02.png */; };
@@ -291,6 +293,10 @@
 		45BE8F4E24129097001921B4 /* Tiles_Include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tiles_Include.h; sourceTree = "<group>"; };
 		45BE8F4F2412915D001921B4 /* Blerb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Blerb.cpp; sourceTree = "<group>"; };
 		45BE8F502412915D001921B4 /* Blerb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Blerb.hpp; sourceTree = "<group>"; };
+		45BE8F522412D345001921B4 /* BattleState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BattleState.cpp; sourceTree = "<group>"; };
+		45BE8F532412D345001921B4 /* BattleState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleState.hpp; sourceTree = "<group>"; };
+		45BE8F55241317E7001921B4 /* EnemySystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemySystem.cpp; sourceTree = "<group>"; };
+		45BE8F56241317E7001921B4 /* EnemySystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnemySystem.hpp; sourceTree = "<group>"; };
 		45DB9A4D23DD162100F8693E /* MainMenuState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
 		45DB9A4E23DD162100F8693E /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
 		45DB9A5623DD22E400F8693E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
@@ -334,6 +340,8 @@
 				450CA30823D9106200FF039F /* State.hpp */,
 				450CA30723D9106200FF039F /* State.cpp */,
 				450CA30F23D9187800FF039F /* GameState.cpp */,
+				45BE8F522412D345001921B4 /* BattleState.cpp */,
+				45BE8F532412D345001921B4 /* BattleState.hpp */,
 				450CA31023D9187800FF039F /* GameState.hpp */,
 				45DB9A4D23DD162100F8693E /* MainMenuState.cpp */,
 				45DB9A4E23DD162100F8693E /* MainMenuState.hpp */,
@@ -738,6 +746,8 @@
 				4548599E2411DD4E00D97104 /* Enemies_Include.h */,
 				45BE8F4F2412915D001921B4 /* Blerb.cpp */,
 				45BE8F502412915D001921B4 /* Blerb.hpp */,
+				45BE8F55241317E7001921B4 /* EnemySystem.cpp */,
+				45BE8F56241317E7001921B4 /* EnemySystem.hpp */,
 			);
 			path = Enemy;
 			sourceTree = "<group>";
@@ -968,6 +978,7 @@
 				4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */,
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,
 				45E01774240DD6D400EC8E1D /* Enemy.cpp in Sources */,
+				45BE8F542412D345001921B4 /* BattleState.cpp in Sources */,
 				458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */,
 				458A1D3823ECCF5000F2F8ED /* Tile.cpp in Sources */,
 				4553BC3C23EE2D99002C68C0 /* GraphicsSettings.cpp in Sources */,
@@ -983,6 +994,7 @@
 				457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */,
 				45F8E41A23EB59470037EBD5 /* SettingsState.cpp in Sources */,
 				450CA30923D9106200FF039F /* State.cpp in Sources */,
+				45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

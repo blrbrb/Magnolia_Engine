@@ -168,8 +168,8 @@ void Entity::create_hitbox_componet(sf::Sprite& sprite, float offset_x, float of
 
 const sf::FloatRect Entity::getGlobalBounds() const
 {
-    if(this->hitbox)
-        return this->hitbox->getGlobalBounds();
+    if(this->hitbox) {
+        return this->hitbox->getGlobalBounds(); }
     else 
     return this->sprite.getGlobalBounds();
     
@@ -205,8 +205,11 @@ const sf::Vector2i Entity::getGridPosition(const int gridSizeI) const
 const sf::FloatRect Entity::getNextPositionBounds(const float& dt) const
 {
     if(this->hitbox && this->movementcomponets)
+    {
         return this->hitbox->getNextPosition(this->movementcomponets->getvelocity() * dt);
+    }
     
+ else
     return sf::FloatRect(-1.f, -1.f, -1.f, -1.f);
 }
 

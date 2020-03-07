@@ -12,9 +12,6 @@
 NormalTile::NormalTile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled) : Tile(type, x, y, gridsize_f,texture, texturerect, collision_enabled)
 {
     
-    
-    
-    
 }
 
 NormalTile::~NormalTile()
@@ -32,7 +29,7 @@ const std::string NormalTile::asString() const
 {
     std::stringstream out;
        
-       out << this->rect.getTextureRect().left << " " << this->rect.getTextureRect().top << " " << this->collison_enabled << " " << this->type;
+    out << this->type << " " << this->rect.getTextureRect().left << " " << this->rect.getTextureRect().top << " " << this->collison_enabled;
        
        
        return out.str();

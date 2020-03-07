@@ -57,10 +57,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                  
                     //else play UI invalid sound for invalid tile placement
                  
-                 else if(this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) == -1)
-                     {
-                         std::cout << "Invalid Tile Space" << std::endl;
-                     }
+                 
              
              //else set the selection rect to the texture the user's mouse is on in the texture selector
             else
@@ -183,7 +180,7 @@ void EnemyEditorMode::updateGUI(const float &dt)
      
 
            //set the selection rectangle position
-         this->select_Rect.setTextureRect(this->TextureRect);
+     
          this->select_Rect.setPosition(this->editorstatedata->mouseposGrid->x * this->statedata->gridsize, this->editorstatedata->mouseposGrid->y * this->statedata->gridsize);
          
     
@@ -262,11 +259,11 @@ void EnemyEditorMode::initGUI()
 
 void EnemyEditorMode::initvariables()
 {
-    this->Enemytype = 0;
+    this->Enemytype = 1;
     this->Enemyamount = 1;
-    this->spawn_timer = 22;
+    this->spawn_timer = 1;
     this-> maxDistance = 5;
-    this->layer = 1;
+    this->layer = 0;
     this->type = TileTypes::SPAWNER; 
       
 }

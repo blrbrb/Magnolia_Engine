@@ -11,6 +11,7 @@
 
 #include "NormalTile.hpp"
 #include "Entity.hpp"
+#include "EnemySystem.hpp"
 #include "EnemySpawner.hpp"
 
 
@@ -88,7 +89,7 @@ public:
     //update functions
     void update(Entity* entity, const float& dt);
     void updateWorldBoundsCollision(Entity* entity, const float& dt);
-    void updateTiles(Entity* entity, const float& dt);
+    void updateTiles(Entity* entity, const float& dt, EnemySystem& enemysystem);
     void updateTileCollision(Entity* entity, const float& dt);
     
     void updateTileSounds(Entity* entity, const float& dt);

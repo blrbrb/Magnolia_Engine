@@ -16,7 +16,7 @@ MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, floa
     this->Mass = 10.f;
     this->Volume = this->sprite.getLocalBounds().width * this->sprite.getLocalBounds().top;
     this->Density = this->Volume / 25.f;
-    this->Force = this->Mass * this->Acceleration;
+    
    
     
     
@@ -27,7 +27,7 @@ MovementComponets::~MovementComponets()
     
 }
 
-void MovementComponets::phyiscs(const float& dt)
+void MovementComponets::Updatephyiscs(const float& dt)
 {
     //Acceleration and Deceleration
     this->pastVelX = this->Velocity.x - dt;
@@ -36,19 +36,21 @@ void MovementComponets::phyiscs(const float& dt)
     this->DeltaVelocityX = this->Velocity.x - this->pastVelX;
     this->DeltaVelocityY = this->Velocity.y - this->pastVelY;
     
-    
-    
     this->AccelerationX = this->DeltaVelocityX / dt; 
     this->AccelerationY = this->DeltaVelocityY / dt;
     
     this->Deceleration = this->Acceleration - this->DeltaVelocityX / dt;
 
+    //Force
+    this->Force = this->Mass * this->Acceleration;
+    
     //Impulse
     this->Impulse = this->Force * dt;
     
     
-    
-    
+    //Velocity
+    this->Velocity.x = this->sprite.getPosition().x - this->sprite.getPosition().x / dt;
+    this->Velocity.y = this->sprite.getPosition().y - this->sprite.getPosition().y / dt; 
     
 }
 
@@ -62,7 +64,6 @@ void MovementComponets::move(const float x ,const float y, const float& dt)
 {
     //Acceleration
     //Note, fix clusterfuck of brackets
-    
     
     this->Velocity.x += this->Acceleration * x * dt;
     this->Velocity.y += this->Acceleration  *  y * dt;

@@ -23,7 +23,7 @@ HitBoxComponet::HitBoxComponet(sf::Sprite& sprite,float offset_x, float offset_y
     this->nextpos.top = 0.f;
     this->nextpos.width = width;
     this->nextpos.height = height; 
-    
+  
 }
 
 
@@ -79,9 +79,10 @@ const sf::FloatRect HitBoxComponet::getGlobalBounds() const
 
 const sf::FloatRect& HitBoxComponet::getNextPosition(const sf::Vector2f &velocity)
 {
+    
     this->nextpos.left = this->hitbox.getPosition().x + velocity.x;
     this->nextpos.top = this->hitbox.getPosition().y + velocity.y;
-    
+
     return this->nextpos;
 }
 

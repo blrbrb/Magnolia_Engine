@@ -35,6 +35,7 @@ void TileMap::clear()
                  this->Map[x].clear();
              }
         this->Map.clear();
+        
         std::cout << "Map Local Memory Size: " << " " << this->Map.size();
     }
 }
@@ -103,10 +104,10 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
     
     this->tileTextureSheet.loadFromFile(resourcePath() + texture_file);
     
-    this->physicsrect.setSize(sf::Vector2f(gridSize,gridSize));
-    this->physicsrect.setFillColor(sf::Color::Transparent);
-    this->physicsrect.setOutlineThickness(1.f);
-    this->physicsrect.setOutlineColor(sf::Color::Red);
+         this->physicsrect.setSize(sf::Vector2f(grid_sizeF,grid_sizeF));
+         this->physicsrect.setFillColor(sf::Color::Transparent);
+         this->physicsrect.setOutlineColor(sf::Color::Red);
+         this->physicsrect.setOutlineThickness(1.f);
     
 }
 
@@ -125,10 +126,8 @@ TileMap::TileMap(const std::string map_file)
      this->loadfromfile(map_file);
      
       
-      this->physicsrect.setSize(sf::Vector2f(grid_sizeF,grid_sizeF));
-      this->physicsrect.setFillColor(sf::Color::Transparent);
-      this->physicsrect.setOutlineThickness(1.f);
-      this->physicsrect.setOutlineColor(sf::Color::Red);
+     
+      
 }
 
 
@@ -279,16 +278,11 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
         && y < this->MaxSizeWorldGrid.y && y >= 0
         && z < this->layers && z >= 0 )
     {
-    
-            /*if okay to add tile*/
+             /*if okay to add tile*/
             //and if the type of tile is NORMAL add normal tile
-        if (type == TileTypes::DEFAULT)
         this->Map[x][y][z].push_back(new NormalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
-    else if(type == TileTypes::SPAWNER)
-
-            this->Map[x][y][z].push_back(new EnemySpawner(type, x, y, this->tileTextureSheet, texture_rect, 0 ,0, 0, 0));
-        
-            
+   
+    
     }
     
 }
@@ -357,7 +351,7 @@ void TileMap::savetofile(const std::string filename)
     std::ofstream out;
     
 
-    out.open(filename, std::ios::binary | std::ios::out);
+    out.open(filename);
     
     if (out.is_open())
     {
@@ -378,7 +372,7 @@ void TileMap::savetofile(const std::string filename)
                         {
                     
                            out << x << " " << y << " " << z << " " << this->Map[x][y][z][k]->asString() << " "; // dont save this last space
-                           
+                            
                         }
                     }
                     
@@ -461,17 +455,18 @@ void TileMap::loadfromfile(const std::string filename)
             std::cout << "ERROR_C_10: TILEMAP::LOADFROMFILE::UNABLE_TO_OPEN_FILE" << std::endl;
             throw std::runtime_error("ERROR_C_10: TILEMAP::LOADFROMFILE::UNABLE_TO_OPEN_FILE");
         }
-        while(in >> x >> y >> z >> type)
+        while (in >> x >> y >> z >> type)
         {
             if(type == TileTypes::SPAWNER)
             {
+                
                 int enemy_type= 0;
                 int enemyAmount= 0;
                 int enemyTimer= 0;
                 int enemyMaxDistance= 0;
                 
-                in >> textureX >> textureY >> enemy_type >>
-                enemyAmount >> enemyTimer >> enemyMaxDistance;
+                in >> textureX >> textureY >> enemy_type >> enemyAmount >> enemyTimer >> enemyMaxDistance;
+                
                 
                 this->Map[x][y][z].push_back(new EnemySpawner(x, y, this->grid_sizeF, this->tileTextureSheet,
                                  sf::IntRect(textureX, textureY, 17, 17), enemy_type,
@@ -481,7 +476,6 @@ void TileMap::loadfromfile(const std::string filename)
             else
             {
                 in >> textureX >> textureY >> collision;
-               
                 
                 this->Map[x][y][z].push_back(new NormalTile(type, x, y, grid_sizeF, this->tileTextureSheet, sf::IntRect(textureX, textureY, 17, 17), collision));
             }
@@ -490,8 +484,6 @@ void TileMap::loadfromfile(const std::string filename)
         
     
     }
-    
-    
     else
     {
         std::cout << "ERROR_C_09: TILEMAP::LOADFROMFILE_COULD_NOT_LOAD" << std::endl;
@@ -718,7 +710,6 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
     
             /*if okay to add tile*/
             this->Map[x][y][z].push_back(new EnemySpawner(x, y, this->grid_sizeF, this->tileTextureSheet, texture_rect, enemytype ,enemyamount, timeToSpawn, MaxDistance));
-        
 
     }
     
@@ -758,7 +749,7 @@ void TileMap::updateWorldBoundsCollision(Entity *entity, const float &dt)
     
 }
 
-void TileMap::updateTiles(Entity *entity, const float &dt)
+void TileMap::updateTiles(Entity *entity, const float &dt, EnemySystem& enemysystem)
 {
     this->layer = 0;
     
@@ -802,8 +793,16 @@ void TileMap::updateTiles(Entity *entity, const float &dt)
                  
                 if (this->Map[x][y][this->layer][k]->gettype() == TileTypes::SPAWNER)
                 {
-                    
-        
+                    EnemySpawner* es = dynamic_cast<EnemySpawner*>(this->Map[x][y][this->layer][k]);
+                    if (es)
+                    {
+                        if(!es->getSpawned())
+                        {
+                            enemysystem.create(BLRB, x*this->grid_sizeF, y*this->grid_sizeF);
+                            es->SetSpawned(true);
+                       
+                        }
+                    }
                 }
                 
             }
@@ -858,70 +857,57 @@ void TileMap::updateTileCollision(Entity *entity, const float &dt)
             for (size_t k=0; k < this->Map[x][y][this->layer].size(); k++)
             {
               
-            sf::FloatRect playerbounds = entity->getGlobalBounds();
-            sf::FloatRect tilebounds = this->Map[x][y][this->layer][k]->getGlobalBounds();
-            sf::FloatRect nextPos = entity->getNextPositionBounds(dt);
-            
-            if(this->Map[x][y][this->layer][k]->getCollision()
-            && this->Map[x][y][this->layer][k]->intersects(nextPos))
-            {
-                //Bottom Collsion
-                if(playerbounds.top < tilebounds.top
-                   && playerbounds.top + playerbounds.height < tilebounds.top + tilebounds.height
-                   && playerbounds.left < tilebounds.left + tilebounds.width
-                   && playerbounds.left + playerbounds.width > tilebounds.left)
-                {
-                    entity->stopVelocityY();
-                    entity->setposition(playerbounds.left, tilebounds.top - playerbounds.height);
-                    std::cout << "Collision!" << std::endl;
-                    
-                    this->isEntityColliding = true;
-                    
-                }
-                //top Collision
-            else if (playerbounds.top > tilebounds.top
-                     && playerbounds.top + playerbounds.height > tilebounds.top + tilebounds.height
-                     && playerbounds.left < tilebounds.left + tilebounds.width
-                     && playerbounds.left + playerbounds.width > tilebounds.left)
-                {
-                    entity->stopVelocityY();
-                    entity->setposition(playerbounds.left, tilebounds.top + playerbounds.height);
-                    std::cout << "Collision!" << std::endl;
-                    
-                    this->isEntityColliding = true;
-                    
-                }
-                
-                //Right Collision
-            if(playerbounds.left < tilebounds.left
-               && playerbounds.left + playerbounds.width < tilebounds.left + tilebounds.width
-               && playerbounds.top < tilebounds.top + tilebounds.height
-               && playerbounds.top + playerbounds.height > tilebounds.top)
-                {
-                    entity->stopVelocityX();
-                    entity->setposition(tilebounds.left - playerbounds.width, playerbounds.top);
-                    std::cout << "Collision!" << std::endl;
-                    
-                    this->isEntityColliding = true;
-                    
-                }
-                
-                //Left Collision
-            if(playerbounds.left > tilebounds.left
-               && playerbounds.left + playerbounds.width > tilebounds.left + tilebounds.width
-               && playerbounds.top < tilebounds.top + tilebounds.height
-               && playerbounds.top + playerbounds.height > tilebounds.top)
-                {
-                    entity->stopVelocityX();
-                    entity->setposition(tilebounds.left + playerbounds.width, playerbounds.top);
-                    std::cout << "Collision!" << std::endl;
-                    
-                    this->isEntityColliding = true;
-                   
-                }
-                
-                
-                this->isEntityColliding = false;
+           sf::FloatRect playerBounds = entity->getGlobalBounds();
+           sf::FloatRect wallBounds = this->Map[x][y][this->layer][k]->getGlobalBounds();
+           sf::FloatRect nextPositionBounds = entity->getNextPositionBounds(dt);
+
+           if (this->Map[x][y][this->layer][k]->getCollision() &&
+               this->Map[x][y][this->layer][k]->intersects(nextPositionBounds)
+               )
+           {
+               //Bottom collision
+               if (playerBounds.top < wallBounds.top
+                   && playerBounds.top + playerBounds.height < wallBounds.top + wallBounds.height
+                   && playerBounds.left < wallBounds.left + wallBounds.width
+                   && playerBounds.left + playerBounds.width > wallBounds.left
+                   )
+               {
+                   entity->stopVelocityY();
+                   entity->setposition(playerBounds.left, wallBounds.top - playerBounds.height);
+               }
+
+               //Top collision
+               else if (playerBounds.top > wallBounds.top
+                   && playerBounds.top + playerBounds.height > wallBounds.top + wallBounds.height
+                   && playerBounds.left < wallBounds.left + wallBounds.width
+                   && playerBounds.left + playerBounds.width > wallBounds.left
+                   )
+               {
+                   entity->stopVelocityY();
+                   entity->setposition(playerBounds.left, wallBounds.top + wallBounds.height);
+               }
+
+               //Right collision
+               if (playerBounds.left < wallBounds.left
+                   && playerBounds.left + playerBounds.width < wallBounds.left + wallBounds.width
+                   && playerBounds.top < wallBounds.top + wallBounds.height
+                   && playerBounds.top + playerBounds.height > wallBounds.top
+                   )
+               {
+                   entity->stopVelocityX();
+                   entity->setposition(wallBounds.left - playerBounds.width, playerBounds.top);
+               }
+
+               //Left collision
+               else if (playerBounds.left > wallBounds.left
+                   && playerBounds.left + playerBounds.width > wallBounds.left + wallBounds.width
+                   && playerBounds.top < wallBounds.top + wallBounds.height
+                   && playerBounds.top + playerBounds.height > wallBounds.top
+                   )
+               {
+                   entity->stopVelocityX();
+                   entity->setposition(wallBounds.left + wallBounds.width, playerBounds.top);
+               }
             
                 
                }

@@ -20,7 +20,11 @@ private:
    float maxVelocity;
       
     //Physics Engine Variables
+    //Position and Velociry Vectors
      sf::Vector2f Velocity;
+    sf::Vector2f Position;
+    
+
       float AccelerationX;
     float AccelerationY;
     float Acceleration; 
@@ -34,8 +38,8 @@ private:
     float Deceleration;
     float directional_velocity;
     float Impulse;
-    
-    
+   
+
     //Physics Delta Variables
       float DeltaVelocityX;
       float DeltaVelocityY;
@@ -55,7 +59,7 @@ public:
 
     //Functions
      void move(const float x, const float y, const float& dt);
-     void phyiscs(const float& dt); 
+     void Updatephyiscs(const float& dt); 
      void update(const float&dt);
      void stopVelocity();
      void stopVelocityX();

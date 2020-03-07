@@ -14,8 +14,8 @@
             filePath = "engineFramework/States/GameState.hpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "GameState"
             landmarkType = "3">
          </BreakpointContent>
@@ -158,9 +158,9 @@
             filePath = "engineFramework/States/GameState.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
-            landmarkName = "GameState::render(target)"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "GameState::updatePlayerInput(dt)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

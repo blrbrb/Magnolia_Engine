@@ -21,6 +21,7 @@ GameState::GameState(StateData* state_data)
     this->initshaders();
     this->initplayers();
     this->initplayerGUI();
+    this->initenemysystem();
     this->inittilemap();
     
    // this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
@@ -34,6 +35,7 @@ GameState::~GameState() {
     delete this->pMenu;
     delete this->playerGUI;
     delete this->Tilemap;
+    delete this->enemysystem;
     
     for (size_t i = 0; i < this->activEnemies.size(); i++ )
     {
@@ -205,14 +207,9 @@ void GameState::updatetilemap(const float& dt)
 {
     this->Tilemap->updateWorldBoundsCollision(this->player, dt);
     this->Tilemap->updateTileCollision(this->player, dt);
-    this->Tilemap->update(this->player, dt);
+    this->Tilemap->updateTiles(this->player, dt, *this->enemysystem);
     
-    if(this->Tilemap->isEntityColliding == true)
-    {
-        this->sound.play();
-    
-    }
-    
+
     for (auto *i : this->activEnemies)
     {
         this->Tilemap->updateWorldBoundsCollision(i, dt);
@@ -333,7 +330,7 @@ void GameState::render(sf::RenderTarget* target) {
     this->rendertexture.setView(this->view);
     
     
-    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, false, &this->core_shader, this->player->getPosition());
+    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, true, &this->core_shader, this->player->getPosition());
     
      this->player->render(this->rendertexture, &this->core_shader, false);
     
@@ -372,13 +369,21 @@ void GameState::checkforendstate() {
     
 }
 
-void GameState::updatePlayer(const float &dt) { 
-    <#code#>;
+void GameState::updatePlayer(const float &dt)
+{
+    //shit
 }
 
-void GameState::updateEnemies(const float &dt) { 
-    <#code#>;
+void GameState::updateEnemies(const float &dt)
+{
+    //shit 
 }
+
+void GameState::initenemysystem()
+{
+    this->enemysystem = new EnemySystem(this->activEnemies, this->textures);
+}
+
 
 
 

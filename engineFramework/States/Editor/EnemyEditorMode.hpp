@@ -30,7 +30,7 @@ public:
     
 private:
         //GUI variables
-        sf::Text cursortext;
+         sf::Text cursortext;
          GUI::TextureSelector* texture_selector;
          sf::RectangleShape select_Rect;
          sf::RectangleShape sidebar;
@@ -39,9 +39,9 @@ private:
          sf::IntRect TextureRect;
     
     int layer;
-    int type; 
+    int type;
+    
     //Tile variables
-     
     int Enemytype;
     int Enemyamount;
     int spawn_timer;

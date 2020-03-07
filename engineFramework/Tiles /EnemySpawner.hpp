@@ -20,21 +20,23 @@ private:
     
     sf::Vector2i gridPosition;
     sf::RectangleShape tile; 
-    int Enemytype;
-    int Enemyamount;
+    int Enemy_type;
+    int Enemy_amount;
     int spawn_timer;
     float maxDistance;
-    bool spawned;
+    bool Spawned;
     
 public:
     //construtor and destructor
     EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, int Enemytype, int Enemyamount, int time_to_spawn, int max_distance);
     virtual ~EnemySpawner();
   
-    //Accessors
+    //modifiers
     const bool SetSpawned(const bool spawned);
-    const std::string asString() const;
     
+    //Accessors
+    const std::string asString() const;
+    const bool& getSpawned() const; 
     
     void clear();
     void update();

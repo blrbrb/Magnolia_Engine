@@ -35,7 +35,9 @@ public:
     void UpdateEvents();
     void UpdateDT();
     void Update();
-    void runtime();
+    
+    
+    
     
     
 private:
@@ -48,9 +50,13 @@ private:
     sf::Event event;
     float gridsize; 
     bool fullscreen;
+    
     sf::Clock dtClock;
     float dt;
-    float runTime;
+    float elapsedTime;
+    
+    
+    
     std::stack<State*> states;
     StateData state_data;
     GraphicsSettings gfxsettings;

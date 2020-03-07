@@ -62,7 +62,7 @@ void Game::initkeys() {
     
     for (auto i : this->supportedkeys)
     {
-        std::cout << i.first << " " << i.second << "\n";
+        //std::cout << i.first << " " << i.second << "\n";
     }
 }
 
@@ -205,13 +205,10 @@ void Game::UpdateDT()
     //Updates the time variable with the time taken for each frame to render
     this-> dt = this -> dtClock.restart().asSeconds();
     std::cout << this->dt  << std::endl;
+
     
 }
 
-void Game::runtime()
-{
-    this->runTime = dtClock.getElapsedTime().asSeconds();
-}
 
 void Game::running() {
     
@@ -220,7 +217,6 @@ void Game::running() {
       
     
         this->UpdateDT();
-        this->runtime();
             this->Update();
           this->render();
     }
@@ -232,7 +228,7 @@ void Game::endapplication()
     
     
     std::cout << "Ending the application..." << std::endl;
-    std::cout << "Total RunTime: " << this->runTime << std::endl;
+ 
     
 }
 

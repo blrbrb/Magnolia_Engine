@@ -12,9 +12,10 @@
 #include "Player.hpp"
 #include "PlayerGUI.hpp"
 #include "PauseMenu.hpp"
+#include "EnemySystem.hpp"
 #include "TileMap.hpp"
-#include "Enemy.hpp"
-#include "Enemies_Include.h"
+
+
 
 class Enemy;
 class Blrb;
@@ -60,6 +61,7 @@ private:
     PlayerGUI* playerGUI;
     PauseMenu* pMenu;
     TileMap* Tilemap;
+    EnemySystem* enemysystem;
     
     sf::Font font;
     sf::RenderTexture rendertexture;
@@ -89,6 +91,7 @@ private:
     void initpausemenu();
     void inittilemap();
     void initshaders();
+    void initenemysystem(); 
 
     
 };
