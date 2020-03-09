@@ -23,6 +23,7 @@ class Entity {
     
 public:
     
+    //Component Variables
     MovementComponets* movementcomponets;
     AnimationComponet* animtioncomponet;
     HitBoxComponet* hitbox;
@@ -32,8 +33,8 @@ public:
     sf::Texture* texture;
     
     //Constructor et Destructor
-       Entity();
-       virtual ~Entity();
+    Entity();
+    virtual ~Entity();
    
      //Modifiers
     virtual void setposition(const float x, const float y);
@@ -56,12 +57,12 @@ public:
     virtual void stopVelocityY();
     
     
-        //Component init functions
-        void createmovementcomponet(const float maxVelocity, const float Acceleration, const float Deceleration);
-        void create_animation_componet(sf::Texture& texturesheet);
-        void create_hitbox_componet(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height);
-        void create_attribute_componet(const unsigned level);
-        void create_skill_component(); 
+    //Component init functions
+    void createmovementcomponet(const float maxVelocity, const float Acceleration, const float Deceleration);
+    void create_animation_componet(sf::Texture& texturesheet);
+    void create_hitbox_componet(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height);
+    void create_attribute_componet(const unsigned level);
+    void create_skill_component();
        
     
    

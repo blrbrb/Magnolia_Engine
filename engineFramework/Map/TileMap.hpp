@@ -35,21 +35,21 @@ private:
     std::string texture_file;
     sf::Vector2i MaxSizeWorldGrid;
     sf::Vector2f MaxSizeWorld_F;
-    std::stack<Tile*> renderdefered; 
+    
+    //Defered Render stack thingy
+    std::stack<Tile*> renderdefered;
+    
     sf::RectangleShape physicsrect; 
    
+    //TileMap vector
     std::vector< std::vector< std::vector< std::vector< Tile* > > > > Map;
     
     sf::Font font; 
-    
-    
     
     sf::Texture tileTextureSheet;
     //Private Functions
     void clear();
   
-    
-    
     int FromX;
     int ToX;
     int ToY;

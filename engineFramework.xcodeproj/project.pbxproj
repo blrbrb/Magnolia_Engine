@@ -120,6 +120,8 @@
 		45BE8F512412915D001921B4 /* Blerb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4F2412915D001921B4 /* Blerb.cpp */; };
 		45BE8F542412D345001921B4 /* BattleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F522412D345001921B4 /* BattleState.cpp */; };
 		45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F55241317E7001921B4 /* EnemySystem.cpp */; };
+		45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5A24146B19001921B4 /* CombatSystem.cpp */; };
+		45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5E24168C0D001921B4 /* Inventory.cpp */; };
 		45DB9A4F23DD162100F8693E /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DB9A4D23DD162100F8693E /* MainMenuState.cpp */; };
 		45DB9A5723DD22E400F8693E /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45DB9A5623DD22E400F8693E /* sansation.ttf */; };
 		45E01759240AF23500EC8E1D /* red_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318CD2409FEFC00433CD7 /* red_button02.png */; };
@@ -297,6 +299,10 @@
 		45BE8F532412D345001921B4 /* BattleState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleState.hpp; sourceTree = "<group>"; };
 		45BE8F55241317E7001921B4 /* EnemySystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemySystem.cpp; sourceTree = "<group>"; };
 		45BE8F56241317E7001921B4 /* EnemySystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnemySystem.hpp; sourceTree = "<group>"; };
+		45BE8F5A24146B19001921B4 /* CombatSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CombatSystem.cpp; sourceTree = "<group>"; };
+		45BE8F5B24146B19001921B4 /* CombatSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CombatSystem.hpp; sourceTree = "<group>"; };
+		45BE8F5E24168C0D001921B4 /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
+		45BE8F5F24168C0D001921B4 /* Inventory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Inventory.hpp; sourceTree = "<group>"; };
 		45DB9A4D23DD162100F8693E /* MainMenuState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
 		45DB9A4E23DD162100F8693E /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
 		45DB9A5623DD22E400F8693E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
@@ -644,6 +650,7 @@
 		45850C9123E3133900417726 /* Componets */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F5924146B02001921B4 /* Combat  */,
 				455808E424009D0000E36DFA /* Movement */,
 				455808E224009CE600E36DFA /* Hitbox */,
 				455808E124009CD400E36DFA /* Animation */,
@@ -679,6 +686,24 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		45BE8F5924146B02001921B4 /* Combat  */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F5A24146B19001921B4 /* CombatSystem.cpp */,
+				45BE8F5B24146B19001921B4 /* CombatSystem.hpp */,
+			);
+			path = "Combat ";
+			sourceTree = "<group>";
+		};
+		45BE8F6124168C12001921B4 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F5F24168C0D001921B4 /* Inventory.hpp */,
+				45BE8F5E24168C0D001921B4 /* Inventory.cpp */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
 		45DB9A5323DD226600F8693E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,6 +717,7 @@
 		45E0175E240D7C2E00EC8E1D /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F6124168C12001921B4 /* Inventory */,
 				45E0176B240D91C500EC8E1D /* Consumables  */,
 				45E0175F240D7C4400EC8E1D /* Weapons */,
 				45E01760240D7C7600EC8E1D /* Item.cpp */,
@@ -965,6 +991,7 @@
 				45BE8F512412915D001921B4 /* Blerb.cpp in Sources */,
 				45F5E8D423E60A5300307E48 /* HitBoxComponet.cpp in Sources */,
 				454A704923D8C30A003FEB4F /* Game.cpp in Sources */,
+				45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */,
 				455808E024009CC500E36DFA /* StatusComponet.cpp in Sources */,
 				455FB37B2404729600146C3A /* PlayerGUI.cpp in Sources */,
 				45E01771240DACF400EC8E1D /* SkillComponent.cpp in Sources */,
@@ -993,6 +1020,7 @@
 				451BD30C23DA10E200426643 /* Entity.cpp in Sources */,
 				457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */,
 				45F8E41A23EB59470037EBD5 /* SettingsState.cpp in Sources */,
+				45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */,
 				450CA30923D9106200FF039F /* State.cpp in Sources */,
 				45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */,
 			);

@@ -77,33 +77,33 @@ void Player::updateAnimation(const float& dt)
        
        this->movementcomponets->update(dt);
        
-       if (this->movementcomponets->get_moving(IDLE))
+       if (this->movementcomponets->getStauts(IDLE))
        {
            
        this->animtioncomponet->play("IDLE_LEFT", dt);
            
        }
 
-       else if(this->movementcomponets->get_moving(MOVING_RIGHT))
+       else if(this->movementcomponets->getStauts(MOVING_RIGHT))
        {
            this->animtioncomponet->play("WALK_RIGHT", dt);
            
        }
        
-       else if (this->movementcomponets->get_moving(MOVING_LEFT))
+       else if (this->movementcomponets->getStauts(MOVING_LEFT))
        {
            this->animtioncomponet->play("WALK_LEFT", dt);
            
        }
        
-       else if (this->movementcomponets->get_moving(MOVING_DOWN))
+       else if (this->movementcomponets->getStauts(MOVING_DOWN))
        {
            
            this->animtioncomponet->play("WALK_DOWN", dt);
            
        }
        
-       else if (this->movementcomponets->get_moving(MOVING_UP))
+       else if (this->movementcomponets->getStauts(MOVING_UP))
        {
            this->animtioncomponet->play("WALK_UP", dt);
        }

@@ -86,7 +86,7 @@ void Entity::update(const float& dt, sf::Vector2f& MousePosView) {
 Entity::~Entity() {
     
     delete this->hitbox;
-    delete this-> movementcomponets;
+    delete this->movementcomponets;
     delete this->animtioncomponet;
     delete this->attributes;
     delete this->skillcomponent;
@@ -97,6 +97,7 @@ void Entity::initvariables()
 {
     this->texture = NULL;
     this->hitbox = NULL;
+    this->attributes = NULL;
     this->movementcomponets = NULL;
     this->skillcomponent = NULL;
 }
@@ -173,9 +174,7 @@ const sf::FloatRect Entity::getGlobalBounds() const
     else 
     return this->sprite.getGlobalBounds();
     
-    
-    
-    
+
     
 }
 
@@ -202,6 +201,8 @@ const sf::Vector2i Entity::getGridPosition(const int gridSizeI) const
         sf::Vector2i(static_cast<int>(this->sprite.getPosition().x) / gridSizeI, static_cast<int>(this->sprite.getPosition().y) / gridSizeI);
 }
 
+
+
 const sf::FloatRect Entity::getNextPositionBounds(const float& dt) const
 {
     if(this->hitbox && this->movementcomponets)
@@ -213,25 +214,32 @@ const sf::FloatRect Entity::getNextPositionBounds(const float& dt) const
     return sf::FloatRect(-1.f, -1.f, -1.f, -1.f);
 }
 
+
+
 void Entity::stopVelocity()
 {
+    //important to make sure stopVelocityY() is called here to ensure proper collision
+    
     if (this->movementcomponets)
-        this->movementcomponets->stopVelocity();
+        this->movementcomponets->stopVelocityY();
 }
+
+
 
 void Entity::stopVelocityX()
 {
+     //important to make sure stopVelocityX() is called here to ensure proper collision
     if (this->movementcomponets)
         this->movementcomponets->stopVelocityX();
 }
+
+
 
 void Entity::stopVelocityY()
 {
     if (this->movementcomponets)
         this->movementcomponets->stopVelocityY();
 }
-
-
 
 
 void Entity::create_skill_component()

@@ -69,7 +69,7 @@ void Blrb::updateAnimation(const float &dt)
        @return void
         */
           
-          if (this->movementcomponets->get_moving(IDLE))
+          if (this->movementcomponets->getStauts(IDLE))
           {
               
               this->animtioncomponet->play("IDLE", dt, false);

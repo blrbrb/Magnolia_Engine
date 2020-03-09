@@ -17,8 +17,6 @@ MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, floa
     this->Volume = this->sprite.getLocalBounds().width * this->sprite.getLocalBounds().top;
     this->Density = this->Volume / 25.f;
     
-   
-    
     
 }
 
@@ -49,14 +47,12 @@ void MovementComponets::Updatephyiscs(const float& dt)
     
     
     //Velocity
-    this->Velocity.x = this->sprite.getPosition().x - this->sprite.getPosition().x / dt;
-    this->Velocity.y = this->sprite.getPosition().y - this->sprite.getPosition().y / dt; 
+    this->Velocity.x = (this->sprite.getPosition().x + dt) - (this->sprite.getPosition().x - dt);
+    this->Velocity.y = (this->sprite.getPosition().y + dt) - (this->sprite.getPosition().y - dt);
     
+    //Momentum
+    this->Momentum = this->Mass * this->Velocity;
 }
-
-
-
-
 
 
 
@@ -75,6 +71,7 @@ void MovementComponets::move(const float x ,const float y, const float& dt)
 void MovementComponets::update(const float& dt)
 {
     /*SLOWS DOWN THE SPRITE*/
+
     
     if (this->Velocity.x > 0.f) // Check for positive x
     {
@@ -152,10 +149,8 @@ void MovementComponets::update(const float& dt)
 
 const sf::Vector2f& MovementComponets::getvelocity() const
 {
-    
     return this->Velocity;
-    
-    
+
 }
 
 //Accessors
@@ -164,7 +159,7 @@ const sf::Vector2f& MovementComponets::getvelocity() const
 //    IDLE == 0
 
 
-const bool MovementComponets::get_moving(const short unsigned state) const
+const bool MovementComponets::getStauts(const short unsigned state) const
 {
     switch(state)
     {
@@ -231,9 +226,7 @@ const bool MovementComponets::get_moving(const short unsigned state) const
 
 const float& MovementComponets::getMaxVelocity() const
 {
-    
     return this->maxVelocity;
-  
 }
 
 void MovementComponets::stopVelocity()
@@ -252,3 +245,7 @@ void MovementComponets::stopVelocityY()
     this->Velocity.y = 0.f;
 }
 
+const float & MovementComponets::getAcceleration() const
+{
+    return this->Acceleration;
+}
