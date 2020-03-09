@@ -122,6 +122,7 @@
 		45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F55241317E7001921B4 /* EnemySystem.cpp */; };
 		45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5A24146B19001921B4 /* CombatSystem.cpp */; };
 		45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5E24168C0D001921B4 /* Inventory.cpp */; };
+		45BE8F642416B774001921B4 /* Mixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F622416B774001921B4 /* Mixture.cpp */; };
 		45DB9A4F23DD162100F8693E /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DB9A4D23DD162100F8693E /* MainMenuState.cpp */; };
 		45DB9A5723DD22E400F8693E /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45DB9A5623DD22E400F8693E /* sansation.ttf */; };
 		45E01759240AF23500EC8E1D /* red_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318CD2409FEFC00433CD7 /* red_button02.png */; };
@@ -303,6 +304,8 @@
 		45BE8F5B24146B19001921B4 /* CombatSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CombatSystem.hpp; sourceTree = "<group>"; };
 		45BE8F5E24168C0D001921B4 /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
 		45BE8F5F24168C0D001921B4 /* Inventory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Inventory.hpp; sourceTree = "<group>"; };
+		45BE8F622416B774001921B4 /* Mixture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mixture.cpp; sourceTree = "<group>"; };
+		45BE8F632416B774001921B4 /* Mixture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mixture.hpp; sourceTree = "<group>"; };
 		45DB9A4D23DD162100F8693E /* MainMenuState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
 		45DB9A4E23DD162100F8693E /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
 		45DB9A5623DD22E400F8693E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
@@ -666,12 +669,10 @@
 		458A1D3123ECCEF900F2F8ED /* Tiles  */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F782416B97D001921B4 /* EnemySpawner */,
+				45BE8F762416B963001921B4 /* Normal Tile */,
 				458A1D3623ECCF5000F2F8ED /* Tile.cpp */,
 				458A1D3723ECCF5000F2F8ED /* Tile.hpp */,
-				4546031C240E93B000EAF628 /* EnemySpawner.cpp */,
-				4546031D240E93B000EAF628 /* EnemySpawner.hpp */,
-				45BE8F4B241283C5001921B4 /* NormalTile.cpp */,
-				45BE8F4C241283C5001921B4 /* NormalTile.hpp */,
 				45BE8F4E24129097001921B4 /* Tiles_Include.h */,
 			);
 			path = "Tiles ";
@@ -704,6 +705,141 @@
 			path = Inventory;
 			sourceTree = "<group>";
 		};
+		45BE8F652416B77B001921B4 /* Mixtures */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F662416B787001921B4 /* Potions  */,
+				45BE8F632416B774001921B4 /* Mixture.hpp */,
+				45BE8F622416B774001921B4 /* Mixture.cpp */,
+			);
+			path = Mixtures;
+			sourceTree = "<group>";
+		};
+		45BE8F662416B787001921B4 /* Potions  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Potions ";
+			sourceTree = "<group>";
+		};
+		45BE8F682416B7FE001921B4 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		45BE8F692416B838001921B4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F752416B933001921B4 /* Hoe */,
+				45BE8F742416B922001921B4 /* Scythe  */,
+				45BE8F732416B908001921B4 /* PickAxe */,
+				45BE8F722416B8FC001921B4 /* Hatchet  */,
+				45BE8F712416B8D3001921B4 /* Shovel */,
+				45BE8F702416B8CD001921B4 /* Axe */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		45BE8F6B2416B84F001921B4 /* Enviornmental  */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F6F2416B8AC001921B4 /* Caves */,
+				45BE8F6D2416B871001921B4 /* Building */,
+				45BE8F6C2416B85F001921B4 /* Botanical */,
+			);
+			path = "Enviornmental ";
+			sourceTree = "<group>";
+		};
+		45BE8F6C2416B85F001921B4 /* Botanical */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Botanical;
+			sourceTree = "<group>";
+		};
+		45BE8F6D2416B871001921B4 /* Building */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Building;
+			sourceTree = "<group>";
+		};
+		45BE8F6E2416B8A3001921B4 /* Drops */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Drops;
+			sourceTree = "<group>";
+		};
+		45BE8F6F2416B8AC001921B4 /* Caves */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Caves;
+			sourceTree = "<group>";
+		};
+		45BE8F702416B8CD001921B4 /* Axe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Axe;
+			sourceTree = "<group>";
+		};
+		45BE8F712416B8D3001921B4 /* Shovel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shovel;
+			sourceTree = "<group>";
+		};
+		45BE8F722416B8FC001921B4 /* Hatchet  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Hatchet ";
+			sourceTree = "<group>";
+		};
+		45BE8F732416B908001921B4 /* PickAxe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PickAxe;
+			sourceTree = "<group>";
+		};
+		45BE8F742416B922001921B4 /* Scythe  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Scythe ";
+			sourceTree = "<group>";
+		};
+		45BE8F752416B933001921B4 /* Hoe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Hoe;
+			sourceTree = "<group>";
+		};
+		45BE8F762416B963001921B4 /* Normal Tile */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F4C241283C5001921B4 /* NormalTile.hpp */,
+				45BE8F4B241283C5001921B4 /* NormalTile.cpp */,
+			);
+			path = "Normal Tile";
+			sourceTree = "<group>";
+		};
+		45BE8F782416B97D001921B4 /* EnemySpawner */ = {
+			isa = PBXGroup;
+			children = (
+				4546031C240E93B000EAF628 /* EnemySpawner.cpp */,
+				4546031D240E93B000EAF628 /* EnemySpawner.hpp */,
+			);
+			path = EnemySpawner;
+			sourceTree = "<group>";
+		};
 		45DB9A5323DD226600F8693E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +853,9 @@
 		45E0175E240D7C2E00EC8E1D /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F6E2416B8A3001921B4 /* Drops */,
+				45BE8F6B2416B84F001921B4 /* Enviornmental  */,
+				45BE8F692416B838001921B4 /* Tools */,
 				45BE8F6124168C12001921B4 /* Inventory */,
 				45E0176B240D91C500EC8E1D /* Consumables  */,
 				45E0175F240D7C4400EC8E1D /* Weapons */,
@@ -749,6 +888,8 @@
 		45E0176B240D91C500EC8E1D /* Consumables  */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F682416B7FE001921B4 /* Food */,
+				45BE8F652416B77B001921B4 /* Mixtures */,
 			);
 			path = "Consumables ";
 			sourceTree = "<group>";
@@ -1013,6 +1154,7 @@
 				454A702F23D770B4003FEB4F /* main.cpp in Sources */,
 				4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */,
 				45E01769240D80D800EC8E1D /* Sword.cpp in Sources */,
+				45BE8F642416B774001921B4 /* Mixture.cpp in Sources */,
 				4543923923E1BFBB00D7A0F5 /* MovementComponets.cpp in Sources */,
 				45460340241005B100EAF628 /* EnemyEditorMode.cpp in Sources */,
 				45460332240ED01500EAF628 /* DefaultMode.cpp in Sources */,
