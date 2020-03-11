@@ -15,7 +15,7 @@ Player::Player(float x, float y, sf::Texture& texturesheet)
     
     
     this->initcomponets();
-  
+    this->initinventory(); 
     this->setposition(x, y);
 
     this->create_animation_componet(texturesheet);
@@ -27,8 +27,8 @@ Player::Player(float x, float y, sf::Texture& texturesheet)
 Player::~Player()
 {
     
-    
-    
+    delete this->inventory; 
+    delete this->sword; 
     
 }
 
@@ -41,8 +41,20 @@ void Player::initcomponets()
     this->create_hitbox_componet(this->sprite, 5, 5, 55.f, 60.f);    //Note: is lower because cropped for more accurate collision
     this->create_attribute_componet(1);
     this->create_skill_component();
+    this->sword = new Sword(2, "sword.png");
+    
 
 }
+
+void Player::initinventory()
+{
+    this->inventory = new Inventory(100);
+}
+
+
+
+
+
 
 void Player::initvariables()
 {
@@ -133,7 +145,7 @@ void Player::update(const float& dt, sf::Vector2f& MousePosView)
     
     this->hitbox->update();
     
-    this->sword.update(MousePosView, this->getCenter());
+    this->sword->update(MousePosView, this->getCenter());
     
    
 }
@@ -145,7 +157,8 @@ void Player::render(sf::RenderTarget &target, sf::Shader* shader,const bool rend
         shader->setUniform("hasTexture", true);
         shader->setUniform("light", this->getCenter());
         target.draw(this->sprite, shader);
-        this->sword.render(target, shader);
+        this->sword->render(target, shader);
+       
     }
     
 
@@ -173,24 +186,20 @@ void Player::loseHP(const int HP)
 
 void Player::loseEXP(const int EXP)
 {
-    this->attributes->exp += EXP;
+    this->attributes->exp -= EXP;
        
        if(this->attributes->exp < 0)
            this->attributes->exp = 0;
-
 }
 
 
 
 void Player::gainHP(const int HP)
 {
-    
     this->attributes->hp += HP;
     
     if(this->attributes->hp > this->attributes->hpMax)
         this->attributes->hp = this->attributes->hpMax;
-    
-    
 }
 
 
@@ -198,8 +207,10 @@ void Player::gainHP(const int HP)
 void Player::gainEXP(const int EXP)
 {
     this->attributes->gainexp(EXP);
-    
 }
 
 
-
+void Player::gainCoins(const int COINS)
+{
+    this->attributes->gaincoins(COINS);
+}

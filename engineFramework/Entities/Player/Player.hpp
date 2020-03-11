@@ -10,6 +10,7 @@
 #define Player_hpp
 #include "Entity.hpp"
 #include "Sword.hpp"
+#include "Inventory.hpp"
 
 class Entity; 
 
@@ -21,9 +22,13 @@ private:
     void initvariables();
     void initcomponets();
     void initanimations(); 
+    void initinventory();
     
-    Sword sword; 
     
+    
+    Sword* sword; 
+    
+    Inventory* inventory;
     
     //Variables
     bool attacking;
@@ -45,6 +50,7 @@ public:
     void loseEXP(const int EXP);
     void gainHP(const int HP);
     void gainEXP(const int EXP);
+    void gainCoins(const int COINS); 
     
     
      void update(const float& dt, sf::Vector2f& MousePosView);

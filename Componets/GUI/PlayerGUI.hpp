@@ -32,15 +32,28 @@ private:
     
     //Health bar
     sf::Font font;
-    GUI::ProgressBar* HPbar; 
+    GUI::ProgressBar* HPbar;
     
- 
+    //Inventory
+    
+    
+    //inventory
+    
+    
+    //COINS
+    sf::Sprite monies;
+    sf::Texture coinIcon;
+    std::string money_string; 
+    sf::Text money;
+    int max = 99;
     
 
     void initfont();
     void initLevelTag();
     void initHPbar();
-    void initEXPbar(); 
+    void initEXPbar();
+    void initMONEY();
+    void initinventory();
     
 public:
     
@@ -51,9 +64,11 @@ public:
     void updateLevelTag();
     void updateHPbar();
     void updateEXPbar();
+    void updateMoney(); 
     void update(const float& dt);
     void renderLevelTag(sf::RenderTarget& target);
     void renderHPbar(sf::RenderTarget& target);
+    void renderMoney(sf::RenderTarget& target);
     void renderEXPbar(sf::RenderTarget& target);
     void render(sf::RenderTarget& target);
     

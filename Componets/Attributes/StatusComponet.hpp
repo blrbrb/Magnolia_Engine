@@ -44,27 +44,29 @@ public:
       int accuracy;
       int defense;
       int luck;
-      
+    
+    //COINS
+    int coins; 
       
     
-      //const and destruct
-      StatusComponet(int level);
-      virtual ~StatusComponet();
+    //const and destruct
+    StatusComponet(int level);
+    virtual ~StatusComponet();
       
       
-      //degub
-      std::string debugPrint() const;
+    //degub
+    std::string debugPrint() const;
       
-      //Functions
-      void UpdateStats(const bool reset);
-      void update();
-      void UpdateLevel();
-      void createstats();
+    //Functions
+    void UpdateStats(const bool reset);
+    void update();
+    void UpdateLevel();
+    void createstats();
     
-      void Debug_test_Algorithim();
+    void Debug_test_Algorithim();
       
-      void gainexp(const unsigned exp);
-    
+    void gainexp(const unsigned exp);
+    void gaincoins(const int COINS);
 };
 
 

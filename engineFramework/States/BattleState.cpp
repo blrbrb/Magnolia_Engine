@@ -60,12 +60,19 @@ void BattleState::initdeferedrender()
 
 void BattleState::initview()
 {
-    
+    this->view.setSize(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width), static_cast<float>(this->state_data->gfxsettings->resolution.height)));
+
+    this->view.setCenter(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 2.f,        static_cast<float>(this->state_data->gfxsettings->resolution.height) / 2.f));
 }
 
 void BattleState::inittextures()
 {
     
+ if (!this->textures["PLAYER_SHEET"].loadFromFile(resourcePath() + "Hero.png"))
+    {
+        std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures" << std::endl;
+        throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures");
+    }
 }
 
 void BattleState::initplayers()

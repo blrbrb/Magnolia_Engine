@@ -27,6 +27,15 @@ PlayerGUI::~PlayerGUI()
     
 }
 
+void PlayerGUI::initMONEY()
+{
+    this->coinIcon.loadFromFile("hero.png");
+    this->monies.setTexture(coinIcon);
+    this->monies.setPosition(500, 100);
+    this->money.setCharacterSize(10);
+    this->money.setPosition(500, 100);
+}
+
 void PlayerGUI::initHPbar()
 {
     this->HPbar = new GUI::ProgressBar(1.f, 8.3, 10.4, 2.8, this->player->attributes->hpMax, this->vm, sf::Color::Red, 150, &this->font);
@@ -86,7 +95,21 @@ void PlayerGUI::updateLevelTag()
     
 }
 
+void PlayerGUI::updateMoney()
+{
+    
+    this->money_string = std::to_string(this->player->getStatusComponet()->coins);
+    this->money.setString(money_string);
+    
+    this->money.setPosition(200, 220);
+    
+}
 
+void PlayerGUI::renderMoney(sf::RenderTarget& target)
+{
+    target.draw(this->monies);
+    target.draw(this->money);
+}
 
 
 void PlayerGUI::renderLevelTag(sf::RenderTarget& target)
@@ -111,5 +134,6 @@ void PlayerGUI::render(sf::RenderTarget &target)
     this->renderLevelTag(target);
     this->renderEXPbar(target);
     this->renderHPbar(target);
+    this->renderMoney(target);
 }
 

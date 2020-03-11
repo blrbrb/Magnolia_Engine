@@ -15,6 +15,7 @@
 #include "EditorModes.hpp"
 #include "DefaultMode.hpp"
 #include "EnemyEditorMode.hpp"
+#include "EnviornmentalMode.hpp"
 
 
 class State;
@@ -27,7 +28,7 @@ class PauseMenu;
 
 
 
-enum EDITOR_MODES {DEFAULT_MODE = 0, ENEMY};
+enum EDITOR_MODES {DEFAULT_MODE = 0, ENEMY, ENV};
 
 
 class EditorState : public State

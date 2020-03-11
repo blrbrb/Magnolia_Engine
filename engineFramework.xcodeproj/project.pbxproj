@@ -31,7 +31,6 @@
 		45466C6E2408A6A3001F72E0 /* Confirm 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C6D2408A6A3001F72E0 /* Confirm 1.wav */; };
 		45466C702408A6E5001F72E0 /* Water Drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C6F2408A6E5001F72E0 /* Water Drop.wav */; };
 		45485998241146C300D97104 /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 45485997241146C300D97104 /* atlas.png */; };
-		4548599A241148AD00D97104 /* BFT - Legend Of Pocket Monsters Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 45485999241148AD00D97104 /* BFT - Legend Of Pocket Monsters Tileset.png */; };
 		4548599D2411D95000D97104 /* Blrb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4548599B2411D95000D97104 /* Blrb.cpp */; };
 		454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 454A702B23D770B4003FEB4F /* ResourcePath.mm */; };
 		454A702F23D770B4003FEB4F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454A702E23D770B4003FEB4F /* main.cpp */; };
@@ -123,6 +122,11 @@
 		45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5A24146B19001921B4 /* CombatSystem.cpp */; };
 		45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5E24168C0D001921B4 /* Inventory.cpp */; };
 		45BE8F642416B774001921B4 /* Mixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F622416B774001921B4 /* Mixture.cpp */; };
+		45BE8F7C241709E0001921B4 /* AnimatedTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F7A241709E0001921B4 /* AnimatedTile.cpp */; };
+		45BE8F832417BF9A001921B4 /* EnviornmentalTIle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F812417BF9A001921B4 /* EnviornmentalTIle.cpp */; };
+		45BE8F862417C1BB001921B4 /* EnviornmentalMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F842417C1BB001921B4 /* EnviornmentalMode.cpp */; };
+		45BE8F882418469B001921B4 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BE8F872418469B001921B4 /* test.png */; };
+		45BE8F8A241883C3001921B4 /* fuck.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BE8F89241883C2001921B4 /* fuck.png */; };
 		45DB9A4F23DD162100F8693E /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DB9A4D23DD162100F8693E /* MainMenuState.cpp */; };
 		45DB9A5723DD22E400F8693E /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45DB9A5623DD22E400F8693E /* sansation.ttf */; };
 		45E01759240AF23500EC8E1D /* red_button02.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318CD2409FEFC00433CD7 /* red_button02.png */; };
@@ -187,7 +191,6 @@
 		45466C6D2408A6A3001F72E0 /* Confirm 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Confirm 1.wav"; sourceTree = "<group>"; };
 		45466C6F2408A6E5001F72E0 /* Water Drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Water Drop.wav"; path = "../Water Drop.wav"; sourceTree = "<group>"; };
 		45485997241146C300D97104 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = atlas.png; path = ../../../../Desktop/atlas.png; sourceTree = "<group>"; };
-		45485999241148AD00D97104 /* BFT - Legend Of Pocket Monsters Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BFT - Legend Of Pocket Monsters Tileset.png"; sourceTree = "<group>"; };
 		4548599B2411D95000D97104 /* Blrb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Blrb.cpp; sourceTree = "<group>"; };
 		4548599C2411D95000D97104 /* Blrb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Blrb.hpp; sourceTree = "<group>"; };
 		4548599E2411DD4E00D97104 /* Enemies_Include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemies_Include.h; sourceTree = "<group>"; };
@@ -306,6 +309,14 @@
 		45BE8F5F24168C0D001921B4 /* Inventory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Inventory.hpp; sourceTree = "<group>"; };
 		45BE8F622416B774001921B4 /* Mixture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mixture.cpp; sourceTree = "<group>"; };
 		45BE8F632416B774001921B4 /* Mixture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mixture.hpp; sourceTree = "<group>"; };
+		45BE8F7A241709E0001921B4 /* AnimatedTile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedTile.cpp; sourceTree = "<group>"; };
+		45BE8F7B241709E0001921B4 /* AnimatedTile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AnimatedTile.hpp; sourceTree = "<group>"; };
+		45BE8F812417BF9A001921B4 /* EnviornmentalTIle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnviornmentalTIle.cpp; sourceTree = "<group>"; };
+		45BE8F822417BF9A001921B4 /* EnviornmentalTIle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnviornmentalTIle.hpp; sourceTree = "<group>"; };
+		45BE8F842417C1BB001921B4 /* EnviornmentalMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnviornmentalMode.cpp; sourceTree = "<group>"; };
+		45BE8F852417C1BB001921B4 /* EnviornmentalMode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnviornmentalMode.hpp; sourceTree = "<group>"; };
+		45BE8F872418469B001921B4 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		45BE8F89241883C2001921B4 /* fuck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fuck.png; sourceTree = "<group>"; };
 		45DB9A4D23DD162100F8693E /* MainMenuState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
 		45DB9A4E23DD162100F8693E /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
 		45DB9A5623DD22E400F8693E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
@@ -384,6 +395,8 @@
 				45460331240ED01500EAF628 /* DefaultMode.hpp */,
 				4546033E241005B100EAF628 /* EnemyEditorMode.cpp */,
 				4546033F241005B100EAF628 /* EnemyEditorMode.hpp */,
+				45BE8F842417C1BB001921B4 /* EnviornmentalMode.cpp */,
+				45BE8F852417C1BB001921B4 /* EnviornmentalMode.hpp */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -421,6 +434,7 @@
 		454A702823D770B4003FEB4F /* engineFramework */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F6124168C12001921B4 /* Inventory */,
 				45E0175E240D7C2E00EC8E1D /* Items */,
 				454A703023D770B4003FEB4F /* Resources */,
 				458A1D3123ECCEF900F2F8ED /* Tiles  */,
@@ -448,7 +462,8 @@
 		454A703023D770B4003FEB4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				45485999241148AD00D97104 /* BFT - Legend Of Pocket Monsters Tileset.png */,
+				45BE8F89241883C2001921B4 /* fuck.png */,
+				45BE8F872418469B001921B4 /* test.png */,
 				45485997241146C300D97104 /* atlas.png */,
 				45460335240EDFBD00EAF628 /* Blrb.png */,
 				45460339240F521E00EAF628 /* Hero.png */,
@@ -669,6 +684,8 @@
 		458A1D3123ECCEF900F2F8ED /* Tiles  */ = {
 			isa = PBXGroup;
 			children = (
+				45BE8F802417BF5D001921B4 /* Enviornmental  */,
+				45BE8F79241709D0001921B4 /* Animated */,
 				45BE8F782416B97D001921B4 /* EnemySpawner */,
 				45BE8F762416B963001921B4 /* Normal Tile */,
 				458A1D3623ECCF5000F2F8ED /* Tile.cpp */,
@@ -840,6 +857,24 @@
 			path = EnemySpawner;
 			sourceTree = "<group>";
 		};
+		45BE8F79241709D0001921B4 /* Animated */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F7A241709E0001921B4 /* AnimatedTile.cpp */,
+				45BE8F7B241709E0001921B4 /* AnimatedTile.hpp */,
+			);
+			path = Animated;
+			sourceTree = "<group>";
+		};
+		45BE8F802417BF5D001921B4 /* Enviornmental  */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F812417BF9A001921B4 /* EnviornmentalTIle.cpp */,
+				45BE8F822417BF9A001921B4 /* EnviornmentalTIle.hpp */,
+			);
+			path = "Enviornmental ";
+			sourceTree = "<group>";
+		};
 		45DB9A5323DD226600F8693E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -856,7 +891,6 @@
 				45BE8F6E2416B8A3001921B4 /* Drops */,
 				45BE8F6B2416B84F001921B4 /* Enviornmental  */,
 				45BE8F692416B838001921B4 /* Tools */,
-				45BE8F6124168C12001921B4 /* Inventory */,
 				45E0176B240D91C500EC8E1D /* Consumables  */,
 				45E0175F240D7C4400EC8E1D /* Weapons */,
 				45E01760240D7C7600EC8E1D /* Item.cpp */,
@@ -1011,6 +1045,7 @@
 				455318FA2409FEFE00433CD7 /* red_button07.png in Resources */,
 				45466C662408A60D001F72E0 /* Retro Event Acute 08.wav in Resources */,
 				455FB37D2404AAE400146C3A /* EngineLogo.png in Resources */,
+				45BE8F8A241883C3001921B4 /* fuck.png in Resources */,
 				455318ED2409FEFD00433CD7 /* grey_button04.png in Resources */,
 				455FB37C2404AAD600146C3A /* engineFramework-Info.plist in Resources */,
 				455FB3842404AC1A00146C3A /* Success.wav in Resources */,
@@ -1073,7 +1108,6 @@
 				455318FB2409FEFE00433CD7 /* grey_boxCross.png in Resources */,
 				455318F22409FEFD00433CD7 /* red_boxTick.png in Resources */,
 				45466C6E2408A6A3001F72E0 /* Confirm 1.wav in Resources */,
-				4548599A241148AD00D97104 /* BFT - Legend Of Pocket Monsters Tileset.png in Resources */,
 				455808A0240011D400E36DFA /* grey_sliderEnd.png in Resources */,
 				45466C702408A6E5001F72E0 /* Water Drop.wav in Resources */,
 				455FB38C2404AD5C00146C3A /* Birds.wav in Resources */,
@@ -1088,6 +1122,7 @@
 				455318EB2409FEFD00433CD7 /* grey_button03.png in Resources */,
 				4558083323F5CE7E00E36DFA /* GameState_Keys.ini in Resources */,
 				4558083723F5CEAE00E36DFA /* MainMenuState_Keys.ini in Resources */,
+				45BE8F882418469B001921B4 /* test.png in Resources */,
 				455318E32409FEFD00433CD7 /* red_button08.png in Resources */,
 				455318EF2409FEFD00433CD7 /* red_button00.png in Resources */,
 				4558083B23F5CED400E36DFA /* PauseMenu_Keys.ini in Resources */,
@@ -1132,6 +1167,7 @@
 				45BE8F512412915D001921B4 /* Blerb.cpp in Sources */,
 				45F5E8D423E60A5300307E48 /* HitBoxComponet.cpp in Sources */,
 				454A704923D8C30A003FEB4F /* Game.cpp in Sources */,
+				45BE8F7C241709E0001921B4 /* AnimatedTile.cpp in Sources */,
 				45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */,
 				455808E024009CC500E36DFA /* StatusComponet.cpp in Sources */,
 				455FB37B2404729600146C3A /* PlayerGUI.cpp in Sources */,
@@ -1139,6 +1175,7 @@
 				45F8E41F23EB635C0037EBD5 /* GUI.cpp in Sources */,
 				45E01762240D7C7600EC8E1D /* Item.cpp in Sources */,
 				45E01765240D7D5500EC8E1D /* Weapon.cpp in Sources */,
+				45BE8F832417BF9A001921B4 /* EnviornmentalTIle.cpp in Sources */,
 				45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */,
 				4548599D2411D95000D97104 /* Blrb.cpp in Sources */,
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,
@@ -1147,6 +1184,7 @@
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,
 				45E01774240DD6D400EC8E1D /* Enemy.cpp in Sources */,
 				45BE8F542412D345001921B4 /* BattleState.cpp in Sources */,
+				45BE8F862417C1BB001921B4 /* EnviornmentalMode.cpp in Sources */,
 				458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */,
 				458A1D3823ECCF5000F2F8ED /* Tile.cpp in Sources */,
 				4553BC3C23EE2D99002C68C0 /* GraphicsSettings.cpp in Sources */,

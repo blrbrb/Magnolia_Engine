@@ -15,6 +15,9 @@ class Inventory
 {
 private:
     
+    //GUI
+    
+    
     Item** itemarray;
     unsigned number_items;
     unsigned capacity;
@@ -22,14 +25,32 @@ private:
     void initvariables();
     void expand();
     void freeMemory();
-    
+    void nullify(const unsigned from);
     
     
 public:
     
     
-    Inventory();
+    Inventory(unsigned capacity);
     virtual ~Inventory();
+    
+    
+    //Functions
+    const bool empty() const;
+    void clear();
+ 
+    const bool loadfromfile(const std::string filename);
+    const bool savetofile(const std::string filename);
+    
+    
+    //Accessors
+    const unsigned& size() const;
+    const unsigned& MaxSize() const;
+    
+    //Modifiers
+    const bool add(Item* item);
+    const bool remove(const unsigned index);
+    
     
     
 };

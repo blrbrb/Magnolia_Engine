@@ -9,19 +9,27 @@
 #ifndef Item_hpp
 #define Item_hpp
 
+enum ItemTypes{MISC = 0, WEAPON, CONSUMABLE, ENVIORNMENTAL };
+
 class Item
 {
     
 public:
     
-    Item();
+  
+    
+    
+    Item(unsigned value);
     virtual ~Item();
     
-    
+    virtual Item* clone() = 0; 
     
 private:
     
-    
+protected:
+    //variables
+      unsigned value;
+      int type;
     
 };
 

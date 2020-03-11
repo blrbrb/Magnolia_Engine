@@ -8,12 +8,29 @@
 
 #include "Weapon.hpp"
 
-
-Weapon::Weapon() { 
+void Weapon::initvariables()
+{
     
+    this->range = 5;
+    this->damageMax = 5;
+    this->damageMin = 1;
+    
+}
+
+Weapon::Weapon(unsigned value, std::string texture_file) : Item(value)
+{
+    this->type = ItemTypes::WEAPON;
+    this->initvariables();
+    if (this->weaponTexture.loadFromFile(texture_file))
+    {
+        std::cout << "unable to load texture "  << std::endl;
+    }
+    
+    this->weaponSprite.setTexture(this->weaponTexture);
 }
 
 Weapon::~Weapon()
 { 
     
 }
+

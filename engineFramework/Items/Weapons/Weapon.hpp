@@ -16,19 +16,25 @@ class Weapon : public Item
 {
 public:
     
-    Weapon();
+    Weapon(unsigned value, std::string texture_file);
     virtual ~Weapon();
     
     virtual void update(const sf::Vector2f& MousePosView, const sf::Vector2f center) = 0;
     virtual void render(sf::RenderTarget& target, sf::Shader* shader = nullptr) = 0;
-
+    virtual Weapon* clone() = 0;
+    
+    //Accessors
+    const unsigned& getRange();
     
 protected:
     sf::Sprite weaponSprite;
     sf::Texture weaponTexture; 
     
+    void initvariables();
+    
     int damageMin;
-    int damageMax; 
+    int damageMax;
+    int range;
     
 private:
     

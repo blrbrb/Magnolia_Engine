@@ -216,14 +216,14 @@ void EnemyEditorMode::renderGUI(sf::RenderTarget &target)
 {
     
      target.setView(*this->editorstatedata->view);
-    target.draw(this->select_Rect);
-    target.draw(this->cursortext);
-    target.draw(this->text_container);
+     target.draw(this->select_Rect);
+   
+   
     
     target.setView(this->statedata->window->getDefaultView());
-    
     target.draw(this->sidebar);
-   
+    target.draw(this->cursortext);
+    target.draw(this->text_container);
 }
 
 void EnemyEditorMode::render(sf::RenderTarget &target)

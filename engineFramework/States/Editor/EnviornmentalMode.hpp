@@ -1,25 +1,16 @@
 //
-//  DefaultMode.hpp
+//  EnviornmentalMode.hpp
 //  engineFramework
 //
-//  Created by Eli Reynolds on 3/3/20.
+//  Created by Eli Reynolds on 3/10/20.
 //  Copyright © 2020 Eli Reynolds. All rights reserved.
 //
 
-#ifndef DefaultMode_hpp
-#define DefaultMode_hpp
+#ifndef EnviornmentalMode_hpp
+#define EnviornmentalMode_hpp
 #include "EditorModes.hpp"
-#include "State.hpp"
-#include "GUI.hpp"
-
-class State;
-class EditorModes;
-class StateData;
-class EditorStateData; 
-
-class DefaultMode : public EditorModes
+class EnviornmentalMode : public EditorModes
 {
-    
 private:
         
         //interface variables
@@ -28,9 +19,8 @@ private:
           sf::RectangleShape select_Rect;
           sf::RectangleShape sidebar;
           sf::RectangleShape sidebar_texture;
-          sf::RectangleShape texturesample;
-          sf::RectangleShape texturesample_container; 
           sf::RectangleShape text_container;
+          sf::RectangleShape texturesample; 
           sf::IntRect TextureRect;
          
      
@@ -42,13 +32,13 @@ private:
     //initalizer functions
     void initvariables();
     void inittext();
-    void initGUI(); 
+    void initGUI();
     
     
 public:
     
-    DefaultMode(StateData* statedata, TileMap* tilemap, EditorStateData* editorstatedata);
-    virtual ~DefaultMode();
+    EnviornmentalMode(StateData* statedata, TileMap* tilemap, EditorStateData* editorstatedata);
+    virtual ~EnviornmentalMode();
     
     //Functions
     
@@ -61,4 +51,4 @@ public:
     
 };
 
-#endif /* DefaultMode_hpp */
+#endif /* EnviornmentalMode_hpp */

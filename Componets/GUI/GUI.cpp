@@ -436,7 +436,8 @@ GUI::TextureSelector::TextureSelector(float x, float y,float width, float height
     
     if(this->sheet.getGlobalBounds().height > this->bounds.getGlobalBounds().height)
     {
-        this->sheet.setTextureRect(sf::IntRect(0,0, static_cast<int>(this->sheet.getGlobalBounds().width), static_cast<int>(this->bounds.getGlobalBounds().height)));
+        this->bounds.setSize(sf::Vector2f(width, this->sheet.getGlobalBounds().height));
+        //this->sheet.setTextureRect(sf::IntRect(0,0, static_cast<int>(this->sheet.getGlobalBounds().width), static_cast<int>(this->bounds.getGlobalBounds().height)));
     }
     
     //Configure the texture selector element

@@ -12,7 +12,7 @@
 
 #include "GUI.hpp"
 
-enum TileTypes {DEFAULT=0, UNPASSABLE, OBJECT, GRASS, DIRT, WATER, METAL, STONE, SAND, WOOD, SPAWNER};
+enum TileTypes {DEFAULT=0, UNPASSABLE, OBJECT, GRASS, DIRT, WATER, METAL, STONE, SAND, WOOD, SPAWNER, ANIMATED};
 
 class Tile
 {
@@ -41,7 +41,7 @@ public:
     virtual const sf::FloatRect getGlobalBounds() const;
     
     //Functions
-    virtual void update() =0;
+    virtual void update(const float& dt) =0;
     virtual void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f())=0;
     
 };

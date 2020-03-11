@@ -25,6 +25,7 @@ public:
     //update functions
     void update(const float& dt);
     void updatePlayerInput(const float& dt);
+    void updateCombat(const float& dt);
     void updatePlayerGUI(const float& dt);
      
     
@@ -32,13 +33,17 @@ public:
 private:
     
    
-    Player* player;
+    Player** player;
     sf::Shader core_shader;
     
     
     sf::Font font;
+    
+    //GUI
+    sf::RectangleShape background;
     sf::RenderTexture rendertexture;
     sf::Sprite rendersprite;
+    sf::View view; 
     
     sf::Vector2i ViewGridPosition;
     

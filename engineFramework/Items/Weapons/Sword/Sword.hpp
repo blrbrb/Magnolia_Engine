@@ -16,13 +16,14 @@ class Sword : public Weapon
 {
 public:
     
-    Sword(); 
+    Sword(unsigned value, std::string texture_file); 
     virtual ~Sword();
     
     //Functions
     virtual void update(const sf::Vector2f& MousePosView, const sf::Vector2f center);
     virtual void render(sf::RenderTarget& target, sf::Shader * shader = nullptr);
-
+    
+    virtual Sword* clone();
     
 private:
     

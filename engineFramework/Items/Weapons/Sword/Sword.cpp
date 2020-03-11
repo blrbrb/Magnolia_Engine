@@ -8,14 +8,9 @@
 
 #include "Sword.hpp"
 
-Sword::Sword()
+Sword::Sword(unsigned value, std::string texture_file) : Weapon(value, texture_file)
 {
-    if (this->weaponTexture.loadFromFile("sword.png"))
-    {
-        std::cout << "unable to load sword texture in Sword.cpp. Sword/Sword.png"  << std::endl;
-    }
     
-    this->weaponSprite.setTexture(this->weaponTexture);
 }
 
 
@@ -52,3 +47,9 @@ void Sword::render(sf::RenderTarget &target, sf::Shader* shader)
         target.draw(this->weaponSprite);
     
 }
+
+Sword *Sword::clone()
+{
+    return new Sword(*this);
+}
+

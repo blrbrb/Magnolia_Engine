@@ -33,6 +33,9 @@ StatusComponet::StatusComponet(int level)
     this->initsounds();
     this->UpdateStats(true);
     
+    //init money
+    this->coins = 0; 
+    
 }
 
 StatusComponet::~StatusComponet()
@@ -157,4 +160,9 @@ void StatusComponet::Debug_test_Algorithim()
  
  */
 
+}
+
+void StatusComponet::gaincoins(const int COINS)
+{
+    this->coins += coins;
 }

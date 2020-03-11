@@ -23,7 +23,7 @@ Tile::Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, con
     sf::VideoMode vm = sf::VideoMode::getDesktopMode();
     
     this->rect.setTexture(texture);
-    this->rect.setScale(5, 5);
+    this->rect.setScale(2, 2);
     this->rect.setPosition(static_cast<float>(x) * gridsize_f, static_cast<float>(y) * gridsize_f);
     this->rect.setTextureRect(texturerect);
     
@@ -42,7 +42,7 @@ Tile::~Tile()
 
 //Functions
 
-void Tile::update()
+void Tile::update(const float& dt)
 {
     //this->rect.setColor(sf::Color::Blue);
     

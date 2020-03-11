@@ -11,7 +11,6 @@
 #include "ResourcePath.hpp"
 
 
-
 void TileMap::clear()
 {
     //symmetry orgasim
@@ -224,8 +223,6 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
                
                    if(this->Map[x][y][this->layer][k]->gettype() == TileTypes::SPAWNER)
                    {
-                       
-                       
                        this->physicsrect.setPosition(this->Map[x][y][this->layer][k]->getposition());
                        this->physicsrect.setFillColor(sf::Color(50,20,10,100));
                        this->physicsrect.setFillColor(sf::Color::Red);
@@ -279,9 +276,16 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
         && z < this->layers && z >= 0 )
     {
              /*if okay to add tile*/
-            //and if the type of tile is NORMAL add normal tile
-        this->Map[x][y][z].push_back(new NormalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
-   
+            //and if the type of tile is NORMAL add normal til
+        if (type == TileTypes::OBJECT)
+        {
+            this->Map[x][y][z].push_back(new EnviornmentalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
+            
+        }
+        else
+        {
+              this->Map[x][y][z].push_back(new NormalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
+        }
     
     }
     
@@ -546,9 +550,11 @@ void TileMap::DefferedRender(sf::RenderTarget &target, sf::Shader* shader, const
     
     while(!this->renderdefered.empty())
     {
-        if (shader) {
+        if (shader)
+        {
             this->renderdefered.top()->render(target, shader, PlayerPosition);
-            this->renderdefered.pop(); }
+            this->renderdefered.pop();
+        }
         
         
         else {
@@ -789,7 +795,7 @@ void TileMap::updateTiles(Entity *entity, const float &dt, EnemySystem& enemysys
         {
             for (size_t k=0; k < this->Map[x][y][this->layer].size(); k++)
             {
-                this->Map[x][y][this->layer][k]->update();
+                this->Map[x][y][this->layer][k]->update(dt);
                  
                 if (this->Map[x][y][this->layer][k]->gettype() == TileTypes::SPAWNER)
                 {
@@ -915,29 +921,6 @@ void TileMap::updateTileCollision(Entity *entity, const float &dt)
         }
        
     }
-    
-    
-    
-    
+
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

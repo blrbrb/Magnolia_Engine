@@ -65,7 +65,7 @@ void EditorState::initButtons()
 
 void EditorState::inittilemap()
 {
-    this->Tilemap = new TileMap(this->gridsize, 100, 100, "TileMap.png");
+    this->Tilemap = new TileMap(this->gridsize, 100, 100, "fuck.png");
 
 }
 
@@ -88,7 +88,8 @@ void EditorState::initpausemenu()
     
     this->pMenu->addbutton("Editor_Pause_Quit_Button", GUI::calcCharSize(vm), "Quit", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 150.f);
     this->pMenu->addbutton("Editor_Pause_Save_Button", GUI::calcCharSize(vm), "Save", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 400.f);
-    this->pMenu->addbutton("Editor_Pause_Load_Button", GUI::calcCharSize(vm), "Load", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 650.f);
+    this->pMenu->addbutton("Editor_Pause_Load_Button", GUI::calcCharSize(vm), "Load", GUI::pixelpercentX(12.f, vm),
+                           GUI::pixelpercentY(6.f, vm), 650.f); 
    
 }
 
@@ -117,6 +118,9 @@ void EditorState::updatepausemenubuttons()
         this->Tilemap->loadfromfile("Config/text.slmp");
 
     }
+    
+    
+    
 
 
     
@@ -159,6 +163,7 @@ void EditorState::initmodes()
 {
     this->modes.push_back(new DefaultMode(this->state_data, this->Tilemap, &this->editorstatedata));
     this->modes.push_back(new EnemyEditorMode(this->state_data, this->Tilemap, &this->editorstatedata));
+    this->modes.push_back(new EnviornmentalMode(this->state_data, this->Tilemap, &this->editorstatedata));
     
     this->activeMode = EDITOR_MODES::DEFAULT_MODE;
 }

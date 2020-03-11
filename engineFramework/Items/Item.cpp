@@ -9,13 +9,10 @@
 #include "Item.hpp"
 
 
-Item::Item()
+Item::Item(unsigned value)
 {
-
-    
-    
-    
-    
+    this->value = 0;
+    this->type = ItemTypes::MISC;
     
 }
 

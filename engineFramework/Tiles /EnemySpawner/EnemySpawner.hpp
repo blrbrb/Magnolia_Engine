@@ -39,7 +39,7 @@ public:
     const bool& getSpawned() const; 
     
     void clear();
-    void update();
+    void update(const float& dt);
     void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f());
     
 };

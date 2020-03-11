@@ -1,27 +1,83 @@
 //
-//  DefaultMode.cpp
+//  EnviornmentalMode.cpp
 //  engineFramework
 //
-//  Created by Eli Reynolds on 3/3/20.
+//  Created by Eli Reynolds on 3/10/20.
 //  Copyright © 2020 Eli Reynolds. All rights reserved.
 //
 
-#include "DefaultMode.hpp"
+#include "EnviornmentalMode.hpp"
 
 
-DefaultMode::DefaultMode(StateData *statedata, TileMap* tilemap, EditorStateData* editorstatedata) : EditorModes(statedata, tilemap, editorstatedata)
+void EnviornmentalMode::initvariables()
+{
+    this->TextureRect = sf::IntRect(0, 0, 17, 17);
+    this->collision = false;
+    this->type = TileTypes::OBJECT;
+    this->layer = 0;
+    
+}
+
+void EnviornmentalMode::inittext()
+{
+    sf::VideoMode vm = statedata->gfxsettings->resolution;
+        
+            //init the cursor text
+           this->cursortext.setFont(*this->editorstatedata->font);
+           this->cursortext.setFillColor(sf::Color::White);
+           this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
+           this->cursortext.setOutlineThickness(1.f);
+           this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
+
+            //init the cursor text container
+           this->text_container.setSize(sf::Vector2f(400.f, 300.f));
+           this->text_container.setFillColor(sf::Color(50,50,50,100));
+           this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
+           this->text_container.setOutlineThickness(1.f);
+           this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
+    
+
+}
+
+void EnviornmentalMode::initGUI()
+{
+    this->sidebar.setSize(sf::Vector2f(80.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
+    this->sidebar.setFillColor(sf::Color(50,50,50, 100));
+    this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
+    this->sidebar.setOutlineThickness(1.f);
+    
+     //config the selection rectangle. Twice the size of the regular selection rectangle. Enviornmental objects like trees, rocks mountains etc.
+    this->select_Rect.setSize(sf::Vector2f(statedata->gridsize, statedata->gridsize));
+    this->select_Rect.setTexture(tilemap->getTileSheet());
+     
+     
+     //this->select_Rect.setFillColor(sf::Color::Transparent);
+     //this->select_Rect.setOutlineColor(sf::Color::Green);
+     //this->select_Rect.setOutlineThickness(2);
+     
+     //Config the TextureSelector from GUI.hpp
+     this->texture_selector = new GUI::TextureSelector(20.f, 20.f, 543.f, 560.f, this->statedata->gridsize, this->tilemap->getTileSheet(), *this->editorstatedata->font, "X");
+     
+    
+     
+     //this->buffer.loadFromFile(resourcePath() + "Beep.wav");
+     //this->UI_invalid.setBuffer(buffer
+}
+
+
+EnviornmentalMode::EnviornmentalMode(StateData *statedata, TileMap *tilemap, EditorStateData *editorstatedata) : EditorModes(statedata, tilemap, editorstatedata)
 {
     this->initvariables();
     this->inittext();
     this->initGUI();
 }
 
-DefaultMode::~DefaultMode()
-{ 
-
+EnviornmentalMode::~EnviornmentalMode()
+{
+    
 }
 
-void DefaultMode::updateInput(const float &dt)
+void EnviornmentalMode::updateInput(const float &dt)
 {
     if((sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("PLACE")))))
         {
@@ -53,7 +109,7 @@ void DefaultMode::updateInput(const float &dt)
                          //else if adding tiles is not locked to one layer
                            else if (!this->tilemap->lock_layer)
                             {
-                        
+                                
                                 this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, collision, type);
                                 
                                 std::cout << "Tile Added" << std::endl;
@@ -80,9 +136,7 @@ void DefaultMode::updateInput(const float &dt)
             
          
       }
-        
-
-        
+    
         //Remove a tile
     else if ((sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getkeytime()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("REMOVE"))) && this->getkeytime()))
      {
@@ -138,6 +192,8 @@ void DefaultMode::updateInput(const float &dt)
             
      }
         
+      
+        
         //Toggle Collision on Tiles
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("TOGGLE_COLLISION"))) && this->getkeytime())
         {
@@ -163,20 +219,21 @@ void DefaultMode::updateInput(const float &dt)
             std::cout << "Type down" << std::endl;
         }
         
-    
-    }
-    
+        
+        
+        
+}
 
-
-void DefaultMode::update(const float &dt)
+void EnviornmentalMode::update(const float &dt)
 {
     this->updateGUI(dt);
     this->updateInput(dt);
+    
 }
 
-void DefaultMode::updateGUI(const float &dt)
+void EnviornmentalMode::updateGUI(const float &dt)
 {
-   sf::VideoMode vm = this->statedata->gfxsettings->resolution;
+    sf::VideoMode vm = this->statedata->gfxsettings->resolution;
     
     this->texture_selector->update(*this->editorstatedata->mousePosWindow, dt);
     
@@ -188,9 +245,13 @@ void DefaultMode::updateGUI(const float &dt)
         
     }
     
-
+    
+  
+    this->texturesample.setSize(sf::Vector2f(64, 64));
     this->texturesample.setTexture(this->select_Rect.getTexture());
     this->texturesample.setTextureRect(this->select_Rect.getTextureRect());
+    this->texturesample.setPosition(this->text_container.getPosition().x, this->text_container.getPosition().y / 0.5f);
+        
     
 
     //set the cursor text
@@ -212,111 +273,29 @@ void DefaultMode::updateGUI(const float &dt)
     }
     
     //if the cursor is not on a valid tile, the text color is red
-    else if (this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) == -1 )
-    {
-        this->cursortext.setFillColor(sf::Color::Red);
-    }
-
-    this->cursortext.setString(cursor_text.str());
     
-   }
+}
 
-    
-
-
-void DefaultMode::renderGUI(sf::RenderTarget &target)
+void EnviornmentalMode::renderGUI(sf::RenderTarget &target)
 {
     if (!this->texture_selector->getActive())
-       {
-           target.setView(*this->editorstatedata->view);
-           target.draw(this->select_Rect);
-           
-       }
-       
-       target.setView(this->statedata->window->getDefaultView());
-       this->texture_selector->render(target);
-       target.draw(this->sidebar);
-       target.draw(this->cursortext);
-       target.draw(this->text_container);
-       
-       target.setView(*this->editorstatedata->view);
+          {
+              target.setView(*this->editorstatedata->view);
+              target.draw(this->select_Rect);
+              
+          }
+          
+          target.setView(this->statedata->window->getDefaultView());
+          this->texture_selector->render(target);
+          target.draw(this->sidebar);
+          target.draw(this->cursortext);
+          target.draw(this->text_container);
+          target.draw(this->texturesample);
+          target.setView(*this->editorstatedata->view);
+
 }
 
-void DefaultMode::render(sf::RenderTarget& target)
+void EnviornmentalMode::render(sf::RenderTarget &target)
 {
-    
-    this->renderGUI(target);
-    
+     this->renderGUI(target);
 }
-
-void DefaultMode::initvariables()
-{
-    this->TextureRect = sf::IntRect(0, 0, 17, 17);
-    this->collision = false;
-    this->type = TileTypes::DEFAULT;
-    this->layer = 0;
-    
-}
-
-void DefaultMode::inittext()
-{
-    
-    sf::VideoMode vm = statedata->gfxsettings->resolution;
-        
-            //init the cursor text
-           this->cursortext.setFont(*this->editorstatedata->font);
-           this->cursortext.setFillColor(sf::Color::White);
-           this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
-           this->cursortext.setOutlineThickness(1.f);
-           this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
-
-            //init the cursor text container
-           this->text_container.setSize(sf::Vector2f(400.f, 300.f));
-           this->text_container.setFillColor(sf::Color(50,50,50,100));
-           this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
-           this->text_container.setOutlineThickness(1.f);
-           this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
-    
-}
-    
-    
-    
-void DefaultMode::initGUI()
-{
-    
-    //Config the sidebar
-    this->sidebar.setSize(sf::Vector2f(80.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
-    this->sidebar.setFillColor(sf::Color(50,50,50, 100));
-    this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
-    this->sidebar.setOutlineThickness(1.f);
-    
-    //config the selection rectangle
-    this->select_Rect.setSize(sf::Vector2f(statedata->gridsize, statedata->gridsize));
-    this->select_Rect.setTexture(tilemap->getTileSheet());
-     
-    
-    
-      //configure the texture sample box element
-      this->texturesample.setSize(sf::Vector2f(64, 64));
-      this->texturesample.setTexture(this->select_Rect.getTexture());
-      this->texturesample.setTextureRect(this->select_Rect.getTextureRect());
-      this->texturesample.setPosition(this->text_container.getPosition().x, this->text_container.getPosition().y / 0.5f);
-      
-      this->texturesample_container.setFillColor(sf::Color(50,50,50,100));
-      this->texturesample_container.setSize(sf::Vector2f(68, 68));
-      this->texturesample_container.setOutlineColor(sf::Color(200,200,200,150));
-      this->texturesample_container.setOutlineThickness(1.f);
-     
-    
-     
-     //Config the TextureSelector element
-     this->texture_selector = new GUI::TextureSelector(20.f, 20.f, 543.f, 560.f, this->statedata->gridsize, this->tilemap->getTileSheet(), *this->editorstatedata->font, "X");
-     
-
-     //this->buffer.loadFromFile(resourcePath() + "Beep.wav");
-     //this->UI_invalid.setBuffer(buffer
-    
-    
-}
-
-

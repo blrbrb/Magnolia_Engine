@@ -31,7 +31,7 @@ void EnemySpawner::clear()
     
 }
 
-void EnemySpawner::update()
+void EnemySpawner::update(const float& dt)
 {
     
 }
