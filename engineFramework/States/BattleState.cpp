@@ -25,7 +25,7 @@ BattleState::~BattleState()
 
 void BattleState::render(sf::RenderTarget *target)
 {
-    
+    target->draw(this->background);
 }
 
 void BattleState::update(const float &dt)
@@ -35,7 +35,7 @@ void BattleState::update(const float &dt)
 
 void BattleState::updatePlayerInput(const float &dt)
 {
-    
+
 }
 
 void BattleState::updatePlayerGUI(const float &dt)
@@ -77,7 +77,7 @@ void BattleState::inittextures()
 
 void BattleState::initplayers()
 {
-    
+    this->player = new Player(100,50, this->textures["PLAYER_SHEET"]);
 }
 
 void BattleState::initfonts()
@@ -94,3 +94,4 @@ void BattleState::initshaders()
 {
     
 }
+

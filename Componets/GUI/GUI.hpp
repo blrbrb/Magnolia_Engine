@@ -122,6 +122,8 @@ private:
     bool multi_select; 
     float gridsize;
     float keytime;
+    float height;
+    float width;
     const float keytimeMax;
     
     sf::RectangleShape bounds;

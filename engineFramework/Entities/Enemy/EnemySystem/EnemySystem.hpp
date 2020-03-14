@@ -12,15 +12,23 @@
 #include "Blrb.hpp"
 
 enum EnemyTypes {BLRB = 0};
+enum MovementDirections {U = 0, D, L, R};
 
 class EnemySystem
 {
 public:
     
+    //variables
+    
+    
+    
     EnemySystem(std::vector<Enemy*>& ActiveEnemies, std::map<std::string, sf::Texture>& textures);
     virtual ~EnemySystem();
     
+    //Accessors
+     
     
+    //Functions
     void create(short type, const float x, const float y);
     void update(const float& dt);
     void render(sf::RenderTarget* target);

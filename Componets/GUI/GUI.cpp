@@ -404,7 +404,7 @@ void GUI::DropDownList::updateketime(const float& dt)
 /* BEGIN TEXTURE SELECTOR*/
 
 
-GUI::TextureSelector::TextureSelector(float x, float y,float width, float height, float gridsize, const sf::Texture* texture_sheet, sf::Font& font, std::string text) : keytimeMax(0.5f), keytime(0.f)
+GUI::TextureSelector::TextureSelector(float x, float y,float width, float height, float gridsize, const sf::Texture* texture_sheet, sf::Font& font, std::string text) : keytimeMax(2.f), keytime(0.f)
 {
     /*!
                 @brief Construct's the Texture Selector Element
@@ -429,15 +429,13 @@ GUI::TextureSelector::TextureSelector(float x, float y,float width, float height
     this->sheet.setTexture(*texture_sheet);
     this->sheet.setPosition(x + offset, y);
     
-    if(this->sheet.getGlobalBounds().width > this->bounds.getGlobalBounds().width)
+    if (this->sheet.getGlobalBounds().width > this->bounds.getGlobalBounds().width)
     {
-        this->sheet.setTextureRect(sf::IntRect(0,0, static_cast<int>(this->bounds.getGlobalBounds().width), static_cast<int>(this->sheet.getGlobalBounds().height)));
+        this->sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(this->bounds.getGlobalBounds().width), static_cast<int>(this->sheet.getGlobalBounds().height)));
     }
-    
-    if(this->sheet.getGlobalBounds().height > this->bounds.getGlobalBounds().height)
+    if (this->sheet.getGlobalBounds().height > this->bounds.getGlobalBounds().height)
     {
-        this->bounds.setSize(sf::Vector2f(width, this->sheet.getGlobalBounds().height));
-        //this->sheet.setTextureRect(sf::IntRect(0,0, static_cast<int>(this->sheet.getGlobalBounds().width), static_cast<int>(this->bounds.getGlobalBounds().height)));
+        this->sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(this->sheet.getGlobalBounds().width), static_cast<int>(this->bounds.getGlobalBounds().height)));
     }
     
     //Configure the texture selector element
@@ -454,9 +452,8 @@ GUI::TextureSelector::TextureSelector(float x, float y,float width, float height
     this->texturerect.height = 17;
     this->hidden = false;
     
-    this->hide = new GUI::Button(50, 50, x, y, "red_boxCross.png", "grey_box.png", "red_boxTick.png");
+    this->hide = new GUI::Button(38, 36, x - 10, y - 5, "red_boxCross.png", "grey_box.png", "red_boxTick.png");
    
-    
     
 }
 
@@ -517,12 +514,10 @@ void GUI::TextureSelector::update(const sf::Vector2i& MousePosWindow, const floa
 
 void GUI::TextureSelector::updatekeytime(const float& dt)
 {
-    if (this->keytime > this->keytimeMax)
+    if (this->keytime < this->keytimeMax)
     {
         this->keytime += 10.f * dt;
     }
-    
-
     
 }
 

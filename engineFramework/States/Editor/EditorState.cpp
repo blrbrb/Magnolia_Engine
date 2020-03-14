@@ -65,7 +65,7 @@ void EditorState::initButtons()
 
 void EditorState::inittilemap()
 {
-    this->Tilemap = new TileMap(this->gridsize, 100, 100, "fuck.png");
+    this->Tilemap = new TileMap(this->gridsize, 100, 100, "TileMap.png");
 
 }
 

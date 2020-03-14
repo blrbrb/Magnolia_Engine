@@ -14,6 +14,8 @@ EnemySystem::EnemySystem(std::vector<Enemy *> &ActiveEnemies, std::map<std::stri
     
     this->textures = textures;
     this->ActiveEnemies = ActiveEnemies;
+   
+    
     
     
 }
@@ -35,19 +37,13 @@ void EnemySystem::create(short type, const float x, const float y)
             std::cout << "LMAO you FUCKING idiot. YOU FUCKED IT UP YOur LIFE IS MEANINGLESS. GET A REAL FUCKING JOB AND STOP SITTING AROUNG MESSING WITH YOUR GAMES ALL DAY ELI. FUCK AROUND TIME IS OVER ~ Dad" << std::endl;
              break;
    
-    
-    
-    
     }
-    
-    
-    
-    
     
 }
 
 void EnemySystem::update(const float &dt)
 {
+   
     
 }
 
@@ -57,3 +53,16 @@ void EnemySystem::render(sf::RenderTarget *target)
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

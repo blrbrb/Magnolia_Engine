@@ -236,7 +236,7 @@ void Game::initVariables()
 {
     this->window = NULL;
     this-> dt = 0.f;
-    this->gridsize = 34.f;
+    this->gridsize = 17.f;
     
     
 }

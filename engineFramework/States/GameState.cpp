@@ -75,7 +75,7 @@ void GameState::initshaders()
 
 void GameState::initview()
 {
-    this->view.setSize(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width), static_cast<float>(this->state_data->gfxsettings->resolution.height)));
+    this->view.setSize(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 2.F, static_cast<float>(this->state_data->gfxsettings->resolution.height) / 2.f));
 
     this->view.setCenter(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 2.f,        static_cast<float>(this->state_data->gfxsettings->resolution.height) / 2.f));
 }
@@ -165,6 +165,8 @@ void GameState::inittilemap()
 
 void GameState::update(const float& dt) {
    
+    srand(time(NULL));
+    
     this->updateMousePosition(&this->view);
     this->updateInput(dt);
     this->updatekeytime(dt);
@@ -175,10 +177,14 @@ void GameState::update(const float& dt) {
         this->updatePlayerInput(dt);
         //important to update the player BEFORE the tilemap
         this->player->update(dt, this->MousePosView);
-        for (auto *i : this->activEnemies)
+        
+         for (auto *i : this->activEnemies)
         {
-                  i->update(dt, this->MousePosView);
+            i->update(dt, this->MousePosView);
+            i->move_rand(dt, rand() % 3 );
+            
         }
+         
          this->updatetilemap(dt);
          this->updatePlayerGUI(dt);
         
@@ -288,7 +294,8 @@ void GameState::updatePlayerGUI(const float &dt)
     this->playerGUI->update(dt);
 }
 
-void GameState::updatePlayerInput(const float& dt) {
+void GameState::updatePlayerInput(const float& dt)
+{
    //check for a quit
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
@@ -317,7 +324,6 @@ void GameState::updatePlayerInput(const float& dt) {
     }
     
    
-
 }
 
 void GameState::render(sf::RenderTarget* target) {
@@ -330,7 +336,7 @@ void GameState::render(sf::RenderTarget* target) {
     this->rendertexture.setView(this->view);
     
     
-    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, true, &this->core_shader, this->player->getPosition());
+    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, false, &this->core_shader, this->player->getPosition());
     
      this->player->render(this->rendertexture, &this->core_shader, false);
     
@@ -376,14 +382,13 @@ void GameState::updatePlayer(const float &dt)
 
 void GameState::updateEnemies(const float &dt)
 {
-    //shit 
+    
 }
 
 void GameState::initenemysystem()
 {
     this->enemysystem = new EnemySystem(this->activEnemies, this->textures);
 }
-
 
 
 

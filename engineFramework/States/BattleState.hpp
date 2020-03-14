@@ -9,6 +9,7 @@
 #ifndef BattleState_hpp
 #define BattleState_hpp
 #include "State.hpp"
+#include "Player.hpp"
 
 class BattleState : public State
 {
@@ -33,7 +34,7 @@ public:
 private:
     
    
-    Player** player;
+    Player* player;
     sf::Shader core_shader;
     
     

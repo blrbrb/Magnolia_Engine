@@ -183,15 +183,16 @@ void DefaultMode::updateGUI(const float &dt)
     if(!this->texture_selector->getActive())
     {
           //set the selection rectangle position
-        this->select_Rect.setTextureRect(this->TextureRect);
+       
+        this->select_Rect.setTextureRect(this->texture_selector->getTextureRect());
+        
         this->select_Rect.setPosition(this->editorstatedata->mouseposGrid->x * this->statedata->gridsize, this->editorstatedata->mouseposGrid->y * this->statedata->gridsize);
         
     }
-    
 
     this->texturesample.setTexture(this->select_Rect.getTexture());
     this->texturesample.setTextureRect(this->select_Rect.getTextureRect());
-    
+     
 
     //set the cursor text
     std::stringstream cursor_text;
@@ -219,6 +220,11 @@ void DefaultMode::updateGUI(const float &dt)
 
     this->cursortext.setString(cursor_text.str());
     
+    
+    
+    //If the cursor is inside of the sidebar, ignore the gridsize and set the selection rectangle to 64x64
+    
+    
    }
 
     
@@ -238,6 +244,9 @@ void DefaultMode::renderGUI(sf::RenderTarget &target)
        target.draw(this->sidebar);
        target.draw(this->cursortext);
        target.draw(this->text_container);
+       target.draw(this->texturesample);
+       target.draw(this->texturesample_container);
+    
        
        target.setView(*this->editorstatedata->view);
 }
@@ -285,38 +294,40 @@ void DefaultMode::initGUI()
 {
     
     //Config the sidebar
-    this->sidebar.setSize(sf::Vector2f(80.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
+    this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
     this->sidebar.setFillColor(sf::Color(50,50,50, 100));
     this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
     this->sidebar.setOutlineThickness(1.f);
     
     //config the selection rectangle
-    this->select_Rect.setSize(sf::Vector2f(statedata->gridsize, statedata->gridsize));
+    this->select_Rect.setSize(sf::Vector2f(statedata->gridsize , statedata->gridsize ));
     this->select_Rect.setTexture(tilemap->getTileSheet());
+    
      
     
-    
       //configure the texture sample box element
+    
       this->texturesample.setSize(sf::Vector2f(64, 64));
       this->texturesample.setTexture(this->select_Rect.getTexture());
       this->texturesample.setTextureRect(this->select_Rect.getTextureRect());
-      this->texturesample.setPosition(this->text_container.getPosition().x, this->text_container.getPosition().y / 0.5f);
+      this->texturesample.setPosition(0, 0.f);
       
       this->texturesample_container.setFillColor(sf::Color(50,50,50,100));
-      this->texturesample_container.setSize(sf::Vector2f(68, 68));
-      this->texturesample_container.setOutlineColor(sf::Color(200,200,200,150));
+      this->texturesample_container.setSize(sf::Vector2f(this->sidebar.getSize().x, 68));
+      this->texturesample_container.setOutlineColor(sf::Color(200,200,200,250));
       this->texturesample_container.setOutlineThickness(1.f);
+      this->texturesample_container.setPosition(0, 0);
      
     
      
      //Config the TextureSelector element
-     this->texture_selector = new GUI::TextureSelector(20.f, 20.f, 543.f, 560.f, this->statedata->gridsize, this->tilemap->getTileSheet(), *this->editorstatedata->font, "X");
+     this->texture_selector = new GUI::TextureSelector(100.f, 20.f, 798.f, 798.f, this->statedata->gridsize, this->tilemap->getTileSheet(), *this->editorstatedata->font, "X");
+    
      
 
      //this->buffer.loadFromFile(resourcePath() + "Beep.wav");
      //this->UI_invalid.setBuffer(buffer
-    
-    
+
 }
 
 

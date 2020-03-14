@@ -14,7 +14,6 @@ void Inventory::freeMemory()
     for (size_t i = 0; i < this->capacity; i++)
     {
         delete this->itemarray[i];
-    
     }
     delete[] this->itemarray; 
 }

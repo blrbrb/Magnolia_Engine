@@ -19,9 +19,8 @@ public:
     virtual ~Blrb();
     
     void loseHP(const int HP);
-    void loseEXP(const int EXP);
     void gainHP(const int HP);
-    void gainEXP(const int EXP);
+
     
     void updateAnimation(const float& dt);
     void update(const float& dt, sf::Vector2f& MousePosView);

@@ -148,7 +148,7 @@ void Entity::move(const float& dt, const float x, const float y) {
         this->movementcomponets->move(x, y, dt);
         
     else
-        this->sprite.setPosition(x, y);
+        this->sprite.move(x,y);
     
 }
 
@@ -242,10 +242,26 @@ void Entity::stopVelocityY()
 }
 
 
+
+
 void Entity::create_skill_component()
 {
     this->skillcomponent = new SkillComponent(); 
 }
+
+
+
+
+
+void Entity::move_rand(const float &dt, int seed)
+{
+    if(this->hitbox)
+        this->movementcomponets->move_rand(dt, seed);
+           
+       else
+           this->sprite.move(0,0);
+}
+
 
 
 

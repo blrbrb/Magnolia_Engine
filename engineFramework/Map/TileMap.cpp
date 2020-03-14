@@ -277,19 +277,12 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
     {
              /*if okay to add tile*/
             //and if the type of tile is NORMAL add normal til
-        if (type == TileTypes::OBJECT)
-        {
-            this->Map[x][y][z].push_back(new EnviornmentalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
-            
-        }
-        else
-        {
               this->Map[x][y][z].push_back(new NormalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
-        }
+    }
     
     }
     
-}
+
 
 
 

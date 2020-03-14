@@ -9,13 +9,14 @@
 #include "MovementComponets.hpp"
 
 
-MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, float Acceleration, float Deceleration) : sprite(sprite), maxVelocity(maxVelocity), Acceleration(Acceleration), Deceleration(Deceleration)
+MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, float Acceleration, float Deceleration) : sprite(sprite), maxVelocity(maxVelocity), Acceleration(Acceleration), Deceleration(Deceleration), movement_time(0), movement_timeMax(7.f)
 {
     this->Velocity.x = 0.f;
     this->Velocity.y = 0.f;
     this->Mass = 10.f;
     this->Volume = this->sprite.getLocalBounds().width * this->sprite.getLocalBounds().top;
     this->Density = this->Volume / 25.f;
+    
     
     
 }
@@ -60,19 +61,30 @@ void MovementComponets::move(const float x ,const float y, const float& dt)
 {
     //Acceleration
     //Note, fix clusterfuck of brackets
-    
     this->Velocity.x += this->Acceleration * x * dt;
     this->Velocity.y += this->Acceleration  *  y * dt;
-    
 
 }
 
 
+//For movement that is dependant on a timed period of pause only
+void MovementComponets::updateMoveTime(const float& dt)
+{
+    
+    if (this->movement_time < this->movement_timeMax)
+       {
+           this->movement_time += 10.f * dt;
+       }
+
+}
+
 void MovementComponets::update(const float& dt)
 {
-    /*SLOWS DOWN THE SPRITE*/
-
+    //update movetime
+    this->updateMoveTime(dt);
     
+    
+    /*SLOWS DOWN THE SPRITE*/
     if (this->Velocity.x > 0.f) // Check for positive x
     {
         //Max velocity check
@@ -147,18 +159,59 @@ void MovementComponets::update(const float& dt)
     
 }
 
-const sf::Vector2f& MovementComponets::getvelocity() const
-{
-    return this->Velocity;
 
+void MovementComponets::move_rand(const float& dt, int seed)
+{
+    
+    switch (seed) {
+            
+        case 1:
+            
+            if(this->getmovetime())
+            {
+                this->move(0, 4, dt);
+            }
+            
+            break;
+            
+        case 2:
+            
+            if(this->getmovetime())
+            {
+                this->move(0, -4, dt);
+            }
+                       
+            break;
+            
+            
+       case 3:
+                       
+          if(this->getmovetime())
+          {
+            this->move(4, 0, dt);
+          }
+                                  
+        break;
+            
+            
+       case 4:
+                           
+         if(this->getmovetime())
+         {
+           this->move(-4, 0, dt);
+         }
+                                      
+         break;
+        
+            
+        default:
+            break;
+    }
+    
+    
 }
 
 //Accessors
-// This function returns the state the entity is moving in
-//Enum values for every moving State starting at
-//    IDLE == 0
-
-
 const bool MovementComponets::getStauts(const short unsigned state) const
 {
     switch(state)
@@ -248,4 +301,22 @@ void MovementComponets::stopVelocityY()
 const float & MovementComponets::getAcceleration() const
 {
     return this->Acceleration;
+}
+
+const bool MovementComponets::getmovetime()
+{
+    if (this->movement_time >= this->movement_timeMax)
+       {
+           this->movement_time = 0.f;
+           return true;
+       }
+
+       return false;
+    
+}
+
+const sf::Vector2f& MovementComponets::getvelocity() const
+{
+    return this->Velocity;
+
 }

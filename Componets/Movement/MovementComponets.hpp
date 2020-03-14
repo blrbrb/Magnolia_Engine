@@ -47,8 +47,14 @@ private:
     float DeltaVelocityY;
     float pastVelX;
     float pastVelY;
-      
     
+    //Timed Movement
+    float movement_time;
+    float movement_timeMax;
+    
+    //Random movement
+    float rand_max;
+
     
     sf::Sprite& sprite;
     
@@ -64,6 +70,8 @@ public:
      void move(const float x, const float y, const float& dt);
      void Updatephyiscs(const float& dt); 
      void update(const float&dt);
+     void move_rand(const float& dt, int seed);
+     void updateMoveTime(const float& dt);
      void stopVelocity();
      void stopVelocityX();
      void stopVelocityY();
@@ -74,6 +82,7 @@ public:
      const float& getMaxVelocity() const;
      const float& getAcceleration() const;
      const bool getStauts(const short unsigned state) const;
+     const bool getmovetime();
      
     
 };

@@ -20,7 +20,7 @@ Player::Player(float x, float y, sf::Texture& texturesheet)
 
     this->create_animation_componet(texturesheet);
     this->initanimations();
-    this->sprite.setScale(4, 4);
+    //this->sprite.setScale(2, 2);
 
 }
 

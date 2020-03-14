@@ -123,7 +123,6 @@
 		45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5E24168C0D001921B4 /* Inventory.cpp */; };
 		45BE8F642416B774001921B4 /* Mixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F622416B774001921B4 /* Mixture.cpp */; };
 		45BE8F7C241709E0001921B4 /* AnimatedTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F7A241709E0001921B4 /* AnimatedTile.cpp */; };
-		45BE8F832417BF9A001921B4 /* EnviornmentalTIle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F812417BF9A001921B4 /* EnviornmentalTIle.cpp */; };
 		45BE8F862417C1BB001921B4 /* EnviornmentalMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F842417C1BB001921B4 /* EnviornmentalMode.cpp */; };
 		45BE8F882418469B001921B4 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BE8F872418469B001921B4 /* test.png */; };
 		45BE8F8A241883C3001921B4 /* fuck.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BE8F89241883C2001921B4 /* fuck.png */; };
@@ -311,8 +310,6 @@
 		45BE8F632416B774001921B4 /* Mixture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mixture.hpp; sourceTree = "<group>"; };
 		45BE8F7A241709E0001921B4 /* AnimatedTile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedTile.cpp; sourceTree = "<group>"; };
 		45BE8F7B241709E0001921B4 /* AnimatedTile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AnimatedTile.hpp; sourceTree = "<group>"; };
-		45BE8F812417BF9A001921B4 /* EnviornmentalTIle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnviornmentalTIle.cpp; sourceTree = "<group>"; };
-		45BE8F822417BF9A001921B4 /* EnviornmentalTIle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnviornmentalTIle.hpp; sourceTree = "<group>"; };
 		45BE8F842417C1BB001921B4 /* EnviornmentalMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnviornmentalMode.cpp; sourceTree = "<group>"; };
 		45BE8F852417C1BB001921B4 /* EnviornmentalMode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnviornmentalMode.hpp; sourceTree = "<group>"; };
 		45BE8F872418469B001921B4 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
@@ -684,7 +681,6 @@
 		458A1D3123ECCEF900F2F8ED /* Tiles  */ = {
 			isa = PBXGroup;
 			children = (
-				45BE8F802417BF5D001921B4 /* Enviornmental  */,
 				45BE8F79241709D0001921B4 /* Animated */,
 				45BE8F782416B97D001921B4 /* EnemySpawner */,
 				45BE8F762416B963001921B4 /* Normal Tile */,
@@ -702,6 +698,33 @@
 				458A1D3B23ECCFB500F2F8ED /* TileMap.hpp */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		458EE3F3241963AD0040B75A /* Blrb */ = {
+			isa = PBXGroup;
+			children = (
+				4548599C2411D95000D97104 /* Blrb.hpp */,
+				4548599B2411D95000D97104 /* Blrb.cpp */,
+			);
+			path = Blrb;
+			sourceTree = "<group>";
+		};
+		458EE3F4241963C00040B75A /* Blerb */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F502412915D001921B4 /* Blerb.hpp */,
+				45BE8F4F2412915D001921B4 /* Blerb.cpp */,
+			);
+			path = Blerb;
+			sourceTree = "<group>";
+		};
+		458EE3F5241963CE0040B75A /* EnemySystem */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F55241317E7001921B4 /* EnemySystem.cpp */,
+				45BE8F56241317E7001921B4 /* EnemySystem.hpp */,
+			);
+			path = EnemySystem;
 			sourceTree = "<group>";
 		};
 		45BE8F5924146B02001921B4 /* Combat  */ = {
@@ -866,15 +889,6 @@
 			path = Animated;
 			sourceTree = "<group>";
 		};
-		45BE8F802417BF5D001921B4 /* Enviornmental  */ = {
-			isa = PBXGroup;
-			children = (
-				45BE8F812417BF9A001921B4 /* EnviornmentalTIle.cpp */,
-				45BE8F822417BF9A001921B4 /* EnviornmentalTIle.hpp */,
-			);
-			path = "Enviornmental ";
-			sourceTree = "<group>";
-		};
 		45DB9A5323DD226600F8693E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,14 +955,11 @@
 			isa = PBXGroup;
 			children = (
 				45E01773240DD6D400EC8E1D /* Enemy.hpp */,
+				458EE3F3241963AD0040B75A /* Blrb */,
 				45E01772240DD6D400EC8E1D /* Enemy.cpp */,
-				4548599B2411D95000D97104 /* Blrb.cpp */,
-				4548599C2411D95000D97104 /* Blrb.hpp */,
+				458EE3F5241963CE0040B75A /* EnemySystem */,
+				458EE3F4241963C00040B75A /* Blerb */,
 				4548599E2411DD4E00D97104 /* Enemies_Include.h */,
-				45BE8F4F2412915D001921B4 /* Blerb.cpp */,
-				45BE8F502412915D001921B4 /* Blerb.hpp */,
-				45BE8F55241317E7001921B4 /* EnemySystem.cpp */,
-				45BE8F56241317E7001921B4 /* EnemySystem.hpp */,
 			);
 			path = Enemy;
 			sourceTree = "<group>";
@@ -1175,7 +1186,6 @@
 				45F8E41F23EB635C0037EBD5 /* GUI.cpp in Sources */,
 				45E01762240D7C7600EC8E1D /* Item.cpp in Sources */,
 				45E01765240D7D5500EC8E1D /* Weapon.cpp in Sources */,
-				45BE8F832417BF9A001921B4 /* EnviornmentalTIle.cpp in Sources */,
 				45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */,
 				4548599D2411D95000D97104 /* Blrb.cpp in Sources */,
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,

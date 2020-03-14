@@ -27,7 +27,7 @@ Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
     this->create_animation_componet(texturesheet);
     this->create_hitbox_componet(this->sprite, 0, 0, 17.f, 17.f);
     this->initanimations();
-    this->sprite.setScale(3.f, 3.f);
+    this->sprite.setScale(2.f, 2.f);
     this->sprite.setPosition(x,y);
     this->initvariables();
     this->initanimations();
@@ -44,20 +44,13 @@ void Blrb::loseHP(const int HP)
     
 }
 
-void Blrb::loseEXP(const int EXP)
-{
-    
-}
 
 void Blrb::gainHP(const int HP)
 {
     
 }
 
-void Blrb::gainEXP(const int EXP)
-{
 
-}
 
 void Blrb::updateAnimation(const float &dt)
 {

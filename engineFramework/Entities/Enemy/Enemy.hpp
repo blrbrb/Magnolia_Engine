@@ -24,9 +24,8 @@ public:
     
     //Functions
       virtual void loseHP(const int HP) = 0;
-      virtual void loseEXP(const int EXP) = 0;
       virtual void gainHP(const int HP) = 0;
-      virtual void gainEXP(const int EXP) = 0;
+   
     
     virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
     virtual void updateAnimation(const float& dt) = 0;
@@ -35,8 +34,7 @@ public:
 private:
     //initalizer functions
    virtual void initvariables() = 0;
-   
-    virtual void initanimations() = 0;
+   virtual void initanimations() = 0;
 };
 
 #endif /* Enemy_hpp */
