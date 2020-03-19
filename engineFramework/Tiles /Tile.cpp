@@ -21,16 +21,12 @@ Tile::Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, con
 {
     //this->rect.setSize(sf::Vector2f(gridsize_f, gridsize_f));
     sf::VideoMode vm = sf::VideoMode::getDesktopMode();
-    
     this->rect.setTexture(texture);
     //this->rect.setScale(2, 2);
     this->rect.setPosition(static_cast<float>(x) * gridsize_f, static_cast<float>(y) * gridsize_f);
     this->rect.setTextureRect(texturerect);
-    
     this->collison_enabled = collision_enabled;
     this->type = type;
-    
-
 }
 
 
@@ -47,26 +43,6 @@ void Tile::update(const float& dt)
     //this->rect.setColor(sf::Color::Blue);
     
 }
-
-
-void Tile::render(sf::RenderTarget &target, sf::Shader* shader, sf::Vector2f PlayerPosition)
-{
-    if (shader)
-    {
-        shader->setUniform("hasTexture", true);
-        shader->setUniform("light", PlayerPosition);
-        target.draw(this->rect, shader);
-    }
-    
-    else
-    {
-        target.draw(this->rect);
-        
-    }
-    
-    }
-
-
 
 const sf::Vector2f &Tile::getposition() const
 {
@@ -93,3 +69,9 @@ const short& Tile::gettype() const
     return this->type;
 
 }
+
+const sf::Vector2f Tile::getCenter() const
+{
+    return sf::Vector2f(this->rect.getGlobalBounds().width / 2, this->rect.getGlobalBounds().height / 2);
+}
+

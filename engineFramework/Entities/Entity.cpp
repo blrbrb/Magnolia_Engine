@@ -137,7 +137,7 @@ void Entity::setposition(const float x, const float y)
 }
 
 
-void Entity::render(sf::RenderTarget& target,sf::Shader* shader, const bool render_hitbox)
+void Entity::render(sf::RenderTarget& target,sf::Shader* shader,const sf::Vector2f light, const bool render_hitbox)
 {
     
 }

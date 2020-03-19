@@ -35,7 +35,6 @@ private:
          sf::RectangleShape select_Rect;
          sf::RectangleShape sidebar;
          sf::RectangleShape sidebar_texture;
-  
          sf::RectangleShape text_container;
          sf::IntRect TextureRect;
     

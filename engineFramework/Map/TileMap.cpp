@@ -59,12 +59,10 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
     
             */
    
-    
     this->grid_sizeF = gridSize;
     this->grid_sizeU = static_cast<unsigned>(gridSize);
     this->gridsizeI = static_cast<int>(gridSize);
-    this->lock_layer = false; 
-    
+    this->lock_layer = false;
     this->MaxSizeWorldGrid.x = width;
     this->MaxSizeWorldGrid.y = height;
     this->layers = 1;
@@ -72,7 +70,6 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
     this->MaxSizeWorld_F.x = static_cast<float>(width) * gridSize;
     this->MaxSizeWorld_F.y = static_cast<float>(height) * gridSize;
 
-    
     //Tile Culling Vars
     
     this->ToX = 0;
@@ -92,8 +89,8 @@ TileMap::TileMap(float gridSize, int width, int height, std::string texture_file
   
             for (int z = 0; z < this->layers; z++ )
             {
+                
                 this->Map[x][y].resize(this->layers, std::vector<Tile*>());
-               
                 
             }
             
@@ -139,10 +136,6 @@ TileMap::~TileMap()
         
 
 //Functions
-
-
-
-
 void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition, const bool render_collision, sf::Shader* shader, const sf::Vector2f PlayerPosition)
 {
     
@@ -198,19 +191,30 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
            {
                for (size_t k=0; k < this->Map[x][y][this->layer].size(); k++)
                {
+                  
+                   this->renderlighttile(target);
+                   
                    if(this->Map[x][y][this->layer][k]->gettype() == TileTypes::OBJECT)
                    {
                        this->renderdefered.push(this->Map[x][y][this->layer][k]);
                    }
                    
-                            
-                   if (shader) {
-                       this->Map[x][y][this->layer][k]->render(target, shader, PlayerPosition); }
-                   else {
-                       this->Map[x][y][this->layer][k]->render(target); }
+                   
+                //render w/ shader applied
+                   if (shader)
+                   {
+                       
+                       this->Map[x][y][this->layer][k]->render(target, shader, PlayerPosition);
+                       
+                   }
+                   else
+                   {
+                       this->Map[x][y][this->layer][k]->render(target);
+                       
+                   }
                    
                     
-                       
+                    //render the collision box
                    if (render_collision)
                    {
                        if (this->Map[x][y][this->layer][k]->getCollision())
@@ -220,7 +224,9 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
                         }
                     
                    }
-               
+                   
+                 
+                   
                    if(this->Map[x][y][this->layer][k]->gettype() == TileTypes::SPAWNER)
                    {
                        this->physicsrect.setPosition(this->Map[x][y][this->layer][k]->getposition());
@@ -530,6 +536,15 @@ const int TileMap::getLayerSize(const int x, const int y, const int layer) const
     return -1;
 }
 
+
+
+
+
+
+
+
+
+
 void TileMap::DefferedRender(sf::RenderTarget &target, sf::Shader* shader, const sf::Vector2f PlayerPosition)
 {
     
@@ -538,8 +553,6 @@ void TileMap::DefferedRender(sf::RenderTarget &target, sf::Shader* shader, const
         @param  sf::RenderTarget& target   The intended render target.
 
         @return void    */
-    
-    
     
     while(!this->renderdefered.empty())
     {
@@ -562,7 +575,6 @@ const sf::Vector2i &TileMap::getMaxSizeGrid() const
                     @brief Acessor that returns the maximum size of the Tilemap as a vector of two integers. (width x height)
                     @return sf::Vector2i     The maximum size of the tilemap as a vector of two integers
                     @see TileMap::getMaxSize()
-     
      
      */
     return this->MaxSizeWorldGrid;
@@ -593,105 +605,7 @@ const bool TileMap::TileEmpty(const int x, const int y, const int z) const
     
 }
 
-void TileMap::updateTileSounds(Entity *entity, const float &dt)
-{
-    
-    for (int x = 0; x < this->MaxSizeWorldGrid.x; x++ )
-      {
-          
-          for (int y = 0; y < this->MaxSizeWorldGrid.y; y++ )
-          {
-              
-    
-              for (int z = 0; z < this->layers; z++ )
-              {
-                 
-                  for (size_t k=0; k < this->Map[x][y][z].size(); k++)
-                  {
-                            //if an entity is over a grass material tile
-                          if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::GRASS)
-                          {
-                              //if the entity is currently moving over the tile
-                              if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
-                              {
-                                  //play a walking over grass sound
-                              }
-                              else
-                              {
-                                  //do nothing
-                              }
-                         
-                          }
-                      
-                      
-                            //if an entity is standing over a stone material tile
-                         if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::STONE)
-                         {
-                             //if the entity is currently moving over the tile
-                             if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
-                             {
-                                 //play a walking over stone sound
-                             }
-                             else
-                             {
-                                 //do nothing
-                             }
-                            
-                         }
-                      
-                          //if entity is standing over wood material tile
-                          if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::WOOD)
-                          {
-                              //if the entity is moving over the wood tile
-                              if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
-                              {
-                                  //play a walking over wood sound
-                              }
-                              else
-                              {
-                                  //do nothing
-                              }
-                             
-                          }
-                      
-                         //if entity is standing over dirt material tile
-                         if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::DIRT)
-                         {
-                             //if the entity is moving over the dirt tile
-                             if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
-                             {
-                                 //play a walking over dirt sound
-                             }
-                             else
-                             {
-                                 //do nothing
-                             }
-                            
-                         }
-                          
-                        //if entity is standing over a sand material tile
-                         if (this->Map[x][y][z][k]->getGlobalBounds().contains(entity->getGlobalBounds().width, entity->getGlobalBounds().height) && this->Map[x][y][z][k]->gettype() == TileTypes::SAND)
-                         {
-                             //if the entity is currently moving over the tile
-                             if(entity->movementcomponets->getvelocity().x > 0 || entity->movementcomponets->getvelocity().y > 0)
-                             {
-                                 //play a walking over sand sound
-                             }
-                             else
-                             {
-                                 //do nothing
-                             }
-                            
-                         }
-                      
-                  }
-                  
-              }
-              
-          }
-      
-      }
-}
+
 
 const bool TileMap::checktype(const int x, const int y, const int z, const int type) const
 {
@@ -706,20 +620,10 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
         && y < this->MaxSizeWorldGrid.y && y >= 0
         && z < this->layers && z >= 0 )
     {
-    
             /*if okay to add tile*/
             this->Map[x][y][z].push_back(new EnemySpawner(x, y, this->grid_sizeF, this->tileTextureSheet, texture_rect, enemytype ,enemyamount, timeToSpawn, MaxDistance));
-
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
 }
 
 void TileMap::updateWorldBoundsCollision(Entity *entity, const float &dt)
@@ -799,6 +703,9 @@ void TileMap::updateTiles(Entity *entity, const float &dt, EnemySystem& enemysys
                         {
                             enemysystem.create(BLRB, x*this->grid_sizeF, y*this->grid_sizeF);
                             es->SetSpawned(true);
+                            
+                            
+                        
                        
                         }
                     }
@@ -917,3 +824,32 @@ void TileMap::updateTileCollision(Entity *entity, const float &dt)
 
     
 }
+
+
+
+
+void TileMap::renderlighttile(sf::RenderTarget& target, sf::Shader* shader)
+{
+    for (int x = this->FromX ; x < this->ToX ; x++ )
+             {
+                 for (int y = this->FromY; y < this->ToY; y++ )
+                 {
+                     for (size_t k=0; k < this->Map[x][y][this->layer].size(); k++)
+                     {
+                         if(this->Map[x][y][this->layer][k]->gettype() == TileTypes::LIGHT)
+                         {
+                             
+                        
+                                 this->Map[x][y][this->layer][k]->render(target, shader, this->Map[x][y][this->layer][k]->getCenter());
+                             
+                             
+                         }
+                     }
+                 }
+             }
+    
+    
+}
+
+
+

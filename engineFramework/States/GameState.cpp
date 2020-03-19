@@ -68,16 +68,20 @@ void GameState::initshaders()
 {
     if(!this->core_shader.loadFromFile( resourcePath() + "vertex_shader.vert", resourcePath() + "fragment_shader.frag"))
     {
-        std::cout << "ERROR" << std::endl; 
+        std::cout << "ERROR Unable to load core_shader Gamestate line 71" << std::endl;
     }
+    
+   
+    
+    
 }
 
 
 void GameState::initview()
 {
-    this->view.setSize(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 2.F, static_cast<float>(this->state_data->gfxsettings->resolution.height) / 2.f));
+    this->view.setSize(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 4.F, static_cast<float>(this->state_data->gfxsettings->resolution.height) / 4.f));
 
-    this->view.setCenter(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 2.f,        static_cast<float>(this->state_data->gfxsettings->resolution.height) / 2.f));
+    this->view.setCenter(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 4.f,        static_cast<float>(this->state_data->gfxsettings->resolution.height) / 4.f));
 }
 
 
@@ -173,22 +177,11 @@ void GameState::update(const float& dt) {
     
     if(!this->paused) //Update while unpaused 
      {
-        this->updateView(dt);
-        this->updatePlayerInput(dt);
-        //important to update the player BEFORE the tilemap
-        this->player->update(dt, this->MousePosView);
-        
-         for (auto *i : this->activEnemies)
-        {
-            i->update(dt, this->MousePosView);
-            i->move_rand(dt, rand() % 3 );
-            
-        }
-         
+         this->updateView(dt);
+         this->updatePlayer(dt);
+         this->updateEnemies(dt);
          this->updatetilemap(dt);
          this->updatePlayerGUI(dt);
-        
-         
      }
    
     else // Update while Paused
@@ -215,7 +208,7 @@ void GameState::updatetilemap(const float& dt)
     this->Tilemap->updateTileCollision(this->player, dt);
     this->Tilemap->updateTiles(this->player, dt, *this->enemysystem);
     
-
+//Update enemy collision
     for (auto *i : this->activEnemies)
     {
         this->Tilemap->updateWorldBoundsCollision(i, dt);
@@ -247,7 +240,6 @@ void GameState::updateView(const float &dt)
     
     
     this->view.setCenter(std::floor(this->player->getPosition().x + static_cast<float>(this->state_data->gfxsettings->resolution.width / 20)), std::floor(this->player->getPosition().y +                                                                        static_cast<float>(this->state_data->gfxsettings->resolution.height / 20)));
-    
     
     
     
@@ -304,23 +296,25 @@ void GameState::updatePlayerInput(const float& dt)
         std::cout << "RIGHT" << std::endl;
     }
     
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))) ) {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))) )
+    {
         
         this->player->move(dt, -1.f, 0.f);
         std::cout << "LEFT" << std::endl;
     }
     
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
+    {
         this->player->move(dt, 0.f, -1.f);
         std::cout << "UP" << std::endl;
     }
     
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN")))) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
+    {
         
         this->player->move(dt, 0.f, 1.f);
         std::cout << "DOWN" << std::endl;
-        if(this->getkeytime())
-            this->player->loseHP(1);
+
     }
     
    
@@ -335,17 +329,18 @@ void GameState::render(sf::RenderTarget* target) {
     
     this->rendertexture.setView(this->view);
     
+    this->Tilemap->renderlighttile(this->rendertexture, &this->core_shader);
     
-    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, false, &this->core_shader, this->player->getPosition());
+    this->Tilemap->render(this->rendertexture,this->ViewGridPosition, false, &this->core_shader, this->player->getCenter());
     
-     this->player->render(this->rendertexture, &this->core_shader, false);
+    this->player->render(this->rendertexture, &this->core_shader, this->player->getCenter(), false);
     
     for (auto *i : this->activEnemies)
        {
-           i->render(this->rendertexture, &this->core_shader, true);
+           i->render(this->rendertexture, &this->core_shader, i->getCenter(), false);
        }
     
-    this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this-> player->getPosition());
+    this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this->player->getCenter());
     
     
     this->rendertexture.setView(this->rendertexture.getDefaultView());
@@ -356,6 +351,8 @@ void GameState::render(sf::RenderTarget* target) {
         this->rendertexture.setView(this->rendertexture.getDefaultView());
         this->pMenu->render(this->rendertexture);
     }
+    
+   
     
     this->rendertexture.display();
     //this->rendersprite.setTexture(this->rendertexture.getTexture());
@@ -377,12 +374,17 @@ void GameState::checkforendstate() {
 
 void GameState::updatePlayer(const float &dt)
 {
-    //shit
+    this->updatePlayerInput(dt);
+    this->player->update(dt, this->MousePosView);
 }
 
 void GameState::updateEnemies(const float &dt)
 {
-    
+    for (auto *i : this->activEnemies)
+         {
+             i->update(dt, this->MousePosView);
+             i->move_rand(dt, rand() % 3 );
+         }
 }
 
 void GameState::initenemysystem()
@@ -391,11 +393,18 @@ void GameState::initenemysystem()
 }
 
 
+void GameState::updateEnemyEncounter()
+{
+    
+    for (auto *i : this->activEnemies)
+    {
+        if (i->getGlobalBounds().contains(static_cast<sf::Vector2f>(this->player->getGridPosition(this->gridsize))))
+        {
+            this->states->push(new BattleState(this->state_data));
+        }
+        
+    }
+    
 
-
-
-
-
-
-
+}
 

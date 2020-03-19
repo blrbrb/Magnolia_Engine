@@ -29,7 +29,7 @@ public:
     
     virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
     virtual void updateAnimation(const float& dt) = 0;
-    virtual void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const bool render_hitbox = false) = 0;
+    virtual void render(sf::RenderTarget& target,sf::Shader* shader = nullptr,const sf::Vector2f light = sf::Vector2f(), const bool render_hitbox = false) = 0;
     
 private:
     //initalizer functions

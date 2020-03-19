@@ -95,3 +95,9 @@ void BattleState::initshaders()
     
 }
 
+void BattleState::updateInput(const float &dt)
+{
+    
+}
+
+

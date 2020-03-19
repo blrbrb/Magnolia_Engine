@@ -1,6 +1,6 @@
 #version 120
  
- varying vec4 vert_pos;
+varying vec4 vert_pos;
 
 void main()
 {

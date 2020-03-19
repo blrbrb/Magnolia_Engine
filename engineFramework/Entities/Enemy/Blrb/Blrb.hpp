@@ -24,7 +24,7 @@ public:
     
     void updateAnimation(const float& dt);
     void update(const float& dt, sf::Vector2f& MousePosView);
-    void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const bool render_hitbox = false);
+    void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const sf::Vector2f light = sf::Vector2f(), const bool render_hitbox = false);
     
 private:
     

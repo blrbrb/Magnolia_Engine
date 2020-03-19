@@ -9,6 +9,7 @@
 #ifndef GameState_hpp
 #define GameState_hpp
 #include "State.hpp"
+#include "BattleState.hpp"
 #include "Player.hpp"
 #include "PlayerGUI.hpp"
 #include "PauseMenu.hpp"
@@ -35,12 +36,13 @@ public:
     virtual ~GameState();
        
     //Functions
-    void updateView(const float& dt);
+     void updateView(const float& dt);
     
     void updatePlayerInput(const float& dt);
     void updatePlayerGUI(const float& dt);
     void updatePlayer(const float& dt);
     void updateEnemies(const float& dt);
+    void updateEnemyEncounter();
     void update(const float& dt);
     
     void render(sf::RenderTarget* target = NULL);

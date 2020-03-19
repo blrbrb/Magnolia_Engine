@@ -28,6 +28,7 @@ public:
     void updatePlayerInput(const float& dt);
     void updateCombat(const float& dt);
     void updatePlayerGUI(const float& dt);
+    void updateInput(const float& dt);
      
     
     

@@ -203,7 +203,7 @@ void DefaultMode::updateGUI(const float &dt)
     << "\n" << "TextureRectX: " << this->TextureRect.left
     << "\n" << "TextureRectY: " << this->TextureRect.top
     << "\n" << "Collision: " << this->collision
-    << "\n" << "Type: " << this->type
+    << "\n" << "Type: " << EnumStrings[this->type]
     << "\n" << "Tiles:" << this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
     
     //If the cursor is on a valid tile, the text color is white

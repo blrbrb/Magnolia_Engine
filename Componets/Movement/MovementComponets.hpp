@@ -53,7 +53,7 @@ private:
     float movement_timeMax;
     
     //Random movement
-    float rand_max;
+     float rand_max;
 
     
     sf::Sprite& sprite;

@@ -17,8 +17,6 @@ MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, floa
     this->Volume = this->sprite.getLocalBounds().width * this->sprite.getLocalBounds().top;
     this->Density = this->Volume / 25.f;
     
-    
-    
 }
 
 MovementComponets::~MovementComponets()
@@ -51,6 +49,7 @@ void MovementComponets::Updatephyiscs(const float& dt)
     this->Velocity.x = (this->sprite.getPosition().x + dt) - (this->sprite.getPosition().x - dt);
     this->Velocity.y = (this->sprite.getPosition().y + dt) - (this->sprite.getPosition().y - dt);
     
+    
     //Momentum
     this->Momentum = this->Mass * this->Velocity;
 }
@@ -59,10 +58,11 @@ void MovementComponets::Updatephyiscs(const float& dt)
 
 void MovementComponets::move(const float x ,const float y, const float& dt)
 {
+    
     //Acceleration
     //Note, fix clusterfuck of brackets
     this->Velocity.x += this->Acceleration * x * dt;
-    this->Velocity.y += this->Acceleration  *  y * dt;
+    this->Velocity.y += this->Acceleration *  y * dt;
 
 }
 
@@ -81,7 +81,7 @@ void MovementComponets::updateMoveTime(const float& dt)
 void MovementComponets::update(const float& dt)
 {
     //update movetime
-    this->updateMoveTime(dt);
+    
     
     
     /*SLOWS DOWN THE SPRITE*/
@@ -162,6 +162,7 @@ void MovementComponets::update(const float& dt)
 
 void MovementComponets::move_rand(const float& dt, int seed)
 {
+    this->updateMoveTime(dt);
     
     switch (seed) {
             

@@ -16,9 +16,7 @@ class Item
     
 public:
     
-  
-    
-    
+
     Item(unsigned value);
     virtual ~Item();
     

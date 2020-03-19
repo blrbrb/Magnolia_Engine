@@ -27,7 +27,7 @@ Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
     this->create_animation_componet(texturesheet);
     this->create_hitbox_componet(this->sprite, 0, 0, 17.f, 17.f);
     this->initanimations();
-    this->sprite.setScale(2.f, 2.f);
+   // this->sprite.setScale(2.f, 2.f);
     this->sprite.setPosition(x,y);
     this->initvariables();
     this->initanimations();
@@ -78,12 +78,13 @@ void Blrb::update(const float &dt, sf::Vector2f &MousePosView)
        this->hitbox->update();
 }
 
-void Blrb::render(sf::RenderTarget &target, sf::Shader *shader, const bool render_hitbox)
+void Blrb::render(sf::RenderTarget &target, sf::Shader *shader, const sf::Vector2f light, const bool render_hitbox)
 {
     if (shader)
       {
           shader->setUniform("hasTexture", true);
-          shader->setUniform("light", this->getCenter());
+          shader->setUniform("light", light);
+         
           target.draw(this->sprite, shader);
       }
       

@@ -100,7 +100,7 @@ void Game::initwindow() {
         
         std::cout << "ERROR_C_12 GAME::INITWINDOW UNABLE_TO_LOAD_ICON" << std::endl;
     }
-    
+   
     
     if(this->gfxsettings.fullscreen)
         this->window = new sf::RenderWindow(this->gfxsettings.resolution, this->gfxsettings.title, sf::Style::Fullscreen, this->gfxsettings.windowSettings);
@@ -177,7 +177,8 @@ void Game::Update()
 
 void Game::UpdateEvents() {
     
-    while (this->window->pollEvent(this->event)) {
+    while (this->window->pollEvent(this->event))
+    {
         
         if (this->event.type == sf::Event::Closed) {
             
@@ -225,19 +226,15 @@ void Game::running() {
 
 void Game::endapplication()
 {
-    
-    
     std::cout << "Ending the application..." << std::endl;
- 
-    
 }
+
 
 void Game::initVariables()
 {
     this->window = NULL;
     this-> dt = 0.f;
     this->gridsize = 17.f;
-    
     
 }
 

@@ -40,7 +40,7 @@ public:
     
     void clear();
     void update(const float& dt);
-    void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f());
+    void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f LightPosition = sf::Vector2f());
     
 };
 

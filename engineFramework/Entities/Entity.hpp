@@ -52,7 +52,7 @@ public:
     virtual void move(const float& dt, const float x, const float y);
     virtual void move_rand(const float& dt, int seed);
     virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
-    virtual void render(sf::RenderTarget& target, sf::Shader* shader, const bool render_hitbox) = 0;
+    virtual void render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light, const bool render_hitbox) = 0;
     virtual void stopVelocity();
     virtual void stopVelocityX();
     virtual void stopVelocityY();

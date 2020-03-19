@@ -10,8 +10,11 @@
 #define PlayerGUI_hpp
 #include "GUI.hpp"
 #include "Player.hpp"
+#include "Inventory.hpp"
+
 
 class Player;
+class Inventory;
 
 
 
@@ -36,7 +39,7 @@ private:
     
     //Inventory
     
-    
+    std::vector<sf::RectangleShape> Itemboxes;
     //inventory
     
     
@@ -46,6 +49,8 @@ private:
     std::string money_string; 
     sf::Text money;
     int max = 99;
+    int maxItems;
+    int currentSize; 
     
 
     void initfont();
@@ -54,6 +59,8 @@ private:
     void initEXPbar();
     void initMONEY();
     void initinventory();
+    void initvariables();
+  
     
 public:
     
@@ -64,15 +71,24 @@ public:
     void updateLevelTag();
     void updateHPbar();
     void updateEXPbar();
-    void updateMoney(); 
+    void updateMoney();
+    void updateInventory();
     void update(const float& dt);
     void renderLevelTag(sf::RenderTarget& target);
     void renderHPbar(sf::RenderTarget& target);
     void renderMoney(sf::RenderTarget& target);
     void renderEXPbar(sf::RenderTarget& target);
+    void renderInventory(sf::RenderTarget& target);
     void render(sf::RenderTarget& target);
     
     
 };
+
+
+
+
+
+//end namespace PlayerGUI
+
 
 #endif /* PlayerGUI_hpp */

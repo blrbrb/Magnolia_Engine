@@ -56,7 +56,6 @@ private:
     float elapsedTime;
     
     
-    
     std::stack<State*> states;
     StateData state_data;
     GraphicsSettings gfxsettings;

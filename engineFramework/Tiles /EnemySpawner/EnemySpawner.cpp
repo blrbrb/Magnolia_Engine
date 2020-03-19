@@ -17,6 +17,7 @@ EnemySpawner::EnemySpawner(float x, float y, float gridsize_f, sf::Texture& text
     this->spawn_timer = time_to_spawn;
     this->maxDistance = max_distance;
     this->Spawned = false;
+     
 }
 
 EnemySpawner::~EnemySpawner()
@@ -36,17 +37,23 @@ void EnemySpawner::update(const float& dt)
     
 }
 
-void EnemySpawner::render(sf::RenderTarget &target, sf::Shader* shader, sf::Vector2f PlayerPosition)
+void EnemySpawner::render(sf::RenderTarget &target, sf::Shader* shader, sf::Vector2f LightPosition)
 {
-  if (shader)
-  {
-      shader->setUniform("hasTexture", true);
-      shader->setUniform("lightPos", PlayerPosition);
-
-      target.draw(this->rect, shader);
-  }
-  else
-      target.draw(this->rect);
+    
+ if (shader)
+ {
+     shader->setUniform("hasTexture", true);
+     shader->setUniform("light", LightPosition);
+     target.draw(this->rect, shader);
+     
+ }
+ 
+ else
+ {
+     target.draw(this->rect);
+     
+ }
+ 
 }
 
 const std::string EnemySpawner::asString() const 

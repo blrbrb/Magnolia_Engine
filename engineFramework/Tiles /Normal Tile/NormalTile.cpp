@@ -11,7 +11,7 @@
 
 NormalTile::NormalTile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled) : Tile(type, x, y, gridsize_f,texture, texturerect, collision_enabled)
 {
-    
+
 }
 
 NormalTile::~NormalTile()
@@ -40,12 +40,12 @@ void NormalTile::update( const float& dt)
     
 }
 
-void NormalTile::render(sf::RenderTarget &target, sf::Shader *shader, sf::Vector2f PlayerPosition)
+void NormalTile::render(sf::RenderTarget &target, sf::Shader *shader, sf::Vector2f LightPosition)
 {
     if (shader)
     {
         shader->setUniform("hasTexture", true);
-        shader->setUniform("light", PlayerPosition);
+        shader->setUniform("light", LightPosition);
         target.draw(this->rect, shader);
     }
     
@@ -54,4 +54,5 @@ void NormalTile::render(sf::RenderTarget &target, sf::Shader *shader, sf::Vector
         target.draw(this->rect);
         
     }
+    
 }

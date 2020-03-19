@@ -37,7 +37,7 @@ Player::~Player()
 
 void Player::initcomponets()
 {
-    this->createmovementcomponet(150.f ,2000.f, 500.f);     //current dimensions of hero.png 16x16 plus scale = 64x64
+    this->createmovementcomponet(50.f ,2000.f, 500.f);     //current dimensions of hero.png 16x16 plus scale = 64x64
     this->create_hitbox_componet(this->sprite, 5, 5, 55.f, 60.f);    //Note: is lower because cropped for more accurate collision
     this->create_attribute_componet(1);
     this->create_skill_component();
@@ -50,8 +50,6 @@ void Player::initinventory()
 {
     this->inventory = new Inventory(100);
 }
-
-
 
 
 
@@ -72,7 +70,6 @@ void Player::initanimations()
     
     //lol
     this->animtioncomponet->add_animation("PISSING_PANTS", 10.f, 0, 0, 5, 0, 16, 16);
-    
     
 }
     
@@ -150,17 +147,17 @@ void Player::update(const float& dt, sf::Vector2f& MousePosView)
    
 }
 
-void Player::render(sf::RenderTarget &target, sf::Shader* shader,const bool render_hitbox)
+void Player::render(sf::RenderTarget &target, sf::Shader* shader,const sf::Vector2f light, const bool render_hitbox)
 {
+    
     if (shader)
     {
         shader->setUniform("hasTexture", true);
-        shader->setUniform("light", this->getCenter());
+        shader->setUniform("light", light);
         target.draw(this->sprite, shader);
         this->sword->render(target, shader);
        
     }
-    
 
     else if(render_hitbox) {
         this->hitbox->render(target); }
@@ -170,6 +167,12 @@ void Player::render(sf::RenderTarget &target, sf::Shader* shader,const bool rend
 StatusComponet *Player::getStatusComponet()
 {
     return this->attributes;
+}
+
+
+Inventory* Player::getInventory()
+{
+    return this->inventory; 
 }
 
 

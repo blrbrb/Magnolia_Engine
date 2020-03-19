@@ -65,6 +65,12 @@ void PlayerGUI::initEXPbar()
     this->ExpBar = new GUI::ProgressBar(1.f, 16.6, 10.4, 2.8, this->player->attributes->expNextlvl, this->vm,sf::Color::Green, 150, &this->font);
 }
 
+void PlayerGUI::initinventory()
+{
+    this->player->getInventory()->clear();
+   
+}
+
 void PlayerGUI::initfont()
 {
     this->font.loadFromFile(resourcePath() + "PressStart2P.ttf");
@@ -75,6 +81,24 @@ void PlayerGUI::update(const float &dt)
     this->updateLevelTag();
     this->updateHPbar();
     this->updateEXPbar();
+    this->updateInventory();
+}
+
+
+void PlayerGUI::updateInventory()
+{
+    this->currentSize = this->player->getInventory()->size();
+    
+    this->Itemboxes.resize(this->currentSize);
+    
+        for (int x =0; x <= this->currentSize; x++)
+        {
+               this->Itemboxes.push_back(sf::RectangleShape());
+               this->Itemboxes[x].setSize(sf::Vector2f(64, 64));
+               this->Itemboxes[x].setFillColor(sf::Color::Red);
+               this->Itemboxes[x].setPosition(400, 400);
+        }
+    
 }
 
 void PlayerGUI::updateHPbar()
@@ -123,6 +147,14 @@ void PlayerGUI::renderHPbar(sf::RenderTarget& target)
     this->HPbar->render(target);
 }
 
+void PlayerGUI::renderInventory(sf::RenderTarget& target)
+{
+    for(size_t i2 =this->Itemboxes.size(); i2 < this->currentSize; i2++)
+    {
+        //target.draw(this->Itemboxes[i2]);
+    }
+    
+}
 
 void PlayerGUI::renderEXPbar(sf::RenderTarget& target)
 {
@@ -131,9 +163,14 @@ void PlayerGUI::renderEXPbar(sf::RenderTarget& target)
 
 void PlayerGUI::render(sf::RenderTarget &target)
 {
+    this->renderMoney(target);
     this->renderLevelTag(target);
     this->renderEXPbar(target);
     this->renderHPbar(target);
-    this->renderMoney(target);
+    this->renderInventory(target);
+   
 }
+
+
+
 

@@ -27,6 +27,7 @@ private:
     void freeMemory();
     void nullify(const unsigned from);
     
+  
     
 public:
     
@@ -41,7 +42,7 @@ public:
  
     const bool loadfromfile(const std::string filename);
     const bool savetofile(const std::string filename);
-    
+ 
     
     //Accessors
     const unsigned& size() const;
@@ -50,6 +51,8 @@ public:
     //Modifiers
     const bool add(Item* item);
     const bool remove(const unsigned index);
+    
+    
     
     
     

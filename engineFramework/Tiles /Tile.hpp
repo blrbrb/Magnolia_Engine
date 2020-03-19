@@ -12,7 +12,9 @@
 
 #include "GUI.hpp"
 
-enum TileTypes {DEFAULT=0, UNPASSABLE, OBJECT, GRASS, DIRT, WATER, METAL, STONE, SAND, WOOD, SPAWNER, ANIMATED};
+enum TileTypes {DEFAULT=0, UNPASSABLE, OBJECT, SPAWNER, LIGHT};
+static const char * EnumStrings[] = { "Default", "Unpassable", "Object", "Spawner", "Light", "Stop", "YOU FOOL", "NO" };
+
 
 class Tile
 {
@@ -23,13 +25,14 @@ protected:
     
     sf::Sprite rect;
     short type;
-    bool collison_enabled; 
+    bool collison_enabled;
+   
     
     
 public:
     
     Tile();
-    Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false );
+    Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false);
     virtual ~Tile();
     
     //Accessors
@@ -39,10 +42,12 @@ public:
     virtual const bool& getCollision() const;
     virtual const bool intersects(const sf::FloatRect bounds) const;
     virtual const sf::FloatRect getGlobalBounds() const;
+    virtual const sf::Vector2f getCenter() const;
+    
     
     //Functions
     virtual void update(const float& dt) =0;
-    virtual void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f PlayerPosition = sf::Vector2f())=0;
+    virtual void render(sf::RenderTarget & target, sf::Shader* shader = NULL,sf::Vector2f LightPosition = sf::Vector2f())=0;
     
 };
 

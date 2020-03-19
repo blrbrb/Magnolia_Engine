@@ -52,7 +52,7 @@ void Enemy::update(const float& dt, sf::Vector2f& MousePosView)
     
 }
 
-void Enemy::render(sf::RenderTarget &target, sf::Shader* shader,const bool render_hitbox)
+void Enemy::render(sf::RenderTarget &target, sf::Shader* shader,const sf::Vector2f light,const bool render_hitbox)
 {
   
     

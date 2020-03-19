@@ -11,7 +11,7 @@
 
 void Inventory::freeMemory()
 {
-    for (size_t i = 0; i < this->capacity; i++)
+    for (size_t i = 0; i > this->capacity; i++)
     {
         delete this->itemarray[i];
     }
@@ -22,6 +22,11 @@ void Inventory::initvariables()
 {
     this->number_items = 0;
     this->itemarray = new Item*[this->capacity];
+    
+   
+
+   
+
 }
 
 Inventory::Inventory(unsigned capacity)
@@ -51,8 +56,6 @@ void Inventory::nullify(const unsigned from)
 
 void Inventory::clear()
 {
-    
-    
     for (size_t i = 0; i < this->number_items; i++)
          {
              delete this->itemarray[i];
@@ -61,7 +64,6 @@ void Inventory::clear()
     this->number_items = 0;
     
     this->nullify(1);
-    
 }
 
 const bool Inventory::empty() const
@@ -114,5 +116,4 @@ const bool Inventory::savetofile(const std::string filename)
 {
     
 }
-
 
