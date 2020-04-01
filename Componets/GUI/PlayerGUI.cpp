@@ -17,6 +17,9 @@ PlayerGUI::PlayerGUI(Player* player, sf::VideoMode& vm) : vm(vm)
     this->initLevelTag(); 
     this->initHPbar();
     this->initEXPbar();
+    this->initMONEY();
+    this->initinventory();
+    this->hidden = true;
 }
 
 
@@ -29,11 +32,11 @@ PlayerGUI::~PlayerGUI()
 
 void PlayerGUI::initMONEY()
 {
-    this->coinIcon.loadFromFile("hero.png");
-    this->monies.setTexture(coinIcon);
-    this->monies.setPosition(500, 100);
-    this->money.setCharacterSize(10);
-    this->money.setPosition(500, 100);
+    this->Coins = new GUI::Icon(GUI::pixelpercentX(92, vm), GUI::pixelpercentY(0, vm), "coins.png");
+    this->CurrentCoins.setCharacterSize(GUI::calcCharSize(vm, 100));
+    this->CurrentCoins.setFillColor(sf::Color::White);
+    this->CurrentCoins.setFont(font);
+    this->CurrentCoins.setPosition(GUI::pixelpercentX(96, vm), GUI::pixelpercentY(2, vm));
 }
 
 void PlayerGUI::initHPbar()
@@ -68,7 +71,7 @@ void PlayerGUI::initEXPbar()
 void PlayerGUI::initinventory()
 {
     this->player->getInventory()->clear();
-   
+
 }
 
 void PlayerGUI::initfont()
@@ -79,6 +82,7 @@ void PlayerGUI::initfont()
 void PlayerGUI::update(const float &dt)
 {
     this->updateLevelTag();
+    this->updateMoney();
     this->updateHPbar();
     this->updateEXPbar();
     this->updateInventory();
@@ -87,18 +91,39 @@ void PlayerGUI::update(const float &dt)
 
 void PlayerGUI::updateInventory()
 {
-    this->currentSize = this->player->getInventory()->size();
+    //update the size of the inventory
+    this->currentSize = this->player->getInventory()->MaxSize();
+       
+          this->Itemboxes.resize(this->currentSize);
+          float X= GUI::pixelpercentX(50, vm);
+          float Y = GUI::pixelpercentY(50, vm);
+          
+              for (int x =0; x <= this->currentSize; x++)
+              {
+                  X += GUI::pixelpercentX(6,vm);
+                  
+                  
+                  if(X >= GUI::pixelpercentX(100, vm) || Y >= GUI::pixelpercentY(100, vm))
+                  {
+                     Y += GUI::pixelpercentY(8, vm);
+                     X = GUI::pixelpercentX(0, vm);
+
+                  }
+        
+                     this->Itemboxes.push_back(sf::RectangleShape());
+                     this->Itemboxes.at(x).setSize(sf::Vector2f(64, 64));
+                     this->Itemboxes.at(x).setFillColor(sf::Color(50,50,50,200));
+                     this->Itemboxes.at(x).setOutlineColor(sf::Color::White);
+                     this->Itemboxes.at(x).setOutlineThickness(1.f);
+                        
+                  
+                     this->Itemboxes.at(x).setPosition(X, Y);
+                            
+                  
+              }
+       
     
-    this->Itemboxes.resize(this->currentSize);
-    
-        for (int x =0; x <= this->currentSize; x++)
-        {
-               this->Itemboxes.push_back(sf::RectangleShape());
-               this->Itemboxes[x].setSize(sf::Vector2f(64, 64));
-               this->Itemboxes[x].setFillColor(sf::Color::Red);
-               this->Itemboxes[x].setPosition(400, 400);
-        }
-    
+   
 }
 
 void PlayerGUI::updateHPbar()
@@ -114,7 +139,6 @@ void PlayerGUI::updateEXPbar()
 void PlayerGUI::updateLevelTag()
 {
     this->LevelTagstring = std::to_string(this->player->getStatusComponet()->level);
-       
     this->LevelTagText.setString(LevelTagstring);
     
 }
@@ -122,17 +146,15 @@ void PlayerGUI::updateLevelTag()
 void PlayerGUI::updateMoney()
 {
     
-    this->money_string = std::to_string(this->player->getStatusComponet()->coins);
-    this->money.setString(money_string);
-    
-    this->money.setPosition(200, 220);
+    this->coins_string = std::to_string(this->player->getStatusComponet()->coins);
+    this->CurrentCoins.setString(coins_string);
     
 }
 
 void PlayerGUI::renderMoney(sf::RenderTarget& target)
 {
-    target.draw(this->monies);
-    target.draw(this->money);
+    this->Coins->render(target);
+    target.draw(this->CurrentCoins);
 }
 
 
@@ -149,9 +171,17 @@ void PlayerGUI::renderHPbar(sf::RenderTarget& target)
 
 void PlayerGUI::renderInventory(sf::RenderTarget& target)
 {
-    for(size_t i2 =this->Itemboxes.size(); i2 < this->currentSize; i2++)
+    if(this->hidden == false)
     {
-        //target.draw(this->Itemboxes[i2]);
+        for(size_t i2 =0; i2 < Itemboxes.size(); i2++)
+        {
+            target.draw(this->Itemboxes[i2]);
+        }
+    }
+    else if(this->hidden == true)
+    {
+        
+        
     }
     
 }
@@ -172,5 +202,21 @@ void PlayerGUI::render(sf::RenderTarget &target)
 }
 
 
+//Accessors
+
+const bool PlayerGUI::getInventoryHidden()
+{
+    return this->hidden;
+}
 
 
+//Modifers
+
+void PlayerGUI::HideInventory()
+{
+    if(this->hidden == true)
+        this->hidden = false;
+    
+    else
+        this->hidden = true;
+}

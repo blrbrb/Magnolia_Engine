@@ -110,11 +110,16 @@
 		455FB3A42405D2C900146C3A /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A32405D2C900146C3A /* atlas.png */; };
 		455FB3A824070A1900146C3A /* vertex_shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A724070A1900146C3A /* vertex_shader.vert */; };
 		455FB3AA24070AA000146C3A /* fragment_shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A924070AA000146C3A /* fragment_shader.frag */; };
+		457AF51424267E93009B543D /* GameStateModes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457AF51224267E93009B543D /* GameStateModes.cpp */; };
+		457AF518242BCE5D009B543D /* OverWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457AF516242BCE5D009B543D /* OverWorld.cpp */; };
+		457AF51B242BD07F009B543D /* DefaultGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457AF519242BD07F009B543D /* DefaultGameState.cpp */; };
 		457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457E8A8C23E914820052FB6D /* PauseMenu.cpp */; };
 		45850C9423E3136900417726 /* animationComponet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45850C9223E3136900417726 /* animationComponet.cpp */; };
 		458A1D3823ECCF5000F2F8ED /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1D3623ECCF5000F2F8ED /* Tile.cpp */; };
 		458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1D3A23ECCFB500F2F8ED /* TileMap.cpp */; };
 		458EE3FB241D4BE50040B75A /* LightTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458EE3F9241D4BE50040B75A /* LightTile.cpp */; };
+		458EE409242324270040B75A /* coins.png in Resources */ = {isa = PBXBuildFile; fileRef = 458EE408242324270040B75A /* coins.png */; };
+		458EE40F2423FFD30040B75A /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458EE40D2423FFD30040B75A /* Coin.cpp */; };
 		45B989D323E0909400B3C087 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B989D123E0909400B3C087 /* Player.cpp */; };
 		45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4B241283C5001921B4 /* NormalTile.cpp */; };
 		45BE8F512412915D001921B4 /* Blerb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4F2412915D001921B4 /* Blerb.cpp */; };
@@ -280,6 +285,12 @@
 		455FB3A32405D2C900146C3A /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		455FB3A724070A1900146C3A /* vertex_shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex_shader.vert; sourceTree = "<group>"; };
 		455FB3A924070AA000146C3A /* fragment_shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment_shader.frag; sourceTree = "<group>"; };
+		457AF51224267E93009B543D /* GameStateModes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateModes.cpp; sourceTree = "<group>"; };
+		457AF51324267E93009B543D /* GameStateModes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameStateModes.hpp; sourceTree = "<group>"; };
+		457AF516242BCE5D009B543D /* OverWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OverWorld.cpp; sourceTree = "<group>"; };
+		457AF517242BCE5D009B543D /* OverWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OverWorld.hpp; sourceTree = "<group>"; };
+		457AF519242BD07F009B543D /* DefaultGameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultGameState.cpp; sourceTree = "<group>"; };
+		457AF51A242BD07F009B543D /* DefaultGameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DefaultGameState.hpp; sourceTree = "<group>"; };
 		457E8A8C23E914820052FB6D /* PauseMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PauseMenu.cpp; sourceTree = "<group>"; };
 		457E8A8D23E914820052FB6D /* PauseMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PauseMenu.hpp; sourceTree = "<group>"; };
 		45850C9223E3136900417726 /* animationComponet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = animationComponet.cpp; sourceTree = "<group>"; };
@@ -292,6 +303,9 @@
 		458AB8FF23E0D94200C9E397 /* EngineLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EngineLogo.png; sourceTree = "<group>"; };
 		458EE3F9241D4BE50040B75A /* LightTile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LightTile.cpp; sourceTree = "<group>"; };
 		458EE3FA241D4BE50040B75A /* LightTile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LightTile.hpp; sourceTree = "<group>"; };
+		458EE408242324270040B75A /* coins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coins.png; sourceTree = "<group>"; };
+		458EE40D2423FFD30040B75A /* Coin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
+		458EE40E2423FFD30040B75A /* Coin.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Coin.hpp; sourceTree = "<group>"; };
 		45B989D023E0697100B3C087 /* MONACO.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = MONACO.TTF; sourceTree = "<group>"; };
 		45B989D123E0909400B3C087 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		45B989D223E0909400B3C087 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
@@ -356,10 +370,7 @@
 				4546032E240ECFEA00EAF628 /* Editor */,
 				450CA30823D9106200FF039F /* State.hpp */,
 				450CA30723D9106200FF039F /* State.cpp */,
-				450CA30F23D9187800FF039F /* GameState.cpp */,
-				45BE8F522412D345001921B4 /* BattleState.cpp */,
-				45BE8F532412D345001921B4 /* BattleState.hpp */,
-				450CA31023D9187800FF039F /* GameState.hpp */,
+				457AF51124267E69009B543D /* GameState */,
 				45DB9A4D23DD162100F8693E /* MainMenuState.cpp */,
 				45DB9A4E23DD162100F8693E /* MainMenuState.hpp */,
 				45F8E41923EB59470037EBD5 /* SettingsState.hpp */,
@@ -459,6 +470,7 @@
 		454A703023D770B4003FEB4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				458EE408242324270040B75A /* coins.png */,
 				45BE8F89241883C2001921B4 /* fuck.png */,
 				45BE8F872418469B001921B4 /* test.png */,
 				45485997241146C300D97104 /* atlas.png */,
@@ -662,6 +674,23 @@
 			path = "Licenses ";
 			sourceTree = "<group>";
 		};
+		457AF51124267E69009B543D /* GameState */ = {
+			isa = PBXGroup;
+			children = (
+				45BE8F532412D345001921B4 /* BattleState.hpp */,
+				45BE8F522412D345001921B4 /* BattleState.cpp */,
+				457AF519242BD07F009B543D /* DefaultGameState.cpp */,
+				457AF51A242BD07F009B543D /* DefaultGameState.hpp */,
+				450CA31023D9187800FF039F /* GameState.hpp */,
+				450CA30F23D9187800FF039F /* GameState.cpp */,
+				457AF51224267E93009B543D /* GameStateModes.cpp */,
+				457AF51324267E93009B543D /* GameStateModes.hpp */,
+				457AF516242BCE5D009B543D /* OverWorld.cpp */,
+				457AF517242BCE5D009B543D /* OverWorld.hpp */,
+			);
+			path = GameState;
+			sourceTree = "<group>";
+		};
 		45850C9123E3133900417726 /* Componets */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +763,15 @@
 				458EE3FA241D4BE50040B75A /* LightTile.hpp */,
 			);
 			path = "Light Emitter";
+			sourceTree = "<group>";
+		};
+		458EE40B2423FFB30040B75A /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				458EE40D2423FFD30040B75A /* Coin.cpp */,
+				458EE40E2423FFD30040B75A /* Coin.hpp */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		45BE8F5924146B02001921B4 /* Combat  */ = {
@@ -902,6 +940,7 @@
 		45E0175E240D7C2E00EC8E1D /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				458EE40B2423FFB30040B75A /* Misc */,
 				45BE8F6E2416B8A3001921B4 /* Drops */,
 				45BE8F6B2416B84F001921B4 /* Enviornmental  */,
 				45BE8F692416B838001921B4 /* Tools */,
@@ -1060,6 +1099,7 @@
 				455318ED2409FEFD00433CD7 /* grey_button04.png in Resources */,
 				455FB37C2404AAD600146C3A /* engineFramework-Info.plist in Resources */,
 				455FB3842404AC1A00146C3A /* Success.wav in Resources */,
+				458EE409242324270040B75A /* coins.png in Resources */,
 				45466C682408A616001F72E0 /* Retro Event UI 13.wav in Resources */,
 				455808C02400123D00E36DFA /* grey_sliderVertical.png in Resources */,
 				455318E22409FEFD00433CD7 /* buttonclicked.png in Resources */,
@@ -1190,6 +1230,7 @@
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,
 				45B989D323E0909400B3C087 /* Player.cpp in Sources */,
 				4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */,
+				457AF518242BCE5D009B543D /* OverWorld.cpp in Sources */,
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,
 				45E01774240DD6D400EC8E1D /* Enemy.cpp in Sources */,
 				45BE8F542412D345001921B4 /* BattleState.cpp in Sources */,
@@ -1208,11 +1249,14 @@
 				454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */,
 				451BD30C23DA10E200426643 /* Entity.cpp in Sources */,
 				457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */,
+				458EE40F2423FFD30040B75A /* Coin.cpp in Sources */,
+				457AF51B242BD07F009B543D /* DefaultGameState.cpp in Sources */,
 				45F8E41A23EB59470037EBD5 /* SettingsState.cpp in Sources */,
 				458EE3FB241D4BE50040B75A /* LightTile.cpp in Sources */,
 				45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */,
 				450CA30923D9106200FF039F /* State.cpp in Sources */,
 				45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */,
+				457AF51424267E93009B543D /* GameStateModes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

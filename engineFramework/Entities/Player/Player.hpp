@@ -43,7 +43,8 @@ public:
     
     //Accessors
     StatusComponet* getStatusComponet();
-    Inventory* getInventory(); 
+    Inventory* getInventory();
+    
 
     //Functions
     

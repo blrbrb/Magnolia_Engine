@@ -151,6 +151,22 @@ void GameState::initplayers()
     
 }
 
+
+void GameState::initgamestatedata()
+{
+    this->gamestatedata.view = &this->view;
+    this->gamestatedata.player = this->player;
+    this->gamestatedata.keytime = &this->keytime;
+    this->gamestatedata.ketyimeMax = &this->keytime_MAX;
+    this->gamestatedata.activeEnemies = this->activEnemies;
+    this->gamestatedata.playerGUI = this->playerGUI;
+    this->gamestatedata.enemysystem = this->enemysystem; 
+    this->gamestatedata.font = &this->font;
+    this->gamestatedata.core_shader = &this->core_shader;
+    this->gamestatedata.Tilemap = this->Tilemap;
+    
+}
+
 void GameState::initpausemenu()
 {
     const sf::VideoMode& vm = this->state_data->gfxsettings->resolution;
@@ -167,6 +183,17 @@ void GameState::inittilemap()
 }
 
 
+void GameState::initmodes()
+{
+    
+    this->modes.push_back(new DefaultGameState(this->state_data, &this->gamestatedata));
+    this->modes.push_back(new BattleState(this->state_data,&this->gamestatedata));
+
+    
+    this->activemode = GAME_MODES::DEFAULT_GAME;
+    
+}
+
 void GameState::update(const float& dt) {
    
     srand(time(NULL));
@@ -174,6 +201,7 @@ void GameState::update(const float& dt) {
     this->updateMousePosition(&this->view);
     this->updateInput(dt);
     this->updatekeytime(dt);
+   
     
     if(!this->paused) //Update while unpaused 
      {
@@ -182,6 +210,8 @@ void GameState::update(const float& dt) {
          this->updateEnemies(dt);
          this->updatetilemap(dt);
          this->updatePlayerGUI(dt);
+        this->updatemodes(dt);
+         
      }
    
     else // Update while Paused
@@ -219,6 +249,10 @@ void GameState::updatetilemap(const float& dt)
     
 }
 
+void GameState::updatemodes(const float& dt)
+{
+    this->modes[this->activemode]->update(dt);
+}
 
 
 void GameState::updatebuttons()
@@ -317,6 +351,12 @@ void GameState::updatePlayerInput(const float& dt)
 
     }
     
+    //hide the player's inventory 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E) && this->getkeytime())
+    {
+        this->playerGUI->HideInventory();
+    }
+    
    
 }
 
@@ -344,6 +384,7 @@ void GameState::render(sf::RenderTarget* target) {
     
     
     this->rendertexture.setView(this->rendertexture.getDefaultView());
+    
     this->playerGUI->render(this->rendertexture);
     
     if(this->paused)
@@ -352,14 +393,19 @@ void GameState::render(sf::RenderTarget* target) {
         this->pMenu->render(this->rendertexture);
     }
     
-   
+   // this->rendermodes(target);
     
     this->rendertexture.display();
     //this->rendersprite.setTexture(this->rendertexture.getTexture());
     target->draw(this->rendersprite);
 }
 
-
+void GameState::rendermodes(sf::RenderTarget* target)
+{
+    
+   // this->modes[this->activemode]->render(*target);
+    
+}
 
 void GameState::checkforendstate() {
     
@@ -400,11 +446,12 @@ void GameState::updateEnemyEncounter()
     {
         if (i->getGlobalBounds().contains(static_cast<sf::Vector2f>(this->player->getGridPosition(this->gridsize))))
         {
-            this->states->push(new BattleState(this->state_data));
+            this->modes.push_back(new BattleState(this->state_data, &this->gamestatedata));
         }
         
     }
     
 
 }
+
 

@@ -8,8 +8,10 @@
 
 #ifndef Inventory_hpp
 #define Inventory_hpp
-#include "Item.hpp"
+#include "Entity.hpp"
 
+class Entity;
+class Player; 
 
 class Inventory
 {
@@ -26,7 +28,7 @@ private:
     void expand();
     void freeMemory();
     void nullify(const unsigned from);
-    
+    bool ItemAdded; 
   
     
 public:
@@ -39,6 +41,7 @@ public:
     //Functions
     const bool empty() const;
     void clear();
+   
  
     const bool loadfromfile(const std::string filename);
     const bool savetofile(const std::string filename);

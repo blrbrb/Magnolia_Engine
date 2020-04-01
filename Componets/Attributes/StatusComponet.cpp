@@ -23,7 +23,7 @@ StatusComponet::StatusComponet(int level)
     this->expNextlvl =static_cast<int>((50 / 3) * (pow(this->level + 1, 3) - 6 * pow(this->level + 1, 2) + ((this->level + 1) * 17) -12));
     
     this->attributepts = 2;
-
+     
     //init stats
     this->vit = 1;
     this->inteligence = 1;

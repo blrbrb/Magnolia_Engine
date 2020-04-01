@@ -13,8 +13,8 @@ void main()
  vec4 ambient = vec4(0.02, 0.02, 0.5, 1.0);
 
  //Convert lightPos to view coords
- vec2 light_tmp =  (gl_ModelViewProjectionMatrix * vec4(light, 0, 1)).xy;
-
+  
+vec2 light_tmp =  (gl_ModelViewProjectionMatrix * vec4(light, 0, 1)).xy;
 
  //Calculate the vector from light to pixel (Make circular)
  vec2 lightToFrag = light_tmp - vert_pos.xy;
@@ -35,4 +35,5 @@ void main()
  {
   gl_FragColor = gl_Color;
  }
+
 }

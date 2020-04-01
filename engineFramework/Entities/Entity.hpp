@@ -13,6 +13,7 @@
 #include "AnimationComponet.hpp"
 #include "StatusComponet.hpp"
 #include "SkillComponent.hpp"
+#include "Item.hpp"
 
 class HitboxComponent;
 class MovementComponent;

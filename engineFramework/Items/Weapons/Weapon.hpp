@@ -24,9 +24,10 @@ public:
     virtual Weapon* clone() = 0;
     
     //Accessors
-    const unsigned& getRange();
+  
     
 protected:
+    
     sf::Sprite weaponSprite;
     sf::Texture weaponTexture; 
     

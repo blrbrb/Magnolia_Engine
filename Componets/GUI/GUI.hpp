@@ -208,10 +208,22 @@ public:
     const sf::Vector2f getSize(); 
 };
 
-
-
-
-
+class Icon
+{
+public:
+    
+    Icon(float x, float y, const std::string icon_texture);
+    virtual ~Icon();
+    
+    void render(sf::RenderTarget& target);
+    
+private:
+    
+    sf::RectangleShape Box;
+    sf::Texture icontexture;
+    
+    
+};
 
 }
 

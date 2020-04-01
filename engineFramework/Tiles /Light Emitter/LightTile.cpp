@@ -52,7 +52,9 @@ void LightTile::render(sf::RenderTarget &target, sf::Shader *shader, sf::Vector2
    
    else
    {
+       
        target.draw(this->rect);
+       
        
    }
    

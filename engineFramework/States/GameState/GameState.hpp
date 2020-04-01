@@ -15,6 +15,8 @@
 #include "PauseMenu.hpp"
 #include "EnemySystem.hpp"
 #include "TileMap.hpp"
+#include "GameStateModes.hpp"
+#include "DefaultGameState.hpp"
 
 
 
@@ -26,6 +28,7 @@ class Player;
 class TileMap;
 
 
+enum GAME_MODES {DEFAULT_GAME= 0, BATTLE};
 
 class GameState : public State {
 
@@ -36,16 +39,16 @@ public:
     virtual ~GameState();
        
     //Functions
-     void updateView(const float& dt);
-    
+    void updateView(const float& dt);
     void updatePlayerInput(const float& dt);
     void updatePlayerGUI(const float& dt);
     void updatePlayer(const float& dt);
+    void updatemodes(const float& dt);
     void updateEnemies(const float& dt);
     void updateEnemyEncounter();
     void update(const float& dt);
-    
     void render(sf::RenderTarget* target = NULL);
+    void rendermodes(sf::RenderTarget* target = NULL);
     void checkforendstate();
     void updateInput(const float& dt);
     void updatebuttons();
@@ -58,12 +61,16 @@ private:
     sf::View view;
     float cameraspeed;
     
+    
+    int activemode;     
     //Componet init
     Player* player;
     PlayerGUI* playerGUI;
     PauseMenu* pMenu;
     TileMap* Tilemap;
     EnemySystem* enemysystem;
+    
+    GameStateData gamestatedata;
     
     sf::Font font;
     sf::RenderTexture rendertexture;
@@ -76,7 +83,7 @@ private:
     sf::SoundBuffer buffer;
     sf::Sound sound; 
     sf::Vector2i ViewGridPosition;
-    
+    std::vector<GameStateModes*> modes;
     
     //Enemies
     std::vector<Enemy*> activEnemies;
@@ -93,7 +100,9 @@ private:
     void initpausemenu();
     void inittilemap();
     void initshaders();
-    void initenemysystem(); 
+    void initenemysystem();
+    void initgamestatedata();
+    void initmodes();
 
     
 };

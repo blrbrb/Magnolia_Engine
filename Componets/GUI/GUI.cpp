@@ -693,7 +693,7 @@ const float GUI::pixelpercentY(const float percent, const sf::VideoMode& vm)
 
 GUI::ProgressBar::ProgressBar(float x, float y, float width, float height, int MaxValue, sf::VideoMode& vm, sf::Color inner_color, unsigned charSize, sf::Font* font)
 {
-    float widthh = GUI::pixelpercentX(width, vm);          //300.f;
+    float widthh = GUI::pixelpercentX(width, vm);           //300.f;
     float heightt = GUI::pixelpercentY(height, vm);
     float xx = GUI::pixelpercentX(x, vm);
     float yy = GUI::pixelpercentY(y, vm);
@@ -740,7 +740,6 @@ void GUI::ProgressBar::update(const int current_value)
     
     this->hpbarText = std::to_string(current_value) + "/" +
                      std::to_string(MaxVal);
-    
     this->text.setString(hpbarText);
 }
 
@@ -764,4 +763,37 @@ const float GUI::ProgressBar::getWidth()
 const sf::Vector2f GUI::ProgressBar::getSize()
 {
     return this->Interior.getSize(); 
+}
+
+/* END PROGRESSBAR */
+
+
+/*BEGIN ICON*/
+ 
+
+GUI::Icon::Icon(float x, float y, const std::string icon_texture)
+{
+    
+    this->icontexture.loadFromFile(resourcePath() + icon_texture);
+    this->Box.setTexture(&icontexture);
+    this->Box.setSize(sf::Vector2f(64, 64));
+    this->Box.setPosition(x, y);
+
+}
+
+
+GUI::Icon::~Icon()
+{
+    
+    
+    
+    
+}
+
+
+void GUI::Icon::render(sf::RenderTarget& target)
+{
+    
+    target.draw(this->Box);
+    
 }

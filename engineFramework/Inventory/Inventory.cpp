@@ -22,10 +22,7 @@ void Inventory::initvariables()
 {
     this->number_items = 0;
     this->itemarray = new Item*[this->capacity];
-    
-   
-
-   
+    this->nullify(0);
 
 }
 
@@ -34,7 +31,6 @@ Inventory::Inventory(unsigned capacity)
     this->capacity = capacity;
     
     this->initvariables();
-    
 }
 
 Inventory::~Inventory()
@@ -63,7 +59,7 @@ void Inventory::clear()
 
     this->number_items = 0;
     
-    this->nullify(1);
+    this->nullify(0);
 }
 
 const bool Inventory::empty() const
@@ -83,11 +79,11 @@ const unsigned int &Inventory::MaxSize() const
 
 const bool Inventory::add(Item *item)
 {
-    if (this->number_items <  this->capacity)
+    if (this->number_items < this->capacity)
     {
-        
         this->itemarray[this->number_items++] = item->clone();
         return true;
+        this->ItemAdded = true; 
     }
     return false;
 }

@@ -44,14 +44,13 @@ private:
     
     
     //COINS
-    sf::Sprite monies;
-    sf::Texture coinIcon;
-    std::string money_string; 
-    sf::Text money;
+    GUI::Icon* Coins; 
+    std::string coins_string;
+    sf::Text CurrentCoins;
     int max = 99;
     int maxItems;
     int currentSize; 
-    
+    bool hidden;
 
     void initfont();
     void initLevelTag();
@@ -66,6 +65,12 @@ public:
     
     PlayerGUI(Player* player, sf::VideoMode& vm);
     virtual ~PlayerGUI();
+    
+    //Accessors
+    const bool getInventoryHidden();
+    
+    //Modifiers
+    void HideInventory(); 
     
     //Functions
     void updateLevelTag();

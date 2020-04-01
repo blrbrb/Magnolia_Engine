@@ -12,7 +12,7 @@
 Item::Item(unsigned value)
 {
     this->value = 0;
-    this->type = ItemTypes::MISC;
+    this->type = ItemTypes::REG;
     
 }
 

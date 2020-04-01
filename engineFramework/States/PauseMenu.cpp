@@ -1,4 +1,4 @@
-//
+
 //  PauseMenu.cpp
 //  engineFramework
 //
@@ -15,16 +15,12 @@ font(font)
 {
     
     this->background.setSize(sf::Vector2f(static_cast<float>(vm.width),static_cast<float>(vm.height)));
-    
     this->background.setFillColor(sf::Color(20, 20, 20, 100));
     this->container.setSize(sf::Vector2f(static_cast<float>(vm.width) / 0.5 ,static_cast<float>(vm.height) - GUI::pixelpercentY(9.3,vm)));
-    
     this->container.setFillColor(sf::Color(20,20,20,200));
-    
     this->container.setPosition(static_cast<float>(vm.width / 2.f) - this->container.getSize().x / 2.f, 0.f);
     
    //init MenuText
-    
     this->menutext.setFont(font);
     this->menutext.setFillColor(sf::Color(255, 255, 255, 200));
     this->menutext.setCharacterSize(GUI::calcCharSize(vm));
@@ -93,7 +89,6 @@ void PauseMenu::addbutton(const std::string key, const unsigned charSize, const 
 const bool PauseMenu::isButtonPressed(const std::string& key)
 {
     return this->buttons[key]->isPressed();
-    
     
     
 }

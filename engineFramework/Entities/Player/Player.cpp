@@ -37,7 +37,7 @@ Player::~Player()
 
 void Player::initcomponets()
 {
-    this->createmovementcomponet(50.f ,2000.f, 500.f);     //current dimensions of hero.png 16x16 plus scale = 64x64
+    this->createmovementcomponet(50.f ,2000.f, 200.f);     //current dimensions of hero.png 16x16 plus scale = 64x64
     this->create_hitbox_componet(this->sprite, 5, 5, 55.f, 60.f);    //Note: is lower because cropped for more accurate collision
     this->create_attribute_componet(1);
     this->create_skill_component();
@@ -128,24 +128,20 @@ void Player::update(const float& dt, sf::Vector2f& MousePosView)
     
     this->attributes->update();
     
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-    {
-        this->attributes->gainexp(20);
-        std::cout << this->attributes->debugPrint() << std::endl; 
-        
-    }
-        
     this->movementcomponets->update(dt);
-    
     
     this->updateAnimation(dt);
     
     this->hitbox->update();
     
-    this->sword->update(MousePosView, this->getCenter());
+    //this->sword->update(MousePosView, this->getCenter());
     
    
 }
+
+
+
+
 
 void Player::render(sf::RenderTarget &target, sf::Shader* shader,const sf::Vector2f light, const bool render_hitbox)
 {

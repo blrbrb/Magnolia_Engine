@@ -214,7 +214,7 @@ void EditorState::initbackground()
 void EditorState::initeditorstatedata()
 {
     //this->editorstatedata.view = &this->view;
-     this->editorstatedata.keybinds = &this->keybinds; 
+    this->editorstatedata.keybinds = &this->keybinds;
     this->editorstatedata.keytime = &this->keytime;
     this->editorstatedata.ketyimeMax = &this->keytime_MAX;
 

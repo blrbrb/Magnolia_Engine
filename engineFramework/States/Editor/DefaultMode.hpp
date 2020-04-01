@@ -35,9 +35,9 @@ private:
          
      
         //Tile variables
-          bool collision;
-          short type;
-          int layer;
+    bool collision;
+    short type;
+    int layer;
     
     //initalizer functions
     void initvariables();

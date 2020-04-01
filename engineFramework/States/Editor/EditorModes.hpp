@@ -19,6 +19,7 @@ class TileMap;
 class EditorStateData
 {
 public:
+    
     EditorStateData() {};
     
     
@@ -44,7 +45,6 @@ protected:
     
     TileMap* tilemap;
     StateData* statedata;
-   
     EditorStateData* editorstatedata;
     
 public:
@@ -52,7 +52,7 @@ public:
     EditorModes(StateData* statedata, TileMap* tilemap, EditorStateData* editorstatedata);
     virtual ~EditorModes();
     
-      const bool getkeytime();
+    const bool getkeytime();
     
     virtual void updateInput(const float& dt) = 0 ;
     virtual void update(const float& dt) = 0;

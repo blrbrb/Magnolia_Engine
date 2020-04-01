@@ -10,7 +10,8 @@
 
 Sword::Sword(unsigned value, std::string texture_file) : Weapon(value, texture_file)
 {
-    
+    this->value = 1;
+    this->type = ItemTypes::WEAPON; 
 }
 
 
@@ -21,7 +22,6 @@ Sword::~Sword()
     
     
 }
-
 
 
 void Sword::update(const sf::Vector2f &MousePosView, const sf::Vector2f center)
