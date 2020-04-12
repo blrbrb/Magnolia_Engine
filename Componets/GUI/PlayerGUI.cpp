@@ -115,8 +115,6 @@ void PlayerGUI::updateInventory()
                      this->Itemboxes.at(x).setFillColor(sf::Color(50,50,50,200));
                      this->Itemboxes.at(x).setOutlineColor(sf::Color::White);
                      this->Itemboxes.at(x).setOutlineThickness(1.f);
-                        
-                  
                      this->Itemboxes.at(x).setPosition(X, Y);
                             
                   

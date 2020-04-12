@@ -33,6 +33,8 @@ StatusComponet::StatusComponet(int level)
     this->initsounds();
     this->UpdateStats(true);
     
+    
+    
     //init money
     this->coins = 0; 
     
@@ -83,9 +85,6 @@ void StatusComponet::update()
 {
     this->UpdateLevel();
 }
-
-
-
 
 
 

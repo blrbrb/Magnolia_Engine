@@ -20,7 +20,6 @@ Tile::Tile()
 Tile::Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled)
 {
     //this->rect.setSize(sf::Vector2f(gridsize_f, gridsize_f));
-    sf::VideoMode vm = sf::VideoMode::getDesktopMode();
     this->rect.setTexture(texture);
     //this->rect.setScale(2, 2);
     this->rect.setPosition(static_cast<float>(x) * gridsize_f, static_cast<float>(y) * gridsize_f);

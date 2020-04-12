@@ -16,6 +16,8 @@ class Player;
 class GraphicsSettings;
 class State;
 
+static const char * ErrorStrings[] = { "Game", "Editor", "MainMenu", "TileMap", "GUI", "Player", "Skill", "Item" , "Button", "DropDownList", "Enemy", "MovementComponent", "AnimationComponent" };
+
 
 class StateData
 {
@@ -27,6 +29,7 @@ public:
     
     //Variables
     float gridsize;
+    int error_type;
     sf::RenderWindow* window;
     std::map<std::string, int>* supportedkeys;
     std::stack<State*>* states;

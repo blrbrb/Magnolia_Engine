@@ -9,14 +9,13 @@
 #ifndef GameState_hpp
 #define GameState_hpp
 #include "State.hpp"
-#include "BattleState.hpp"
 #include "Player.hpp"
 #include "PlayerGUI.hpp"
 #include "PauseMenu.hpp"
 #include "EnemySystem.hpp"
 #include "TileMap.hpp"
-#include "GameStateModes.hpp"
-#include "DefaultGameState.hpp"
+#include "BattleState.hpp"
+
 
 
 
@@ -43,12 +42,10 @@ public:
     void updatePlayerInput(const float& dt);
     void updatePlayerGUI(const float& dt);
     void updatePlayer(const float& dt);
-    void updatemodes(const float& dt);
     void updateEnemies(const float& dt);
     void updateEnemyEncounter();
     void update(const float& dt);
     void render(sf::RenderTarget* target = NULL);
-    void rendermodes(sf::RenderTarget* target = NULL);
     void checkforendstate();
     void updateInput(const float& dt);
     void updatebuttons();
@@ -62,7 +59,7 @@ private:
     float cameraspeed;
     
     
-    int activemode;     
+      
     //Componet init
     Player* player;
     PlayerGUI* playerGUI;
@@ -70,7 +67,6 @@ private:
     TileMap* Tilemap;
     EnemySystem* enemysystem;
     
-    GameStateData gamestatedata;
     
     sf::Font font;
     sf::RenderTexture rendertexture;
@@ -83,10 +79,11 @@ private:
     sf::SoundBuffer buffer;
     sf::Sound sound; 
     sf::Vector2i ViewGridPosition;
-    std::vector<GameStateModes*> modes;
+   
     
     //Enemies
     std::vector<Enemy*> activEnemies;
+    
     
     
     //Init Functions
@@ -102,7 +99,7 @@ private:
     void initshaders();
     void initenemysystem();
     void initgamestatedata();
-    void initmodes();
+ 
 
     
 };

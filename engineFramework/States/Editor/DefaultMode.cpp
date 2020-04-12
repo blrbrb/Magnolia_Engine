@@ -176,7 +176,7 @@ void DefaultMode::update(const float &dt)
 
 void DefaultMode::updateGUI(const float &dt)
 {
-   sf::VideoMode vm = this->statedata->gfxsettings->resolution;
+   
     
     this->texture_selector->update(*this->editorstatedata->mousePosWindow, dt);
     
@@ -193,6 +193,7 @@ void DefaultMode::updateGUI(const float &dt)
     this->texturesample.setTexture(this->select_Rect.getTexture());
     this->texturesample.setTextureRect(this->select_Rect.getTextureRect());
      
+    
 
     //set the cursor text
     std::stringstream cursor_text;
@@ -247,6 +248,7 @@ void DefaultMode::renderGUI(sf::RenderTarget &target)
        target.draw(this->texturesample);
        target.draw(this->texturesample_container);
     
+    
        
        target.setView(*this->editorstatedata->view);
 }
@@ -298,6 +300,12 @@ void DefaultMode::initGUI()
     this->sidebar.setFillColor(sf::Color(50,50,50, 100));
     this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
     this->sidebar.setOutlineThickness(1.f);
+    
+    this->controls.setCharacterSize(GUI::calcCharSize(sf::VideoMode::getDesktopMode()));
+    this->controls.setFillColor(sf::Color::White);
+    this->controls.setFont(*this->editorstatedata->font);
+    this->controls.setPosition(100, 0);
+    this->controls.setString("Change Mode: 2 \n Zoom in: O \n Zoom Out: P \n");
     
     //config the selection rectangle
     this->select_Rect.setSize(sf::Vector2f(statedata->gridsize , statedata->gridsize ));

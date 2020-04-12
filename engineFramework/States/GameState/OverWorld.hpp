@@ -9,6 +9,20 @@
 #ifndef OverWorld_hpp
 #define OverWorld_hpp
 
-#include <stdio.h>
+
+class OverWorld
+{
+    
+public:
+    
+    OverWorld();
+    virtual ~OverWorld();
+    
+    
+private:
+    
+    
+    
+};
 
 #endif /* OverWorld_hpp */

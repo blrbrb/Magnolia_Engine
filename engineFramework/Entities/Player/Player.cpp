@@ -127,6 +127,7 @@ void Player::update(const float& dt, sf::Vector2f& MousePosView)
     //debug. Exp gain test
     
     this->attributes->update();
+    this->attributes->UpdateStats(true);
     
     this->movementcomponets->update(dt);
     
@@ -134,7 +135,7 @@ void Player::update(const float& dt, sf::Vector2f& MousePosView)
     
     this->hitbox->update();
     
-    //this->sword->update(MousePosView, this->getCenter());
+   
     
    
 }

@@ -24,12 +24,13 @@ GameState::GameState(StateData* state_data)
     this->initenemysystem();
     this->inittilemap();
     
-   // this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
+    // this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
     //this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
  
 }
 
-GameState::~GameState() {
+GameState::~GameState()
+{
     
     delete this->player;
     delete this->pMenu;
@@ -43,8 +44,7 @@ GameState::~GameState() {
         
     }
     
-   
-    
+
 }
 
 void GameState::initdeferedrender() {
@@ -154,16 +154,7 @@ void GameState::initplayers()
 
 void GameState::initgamestatedata()
 {
-    this->gamestatedata.view = &this->view;
-    this->gamestatedata.player = this->player;
-    this->gamestatedata.keytime = &this->keytime;
-    this->gamestatedata.ketyimeMax = &this->keytime_MAX;
-    this->gamestatedata.activeEnemies = this->activEnemies;
-    this->gamestatedata.playerGUI = this->playerGUI;
-    this->gamestatedata.enemysystem = this->enemysystem; 
-    this->gamestatedata.font = &this->font;
-    this->gamestatedata.core_shader = &this->core_shader;
-    this->gamestatedata.Tilemap = this->Tilemap;
+   
     
 }
 
@@ -174,6 +165,8 @@ void GameState::initpausemenu()
     this->pMenu = new PauseMenu(this->state_data->gfxsettings->resolution, this->font);
     
     this->pMenu->addbutton("Pause_Quit_Button",GUI::calcCharSize(vm),"Quit",GUI::pixelpercentX(13.f, vm), GUI::pixelpercentY(6.f, vm), 200.f);
+    
+    
 }
 
 void GameState::inittilemap()
@@ -183,16 +176,7 @@ void GameState::inittilemap()
 }
 
 
-void GameState::initmodes()
-{
-    
-    this->modes.push_back(new DefaultGameState(this->state_data, &this->gamestatedata));
-    this->modes.push_back(new BattleState(this->state_data,&this->gamestatedata));
 
-    
-    this->activemode = GAME_MODES::DEFAULT_GAME;
-    
-}
 
 void GameState::update(const float& dt) {
    
@@ -210,7 +194,7 @@ void GameState::update(const float& dt) {
          this->updateEnemies(dt);
          this->updatetilemap(dt);
          this->updatePlayerGUI(dt);
-        this->updatemodes(dt);
+         
          
      }
    
@@ -249,10 +233,7 @@ void GameState::updatetilemap(const float& dt)
     
 }
 
-void GameState::updatemodes(const float& dt)
-{
-    this->modes[this->activemode]->update(dt);
-}
+
 
 
 void GameState::updatebuttons()
@@ -261,6 +242,9 @@ void GameState::updatebuttons()
     {
         this->endstate();
     }
+    
+    
+    
 }
 
 void GameState::updateView(const float &dt)
@@ -400,21 +384,16 @@ void GameState::render(sf::RenderTarget* target) {
     target->draw(this->rendersprite);
 }
 
-void GameState::rendermodes(sf::RenderTarget* target)
-{
-    
-   // this->modes[this->activemode]->render(*target);
-    
-}
+
 
 void GameState::checkforendstate() {
     
    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))) {
           
-          return this->quit = true;
+          //return this->quit = true;
         
       }
-  else return this->quit = false;
+  //else return this->quit = false;
     
 }
 
@@ -441,17 +420,16 @@ void GameState::initenemysystem()
 
 void GameState::updateEnemyEncounter()
 {
-    
+
     for (auto *i : this->activEnemies)
     {
-        if (i->getGlobalBounds().contains(static_cast<sf::Vector2f>(this->player->getGridPosition(this->gridsize))))
+        if (i->getGlobalBounds().intersects(this->player->getGlobalBounds()))
         {
-            this->modes.push_back(new BattleState(this->state_data, &this->gamestatedata));
+            this->state_data->states->push(new BattleState(this->state_data));
         }
         
     }
     
-
 }
 
 

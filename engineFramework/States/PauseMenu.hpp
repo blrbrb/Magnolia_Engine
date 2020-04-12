@@ -17,13 +17,13 @@ class PauseMenu
 {
     
 private:
+    
     sf::RectangleShape background;
     sf::RectangleShape container;
     sf::Font& font;
     sf::Text menutext;
     
     std::map<std::string, GUI::Button*> buttons;
-    
     
     
     
@@ -40,10 +40,12 @@ public:
    
     void addbutton(const std::string key, const unsigned charSize, const std::string text, const float width, const float height, const float y);
     
-    
-     void update(const sf::Vector2i& MousePos);
-     void render(sf::RenderTarget& target);
+
+    void update(const sf::Vector2i& MousePos);
+    void render(sf::RenderTarget& target);
     
 };
+
+
 
 #endif /* PauseMenu_hpp */

@@ -2,14 +2,14 @@
 //  BattleState.cpp
 //  engineFramework
 //
-//  Created by Eli Reynolds on 3/6/20.
+//  Created by Eli Reynolds on 4/11/20.
 //  Copyright © 2020 Eli Reynolds. All rights reserved.
 //
 
 #include "BattleState.hpp"
 
 
-BattleState::BattleState(StateData *statedata, GameStateData *gamestatedata) : GameStateModes(statedata, gamestatedata)
+BattleState::BattleState(StateData *state_data) : State(state_data)
 {
     
 }
@@ -21,38 +21,22 @@ BattleState::~BattleState()
 
 void BattleState::updateInput(const float &dt)
 {
-    
-    
-    
-    
+
 }
 
 void BattleState::update(const float &dt)
 {
-    
+    this->tester.setSize(sf::Vector2f(1000, 1000));
+    this->tester.setFillColor(sf::Color::Red);
 }
 
-void BattleState::updateGUI(const float &dt)
+void BattleState::render(sf::RenderTarget *target)
 {
-    
+    target->draw(this->tester);
 }
 
-void BattleState::updatecombat()
+void BattleState::initkeybinds()
 {
     
-}
-
-void BattleState::updateenemies()
-{
-    
-}
-
-void BattleState::renderGUI(sf::RenderTarget &target)
-{
-    
-}
-
-void BattleState::render(sf::RenderTarget &target)
-{
     
 }

@@ -72,7 +72,9 @@ private:
         void initGUI();
         void initmodes(); 
          
+     
     
+
         //GUI
        std::map<std::string, GUI::Button*> buttons;
        float cameraspeed;

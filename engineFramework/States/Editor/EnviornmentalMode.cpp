@@ -233,7 +233,7 @@ void EnviornmentalMode::update(const float &dt)
 
 void EnviornmentalMode::updateGUI(const float &dt)
 {
-    sf::VideoMode vm = this->statedata->gfxsettings->resolution;
+   
     
     this->texture_selector->update(*this->editorstatedata->mousePosWindow, dt);
     

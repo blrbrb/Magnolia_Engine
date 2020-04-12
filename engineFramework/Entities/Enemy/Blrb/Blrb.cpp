@@ -16,7 +16,11 @@ void Blrb::initvariables()
 
 void Blrb::initanimations()
 {
-      this->animtioncomponet->add_animation("IDLE", 25.f, 0, 0, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("IDLE", 25.f, 0, 0, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("LEFT", 25.f, 0, 0, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("RIGHT", 25.f, 0, 0, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("UP", 25.f, 0, 0, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("DOWN", 25.f, 0, 0, 6, 0, 17, 17);
 }
 
 
@@ -33,6 +37,8 @@ Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
     this->initanimations();
     
 }
+
+
 
 Blrb::~Blrb()
 {
@@ -61,13 +67,21 @@ void Blrb::updateAnimation(const float &dt)
         
        @return void
         */
-          
           if (this->movementcomponets->getStauts(IDLE))
           {
               
               this->animtioncomponet->play("IDLE", dt, false);
               
           }
+
+    if (this->movementcomponets->getStauts(MOVING_LEFT))
+    {
+                 
+       this->animtioncomponet->play("LEFT", dt, false);
+                 
+    }
+    
+        
 }
 
 void Blrb::update(const float &dt, sf::Vector2f &MousePosView)
@@ -77,6 +91,8 @@ void Blrb::update(const float &dt, sf::Vector2f &MousePosView)
        this->updateAnimation(dt);
        this->hitbox->update();
 }
+
+
 
 void Blrb::render(sf::RenderTarget &target, sf::Shader *shader, const sf::Vector2f light, const bool render_hitbox)
 {

@@ -388,8 +388,8 @@ void TileMap::savetofile(const std::string filename)
     }
     else
     {
-        std::cout << "ERROR 09: TILEMAP::SAVETOFILE COULD NOT SAVE" << std::endl;
-        throw std::runtime_error("ERROR 09: TILEMAP::SAVETOFILE COULD NOT SAVE");
+        std::cout << "ERROR CODE TILEMAP:392 || TILEMAP::SAVETOFILE || COULD NOT SAVE" << std::endl;
+        throw std::runtime_error("ERROR CODE TILEMAP:392 || TILEMAP::SAVETOFILE || Reason: COULD NOT SAVE");
         
     }
     
@@ -455,8 +455,8 @@ void TileMap::loadfromfile(const std::string filename)
           
         if(!this->tileTextureSheet.loadFromFile(resourcePath() + texture_file))
         {
-            std::cout << "ERROR_C_10: TILEMAP::LOADFROMFILE::UNABLE_TO_OPEN_FILE" << std::endl;
-            throw std::runtime_error("ERROR_C_10: TILEMAP::LOADFROMFILE::UNABLE_TO_OPEN_FILE");
+            std::cout << "ERROR CODE TILEMAP:458 || LOADFROMFILE || Reason: UNABLE_TO_OPEN_FILE" << std::endl;
+            throw std::runtime_error("ERROR CODE TILEMAP:458 || LOADFROMFILE || Reason: UNABLE_TO_OPEN_FILE");
         }
         while (in >> x >> y >> z >> type)
         {
@@ -489,8 +489,8 @@ void TileMap::loadfromfile(const std::string filename)
     }
     else
     {
-        std::cout << "ERROR_C_09: TILEMAP::LOADFROMFILE_COULD_NOT_LOAD" << std::endl;
-        throw std::runtime_error("ERROR_C_09: TILEMAP::LOADFROMFILE_COULD_NOT_LOAD");
+        std::cout << "ERROR CODE TILEMAP:3 || LOADFROMFILE || COULD NOT LOAD" << std::endl;
+        throw std::runtime_error("ERROR CODE TILEMAP:3 || LOADFROMFILE || COULD NOT LOAD");
     }
     
     in.close();

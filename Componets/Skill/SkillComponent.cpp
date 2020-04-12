@@ -31,7 +31,7 @@ SkillComponent::~SkillComponent()
 const int SkillComponent::getSkill(const int skill) const
 {
     if(skills.empty() || skill < 0 || skill > this->skills.size())
-        throw std::runtime_error("Skill Does Not Exist. Line 40 Skill Component.cpp");
+        throw std::runtime_error("ERROR CODE SkillComponet:42 || Skill does not exist. Cannot gain Exp");
     else
         return this->skills[skill].getlevel();
 }
@@ -39,8 +39,10 @@ const int SkillComponent::getSkill(const int skill) const
 const void SkillComponent::gainExp(const int skill, const int exp)
 {
     if(skills.empty() || skill < 0 || skill > this->skills.size())
-        throw std::runtime_error("Skill Does Not Exist. Line 40 Skill Component.cpp");
-    else
+        std::cout << ("ERROR CODE SkillComponet:42 || Skill does not exist. Cannot gain Exp") << std::endl;
+        throw std::runtime_error("ERROR CODE SkillComponet:42 || Skill does not exist. Cannot gain Exp");
+       
+    if(skills.empty() == true)
         return this->skills[skill].gainexp(exp);
 
 }

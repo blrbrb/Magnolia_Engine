@@ -176,12 +176,12 @@ void EnemyEditorMode::update(const float &dt)
 
 void EnemyEditorMode::updateGUI(const float &dt)
 {
-    sf::VideoMode vm = this->statedata->gfxsettings->resolution;
+   
      
 
            //set the selection rectangle position
      
-         this->select_Rect.setPosition(this->editorstatedata->mouseposGrid->x * this->statedata->gridsize, this->editorstatedata->mouseposGrid->y * this->statedata->gridsize);
+            this->select_Rect.setPosition(this->editorstatedata->mouseposGrid->x * this->statedata->gridsize, this->editorstatedata->mouseposGrid->y * this->statedata->gridsize);
          
     
      

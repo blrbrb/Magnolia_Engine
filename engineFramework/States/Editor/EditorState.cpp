@@ -89,8 +89,10 @@ void EditorState::initpausemenu()
     this->pMenu->addbutton("Editor_Pause_Quit_Button", GUI::calcCharSize(vm), "Quit", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 150.f);
     this->pMenu->addbutton("Editor_Pause_Save_Button", GUI::calcCharSize(vm), "Save", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 400.f);
     this->pMenu->addbutton("Editor_Pause_Load_Button", GUI::calcCharSize(vm), "Load", GUI::pixelpercentX(12.f, vm),
-                           GUI::pixelpercentY(6.f, vm), 650.f); 
-   
+                           GUI::pixelpercentY(6.f, vm), 650.f);
+    
+   this->pMenu->addbutton("Editor_Controls_Button", GUI::calcCharSize(vm), "Controls", GUI::pixelpercentX(12.f, vm),
+                             GUI::pixelpercentY(6.f, vm), 800.f);
 }
 
 void EditorState::updatepausemenubuttons()
@@ -99,7 +101,7 @@ void EditorState::updatepausemenubuttons()
     //Quit: Back to Main
     if(this->pMenu->isButtonPressed("Editor_Pause_Quit_Button"))
     {
-            this->endstate();
+        this->endstate();
     }
 
     
@@ -120,11 +122,10 @@ void EditorState::updatepausemenubuttons()
     }
     
     
-    
-
 
     
 }
+
 
 void EditorState::initkeybinds()
 {
@@ -194,8 +195,8 @@ void EditorState::initFonts() {
     
     if (!this->font.loadFromFile(resourcePath() + "PressStart2P.ttf"))
     {
-        std::cout <<  "ERROR CODE 01: EditorState::initFonts COULD NOT LOAD FONT FROM FILE" << std::endl;
-        throw std::runtime_error("ERROR CODE 01: EditorState::initFonts COULD NOT LOAD FONT FROM FILE");
+        std::cout <<  "ERROR CODE EditorState:1 || EditorState::initFonts || COULD NOT LOAD FONT FROM FILE CHECK CONSTRUCTOR" << std::endl;
+        throw std::runtime_error("ERROR CODE EditorState:1 || EditorState::initFonts || COULD NOT LOAD FONT FROM FILE CHECK CONSTRUCTOR");
         
     }
     
@@ -339,7 +340,7 @@ void EditorState::updateInput(const float& dt) {
         }
         else
         {
-            std::cout << "ERROR::EDITORSTATE::CANNOT CHANGE MODE DOWN!" << "\n";
+            std::cout << "ERROR CODE EditorState:2 || updateinput || CHANGE MODE DOWN!" << "\n";
         }
     }
       

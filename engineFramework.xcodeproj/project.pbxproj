@@ -91,7 +91,6 @@
 		455808D624007E9600E36DFA /* red_panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 455808D524007E9600E36DFA /* red_panel.png */; };
 		455808E024009CC500E36DFA /* StatusComponet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 455808DE24009CC500E36DFA /* StatusComponet.cpp */; };
 		455FB37B2404729600146C3A /* PlayerGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 455FB3792404729600146C3A /* PlayerGUI.cpp */; };
-		455FB37C2404AAD600146C3A /* engineFramework-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 454A702A23D770B4003FEB4F /* engineFramework-Info.plist */; };
 		455FB37D2404AAE400146C3A /* EngineLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 458AB8FF23E0D94200C9E397 /* EngineLogo.png */; };
 		455FB3822404ABCB00146C3A /* LevelUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3812404ABCB00146C3A /* LevelUp.wav */; };
 		455FB3842404AC1A00146C3A /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3832404AC1A00146C3A /* Success.wav */; };
@@ -107,14 +106,12 @@
 		455FB39E240593AF00146C3A /* dropdownTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB39D240593AF00146C3A /* dropdownTop.png */; };
 		455FB3A0240593BF00146C3A /* dropdownMid.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB39F240593BF00146C3A /* dropdownMid.png */; };
 		455FB3A2240593C500146C3A /* dropdownBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A1240593C500146C3A /* dropdownBottom.png */; };
-		455FB3A42405D2C900146C3A /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A32405D2C900146C3A /* atlas.png */; };
 		455FB3A824070A1900146C3A /* vertex_shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A724070A1900146C3A /* vertex_shader.vert */; };
 		455FB3AA24070AA000146C3A /* fragment_shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A924070AA000146C3A /* fragment_shader.frag */; };
-		457AF51424267E93009B543D /* GameStateModes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457AF51224267E93009B543D /* GameStateModes.cpp */; };
 		457AF518242BCE5D009B543D /* OverWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457AF516242BCE5D009B543D /* OverWorld.cpp */; };
-		457AF51B242BD07F009B543D /* DefaultGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457AF519242BD07F009B543D /* DefaultGameState.cpp */; };
 		457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457E8A8C23E914820052FB6D /* PauseMenu.cpp */; };
 		45850C9423E3136900417726 /* animationComponet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45850C9223E3136900417726 /* animationComponet.cpp */; };
+		4586BEB3244279A800D96332 /* BattleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4586BEB1244279A800D96332 /* BattleState.cpp */; };
 		458A1D3823ECCF5000F2F8ED /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1D3623ECCF5000F2F8ED /* Tile.cpp */; };
 		458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1D3A23ECCFB500F2F8ED /* TileMap.cpp */; };
 		458EE3FB241D4BE50040B75A /* LightTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458EE3F9241D4BE50040B75A /* LightTile.cpp */; };
@@ -123,7 +120,6 @@
 		45B989D323E0909400B3C087 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B989D123E0909400B3C087 /* Player.cpp */; };
 		45BE8F4D241283C5001921B4 /* NormalTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4B241283C5001921B4 /* NormalTile.cpp */; };
 		45BE8F512412915D001921B4 /* Blerb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F4F2412915D001921B4 /* Blerb.cpp */; };
-		45BE8F542412D345001921B4 /* BattleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F522412D345001921B4 /* BattleState.cpp */; };
 		45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F55241317E7001921B4 /* EnemySystem.cpp */; };
 		45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5A24146B19001921B4 /* CombatSystem.cpp */; };
 		45BE8F6024168C0D001921B4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BE8F5E24168C0D001921B4 /* Inventory.cpp */; };
@@ -282,19 +278,16 @@
 		455FB39D240593AF00146C3A /* dropdownTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownTop.png; sourceTree = "<group>"; };
 		455FB39F240593BF00146C3A /* dropdownMid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownMid.png; sourceTree = "<group>"; };
 		455FB3A1240593C500146C3A /* dropdownBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownBottom.png; sourceTree = "<group>"; };
-		455FB3A32405D2C900146C3A /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		455FB3A724070A1900146C3A /* vertex_shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex_shader.vert; sourceTree = "<group>"; };
 		455FB3A924070AA000146C3A /* fragment_shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment_shader.frag; sourceTree = "<group>"; };
-		457AF51224267E93009B543D /* GameStateModes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateModes.cpp; sourceTree = "<group>"; };
-		457AF51324267E93009B543D /* GameStateModes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameStateModes.hpp; sourceTree = "<group>"; };
 		457AF516242BCE5D009B543D /* OverWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OverWorld.cpp; sourceTree = "<group>"; };
 		457AF517242BCE5D009B543D /* OverWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OverWorld.hpp; sourceTree = "<group>"; };
-		457AF519242BD07F009B543D /* DefaultGameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultGameState.cpp; sourceTree = "<group>"; };
-		457AF51A242BD07F009B543D /* DefaultGameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DefaultGameState.hpp; sourceTree = "<group>"; };
 		457E8A8C23E914820052FB6D /* PauseMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PauseMenu.cpp; sourceTree = "<group>"; };
 		457E8A8D23E914820052FB6D /* PauseMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PauseMenu.hpp; sourceTree = "<group>"; };
 		45850C9223E3136900417726 /* animationComponet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = animationComponet.cpp; sourceTree = "<group>"; };
 		45850C9323E3136900417726 /* AnimationComponet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AnimationComponet.hpp; sourceTree = "<group>"; };
+		4586BEB1244279A800D96332 /* BattleState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BattleState.cpp; sourceTree = "<group>"; };
+		4586BEB2244279A800D96332 /* BattleState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleState.hpp; sourceTree = "<group>"; };
 		458A1D3623ECCF5000F2F8ED /* Tile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
 		458A1D3723ECCF5000F2F8ED /* Tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
 		458A1D3A23ECCFB500F2F8ED /* TileMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
@@ -314,8 +307,6 @@
 		45BE8F4E24129097001921B4 /* Tiles_Include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tiles_Include.h; sourceTree = "<group>"; };
 		45BE8F4F2412915D001921B4 /* Blerb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Blerb.cpp; sourceTree = "<group>"; };
 		45BE8F502412915D001921B4 /* Blerb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Blerb.hpp; sourceTree = "<group>"; };
-		45BE8F522412D345001921B4 /* BattleState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BattleState.cpp; sourceTree = "<group>"; };
-		45BE8F532412D345001921B4 /* BattleState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleState.hpp; sourceTree = "<group>"; };
 		45BE8F55241317E7001921B4 /* EnemySystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemySystem.cpp; sourceTree = "<group>"; };
 		45BE8F56241317E7001921B4 /* EnemySystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnemySystem.hpp; sourceTree = "<group>"; };
 		45BE8F5A24146B19001921B4 /* CombatSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CombatSystem.cpp; sourceTree = "<group>"; };
@@ -479,7 +470,6 @@
 				45466C512408919B001F72E0 /* TileMap.png */,
 				455FB3A724070A1900146C3A /* vertex_shader.vert */,
 				455FB3A924070AA000146C3A /* fragment_shader.frag */,
-				455FB3A32405D2C900146C3A /* atlas.png */,
 				455FB37E2404AB5200146C3A /* Sounds */,
 				458AB8FF23E0D94200C9E397 /* EngineLogo.png */,
 				45DB9A5323DD226600F8693E /* Fonts */,
@@ -677,16 +667,12 @@
 		457AF51124267E69009B543D /* GameState */ = {
 			isa = PBXGroup;
 			children = (
-				45BE8F532412D345001921B4 /* BattleState.hpp */,
-				45BE8F522412D345001921B4 /* BattleState.cpp */,
-				457AF519242BD07F009B543D /* DefaultGameState.cpp */,
-				457AF51A242BD07F009B543D /* DefaultGameState.hpp */,
 				450CA31023D9187800FF039F /* GameState.hpp */,
 				450CA30F23D9187800FF039F /* GameState.cpp */,
-				457AF51224267E93009B543D /* GameStateModes.cpp */,
-				457AF51324267E93009B543D /* GameStateModes.hpp */,
 				457AF516242BCE5D009B543D /* OverWorld.cpp */,
 				457AF517242BCE5D009B543D /* OverWorld.hpp */,
+				4586BEB1244279A800D96332 /* BattleState.cpp */,
+				4586BEB2244279A800D96332 /* BattleState.hpp */,
 			);
 			path = GameState;
 			sourceTree = "<group>";
@@ -1058,7 +1044,7 @@
 		454A701D23D770B4003FEB4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Eli Reynolds";
 				TargetAttributes = {
 					454A702523D770B4003FEB4F = {
@@ -1091,13 +1077,11 @@
 			files = (
 				45E01759240AF23500EC8E1D /* red_button02.png in Resources */,
 				455FB3992404ADDF00146C3A /* license.txt in Resources */,
-				455FB3A42405D2C900146C3A /* atlas.png in Resources */,
 				455318FA2409FEFE00433CD7 /* red_button07.png in Resources */,
 				45466C662408A60D001F72E0 /* Retro Event Acute 08.wav in Resources */,
 				455FB37D2404AAE400146C3A /* EngineLogo.png in Resources */,
 				45BE8F8A241883C3001921B4 /* fuck.png in Resources */,
 				455318ED2409FEFD00433CD7 /* grey_button04.png in Resources */,
-				455FB37C2404AAD600146C3A /* engineFramework-Info.plist in Resources */,
 				455FB3842404AC1A00146C3A /* Success.wav in Resources */,
 				458EE409242324270040B75A /* coins.png in Resources */,
 				45466C682408A616001F72E0 /* Retro Event UI 13.wav in Resources */,
@@ -1233,12 +1217,12 @@
 				457AF518242BCE5D009B543D /* OverWorld.cpp in Sources */,
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,
 				45E01774240DD6D400EC8E1D /* Enemy.cpp in Sources */,
-				45BE8F542412D345001921B4 /* BattleState.cpp in Sources */,
 				45BE8F862417C1BB001921B4 /* EnviornmentalMode.cpp in Sources */,
 				458A1D3C23ECCFB500F2F8ED /* TileMap.cpp in Sources */,
 				458A1D3823ECCF5000F2F8ED /* Tile.cpp in Sources */,
 				4553BC3C23EE2D99002C68C0 /* GraphicsSettings.cpp in Sources */,
 				450CA31123D9187800FF039F /* GameState.cpp in Sources */,
+				4586BEB3244279A800D96332 /* BattleState.cpp in Sources */,
 				454A702F23D770B4003FEB4F /* main.cpp in Sources */,
 				4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */,
 				45E01769240D80D800EC8E1D /* Sword.cpp in Sources */,
@@ -1250,13 +1234,11 @@
 				451BD30C23DA10E200426643 /* Entity.cpp in Sources */,
 				457E8A8E23E914820052FB6D /* PauseMenu.cpp in Sources */,
 				458EE40F2423FFD30040B75A /* Coin.cpp in Sources */,
-				457AF51B242BD07F009B543D /* DefaultGameState.cpp in Sources */,
 				45F8E41A23EB59470037EBD5 /* SettingsState.cpp in Sources */,
 				458EE3FB241D4BE50040B75A /* LightTile.cpp in Sources */,
 				45BE8F5C24146B19001921B4 /* CombatSystem.cpp in Sources */,
 				450CA30923D9106200FF039F /* State.cpp in Sources */,
 				45BE8F57241317E7001921B4 /* EnemySystem.cpp in Sources */,
-				457AF51424267E93009B543D /* GameStateModes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1266,14 +1248,39 @@
 		454A703923D770B4003FEB4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Library/Frameworks/,
 					"$(inherited)",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
 					"$(inherited)",
@@ -1283,6 +1290,7 @@
 					"$(inherited)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"$(SFML_SYSTEM)",
@@ -1310,14 +1318,38 @@
 		454A703A23D770B4003FEB4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Library/Frameworks/,
 					"$(inherited)",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
 					"$(inherited)",
@@ -1354,6 +1386,7 @@
 		454A703C23D770B4003FEB4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -1362,7 +1395,7 @@
 				INFOPLIST_FILE = "engineFramework/engineFramework-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eli-Reynolds.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = NO;
 				VALIDATE_WORKSPACE = NO;
@@ -1372,6 +1405,7 @@
 		454A703D23D770B4003FEB4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -1380,7 +1414,7 @@
 				INFOPLIST_FILE = "engineFramework/engineFramework-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eli-Reynolds.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = NO;
 				VALIDATE_WORKSPACE = NO;

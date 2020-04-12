@@ -207,7 +207,7 @@ void GUI::Button::update(const sf::Vector2i Mousepos) {
             this->rectangle.setFillColor(sf::Color::Red);
             this->text.setFillColor(sf::Color::Green);
             this->rectangle.setOutlineColor(sf::Color::Blue);
-            std::cout << "ERROR_C_11 GUI::BUTTON::UPDATE UNABLE TO LOAD BUTTON FROM TEXTURE FILE" << std::endl; 
+          std::cout << "ERROR CODE BUTTON:210 || GUI::BUTTON::UPDATE || UNABLE TO LOAD BUTTON FROM TEXTURE FILE CHECK BUTTON CONSTRUCTOR" << std::endl;
             break;
     }
 
@@ -627,7 +627,7 @@ void GUI::CheckBox::update(const sf::Vector2i Mousepos)
                 this->box.setFillColor(sf::Color::Red);
                 this->box.setFillColor(sf::Color::Green);
                 this->box.setOutlineColor(sf::Color::Blue);
-                std::cout << "ERROR_C_12 GUI::CHECKBOX::UPDATE UNABLE TO LOAD CHECKBOX FROM TEXTURE FILE" << std::endl;
+                std::cout << "ERROR_CODE GUI:630 || CHECKBOX::UPDATE || UNABLE TO LOAD CHECKBOX FROM TEXTURE FILE CHECK CONSTRUCTOR" << std::endl;
                 break;
         }
 
@@ -693,7 +693,7 @@ const float GUI::pixelpercentY(const float percent, const sf::VideoMode& vm)
 
 GUI::ProgressBar::ProgressBar(float x, float y, float width, float height, int MaxValue, sf::VideoMode& vm, sf::Color inner_color, unsigned charSize, sf::Font* font)
 {
-    float widthh = GUI::pixelpercentX(width, vm);           //300.f;
+    float widthh = GUI::pixelpercentX(width, vm);
     float heightt = GUI::pixelpercentY(height, vm);
     float xx = GUI::pixelpercentX(x, vm);
     float yy = GUI::pixelpercentY(y, vm);

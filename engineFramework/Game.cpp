@@ -98,7 +98,7 @@ void Game::initwindow() {
     if(!icon.loadFromFile(resourcePath() + "Blrb.png"))
     {
         
-        std::cout << "ERROR_C_12 GAME::INITWINDOW UNABLE_TO_LOAD_ICON" << std::endl;
+        std::cout << "ERROR CODE GAME::101 || INITWINDOW || UNABLE_TO_LOAD_ICON" << std::endl;
     }
    
     

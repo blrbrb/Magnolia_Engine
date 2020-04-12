@@ -24,6 +24,7 @@ private:
         
         //interface variables
           sf::Text cursortext;
+          sf::Text controls;
           GUI::TextureSelector* texture_selector;
           sf::RectangleShape select_Rect;
           sf::RectangleShape sidebar;

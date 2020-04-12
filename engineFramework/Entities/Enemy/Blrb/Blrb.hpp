@@ -20,10 +20,9 @@ public:
     
     void loseHP(const int HP);
     void gainHP(const int HP);
-
     
-    void updateAnimation(const float& dt);
     void update(const float& dt, sf::Vector2f& MousePosView);
+    void updateAnimation(const float& dt);
     void render(sf::RenderTarget& target,sf::Shader* shader = nullptr, const sf::Vector2f light = sf::Vector2f(), const bool render_hitbox = false);
     
 private:
