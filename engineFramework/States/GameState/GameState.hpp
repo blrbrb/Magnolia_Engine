@@ -11,13 +11,14 @@
 #include "State.hpp"
 #include "Player.hpp"
 #include "PlayerGUI.hpp"
+#include "GUI.hpp"
 #include "PauseMenu.hpp"
 #include "EnemySystem.hpp"
 #include "TileMap.hpp"
 #include "BattleState.hpp"
 
 
-
+enum GAME_MODES {DEFAULT_GAME= 0, BATTLE};
 
 class Enemy;
 class Blrb;
@@ -26,8 +27,19 @@ class PauseMenu;
 class Player;
 class TileMap;
 
+class GameStateData
+{
+public:
+    
+    GameStateData() {};
+    
+    
+    std::map<std::string, int>* keybinds;
+    sf::Font* font;
+    
 
-enum GAME_MODES {DEFAULT_GAME= 0, BATTLE};
+};
+
 
 class GameState : public State {
 
@@ -50,7 +62,8 @@ public:
     void updateInput(const float& dt);
     void updatebuttons();
     void updatetilemap(const float& dt);
-    
+ 
+
     
 private:
     
@@ -83,8 +96,8 @@ private:
     
     //Enemies
     std::vector<Enemy*> activEnemies;
-    
-    
+  
+    GameStateData gamestatedata; 
     
     //Init Functions
     void initdeferedrender();

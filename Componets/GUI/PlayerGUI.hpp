@@ -40,7 +40,7 @@ private:
     //Inventory
     
     std::vector<sf::RectangleShape> Itemboxes;
-    //inventory
+    
     
     
     //COINS
@@ -52,6 +52,7 @@ private:
     int currentSize; 
     bool hidden;
 
+   
     void initfont();
     void initLevelTag();
     void initHPbar();
@@ -72,13 +73,17 @@ public:
     //Modifiers
     void HideInventory(); 
     
-    //Functions
+    //update functions
+    void updateBattleGUI();
     void updateLevelTag();
     void updateHPbar();
     void updateEXPbar();
     void updateMoney();
     void updateInventory();
     void update(const float& dt);
+    
+    //Render functions
+    
     void renderLevelTag(sf::RenderTarget& target);
     void renderHPbar(sf::RenderTarget& target);
     void renderMoney(sf::RenderTarget& target);

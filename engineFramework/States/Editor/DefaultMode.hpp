@@ -32,6 +32,7 @@ private:
           sf::RectangleShape texturesample;
           sf::RectangleShape texturesample_container; 
           sf::RectangleShape text_container;
+          sf::RectangleShape controlsContainer; 
           sf::IntRect TextureRect;
          
      

@@ -89,10 +89,8 @@ void EditorState::initpausemenu()
     this->pMenu->addbutton("Editor_Pause_Quit_Button", GUI::calcCharSize(vm), "Quit", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 150.f);
     this->pMenu->addbutton("Editor_Pause_Save_Button", GUI::calcCharSize(vm), "Save", GUI::pixelpercentX(12.f, vm), GUI::pixelpercentY(6.f, vm), 400.f);
     this->pMenu->addbutton("Editor_Pause_Load_Button", GUI::calcCharSize(vm), "Load", GUI::pixelpercentX(12.f, vm),
-                           GUI::pixelpercentY(6.f, vm), 650.f);
+                           GUI::pixelpercentY(6.f, vm), 550.f);
     
-   this->pMenu->addbutton("Editor_Controls_Button", GUI::calcCharSize(vm), "Controls", GUI::pixelpercentX(12.f, vm),
-                             GUI::pixelpercentY(6.f, vm), 800.f);
 }
 
 void EditorState::updatepausemenubuttons()
@@ -120,6 +118,8 @@ void EditorState::updatepausemenubuttons()
         this->Tilemap->loadfromfile("Config/text.slmp");
 
     }
+    
+    //enable autoave
     
     
 

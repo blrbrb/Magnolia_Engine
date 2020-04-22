@@ -30,6 +30,8 @@ PlayerGUI::~PlayerGUI()
     
 }
 
+
+
 void PlayerGUI::initMONEY()
 {
     this->Coins = new GUI::Icon(GUI::pixelpercentX(92, vm), GUI::pixelpercentY(0, vm), "coins.png");
@@ -184,6 +186,7 @@ void PlayerGUI::renderInventory(sf::RenderTarget& target)
     
 }
 
+
 void PlayerGUI::renderEXPbar(sf::RenderTarget& target)
 {
     this->ExpBar->render(target);
@@ -196,7 +199,8 @@ void PlayerGUI::render(sf::RenderTarget &target)
     this->renderEXPbar(target);
     this->renderHPbar(target);
     this->renderInventory(target);
-   
+    
+
 }
 
 

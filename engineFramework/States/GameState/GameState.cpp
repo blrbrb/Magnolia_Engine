@@ -154,7 +154,8 @@ void GameState::initplayers()
 
 void GameState::initgamestatedata()
 {
-   
+    this->gamestatedata.keybinds = &this->keybinds;
+    this->gamestatedata.font = &this->font;
     
 }
 
@@ -193,6 +194,7 @@ void GameState::update(const float& dt) {
          this->updatePlayer(dt);
          this->updateEnemies(dt);
          this->updatetilemap(dt);
+         this->updateEnemyEncounter();
          this->updatePlayerGUI(dt);
          
          
@@ -423,9 +425,10 @@ void GameState::updateEnemyEncounter()
 
     for (auto *i : this->activEnemies)
     {
-        if (i->getGlobalBounds().intersects(this->player->getGlobalBounds()))
+        if (i->getGlobalBounds().contains(this->player->getPosition().x, this->player->getPosition().y))
         {
-            this->state_data->states->push(new BattleState(this->state_data));
+            //enter a battlestate if the player, and enemy positions intersect
+            this->state_data->states->push(new BattleState(this->state_data, &this->gamestatedata, this->player, this->playerGUI, i));
         }
         
     }

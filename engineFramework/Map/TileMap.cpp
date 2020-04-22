@@ -180,9 +180,12 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
        this->ToY = gridposition.y + 27;
        
            if(this->ToY < 0)
-                      this->ToY = 0;
-            else if (this->ToY > this->MaxSizeWorldGrid.y);
-                      this->ToY = this->MaxSizeWorldGrid.y;
+                this->ToY = 0;
+           else if (this->ToY > this->MaxSizeWorldGrid.y)
+           
+               this->ToY = this->MaxSizeWorldGrid.y;
+
+           
     
 
        for (int x = this->FromX; x < this->ToX; x++ )
@@ -537,14 +540,6 @@ const int TileMap::getLayerSize(const int x, const int y, const int layer) const
 }
 
 
-
-
-
-
-
-
-
-
 void TileMap::DefferedRender(sf::RenderTarget &target, sf::Shader* shader, const sf::Vector2f PlayerPosition)
 {
     
@@ -598,11 +593,22 @@ const bool TileMap::TileEmpty(const int x, const int y, const int z) const
         y >= 0 && y < this->MaxSizeWorldGrid.y &&
         z >= 0 && z < this->layers)
     {
-        return this->Map[x][y][z].empty();
+        
+            return this->Map[x][y][z].empty();
+
     }
     
-    std::cout << "You idiot you fucked it up" << std::endl;
+    else
+    {
+        try {return this->Map[z][y][z].empty();}
+        
+        catch(std::bad_alloc& e)
+               {
+                   std::cout << "Invalid Tile :" << e.what();
+               }
+    }
     
+
 }
 
 
@@ -850,6 +856,8 @@ void TileMap::renderlighttile(sf::RenderTarget& target, sf::Shader* shader)
     
     
 }
+
+
 
 
 

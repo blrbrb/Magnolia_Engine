@@ -746,12 +746,10 @@ void GUI::ProgressBar::update(const int current_value)
 
 void GUI::ProgressBar::render(sf::RenderTarget& target)
 {
-
     target.draw(this->Exterior);
     target.draw(this->Interior);
     target.draw(this->text);
-    
-    
+
 }
 
 

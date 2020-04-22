@@ -195,7 +195,7 @@ void DefaultMode::updateGUI(const float &dt)
      
     
 
-    //set the cursor text
+    //set the tile info text
     std::stringstream cursor_text;
     cursor_text << "MouseX: " << this->editorstatedata->mousePosView->x << "\n"
     << "MouseY:" << this->editorstatedata->mousePosView->y
@@ -207,13 +207,13 @@ void DefaultMode::updateGUI(const float &dt)
     << "\n" << "Type: " << EnumStrings[this->type]
     << "\n" << "Tiles:" << this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer);
     
-    //If the cursor is on a valid tile, the text color is white
+    //If the cursor is on a valid tile, the above string stream color is white
     if (this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) != -1)
     {
         this->cursortext.setFillColor(sf::Color::White);
     }
     
-    //if the cursor is not on a valid tile, the text color is red
+    //if the cursor is not on a valid tile, the above string stream color is red
     else if (this->tilemap->getLayerSize(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer) == -1 )
     {
         this->cursortext.setFillColor(sf::Color::Red);
@@ -223,7 +223,7 @@ void DefaultMode::updateGUI(const float &dt)
     
     
     
-    //If the cursor is inside of the sidebar, ignore the gridsize and set the selection rectangle to 64x64
+    
     
     
    }
@@ -247,7 +247,8 @@ void DefaultMode::renderGUI(sf::RenderTarget &target)
        target.draw(this->text_container);
        target.draw(this->texturesample);
        target.draw(this->texturesample_container);
-    
+       target.draw(this->controls);
+       target.draw(this->controlsContainer);
     
        
        target.setView(*this->editorstatedata->view);
@@ -282,11 +283,25 @@ void DefaultMode::inittext()
            this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
 
             //init the cursor text container
-           this->text_container.setSize(sf::Vector2f(400.f, 300.f));
+           this->text_container.setSize(sf::Vector2f(GUI::pixelpercentX(28.57, vm), (GUI::pixelpercentY(30, vm))));
            this->text_container.setFillColor(sf::Color(50,50,50,100));
            this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
            this->text_container.setOutlineThickness(1.f);
            this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
+    
+            //init the controls text
+            this->controls.setCharacterSize(GUI::calcCharSize(vm, 100));
+            this->controls.setFillColor(sf::Color::White);
+            this->controls.setFont(*this->editorstatedata->font);
+            this->controls.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentY(33, vm));
+            this->controls.setString("Change Mode: 2 \n Zoom in: O \n Zoom Out: P \n");
+    
+            //init the controls container
+            this->controlsContainer.setSize(sf::Vector2f(GUI::pixelpercentX(30, vm), GUI::pixelpercentY(30, vm)));
+            this->controlsContainer.setFillColor(sf::Color(50,50,50,100));
+            this->controlsContainer.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(30, vm));
+            this->controlsContainer.setOutlineThickness(1.f);
+            this->controlsContainer.setOutlineColor(sf::Color(200, 200, 200, 150));
     
 }
     
@@ -301,11 +316,7 @@ void DefaultMode::initGUI()
     this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
     this->sidebar.setOutlineThickness(1.f);
     
-    this->controls.setCharacterSize(GUI::calcCharSize(sf::VideoMode::getDesktopMode()));
-    this->controls.setFillColor(sf::Color::White);
-    this->controls.setFont(*this->editorstatedata->font);
-    this->controls.setPosition(100, 0);
-    this->controls.setString("Change Mode: 2 \n Zoom in: O \n Zoom Out: P \n");
+    
     
     //config the selection rectangle
     this->select_Rect.setSize(sf::Vector2f(statedata->gridsize , statedata->gridsize ));
