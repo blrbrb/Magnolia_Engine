@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/6/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 // 
 
 #include "Tile.hpp"

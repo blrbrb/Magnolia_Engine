@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/5/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #ifndef SettingsState_hpp
@@ -11,6 +11,7 @@
 #include "State.hpp"
 #include "GUI.hpp"
 
+/// Class with methods that allow the user to change basic settings 
 class SettingsState : public State
 {
 private:

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450A75012471CC07001F1367 /* BattleGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450A74FF2471CC07001F1367 /* BattleGUI.cpp */; };
 		450CA30923D9106200FF039F /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450CA30723D9106200FF039F /* State.cpp */; };
 		450CA31123D9187800FF039F /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450CA30F23D9187800FF039F /* GameState.cpp */; };
 		451BD30C23DA10E200426643 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 451BD30A23DA10E200426643 /* Entity.cpp */; };
@@ -159,6 +160,8 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		450A74FF2471CC07001F1367 /* BattleGUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BattleGUI.cpp; sourceTree = "<group>"; };
+		450A75002471CC07001F1367 /* BattleGUI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BattleGUI.hpp; sourceTree = "<group>"; };
 		450CA30723D9106200FF039F /* State.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = State.cpp; sourceTree = "<group>"; };
 		450CA30823D9106200FF039F /* State.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = State.hpp; sourceTree = "<group>"; };
 		450CA30F23D9187800FF039F /* GameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
@@ -1011,6 +1014,8 @@
 				4553BC3A23EE2D99002C68C0 /* GraphicsSettings.cpp */,
 				4553BC3B23EE2D99002C68C0 /* GraphicsSettings.hpp */,
 				455FB3792404729600146C3A /* PlayerGUI.cpp */,
+				450A74FF2471CC07001F1367 /* BattleGUI.cpp */,
+				450A75002471CC07001F1367 /* BattleGUI.hpp */,
 				455FB37A2404729600146C3A /* PlayerGUI.hpp */,
 			);
 			path = GUI;
@@ -1213,6 +1218,7 @@
 				4548599D2411D95000D97104 /* Blrb.cpp in Sources */,
 				45850C9423E3136900417726 /* animationComponet.cpp in Sources */,
 				45B989D323E0909400B3C087 /* Player.cpp in Sources */,
+				450A75012471CC07001F1367 /* BattleGUI.cpp in Sources */,
 				4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */,
 				457AF518242BCE5D009B543D /* OverWorld.cpp in Sources */,
 				45F5E8D123E6053500307E48 /* EditorState.cpp in Sources */,

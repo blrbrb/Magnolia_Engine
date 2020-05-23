@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 1/22/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 // 
 
 #ifndef Game_hpp
@@ -16,7 +16,7 @@
 class Game {
 public:
     
-    //Constructor et Destructor
+    
      Game();
     ~Game();
     
@@ -42,7 +42,7 @@ public:
     
 private:
     
-    //private game variables
+    ///All of the mappable keyboard keys for user input.
     std::map<std::string, int> supportedkeys;
     
 
@@ -52,10 +52,12 @@ private:
     bool fullscreen;
     
     sf::Clock dtClock;
+    ///Delta Time
     float dt;
+    ///Elapsed Time 
     float elapsedTime;
     
-    
+    ///The State Mechanism, stored in a stack of "State" objects
     std::stack<State*> states;
     StateData state_data;
     GraphicsSettings gfxsettings;

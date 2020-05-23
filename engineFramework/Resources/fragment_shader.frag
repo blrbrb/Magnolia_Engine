@@ -12,13 +12,16 @@ void main()
  //Ambient lightPos
  vec4 ambient = vec4(0.02, 0.02, 0.5, 1.0);
 
+
  //Convert lightPos to view coords
   
-vec2 light_tmp =  (gl_ModelViewProjectionMatrix * vec4(light, 0, 1)).xy;
+vec2 light_tmp = (gl_ModelViewProjectionMatrix * vec4(light - 25, 0, 1)).xy;
 
  //Calculate the vector from light to pixel (Make circular)
- vec2 lightToFrag = light_tmp - vert_pos.xy;
-    lightToFrag.y = lightToFrag.y / 1.5;            
+ vec2 lightToFrag = light_tmp - vert_pos.xy ;
+    
+
+    lightToFrag.y = lightToFrag.y / 1.3;
 
  //Length of the vector (distance)
  float vecLength = clamp(length(lightToFrag) * 4, 0, 1);

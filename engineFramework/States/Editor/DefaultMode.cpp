@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 3/3/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #include "DefaultMode.hpp"
@@ -38,16 +38,24 @@ void DefaultMode::updateInput(const float &dt)
                          //if adding tiles is locked to one layer
                            if (this->tilemap->lock_layer)
                            {
-                                if (this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
-                                 {
-                                     this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, collision, type);
-                                     
-                                        std::cout << "LOCKED: Tile Added" << std::endl;
-                                 }
-                                 else
-                                 {
-                                     std::cout << "Tile is already assigned to space, disable layer locking to place more than one tile on a spot" << std::endl;
-                                 }
+                               try
+                               {
+                                    if (this->tilemap->TileEmpty(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer))
+                                     {
+                                         this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, collision, type);
+                                         
+                                            std::cout << "LOCKED: Tile Added" << std::endl;
+                                     }
+                                     else
+                                     {
+                                         std::cout << "Tile is already assigned to space, disable layer locking to place more than one tile on a spot" << std::endl;
+                                     }
+                               }
+                               
+                               catch(std::invalid_argument& e)
+                               {
+                                   std::cout << e.what();
+                               }
                                
                            }
                          //else if adding tiles is not locked to one layer
@@ -138,16 +146,16 @@ void DefaultMode::updateInput(const float &dt)
             
      }
         
-        //Toggle Collision on Tiles
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("TOGGLE_COLLISION"))) && this->getkeytime())
-        {
-            if(this->collision)
-                this->collision = false;
-            else
-                this->collision = true;
-            
-            std::cout << "Collision Tog" << std::endl;
-        }
+    //Toggle Collision on Tiles
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorstatedata->keybinds->at("TOGGLE_COLLISION"))) && this->getkeytime())
+    {
+        if(this->collision)
+            this->collision = false;
+        else
+            this->collision = true;
+        
+        std::cout << "Collision Tog" << std::endl;
+    }
         
         
         //Toggle Type of Tile to increase or decrease
@@ -256,7 +264,7 @@ void DefaultMode::renderGUI(sf::RenderTarget &target)
 
 void DefaultMode::render(sf::RenderTarget& target)
 {
-    
+
     this->renderGUI(target);
     
 }
@@ -278,37 +286,25 @@ void DefaultMode::inittext()
             //init the cursor text
            this->cursortext.setFont(*this->editorstatedata->font);
            this->cursortext.setFillColor(sf::Color::White);
-           this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
+           this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 140));
            this->cursortext.setOutlineThickness(1.f);
-           this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
+           this->cursortext.setPosition(GUI::pixelpercentX(78.4, vm), GUI::pixelpercentX(3, vm));
 
-            //init the cursor text container
-           this->text_container.setSize(sf::Vector2f(GUI::pixelpercentX(28.57, vm), (GUI::pixelpercentY(30, vm))));
-           this->text_container.setFillColor(sf::Color(50,50,50,100));
-           this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
-           this->text_container.setOutlineThickness(1.f);
-           this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
-    
+          
             //init the controls text
-            this->controls.setCharacterSize(GUI::calcCharSize(vm, 100));
+            this->controls.setCharacterSize(GUI::calcCharSize(vm, 140));
             this->controls.setFillColor(sf::Color::White);
             this->controls.setFont(*this->editorstatedata->font);
-            this->controls.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentY(33, vm));
+            this->controls.setPosition(GUI::pixelpercentX(78.4, vm), GUI::pixelpercentY(33, vm));
             this->controls.setString("Change Mode: 2 \n Zoom in: O \n Zoom Out: P \n");
-    
-            //init the controls container
-            this->controlsContainer.setSize(sf::Vector2f(GUI::pixelpercentX(30, vm), GUI::pixelpercentY(30, vm)));
-            this->controlsContainer.setFillColor(sf::Color(50,50,50,100));
-            this->controlsContainer.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(30, vm));
-            this->controlsContainer.setOutlineThickness(1.f);
-            this->controlsContainer.setOutlineColor(sf::Color(200, 200, 200, 150));
-    
+                    
 }
     
     
     
 void DefaultMode::initGUI()
 {
+    sf::VideoMode vm = statedata->gfxsettings->resolution;
     
     //Config the sidebar
     this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
@@ -316,29 +312,39 @@ void DefaultMode::initGUI()
     this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
     this->sidebar.setOutlineThickness(1.f);
     
+    //init the cursor text container
+    this->text_container.setSize(sf::Vector2f(GUI::pixelpercentX(22.57, vm), (GUI::pixelpercentY(30, vm))));
+    this->text_container.setFillColor(sf::Color(50,50,50,100));
+    this->text_container.setPosition(GUI::pixelpercentX(77.4, vm), GUI::pixelpercentY(0, vm));
+    this->text_container.setOutlineThickness(1.f);
+    this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
     
+    //init the controls container
+    this->controlsContainer.setSize(sf::Vector2f(GUI::pixelpercentX(22.57, vm), GUI::pixelpercentY(30, vm)));
+    this->controlsContainer.setFillColor(sf::Color(50,50,50,100));
+    this->controlsContainer.setPosition(GUI::pixelpercentX(77.4, vm), GUI::pixelpercentY(30, vm));
+    this->controlsContainer.setOutlineThickness(1.f);
+    this->controlsContainer.setOutlineColor(sf::Color(200, 200, 200, 150));
     
     //config the selection rectangle
     this->select_Rect.setSize(sf::Vector2f(statedata->gridsize , statedata->gridsize ));
     this->select_Rect.setTexture(tilemap->getTileSheet());
     
-     
+    
     
       //configure the texture sample box element
-    
       this->texturesample.setSize(sf::Vector2f(64, 64));
       this->texturesample.setTexture(this->select_Rect.getTexture());
       this->texturesample.setTextureRect(this->select_Rect.getTextureRect());
-      this->texturesample.setPosition(0, 0.f);
+      this->texturesample.setPosition(GUI::pixelpercentX(85.4, vm), GUI::pixelpercentY(20, vm));
       
       this->texturesample_container.setFillColor(sf::Color(50,50,50,100));
-      this->texturesample_container.setSize(sf::Vector2f(this->sidebar.getSize().x, 68));
+      this->texturesample_container.setSize(sf::Vector2f(this->sidebar.getSize().x , 68));
       this->texturesample_container.setOutlineColor(sf::Color(200,200,200,250));
       this->texturesample_container.setOutlineThickness(1.f);
-      this->texturesample_container.setPosition(0, 0);
+      this->texturesample_container.setPosition(GUI::pixelpercentX(85.4, vm), GUI::pixelpercentY(20, vm));
      
     
-     
      //Config the TextureSelector element
      this->texture_selector = new GUI::TextureSelector(100.f, 20.f, 798.f, 798.f, this->statedata->gridsize, this->tilemap->getTileSheet(), *this->editorstatedata->font, "X");
     

@@ -3,24 +3,39 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 1/30/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #ifndef AnimationComponet_hpp
 #define AnimationComponet_hpp
 
-
+/**
+    
+ @brief When applied to an object, can be used to stitch a spritesheet into a working animation
+ 
+ 
+ */
 class AnimationComponet {
     
 public:
     
-    //Constructors/Destructors
+   
     AnimationComponet(sf::Sprite& sprite, sf::Texture& texturesheet);
     virtual ~AnimationComponet();
     
-    //Functions
+    /**
+        @brief Is called in order to add an animation to an object. The new animation is stored in a map container, and can be fetched with the play animation function
+        @param A string naming the animation, how fast to play the animation, the start X frame, the Start Y frame, the End X frame, the End Y Frame, the width of the Frame(s), the height of the Frame(s)
+        @returns void
+     
+     */
      void add_animation(const std::string& key,float animationtimer,int start_x, int start_y, int end_x, int end_y, int width, int height);
     
+    /**
+                @brief Play the animation
+                @param the name of the animation, delta time, (bool) priority
+                @returns a constant boolean value representing wether or not the animation has finished playing
+     */
      const bool& play(const std::string& key, const float& dt, const bool priority = false);
      const bool& play(const std::string& key, const float& dt, const float& speed, const float& speed_max, const bool priority = false);
      void update(const float& dt);

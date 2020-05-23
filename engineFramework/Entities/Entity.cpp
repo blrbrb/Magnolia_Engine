@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 1/23/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #include "Entity.hpp"

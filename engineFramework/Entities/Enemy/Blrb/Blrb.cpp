@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 3/5/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #include "Blrb.hpp"
@@ -11,7 +11,9 @@
 
 void Blrb::initvariables()
 {
-    
+    this->create_attribute_componet(1);
+
+   
 }
 
 void Blrb::initanimations()
@@ -21,6 +23,8 @@ void Blrb::initanimations()
      this->animtioncomponet->add_animation("RIGHT", 25.f, 0, 0, 6, 0, 17, 17);
      this->animtioncomponet->add_animation("UP", 25.f, 0, 0, 6, 0, 17, 17);
      this->animtioncomponet->add_animation("DOWN", 25.f, 0, 0, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("ATTACKED", 25.f, 0, 0, 6, 0, 17, 0);
+    
 }
 
 
@@ -48,12 +52,13 @@ Blrb::~Blrb()
 void Blrb::loseHP(const int HP)
 {
     
+    
 }
 
 
 void Blrb::gainHP(const int HP)
 {
-    
+   
 }
 
 
@@ -86,7 +91,6 @@ void Blrb::updateAnimation(const float &dt)
 
 void Blrb::update(const float &dt, sf::Vector2f &MousePosView)
 {
-    
        this->movementcomponets->update(dt);
        this->updateAnimation(dt);
        this->hitbox->update();
@@ -103,8 +107,19 @@ void Blrb::render(sf::RenderTarget &target, sf::Shader *shader, const sf::Vector
          
           target.draw(this->sprite, shader);
       }
+    
+    else if (!shader)
+    {
+        
+        target.draw(this->sprite);
+    }
       
-
-      else if(render_hitbox) {
+      if(render_hitbox) {
           this->hitbox->render(target); }
+}
+
+
+std::string& Blrb::getName()
+{
+    return this->name;
 }

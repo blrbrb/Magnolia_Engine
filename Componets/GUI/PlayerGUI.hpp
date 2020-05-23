@@ -3,19 +3,19 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/24/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #ifndef PlayerGUI_hpp
 #define PlayerGUI_hpp
 #include "GUI.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 #include "Inventory.hpp"
 
 
 class Player;
 class Inventory;
-
 
 
 class PlayerGUI
@@ -68,34 +68,40 @@ public:
     virtual ~PlayerGUI();
     
     //Accessors
+    ///get wether or not the user has opted to hide the Inventory
     const bool getInventoryHidden();
     
     //Modifiers
+    ///Hide the Inventory upon request from the user
     void HideInventory(); 
     
-    //update functions
-    void updateBattleGUI();
+  
+    
     void updateLevelTag();
     void updateHPbar();
     void updateEXPbar();
     void updateMoney();
     void updateInventory();
+    
+    /// update
+    /// @brief Update all of the PlayerGUI elements
+    /// @param dt Delta-Time
     void update(const float& dt);
     
     //Render functions
-    
     void renderLevelTag(sf::RenderTarget& target);
     void renderHPbar(sf::RenderTarget& target);
     void renderMoney(sf::RenderTarget& target);
     void renderEXPbar(sf::RenderTarget& target);
     void renderInventory(sf::RenderTarget& target);
+    
+    /// render
+    /// @brief Render all of the PlayerGUI elements to a sf::RenderTarget
+    /// @param target RenderTarget
     void render(sf::RenderTarget& target);
     
     
 };
-
-
-
 
 
 //end namespace PlayerGUI

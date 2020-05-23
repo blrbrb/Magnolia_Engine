@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 1/22/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 
 
 #include "GameState.hpp"
@@ -12,17 +12,25 @@
 GameState::GameState(StateData* state_data)
 : State(state_data)
 {
-    this->initdeferedrender();
-    this->initview();
-    this->initkeybinds();
-    this->initfonts();
-    this->inittextures();
-    this->initpausemenu();
-    this->initshaders();
-    this->initplayers();
-    this->initplayerGUI();
-    this->initenemysystem();
-    this->inittilemap();
+    try
+    {
+        this->initdeferedrender();
+        this->initview();
+        this->initkeybinds();
+        this->initfonts();
+        this->inittextures();
+        this->initpausemenu();
+        this->initshaders();
+        this->initplayers();
+        this->initplayerGUI();
+        this->initenemysystem();
+        this->inittilemap();
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cout << e.what();
+        
+    }
     
     // this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
     //this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
@@ -49,9 +57,13 @@ GameState::~GameState()
 
 void GameState::initdeferedrender() {
 
-    this->rendertexture.create(this->state_data->gfxsettings->resolution.width,this->state_data->gfxsettings->resolution.height);
+    if(!this->rendertexture.create(this->state_data->gfxsettings->resolution.width,this->state_data->gfxsettings->resolution.height))
+    {
+        throw std::runtime_error("unable to create rendertextrue");
+    }
 
     this->rendersprite.setTexture(this->rendertexture.getTexture());
+   
     this->rendersprite.setTextureRect(
         sf::IntRect(
             0,
@@ -59,7 +71,10 @@ void GameState::initdeferedrender() {
                     this->state_data->gfxsettings->resolution.width,
                     this->state_data->gfxsettings->resolution.height
         )
-    );
+  
+                                                                        );
+    
+  
 }
 
 
@@ -69,9 +84,11 @@ void GameState::initshaders()
     if(!this->core_shader.loadFromFile( resourcePath() + "vertex_shader.vert", resourcePath() + "fragment_shader.frag"))
     {
         std::cout << "ERROR Unable to load core_shader Gamestate line 71" << std::endl;
+        
+        throw std::runtime_error("ERROR Unable to load core_shader Gamestate line 71");
+        
     }
     
-   
     
     
 }
@@ -79,9 +96,11 @@ void GameState::initshaders()
 
 void GameState::initview()
 {
+
     this->view.setSize(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 4.F, static_cast<float>(this->state_data->gfxsettings->resolution.height) / 4.f));
 
     this->view.setCenter(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 4.f,        static_cast<float>(this->state_data->gfxsettings->resolution.height) / 4.f));
+
 }
 
 
@@ -115,6 +134,7 @@ void GameState::initplayerGUI()
     this->playerGUI = new PlayerGUI(this->player, this->state_data->gfxsettings->resolution);
     this->buffer.loadFromFile(resourcePath() + "Beep.wav");
     this->sound.setBuffer(buffer);
+    
 }
 
 
@@ -123,12 +143,14 @@ void GameState::inittextures()
     if (!this->textures["PLAYER_SHEET"].loadFromFile(resourcePath() + "Hero.png"))
     {
         std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures" << std::endl;
+        
         throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures");
     }
     
     if (!this->textures["ENEMY_SHEET"].loadFromFile(resourcePath() + "Blrb.png"))
     {
         std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load ENEMY_SHEET textures" << std::endl;
+        
         throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load ENEMY_SHEET textures");
     }
     
@@ -181,7 +203,7 @@ void GameState::inittilemap()
 
 void GameState::update(const float& dt) {
    
-    srand(time(NULL));
+    srand(static_cast<unsigned>(time(NULL)));
     
     this->updateMousePosition(&this->view);
     this->updateInput(dt);
@@ -251,12 +273,7 @@ void GameState::updatebuttons()
 
 void GameState::updateView(const float &dt)
 {
-    /**
-                @brief Function that updates the area of the tilemap, or current level visible to the player at any one point
-                @param const float detlaTime
-                @returns void
-     
-     */
+  
     
     
     this->view.setCenter(std::floor(this->player->getPosition().x + static_cast<float>(this->state_data->gfxsettings->resolution.width / 20)), std::floor(this->player->getPosition().y +                                                                        static_cast<float>(this->state_data->gfxsettings->resolution.height / 20)));
@@ -387,7 +404,6 @@ void GameState::render(sf::RenderTarget* target) {
 }
 
 
-
 void GameState::checkforendstate() {
     
    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))) {
@@ -434,5 +450,6 @@ void GameState::updateEnemyEncounter()
     }
     
 }
+
 
 

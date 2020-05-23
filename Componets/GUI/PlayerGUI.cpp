@@ -3,12 +3,11 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/24/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
+
 #include "PlayerGUI.hpp"
-
-
 
 PlayerGUI::PlayerGUI(Player* player, sf::VideoMode& vm) : vm(vm)
 {
@@ -63,7 +62,6 @@ void PlayerGUI::initLevelTag()
         this->LevelTagText.setPosition(GUI::pixelpercentX(1.4, vm), GUI::pixelpercentY(1.4, vm));
     
 }
-
 
 void PlayerGUI::initEXPbar()
 {
@@ -199,8 +197,6 @@ void PlayerGUI::render(sf::RenderTarget &target)
     this->renderEXPbar(target);
     this->renderHPbar(target);
     this->renderInventory(target);
-    
-
 }
 
 
@@ -222,3 +218,5 @@ void PlayerGUI::HideInventory()
     else
         this->hidden = true;
 }
+
+

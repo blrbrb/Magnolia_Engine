@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/1/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #include "EditorState.hpp"
@@ -106,24 +106,34 @@ void EditorState::updatepausemenubuttons()
     //Save the TileMap
     if(this->pMenu->isButtonPressed("Editor_Pause_Save_Button"))
     {
-     
-        this->Tilemap->savetofile("Config/text.slmp");
+        //handle TileMap saving errors
+        try
+        {
+            this->Tilemap->savetofile("Config/text.slmp");
+        }
+        
+        catch (std::runtime_error& e)
+        {
+            std::cout << e.what();
+        }
 
     }
     
     //Load the TileMap
     if(this->pMenu->isButtonPressed("Editor_Pause_Load_Button"))
     {
-       
-        this->Tilemap->loadfromfile("Config/text.slmp");
+        try
+        {
+            this->Tilemap->loadfromfile("Config/text.slmp");
+        }
+        
+        catch (std::runtime_error& e)
+        {
+            std::cout << e.what();
+        }
 
     }
-    
-    //enable autoave
-    
-    
-
-    
+        
 }
 
 

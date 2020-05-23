@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/5/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 #include "GUI.hpp"
 
@@ -71,9 +71,9 @@ GUI::Button::Button(float x, float y, float width, float height, sf::Font *font,
     this->outline_activeColor = outline_activeColor;
     
     
-    //this->rectangle.setFillColor(this->idleColor);
-    //this->rectangle.setOutlineColor(outline_idleColor);
-    //this->rectangle.setOutlineThickness(1.f);
+    this->rectangle.setFillColor(this->idleColor);
+    this->rectangle.setOutlineColor(outline_idleColor);
+    this->rectangle.setOutlineThickness(1.f);
 
 }
 
@@ -96,9 +96,28 @@ GUI::Button::Button(float x, float y, float width, float height, sf::Font *font,
     
      this->text.setPosition(this->rectangle.getPosition().x + this->rectangle.getPosition().x/ 2.f + 20.f - this->rectangle.getPosition().x / 2.f, this->rectangle.getPosition().y + this->rectangle.getSize().y / 2.f - 20.f);
     
-    this->idle.loadFromFile(resourcePath() + idle_texture);
-    this->clicked.loadFromFile(resourcePath() + active_texture);
-    this->hover_texture.loadFromFile(resourcePath() + hover_texture);
+    try
+    {
+        if(!this->idle.loadFromFile(resourcePath() + idle_texture))
+        {
+            throw std::invalid_argument("FATAL ERROR EX_C 21 || GUI::Button Constructor || Unable to find idle texture file");
+        }
+        if(!this->clicked.loadFromFile(resourcePath() + active_texture))
+        {
+            throw std::invalid_argument("FATAL ERROR EX_C 22 || GUI::Button Constructor || Unable to find active texture file");
+        }
+        if(!this->hover_texture.loadFromFile(resourcePath() + hover_texture))
+        {
+            throw std::invalid_argument("FATAL ERROR EX_C 23 || GUI::Button Constructor || Unable to find hover texture file");
+        }
+    }
+    catch (std::invalid_argument& e)
+    {
+        std::cout << e.exception::what() << std::endl;
+        std::cout << e.what() << std::endl;
+        std::cout << "GUI::BUTTON(float x, float y, float width, float height, sf::Font *font, std::string text, unsigned int" << std::endl << "character_size, const std::string idle_texture, const std::string active_texture, const std::string" << std::endl << "hover_texture, short unsigned ID)" << std::endl;
+    }
+    
     this->rectangle.setTexture(&idle);
     
     
@@ -128,21 +147,44 @@ GUI::Button::Button(float x, float y, float width, float height, const std::stri
     
     */
     
+    try
+    {
     
+        if(!this->idle.loadFromFile(resourcePath() + idle_texture))
+        {
+            throw std::invalid_argument("FATAL ERROR EX_C 24 || GUI::BUTTON CONSTRUCTOR || Unable to find idle texture");
+        }
+        
+        if(!this->clicked.loadFromFile(resourcePath() + active_texture))
+        {
+            
+            throw std::invalid_argument("FATAL ERROR EX_C 25 || GUI::Button CONSTRUCTOR || Unable to find active texture");
+        }
+        if(!this->hover_texture.loadFromFile(resourcePath() + hover_texture))
+        {
+            throw std::invalid_argument("FATAL ERROR EX_C 26 || GUI::Button CONSTRUCTOR || Unable to find hover texture");
+        }
+           
+        this->rectangle.setTexture(&idle);
     
+    }
+    catch (std::invalid_argument& e)
+    {
+        
+        std::cout << e.what();
+    }
     
     this->ID = ID;
           
-          this->rectangle.setSize(sf::Vector2f(x,y));
-          this->rectangle.setPosition(width, height);
+    this->rectangle.setSize(sf::Vector2f(width, height));
+    
+          this->rectangle.setPosition(x,y);
           
           this->ButtonState = IDLE_BUTTON;
         
     
-      this->idle.loadFromFile(resourcePath() + idle_texture);
-      this->clicked.loadFromFile(resourcePath() + active_texture);
-      this->hover_texture.loadFromFile(resourcePath() + hover_texture);
-      this->rectangle.setTexture(&idle);
+
+     // this->rectangle.setTextureRect(static_cast<sf::IntRect>(this->rectangle.getGlobalBounds())); 
     
 }
 
@@ -170,7 +212,6 @@ void GUI::Button::update(const sf::Vector2i Mousepos) {
           this->ButtonState = PRESSED;
        
         }
-       
     }
         
     switch (this->ButtonState) {
@@ -179,27 +220,42 @@ void GUI::Button::update(const sf::Vector2i Mousepos) {
         case IDLE_BUTTON: //the Button is not being interacted with by the user
             
             this->rectangle.setTexture(&idle);
-            //this->rectangle.setFillColor(this->idleColor);
-            //this->text.setFillColor(this->text_idlecolor);
-            //this->rectangle.setOutlineColor(this->outline_idleColor);
+            
+            //if the button is not given a texture with one of the overload constructors, give it a fill color
+            
+            if(this->rectangle.getTexture() == NULL)
+            {
+                this->rectangle.setFillColor(this->idleColor);
+                this->text.setFillColor(this->text_idlecolor);
+                this->rectangle.setOutlineColor(this->outline_idleColor);
+            }
             
             break;
             
         case HOVER: // the user's cursor is hovering over the button
             
             this->rectangle.setTexture(&hover_texture);
-            //this->rectangle.setFillColor(this->hoverColor);
-            //this->text.setFillColor(this->text_hovercolor);
-            //this->rectangle.setOutlineColor(this->outline_hoverColor);
+            
+            if (this->rectangle.getTexture() == NULL)
+            {
+                this->rectangle.setFillColor(this->hoverColor);
+                this->text.setFillColor(this->text_hovercolor);
+                this->rectangle.setOutlineColor(this->outline_hoverColor);
+            }
             
             break;
             
         case PRESSED: // the button has been interacted with
            
             this->rectangle.setTexture(&clicked);
-            //this->rectangle.setFillColor(this->activeColor);
-           // this->text.setFillColor(this->text_activecolor);
-           // this->rectangle.setOutlineColor(this->outline_activeColor);
+             
+            if (this->rectangle.getTexture() == NULL)
+            {
+                this->rectangle.setFillColor(this->activeColor);
+                this->text.setFillColor(this->text_activecolor);
+                this->rectangle.setOutlineColor(this->outline_activeColor);
+            }
+            
             break;
             
         default:
@@ -230,12 +286,13 @@ const bool GUI::Button::isPressed() const {
         return true;
     
     
+    
    return false;
 }
 
 //Debug, fix "returning refrence to local temp. object" warning later
 
-const std::string& GUI::Button::getText() const
+const std::string GUI::Button::getText() const
 {
     return this->text.getString();
 }
@@ -273,18 +330,23 @@ void GUI::Button::setID(const unsigned short ID)
 /*BEGIN DROPDOWNLIST*/
 
 
-GUI::DropDownList::DropDownList(float x, float y,float width, float height, sf::Font& font, std::string list[], unsigned number_of_elements, unsigned default_index): font(font), display_list(false), keytime_max(10.f), keytime(1.f)
+GUI::DropDownList::DropDownList(float x, float y,float width, float height, sf::Font& font, std::string list[], unsigned number_of_elements, unsigned default_index): font(font), display_list(false), keytime_max(10.f), keytime(2.f)
 {
-   // number_of_elements = sizeof(list) / sizeof(std::string);
+    //number_of_elements = sizeof(list) / sizeof(std::string);
+    
   
     this->active_element = new GUI::Button(
     x, y, width, height,
-    &this->font, list[default_index], 14, "dropdownTop.png", "dropdownTop.png", "dropdownTop.png");
+    &this->font, list[default_index], 14, sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 200), sf::Color(20, 20, 20, 50),
+    sf::Color(20, 20, 20, 200), sf::Color(20, 20, 20, 200), sf::Color(20, 20, 20, 200),
+    sf::Color::Black, sf::Color::Black, sf::Color::Black);
    
-                                           
+        
     for(unsigned i=0; i < number_of_elements; i++)
     {
-        this->list.push_back(new GUI::Button(x, y + ((i+1) * height), width, height, &this->font, list[i], 14, "dropdownMid.png", "dropdownMid.png", "dropdownMid.png",
+        this->list.push_back(new GUI::Button(x, y + ((i+1) * height), width, height, &this->font, list[i], 14, sf::Color(255, 255, 255, 150), sf::Color(255, 255, 255, 200), sf::Color(20, 20, 20, 50),
+        sf::Color(20, 20, 20, 200), sf::Color(150, 150, 150, 200), sf::Color(20, 20, 20, 200),
+        sf::Color::Black, sf::Color::Black, sf::Color::Black,
       i));
         
         
@@ -671,20 +733,12 @@ const unsigned GUI::calcCharSize(const sf::VideoMode& vm, const unsigned modifie
 
 const float GUI::pixelpercentX(const float percent, const sf::VideoMode& vm)
 {
- /*
-  * Converts a pixel value to a percentage relative to the current resolution
-  *
-  * @param   float percentage    the percantage value.
-  *
-  * @param   sf::VideoMode& vm   the current resolution stored as a SFML videoMode.
-  *
-  * @return  float               the calculated percentage value.
-  */
+ 
     return std::floor(static_cast<float>(vm.width) * (percent / 100.f));
 }
 
 const float GUI::pixelpercentY(const float percent, const sf::VideoMode& vm)
-{ /* same but for the y-axis */
+{
     
     
      return std::floor(static_cast<float>(vm.height) * (percent / 100.f));

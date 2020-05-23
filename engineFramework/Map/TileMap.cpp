@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/6/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 
@@ -289,7 +289,13 @@ void TileMap::addTile(const int x, const int y, const int z, const sf::IntRect t
               this->Map[x][y][z].push_back(new NormalTile(type,x, y, this->grid_sizeF , this->tileTextureSheet, texture_rect, collision));
     }
     
+    else if (!x || !y || !z)
+    {
+        throw std::invalid_argument("Invalid Argument : Tile Does Not Exist");
+        
     }
+    
+}
     
 
 
@@ -354,9 +360,10 @@ void TileMap::savetofile(const std::string filename)
   @return void
  
     */
+    
     std::ofstream out;
     
-
+       
     out.open(filename);
     
     if (out.is_open())
@@ -389,15 +396,21 @@ void TileMap::savetofile(const std::string filename)
         }
     
     }
+
     else
     {
         std::cout << "ERROR CODE TILEMAP:392 || TILEMAP::SAVETOFILE || COULD NOT SAVE" << std::endl;
-        throw std::runtime_error("ERROR CODE TILEMAP:392 || TILEMAP::SAVETOFILE || Reason: COULD NOT SAVE");
+        
+        throw std::runtime_error("ERROR CODE TILEMAP:392 || TILEMAP::SAVETOFILE || COULD NOT SAVE");
         
     }
     
     out.close();
     
+
+    //exeption handling block
+    
+
 }
 
 void TileMap::loadfromfile(const std::string filename)
@@ -459,6 +472,7 @@ void TileMap::loadfromfile(const std::string filename)
         if(!this->tileTextureSheet.loadFromFile(resourcePath() + texture_file))
         {
             std::cout << "ERROR CODE TILEMAP:458 || LOADFROMFILE || Reason: UNABLE_TO_OPEN_FILE" << std::endl;
+            
             throw std::runtime_error("ERROR CODE TILEMAP:458 || LOADFROMFILE || Reason: UNABLE_TO_OPEN_FILE");
         }
         while (in >> x >> y >> z >> type)
@@ -493,6 +507,7 @@ void TileMap::loadfromfile(const std::string filename)
     else
     {
         std::cout << "ERROR CODE TILEMAP:3 || LOADFROMFILE || COULD NOT LOAD" << std::endl;
+        
         throw std::runtime_error("ERROR CODE TILEMAP:3 || LOADFROMFILE || COULD NOT LOAD");
     }
     
@@ -529,7 +544,7 @@ const int TileMap::getLayerSize(const int x, const int y, const int layer) const
         {
             if(layer >= 0 && layer < static_cast<int>(this->Map[x][y].size()))
             {
-                return this->Map[x][y][layer].size();
+                return static_cast<int>(this->Map[x][y][layer].size());
             }
 
         }
@@ -589,26 +604,26 @@ const sf::Vector2f TileMap::getMaxSize() const
 
 const bool TileMap::TileEmpty(const int x, const int y, const int z) const
 {
-    if (x >= 0 && x < this->MaxSizeWorldGrid.x &&
-        y >= 0 && y < this->MaxSizeWorldGrid.y &&
-        z >= 0 && z < this->layers)
-    {
-        
-            return this->Map[x][y][z].empty();
-
-    }
     
-    else
-    {
-        try {return this->Map[z][y][z].empty();}
-        
-        catch(std::bad_alloc& e)
-               {
-                   std::cout << "Invalid Tile :" << e.what();
-               }
-    }
+        if (x >= 0 && x < this->MaxSizeWorldGrid.x &&
+            y >= 0 && y < this->MaxSizeWorldGrid.y &&
+            z >= 0 && z < this->layers)
+        {
+            
+                return this->Map[x][y][z].empty();
+           
+        }
     
-
+        else if(x < 0 || y < 0 || z < 0)
+        {
+            return false;
+        }
+    
+        else if (!x || !y || !z)
+        {
+            throw std::invalid_argument("Invalid Argument: Tile does not exist");
+        }
+    
 }
 
 

@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 3/2/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #ifndef Enemy_hpp
@@ -20,7 +20,7 @@ public:
     Enemy();
     virtual ~Enemy();
     
-    //EnemySpawner& enemyspawner; 
+    
     
     //Functions
       virtual void loseHP(const int HP) = 0;
@@ -29,12 +29,21 @@ public:
     
     virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
     virtual void updateAnimation(const float& dt) = 0;
+    virtual std::string& getName()= 0;
     virtual void render(sf::RenderTarget& target,sf::Shader* shader = nullptr,const sf::Vector2f light = sf::Vector2f(), const bool render_hitbox = false) = 0;
+ 
+protected:
+
+    //child class variables
+       std::string name;
+    
     
 private:
     //initalizer functions
    virtual void initvariables() = 0;
    virtual void initanimations() = 0;
+    
+   
 };
 
 #endif /* Enemy_hpp */

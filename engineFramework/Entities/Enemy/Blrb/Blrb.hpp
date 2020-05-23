@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 3/5/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #ifndef Blrb_hpp
@@ -18,8 +18,16 @@ public:
     Blrb(float x, float y, sf::Texture& texturesheet);
     virtual ~Blrb();
     
+  
+    
+    //modifiers 
     void loseHP(const int HP);
     void gainHP(const int HP);
+    
+    //Accessors
+    
+    std::string& getName(); 
+    
     
     void update(const float& dt, sf::Vector2f& MousePosView);
     void updateAnimation(const float& dt);

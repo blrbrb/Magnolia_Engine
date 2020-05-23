@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 2/5/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 // 
 
 #include "SettingsState.hpp"
@@ -58,17 +58,20 @@ void SettingsState::initGUI() {
     
     this->buttons["EXIT"] = new GUI::Button(GUI::pixelpercentX(27.1, vm), GUI::pixelpercentY(9, vm), GUI::pixelpercentX(7.1, vm), GUI::pixelpercentY(44, vm), &this->font, "Exit", GUI::calcCharSize(vm), "red_button01.png", "red_button02.png", "red_button00.png");
     
-    this->buttons["APPLY"] = new GUI::Button(GUI::pixelpercentX(2.8, vm), GUI::pixelpercentY(4, vm), GUI::pixelpercentX(7.1, vm), GUI::pixelpercentY(60.5, vm), "grey_box.png", "red_boxCheckmark.png", "grey_box.png");
+    this->buttons["APPLY"] = new GUI::Button(GUI::pixelpercentX(10, vm), GUI::pixelpercentY(10, vm), GUI::pixelpercentX(7.1, vm), GUI::pixelpercentY(60.5, vm), "grey_box.png", "red_boxCheckmark.png", "grey_box.png");
 
     std::vector<std::string> modes_str;
+    
     for (auto &i : this->modes)
     {
-        modes_str.push_back(std::to_string(i.width) + 'x' + std::to_string(i.height));
+        modes_str.push_back(static_cast<std::string>(std::to_string(i.width) + 'x' + std::to_string(i.height)));
+    
+        
     }
     
-    std::string list[] = {"1920x1080","720x1080","640x400","400x400"};
+    //std::string list[] = {"1920x1080","720x1080","640x400","400x400"};
     
-    this->dropdownlists["RESOLUTION"] = new GUI::DropDownList(GUI::pixelpercentX(27.1, vm), GUI::pixelpercentY(9.6, vm), GUI::pixelpercentX(28.5, vm), GUI::pixelpercentY(44, vm), font, modes_str.data(), modes_str.size());
+    this->dropdownlists["RESOLUTION"] = new GUI::DropDownList(GUI::pixelpercentX(75, vm), GUI::pixelpercentY(10, vm), GUI::pixelpercentX(25, vm), GUI::pixelpercentY(25, vm), font, modes_str.data(), 2, 3);
     
     this->option_text.setFont(font);
     
@@ -128,10 +131,19 @@ void SettingsState::initFonts()
 
 SettingsState::SettingsState(StateData* state_data) :  State(state_data)
 {
-    this->initvariables();
-    this->initGUI();
-    this->initFonts();
-    this->initkeybinds();
+    try
+    {
+        this->initvariables();
+        this->initGUI();
+        this->initFonts();
+        this->initkeybinds();
+    }
+    
+    catch (std::runtime_error& e)
+    {
+        std::cout << e.what() << std::endl;
+        
+    }
 }
 
 SettingsState::~SettingsState()

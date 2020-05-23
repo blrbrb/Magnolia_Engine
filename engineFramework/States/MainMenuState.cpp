@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 1/25/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #include "MainMenuState.hpp"
@@ -13,11 +13,19 @@
 MainMenuState::MainMenuState(StateData* state_data)
 : State(state_data)
 {
-    this->initvariables(); 
-    this->initbackground();
-    this->initGUI();
-    this->initFonts();
-    this->initkeybinds();
+    try
+    {
+        this->initvariables();
+        this->initbackground();
+        this->initGUI();
+        this->initFonts();
+        this->initkeybinds();
+    }
+    
+    catch (std::runtime_error& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
     
 }
 
@@ -74,7 +82,7 @@ void MainMenuState::initGUI() {
     
     this->buttons["SETTINGS"] = new GUI::Button(GUI::pixelpercentX(27.1, vm), GUI::pixelpercentY(9.f, vm), GUI::pixelpercentX(7.14, vm), GUI::pixelpercentY(60, vm), &this->font, "Settings", GUI::calcCharSize(vm), "red_button01.png", "red_button02.png", "red_button00.png");
     
-    this->buttons["Info"] = new GUI::Button(GUI::pixelpercentX(3.5, vm), GUI::pixelpercentY(3.5, vm), GUI::pixelpercentX(64.2, vm), GUI::pixelpercentY(20, vm), "red_button06.png", "red_button07.png", "red_button06.png");
+   // this->buttons["Info"] = new GUI::Button(GUI::pixelpercentX(3.5, vm), GUI::pixelpercentY(3.5, vm), GUI::pixelpercentX(64.2, vm), GUI::pixelpercentY(20, vm), "red_button06.png", "red_button07.png", "red_button06.png");
     
 }
 

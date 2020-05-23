@@ -3,7 +3,7 @@
 //  engineFramework
 //
 //  Created by Eli Reynolds on 1/29/20.
-//  Copyright © 2020 Eli Reynolds. All rights reserved.
+//  Copyright © 2020 Eli Reynolds. Apache License .
 //
 
 #include "MovementComponets.hpp"
@@ -54,20 +54,26 @@ void MovementComponets::Updatephyiscs(const float& dt)
     this->Momentum = this->Mass * this->Velocity;
 }
 
+/**
+   move the object by supplying an incriment for the X and Y Velocity, and then apply Delta Time.
+                   
+   @param The X-Velocity and Y-Velocity values to move the object with. Mult by the deltaTime Param, and then combined alongside Y param into a float vector.
+   @param
+   @param delta Time
+   @returns void
 
-
+*/
 void MovementComponets::move(const float x ,const float y, const float& dt)
 {
     
-    //Acceleration
-    //Note, fix clusterfuck of brackets
+    
     this->Velocity.x += this->Acceleration * x * dt;
     this->Velocity.y += this->Acceleration *  y * dt;
 
 }
 
 
-//For movement that is dependant on a timed period of pause only
+
 void MovementComponets::updateMoveTime(const float& dt)
 {
     
@@ -212,7 +218,12 @@ void MovementComponets::move_rand(const float& dt, int seed)
     
 }
 
-//Accessors
+/**
+           @brief Retrieve wether or not an object is moving in a particular direction
+           @param One of the directions, supplied by the directions enumerator; to test the object against.
+           @returns a true, or false depending on wether or not the object is moving in the supplied direction
+
+*/
 const bool MovementComponets::getStauts(const short unsigned state) const
 {
     switch(state)
