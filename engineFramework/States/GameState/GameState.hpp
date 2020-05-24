@@ -87,8 +87,10 @@ public:
     void updatebuttons();
     ///Update the Tile Map, shaders, etc
     void updatetilemap(const float& dt);
+    ///Render all of the Gamestate elements
+    void render(sf::RenderTarget* target);
     
-    
+   
     
 private:
     

@@ -25,18 +25,21 @@ public:
     //Functions
       virtual void loseHP(const int HP) = 0;
       virtual void gainHP(const int HP) = 0;
-   
+      
     
     virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
     virtual void updateAnimation(const float& dt) = 0;
-    virtual std::string& getName()= 0;
+
+    //Acessors
+   
+    
     virtual void render(sf::RenderTarget& target,sf::Shader* shader = nullptr,const sf::Vector2f light = sf::Vector2f(), const bool render_hitbox = false) = 0;
  
 protected:
 
     //child class variables
        std::string name;
-    
+     
     
 private:
     //initalizer functions

@@ -47,9 +47,10 @@ private:
           const bool isButtonPressed(const std::string key);
     
         void update(const float& dt);
-        void updatebuttons();
+        void updatebuttons(const sf::Vector2i MousePos);
         void updateenemyHPbar();
         void render(sf::RenderTarget& target);
+        void renderHPBar(sf::RenderTarget& target);
         void renderButtons(sf::RenderTarget& target);
         void renderContainer(sf::RenderTarget& target);
         void renderTag(sf::RenderTarget& target);

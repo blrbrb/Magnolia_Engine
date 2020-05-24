@@ -12,8 +12,9 @@
 void Blrb::initvariables()
 {
     this->create_attribute_componet(1);
-
-   
+    this->createmovementcomponet(150.f , 2000.f, 500.f);
+    this->create_hitbox_componet(this->sprite, 0, 0, 17.f, 17.f);
+    
 }
 
 void Blrb::initanimations()
@@ -24,22 +25,19 @@ void Blrb::initanimations()
      this->animtioncomponet->add_animation("UP", 25.f, 0, 0, 6, 0, 17, 17);
      this->animtioncomponet->add_animation("DOWN", 25.f, 0, 0, 6, 0, 17, 17);
      this->animtioncomponet->add_animation("ATTACKED", 25.f, 0, 0, 6, 0, 17, 0);
-    
+  
 }
 
 
 Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
 {
-    
-    this->createmovementcomponet(150.f , 2000.f, 500.f);
+    this->initvariables();
     this->create_animation_componet(texturesheet);
-    this->create_hitbox_componet(this->sprite, 0, 0, 17.f, 17.f);
     this->initanimations();
+    this->create_skill_component();
    // this->sprite.setScale(2.f, 2.f);
     this->sprite.setPosition(x,y);
-    this->initvariables();
-    this->initanimations();
-    
+
 }
 
 
@@ -51,27 +49,20 @@ Blrb::~Blrb()
 
 void Blrb::loseHP(const int HP)
 {
-    
+    this->attributes->hp = this->attributes->hp - HP;
     
 }
 
 
 void Blrb::gainHP(const int HP)
 {
-   
+    this->attributes->hp = this->attributes->hp + HP;
+
 }
-
-
 
 void Blrb::updateAnimation(const float &dt)
 {
-    /*!
-       @brief Change the Blrb's animations based on which direction it's walking in
-           
-       @param const float& dt
-        
-       @return void
-        */
+   
           if (this->movementcomponets->getStauts(IDLE))
           {
               
@@ -89,9 +80,14 @@ void Blrb::updateAnimation(const float &dt)
         
 }
 
+
+
+
 void Blrb::update(const float &dt, sf::Vector2f &MousePosView)
 {
        this->movementcomponets->update(dt);
+       this->attributes->update();
+       this->attributes->UpdateStats(false);
        this->updateAnimation(dt);
        this->hitbox->update();
 }
@@ -119,7 +115,3 @@ void Blrb::render(sf::RenderTarget &target, sf::Shader *shader, const sf::Vector
 }
 
 
-std::string& Blrb::getName()
-{
-    return this->name;
-}

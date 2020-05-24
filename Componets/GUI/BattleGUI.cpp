@@ -36,7 +36,8 @@ void BattleGUI::inittext()
     this->enemyleveltag.setCharacterSize(12);
     this->enemyleveltag.setFillColor(sf::Color::White);
     this->enemyleveltag.setPosition(100, 100);
-    this->enemyleveltag.setString(this->enemy->getName());
+    //Note to self, fix this bs later 
+    //this->enemyleveltag.setString(this->enemy->getName());
 }
 
 void BattleGUI::initfont()
@@ -49,13 +50,13 @@ void BattleGUI::initfont()
 
 void BattleGUI::initenemyHPbar()
 {
-    this->enemyHP = new GUI::ProgressBar(10.f, 5.f, 10.4, 2.8, 10, this->vm, sf::Color::Red, 150, &this->font);
-     
+    this->enemyHP = new GUI::ProgressBar(23.f, 5.f, 10.4, 2.8, 10, this->vm, sf::Color::Red, 150, &this->font);
+    
 }
 
 
 
-BattleGUI::BattleGUI(Player *player, Enemy *enemy, sf::VideoMode& vm) : vm(vm)
+BattleGUI::BattleGUI(Player *player, Enemy *enemy, sf::VideoMode& vm) : vm(vm), player(player), enemy(enemy)
 {
     
    
@@ -94,12 +95,26 @@ void BattleGUI::update(const float &dt)
 
 void BattleGUI::updateenemyHPbar()
 {
-    //this->enemyHP->update(this->enemy->attributes->hp);
+    this->enemyHP->update(this->enemy->attributes->hp);
+    
+}
+
+
+void BattleGUI::updatebuttons(const sf::Vector2i MousePos)
+{
+    for (auto &it : this->BUTTONS)
+       {
+           it.second->update(MousePos);
+       }
 }
 
 void BattleGUI::render(sf::RenderTarget &target)
 {
-    target.draw(this->BattleGUIcontainer);
+    this->renderContainer(target);
+    this->renderTag(target);
+    this->renderButtons(target);
+    this->renderHPBar(target);
+
 }
 
 
@@ -112,6 +127,14 @@ void BattleGUI::renderContainer(sf::RenderTarget& target)
 void BattleGUI::renderTag(sf::RenderTarget& target)
 {
     target.draw(this->enemyLevelTag);
+    
+}
+
+
+
+void BattleGUI::renderHPBar(sf::RenderTarget& target)
+{
+    this->enemyHP->render(target);
     
 }
 

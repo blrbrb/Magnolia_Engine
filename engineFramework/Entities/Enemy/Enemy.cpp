@@ -11,7 +11,7 @@
 
 Enemy::Enemy()
 {
-      
+   
 
 }
 
@@ -58,8 +58,3 @@ void Enemy::render(sf::RenderTarget &target, sf::Shader* shader,const sf::Vector
     
 }
 
-std::string& Enemy::getName()
-{
-    
-    
-}

@@ -444,6 +444,7 @@ void GameState::updateEnemyEncounter()
         if (i->getGlobalBounds().contains(this->player->getPosition().x, this->player->getPosition().y))
         {
             //enter a battlestate if the player, and enemy positions intersect
+           
             this->state_data->states->push(new BattleState(this->state_data, &this->gamestatedata, this->player, this->playerGUI, i));
         }
         

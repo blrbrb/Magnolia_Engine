@@ -124,7 +124,7 @@ void Player::updateAnimation(const float& dt)
 
 void Player::update(const float& dt, sf::Vector2f& MousePosView)
 {
-    //debug. Exp gain test
+    
     
     this->attributes->update();
     this->attributes->UpdateStats(true);

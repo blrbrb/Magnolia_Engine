@@ -25,12 +25,17 @@ BattleState::BattleState(StateData* state_data, GameStateData* gamestatedata, Pl
         std::cout << e.what() << std::endl; 
     }
     
+    //Player always takes first turn
+    this->PlayerTurn = true;
+    
     
 }
 
 BattleState::~BattleState()
 {
-    
+    delete this->player;
+    delete this->PlayerGUI;
+    delete this->enemy;
 
 }
 
@@ -102,35 +107,42 @@ void BattleState::updateInput(const float& dt)
 }
 void BattleState::updateButtons(const float& dt)
 {
-     
-   
+    this->battleGUI->updatebuttons(this->MousePosScreen);
     
-     //   std::cout << "attacking!!" << std::endl;
-        this->GiveEnemyDamage(dt);
-        //Function to attack the enemy, and end the player's turn
+
+    if(this->battleGUI->isButtonPressed("ATTACK"))
+    {
+        this->enemy->loseHP(this->player->attributes->strength);
+        
+        if(this->PlayerTurn)
+            this->PlayerTurn = false;
+        else
+            this->PlayerTurn = true;
+    }
     
     
     
-    
-      //  std::cout << "Item!!" << std::endl;
-        //Function to use an item, and end the player's turn
-    
-         
+
 }
 
 
 
-void BattleState::updatePlayer(const float& dt)
-{
-     this->updatePlayerGUI(dt);
-}
 
 void BattleState::updateEnemies(const float& dt)
 {
     this->enemy->update(dt, this->MousePosView);
-    
     this->enemy->sprite.setScale(10, 10);
-    this->enemy->animtioncomponet->play("IDLE", dt, 5, 5);
+    
+    if(this->PlayerTurn == false)
+    {
+        this->player->loseHP(2);
+        
+        if(!this->PlayerTurn)
+            this->PlayerTurn = true;
+        else
+            this->PlayerTurn = false;
+    }
+   
 }
 
 void BattleState::updatePlayerGUI(const float& dt)
@@ -138,23 +150,69 @@ void BattleState::updatePlayerGUI(const float& dt)
     this->PlayerGUI->update(dt);
 }
 
+
+
+void BattleState::checkHP()
+{
+    
+    if(this->player->attributes->hp <= 0)
+    {
+        this->playerDed = true;
+    }
+    
+    if(this->enemy->attributes->hp <=0)
+    {
+        this->enemyDed = true;
+    }
+}
+
+void BattleState::updateEnemyAnimations(const float& dt)
+{
+    this->enemy->animtioncomponet->play("IDLE", dt, 5, 5);
+    
+}
+
 void BattleState::update(const float &dt)
 {
+    this->updateEnemyAnimations(dt);
     this->updateMousePosition();
+    this->updatePlayerGUI(dt);
+    this->checkHP();
     
     if(!this->paused) //Update while unpaused
       {
-          this->updateBattleGUI(dt);
-          this->updatePlayer(dt);
+          if(this->PlayerTurn) //Update while it's the player's turn
+          {
+            this->updateBattleGUI(dt);
+            this->updateInput(dt);
+              
+          }
+    
           this->updateEnemies(dt);
-          this->updateInput(dt);
-          this->updateButtons(dt);
+        
       }
     
      else // Update while Paused
       {
           this->pMenu->update(this->MousePosWindow);
       }
+    
+   
+    
+}
+
+void BattleState::updateCombat()
+{
+    if(this->playerDed)
+       {
+           //game over function
+       }
+       
+       if(this->enemyDed)
+       {
+           //function to give exp, and return to gamestate
+       }
+       
 }
 
 void BattleState::renderBattleGUI(sf::RenderTarget& target)
@@ -206,4 +264,9 @@ void BattleState::initplayerGUI()
     sf::VideoMode &vm = this->state_data->gfxsettings->resolution;
     
     this->battleGUI = new BattleGUI(this->player, this->enemy, vm);
+}
+
+bool BattleState::getwin()
+{
+    return this->win;
 }

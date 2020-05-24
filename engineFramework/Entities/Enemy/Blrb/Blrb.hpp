@@ -26,8 +26,6 @@ public:
     
     //Accessors
     
-    std::string& getName(); 
-    
     
     void update(const float& dt, sf::Vector2f& MousePosView);
     void updateAnimation(const float& dt);
