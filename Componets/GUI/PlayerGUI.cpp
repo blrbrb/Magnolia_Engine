@@ -42,7 +42,8 @@ void PlayerGUI::initMONEY()
 
 void PlayerGUI::initHPbar()
 {
-    this->HPbar = new GUI::ProgressBar(1.f, 8.3, 10.4, 2.8, this->player->attributes->hpMax, this->vm, sf::Color::Red, 150, &this->font);
+    this->HPbar = new GUI::ProgressBar(1.f, 8.3, 10.4, 2.8, this->player->getStatusComponet()->hpMax, this->vm, sf::Color::Red, 150, &this->font);
+    
 }
 
 void PlayerGUI::initLevelTag()

@@ -22,10 +22,11 @@ void Blrb::initanimations()
      this->animtioncomponet->add_animation("IDLE", 25.f, 0, 0, 6, 0, 17, 17);
      this->animtioncomponet->add_animation("LEFT", 25.f, 0, 0, 6, 0, 17, 17);
      this->animtioncomponet->add_animation("RIGHT", 25.f, 0, 0, 6, 0, 17, 17);
-     this->animtioncomponet->add_animation("UP", 25.f, 0, 0, 6, 0, 17, 17);
-     this->animtioncomponet->add_animation("DOWN", 25.f, 0, 0, 6, 0, 17, 17);
-     this->animtioncomponet->add_animation("ATTACKED", 25.f, 0, 0, 6, 0, 17, 0);
-  
+     this->animtioncomponet->add_animation("UP", 25.f, 0, 3, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("DOWN", 25.f, 0, 4, 6, 0, 17, 17);
+     this->animtioncomponet->add_animation("ATTACKED", 25.f, 0, 2, 6, 0, 17, 17);
+    
+
 }
 
 
@@ -35,7 +36,7 @@ Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
     this->create_animation_componet(texturesheet);
     this->initanimations();
     this->create_skill_component();
-   // this->sprite.setScale(2.f, 2.f);
+    //this->sprite.setScale(2.f, 2.f);
     this->sprite.setPosition(x,y);
 
 }
@@ -45,19 +46,6 @@ Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
 Blrb::~Blrb()
 {
     
-}
-
-void Blrb::loseHP(const int HP)
-{
-    this->attributes->hp = this->attributes->hp - HP;
-    
-}
-
-
-void Blrb::gainHP(const int HP)
-{
-    this->attributes->hp = this->attributes->hp + HP;
-
 }
 
 void Blrb::updateAnimation(const float &dt)
@@ -70,13 +58,34 @@ void Blrb::updateAnimation(const float &dt)
               
           }
 
-    if (this->movementcomponets->getStauts(MOVING_LEFT))
+            if (this->movementcomponets->getStauts(MOVING_LEFT))
+            {
+                 
+               this->animtioncomponet->play("LEFT", dt, false);
+                 
+            }
+    
+   
+    if (this->movementcomponets->getStauts(MOVING_UP))
     {
-                 
-       this->animtioncomponet->play("LEFT", dt, false);
-                 
+        
+        this->animtioncomponet->play("UP", dt, false);
+        
     }
     
+    if (this->movementcomponets->getStauts(MOVING_DOWN))
+    {
+        
+        this->animtioncomponet->play("DOWN", dt, false);
+        
+    }
+    
+    if (this->movementcomponets->getStauts(MOVING_RIGHT))
+    {
+        
+        this->animtioncomponet->play("RIGHT", dt, false);
+        
+    }
         
 }
 
@@ -91,6 +100,8 @@ void Blrb::update(const float &dt, sf::Vector2f &MousePosView)
        this->updateAnimation(dt);
        this->hitbox->update();
 }
+
+
 
 
 
@@ -115,3 +126,8 @@ void Blrb::render(sf::RenderTarget &target, sf::Shader *shader, const sf::Vector
 }
 
 
+StatusComponet* Blrb::getStatusComponent()
+{
+    
+    return this->attributes;
+}

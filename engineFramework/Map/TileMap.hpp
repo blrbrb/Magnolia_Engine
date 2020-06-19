@@ -70,12 +70,37 @@ public:
     bool  lock_layer;
     bool isEntityColliding; 
     
-    //Accessors
+    
     const sf::Texture* getTileSheet() const;
+    /// TileEmpty
+    /// @brief Return wether or not a particular tile in the four dimensional vector is null
+    /// @param x the X-axis of the vector (width in tiles)
+    /// @param y the Y-axis of the vector (height in tiles)
+    /// @param z the Z-axis of the vector (depth)
+    ///@returns const bool wether or not a certian tile is empty
     const bool TileEmpty(const int x, const int y, const int z) const;
+    /// checktype
+    /// @brief Get the type of a particular tile in the four dimensional vector
+    /// @param x the X-axis of the vector (width in tiles)
+    /// @param y the Y-axis of the vector (height in tiles)
+    /// @param z the Z-axis of the vector (depth)
+    /// @param type to check for
+    ///@returns wether or not a certian tile is of the same type being checked for
     const bool checktype(const int x, const int y, const int z, const int type) const;
+    /// getLayerSize
+    /// @brief get how many tiles are placed on the Z-axis (depth) of the tilemap vector in a certian spot.
+    /// @param x the X-axis of the vector (width in tiles)
+    /// @param y the Y-axisof the vector (height in tiles)
+    /// @param layer  of the Z-component
+    ///@returns const int how many tiles are placed on the Z-axis in a particular place
     const int getLayerSize(const int x, const int y, const int layer) const;
+    /// getMaxSizeGrid
+    ///@brief Helper function to find the Maximum size of the map in tiles
+    ///@returns the Maximum size of the map in tiles
     const sf::Vector2i& getMaxSizeGrid() const;
+    /// getMaxSize
+    ///@brief Get the Maximum size (in pixels) of the map
+    ///@returns the maximum size of the map
     const sf::Vector2f getMaxSize() const;
     
     

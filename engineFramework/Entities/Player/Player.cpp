@@ -124,10 +124,7 @@ void Player::updateAnimation(const float& dt)
 
 void Player::update(const float& dt, sf::Vector2f& MousePosView)
 {
-    
-    
     this->attributes->update();
-    this->attributes->UpdateStats(true);
     
     this->movementcomponets->update(dt);
     
@@ -173,44 +170,3 @@ Inventory* Player::getInventory()
 }
 
 
-void Player::loseHP(const int HP)
-{
-    
-    this->attributes->hp -= HP;
-    
-    if(this->attributes->hp < 0)
-        this->attributes->hp = 0;
-}
-
-
-
-void Player::loseEXP(const int EXP)
-{
-    this->attributes->exp -= EXP;
-       
-       if(this->attributes->exp < 0)
-           this->attributes->exp = 0;
-}
-
-
-
-void Player::gainHP(const int HP)
-{
-    this->attributes->hp += HP;
-    
-    if(this->attributes->hp > this->attributes->hpMax)
-        this->attributes->hp = this->attributes->hpMax;
-}
-
-
-
-void Player::gainEXP(const int EXP)
-{
-    this->attributes->gainexp(EXP);
-}
-
-
-void Player::gainCoins(const int COINS)
-{
-    this->attributes->gaincoins(COINS);
-}

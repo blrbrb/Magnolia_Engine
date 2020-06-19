@@ -32,27 +32,33 @@ public:
     //update functions
     void updateInput(const float& dt); 
     void update(const float& dt);
+    void updateeventtime(const float& dt);
     void updatePlayerGUI(const float& dt);
     void updateEnemies(const float& dt);
-    void updateEnemyAnimations(const float& dt);
     void updateButtons(const float& dt);
     void updatePauseMenu(); 
     void updateBattleGUI(const float& dt);
     void updateCombat();
     void checkHP(); 
    
+    void PlayerAttack(); 
     
+    
+    //modifiers
     void GiveEnemyDamage(const float& dt);
 
     
     //Accessors
     ///turn based battle accessor. Returns wether or not the player, or enemy has taken a turn
     bool getturn();
-    bool getwin();
+    const bool getEventtime();
+    
     //render functions
     void render(sf::RenderTarget* target = NULL);
     void renderBattleGUI(sf::RenderTarget& target);
  
+    //Misc
+   
     
 
 protected:
@@ -71,7 +77,7 @@ private:
     //Mechanics Variable
     bool PlayerTurn;
     bool playerDed;
-    bool win; 
+   
     bool enemyDed; 
     //core variables
     sf::Font font; 
@@ -85,8 +91,12 @@ private:
     void initkeybinds();
     void initpausemenu();
     void initrender();
-    void initplayerGUI(); 
+    void initplayerGUI();
+    void initVariables(); 
     
+    //Timing
+    float eventtime;
+    const float eventtimeMax; 
     //render varialbes
     sf::RenderTexture rendertexture;
     sf::Sprite rendersprite; 

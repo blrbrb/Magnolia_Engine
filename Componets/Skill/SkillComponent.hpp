@@ -19,7 +19,7 @@ public:
     virtual ~SkillComponent();
     
    const int getSkill(const int skill) const;
-    const void gainExp(const int skill, const int exp);
+   const void gainExp(const int skill, const int exp);
     
 private:
     class Skill

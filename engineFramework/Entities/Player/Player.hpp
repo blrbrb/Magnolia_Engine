@@ -49,28 +49,7 @@ public:
     Inventory* getInventory();
     
 
-    //Functions
-    
-    /// Take away HP points from the Player's Status Component
-    ///  @param HP const int amount of HP to reduce
-    void loseHP(const int HP);
-    
-    /// Take away EXP points from the Player's Status Component
-    /// @param EXP const int amount of EXP to reduce
-    void loseEXP(const int EXP);
-    
-    /// Give HP points to the Player's Status Component
-    /// @param HP const int amount of HP to give
-    void gainHP(const int HP);
-    
-    /// Give EXP points to the Player's Status Component
-    ///  @param EXP const int amount of EXP to give
-    void gainEXP(const int EXP);
-    
-    /// Give coins to the Player's Status Component
-    /// @param COINS const int amount of coins to give
-    void gainCoins(const int COINS); 
-    
+   
     
     ///  Update the Player
     /// @param dt Delta-Time

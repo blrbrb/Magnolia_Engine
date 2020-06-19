@@ -14,6 +14,7 @@ GameState::GameState(StateData* state_data)
 {
     try
     {
+        this->initvariables();
         this->initdeferedrender();
         this->initview();
         this->initkeybinds();
@@ -25,15 +26,16 @@ GameState::GameState(StateData* state_data)
         this->initplayerGUI();
         this->initenemysystem();
         this->inittilemap();
+        
     }
     catch (std::runtime_error& e)
     {
-        std::cout << e.what();
+        std::cerr << e.what();
         
     }
     
-    // this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
-    //this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
+     //this->activEnemies.push_back(new Blrb(500.f, 800.f,this->textures["ENEMY_SHEET"]));
+     //this->activEnemies.push_back(new Blrb(100.f, 300.f, this->textures["ENEMY_SHEET"]));
  
 }
 
@@ -45,6 +47,7 @@ GameState::~GameState()
     delete this->playerGUI;
     delete this->Tilemap;
     delete this->enemysystem;
+   
     
     for (size_t i = 0; i < this->activEnemies.size(); i++ )
     {
@@ -53,6 +56,12 @@ GameState::~GameState()
     }
     
 
+}
+
+
+void GameState::initvariables()
+{
+    
 }
 
 void GameState::initdeferedrender() {
@@ -101,6 +110,8 @@ void GameState::initview()
 
     this->view.setCenter(sf::Vector2f(static_cast<float>(this->state_data->gfxsettings->resolution.width) / 4.f,        static_cast<float>(this->state_data->gfxsettings->resolution.height) / 4.f));
 
+    
+    
 }
 
 
@@ -140,14 +151,15 @@ void GameState::initplayerGUI()
 
 void GameState::inittextures()
 {
+    
     if (!this->textures["PLAYER_SHEET"].loadFromFile(resourcePath() + "Hero.png"))
     {
         std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures" << std::endl;
-        
+       
         throw std::runtime_error("ERROR CODE 02: GAMESTATE::INITTEXTURES Could Not Load PLAYER_SHEET textures");
     }
     
-    if (!this->textures["ENEMY_SHEET"].loadFromFile(resourcePath() + "Blrb.png"))
+    if (!this->textures["ENEMY_SHEET"].loadFromFile(resourcePath() + "blrb.png"))
     {
         std::cout << "ERROR_C 02: GAMESTATE::INITTEXTURES Could Not Load ENEMY_SHEET textures" << std::endl;
         
@@ -212,14 +224,13 @@ void GameState::update(const float& dt) {
     
     if(!this->paused) //Update while unpaused 
      {
-         this->updateView(dt);
-         this->updatePlayer(dt);
-         this->updateEnemies(dt);
-         this->updatetilemap(dt);
-         this->updateEnemyEncounter();
-         this->updatePlayerGUI(dt);
-         
-         
+            this->updateEnemyMovements(dt);
+            this->updateView(dt);
+            this->updatePlayer(dt);
+            this->updateEncounter(dt);
+            this->updatetilemap(dt);
+            this->updatePlayerGUI(dt);
+    
      }
    
     else // Update while Paused
@@ -267,8 +278,7 @@ void GameState::updatebuttons()
         this->endstate();
     }
     
-    
-    
+
 }
 
 void GameState::updateView(const float &dt)
@@ -381,6 +391,7 @@ void GameState::render(sf::RenderTarget* target) {
     for (auto *i : this->activEnemies)
        {
            i->render(this->rendertexture, &this->core_shader, i->getCenter(), false);
+           
        }
     
     this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this->player->getCenter());
@@ -395,6 +406,8 @@ void GameState::render(sf::RenderTarget* target) {
         this->rendertexture.setView(this->rendertexture.getDefaultView());
         this->pMenu->render(this->rendertexture);
     }
+    
+   
     
    // this->rendermodes(target);
     
@@ -421,14 +434,54 @@ void GameState::updatePlayer(const float &dt)
     this->player->update(dt, this->MousePosView);
 }
 
-void GameState::updateEnemies(const float &dt)
+void GameState::updateEnemyMovements(const float& dt)
 {
+    
     for (auto *i : this->activEnemies)
-         {
-             i->update(dt, this->MousePosView);
-             i->move_rand(dt, rand() % 3 );
-         }
+    {
+        i->update(dt, this->MousePosView);
+        i->move_rand(dt, rand() % 3);
+    }
+    
 }
+
+
+
+
+void GameState::updateEncounter(const float &dt)
+{
+    for (auto i2 = this->activEnemies.begin(); i2 < this->activEnemies.end(); i2++)
+        {
+           
+    for (auto *i : this->activEnemies)
+    {
+           
+             if (i->getGlobalBounds().contains(this->player->getPosition().x, this->player->getPosition().y))
+             {
+                 this->battleState = new BattleState(this->state_data, &this->gamestatedata, this->player, this->playerGUI, i);
+                 this->state_data->states->push(battleState);
+                 
+               
+                 std::cout << this->activEnemies.size() << " pre deletion size" << std::endl;
+            
+               
+             }
+        
+        
+                  if(i->attributes->hp <=0)
+                 {
+                     this->activEnemies.erase(i2);
+                  
+                     std::cout << this->activEnemies.size() << " post deletion size" << std::endl;
+                     
+                    
+                 }
+        
+        }
+   
+}
+}
+
 
 void GameState::initenemysystem()
 {
@@ -436,21 +489,9 @@ void GameState::initenemysystem()
 }
 
 
-void GameState::updateEnemyEncounter()
-{
 
-    for (auto *i : this->activEnemies)
-    {
-        if (i->getGlobalBounds().contains(this->player->getPosition().x, this->player->getPosition().y))
-        {
-            //enter a battlestate if the player, and enemy positions intersect
-           
-            this->state_data->states->push(new BattleState(this->state_data, &this->gamestatedata, this->player, this->playerGUI, i));
-        }
-        
-    }
     
-}
+
 
 
 

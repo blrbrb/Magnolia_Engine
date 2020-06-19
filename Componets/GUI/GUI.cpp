@@ -786,14 +786,14 @@ GUI::ProgressBar::~ProgressBar()
 
 void GUI::ProgressBar::update(const int current_value)
 {
-    float percent = static_cast<float>(current_value) /
-                    static_cast<float>(MaxVal);
+    float percent = static_cast<float>(current_value) / static_cast<float>(this->MaxVal);
     
     
     this->Interior.setSize(sf::Vector2f(static_cast<float>(std::floor(this->Max_width * percent)), this->Interior.getSize().y));
     
     this->hpbarText = std::to_string(current_value) + "/" +
-                     std::to_string(MaxVal);
+                     std::to_string(this->MaxVal);
+    
     this->text.setString(hpbarText);
 }
 

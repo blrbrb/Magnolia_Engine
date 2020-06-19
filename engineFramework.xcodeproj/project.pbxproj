@@ -11,6 +11,7 @@
 		450CA30923D9106200FF039F /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450CA30723D9106200FF039F /* State.cpp */; };
 		450CA31123D9187800FF039F /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450CA30F23D9187800FF039F /* GameState.cpp */; };
 		451BD30C23DA10E200426643 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 451BD30A23DA10E200426643 /* Entity.cpp */; };
+		452A086A247E0669002A5F16 /* blrb.png in Resources */ = {isa = PBXBuildFile; fileRef = 452A0869247E0668002A5F16 /* blrb.png */; };
 		4543923923E1BFBB00D7A0F5 /* MovementComponets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4543923723E1BFBB00D7A0F5 /* MovementComponets.cpp */; };
 		4546031E240E93B000EAF628 /* EnemySpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546031C240E93B000EAF628 /* EnemySpawner.cpp */; };
 		4546032D240ECCC700EAF628 /* EditorModes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4546032B240ECCC700EAF628 /* EditorModes.cpp */; };
@@ -31,7 +32,6 @@
 		45466C6C2408A682001F72E0 /* Retro Ambience Acute 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C6B2408A682001F72E0 /* Retro Ambience Acute 01.wav */; };
 		45466C6E2408A6A3001F72E0 /* Confirm 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C6D2408A6A3001F72E0 /* Confirm 1.wav */; };
 		45466C702408A6E5001F72E0 /* Water Drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45466C6F2408A6E5001F72E0 /* Water Drop.wav */; };
-		45485998241146C300D97104 /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 45485997241146C300D97104 /* atlas.png */; };
 		4548599D2411D95000D97104 /* Blrb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4548599B2411D95000D97104 /* Blrb.cpp */; };
 		454A702C23D770B4003FEB4F /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 454A702B23D770B4003FEB4F /* ResourcePath.mm */; };
 		454A702F23D770B4003FEB4F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454A702E23D770B4003FEB4F /* main.cpp */; };
@@ -103,7 +103,6 @@
 		455FB3932404ADCF00146C3A /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3922404ADCF00146C3A /* License.txt */; };
 		455FB3952404ADD400146C3A /* Kenney.url in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3942404ADD400146C3A /* Kenney.url */; };
 		455FB3972404ADD700146C3A /* Patreon.url in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3962404ADD700146C3A /* Patreon.url */; };
-		455FB3992404ADDF00146C3A /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3982404ADDF00146C3A /* license.txt */; };
 		455FB39E240593AF00146C3A /* dropdownTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB39D240593AF00146C3A /* dropdownTop.png */; };
 		455FB3A0240593BF00146C3A /* dropdownMid.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB39F240593BF00146C3A /* dropdownMid.png */; };
 		455FB3A2240593C500146C3A /* dropdownBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 455FB3A1240593C500146C3A /* dropdownBottom.png */; };
@@ -168,6 +167,7 @@
 		450CA31023D9187800FF039F /* GameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
 		451BD30A23DA10E200426643 /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		451BD30B23DA10E200426643 /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		452A0869247E0668002A5F16 /* blrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blrb.png; path = ../../../../Desktop/blrb.png; sourceTree = "<group>"; };
 		4543923723E1BFBB00D7A0F5 /* MovementComponets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MovementComponets.cpp; sourceTree = "<group>"; };
 		4543923823E1BFBB00D7A0F5 /* MovementComponets.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MovementComponets.hpp; sourceTree = "<group>"; };
 		4546031C240E93B000EAF628 /* EnemySpawner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemySpawner.cpp; sourceTree = "<group>"; };
@@ -193,7 +193,6 @@
 		45466C6B2408A682001F72E0 /* Retro Ambience Acute 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Retro Ambience Acute 01.wav"; sourceTree = "<group>"; };
 		45466C6D2408A6A3001F72E0 /* Confirm 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Confirm 1.wav"; sourceTree = "<group>"; };
 		45466C6F2408A6E5001F72E0 /* Water Drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Water Drop.wav"; path = "../Water Drop.wav"; sourceTree = "<group>"; };
-		45485997241146C300D97104 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = atlas.png; path = ../../../../Desktop/atlas.png; sourceTree = "<group>"; };
 		4548599B2411D95000D97104 /* Blrb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Blrb.cpp; sourceTree = "<group>"; };
 		4548599C2411D95000D97104 /* Blrb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Blrb.hpp; sourceTree = "<group>"; };
 		4548599E2411DD4E00D97104 /* Enemies_Include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemies_Include.h; sourceTree = "<group>"; };
@@ -277,7 +276,6 @@
 		455FB3922404ADCF00146C3A /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		455FB3942404ADD400146C3A /* Kenney.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kenney.url; sourceTree = "<group>"; };
 		455FB3962404ADD700146C3A /* Patreon.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Patreon.url; sourceTree = "<group>"; };
-		455FB3982404ADDF00146C3A /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license.txt; path = ../../../Downloads/uipack_fixed/license.txt; sourceTree = "<group>"; };
 		455FB39D240593AF00146C3A /* dropdownTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownTop.png; sourceTree = "<group>"; };
 		455FB39F240593BF00146C3A /* dropdownMid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownMid.png; sourceTree = "<group>"; };
 		455FB3A1240593C500146C3A /* dropdownBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownBottom.png; sourceTree = "<group>"; };
@@ -464,10 +462,10 @@
 		454A703023D770B4003FEB4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				452A0869247E0668002A5F16 /* blrb.png */,
 				458EE408242324270040B75A /* coins.png */,
 				45BE8F89241883C2001921B4 /* fuck.png */,
 				45BE8F872418469B001921B4 /* test.png */,
-				45485997241146C300D97104 /* atlas.png */,
 				45460335240EDFBD00EAF628 /* Blrb.png */,
 				45460339240F521E00EAF628 /* Hero.png */,
 				45466C512408919B001F72E0 /* TileMap.png */,
@@ -659,7 +657,6 @@
 		455FB3912404ADC200146C3A /* Licenses  */ = {
 			isa = PBXGroup;
 			children = (
-				455FB3982404ADDF00146C3A /* license.txt */,
 				455FB3962404ADD700146C3A /* Patreon.url */,
 				455FB3942404ADD400146C3A /* Kenney.url */,
 				455FB3922404ADCF00146C3A /* License.txt */,
@@ -1081,7 +1078,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E01759240AF23500EC8E1D /* red_button02.png in Resources */,
-				455FB3992404ADDF00146C3A /* license.txt in Resources */,
 				455318FA2409FEFE00433CD7 /* red_button07.png in Resources */,
 				45466C662408A60D001F72E0 /* Retro Event Acute 08.wav in Resources */,
 				455FB37D2404AAE400146C3A /* EngineLogo.png in Resources */,
@@ -1121,6 +1117,7 @@
 				45466C522408919B001F72E0 /* TileMap.png in Resources */,
 				455FB3A2240593C500146C3A /* dropdownBottom.png in Resources */,
 				4558083F23F5D13900E36DFA /* Supported_Keys.ini in Resources */,
+				452A086A247E0669002A5F16 /* blrb.png in Resources */,
 				455318E12409FEFD00433CD7 /* red_button04.png in Resources */,
 				4558083123F5CE5900E36DFA /* MenuState_Keys.ini in Resources */,
 				455808BA2400122000E36DFA /* grey_arrowDownWhite.png in Resources */,
@@ -1129,7 +1126,6 @@
 				4558088E2400113700E36DFA /* red_sliderUp.png in Resources */,
 				455FB3822404ABCB00146C3A /* LevelUp.wav in Resources */,
 				455318F02409FEFD00433CD7 /* red_button05.png in Resources */,
-				45485998241146C300D97104 /* atlas.png in Resources */,
 				4546033A240F521E00EAF628 /* Hero.png in Resources */,
 				455FB3AA24070AA000146C3A /* fragment_shader.frag in Resources */,
 				4558083523F5CEA000E36DFA /* EditorState_Keys.ini in Resources */,
@@ -1254,6 +1250,7 @@
 		454A703923D770B4003FEB4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1287,10 +1284,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
 					"$(inherited)",
 				);
+				KEEP_PRIVATE_EXTERNS = NO;
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib/,
 					"$(inherited)",
@@ -1305,6 +1304,7 @@
 					"$(SFML_AUDIO)",
 					"$(SFML_NETWORK)",
 				);
+				SEPARATE_SYMBOL_EDIT = NO;
 				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
 				SFML_BINARY_TYPE = FRAMEWORKS;
 				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
@@ -1324,6 +1324,7 @@
 		454A703A23D770B4003FEB4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1356,10 +1357,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
 					"$(inherited)",
 				);
+				KEEP_PRIVATE_EXTERNS = NO;
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib/,
 					"$(inherited)",
@@ -1373,6 +1376,7 @@
 					"$(SFML_AUDIO)",
 					"$(SFML_NETWORK)",
 				);
+				SEPARATE_SYMBOL_EDIT = NO;
 				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
 				SFML_BINARY_TYPE = FRAMEWORKS;
 				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";

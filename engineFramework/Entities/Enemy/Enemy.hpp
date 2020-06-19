@@ -21,11 +21,7 @@ public:
     virtual ~Enemy();
     
     
-    
-    //Functions
-      virtual void loseHP(const int HP) = 0;
-      virtual void gainHP(const int HP) = 0;
-      
+    virtual StatusComponet* getStatusComponent() =0;
     
     virtual void update(const float& dt, sf::Vector2f& MousePosView) = 0;
     virtual void updateAnimation(const float& dt) = 0;
@@ -39,6 +35,7 @@ protected:
 
     //child class variables
        std::string name;
+    
      
     
 private:

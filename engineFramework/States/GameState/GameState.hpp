@@ -37,7 +37,7 @@ public:
     
     GameStateData() {};
     
-    
+ 
     std::map<std::string, int>* keybinds;
     sf::Font* font;
     
@@ -71,12 +71,12 @@ public:
     /// @param dt Delta-Time
     void updatePlayer(const float& dt);
     
-    /// Update the enemies, movements, hitboxes, etc
+    /// Check for an encounter between the player, and an enemy
     /// @param dt Delta-Time
-    void updateEnemies(const float& dt);
+  
     
-    /// Check wether or not the Player's bounding hitbox has intersected the bounding hitbox of one of the enemies.
-    void updateEnemyEncounter();
+    void updateEnemyMovements(const float& dt); 
+    
     ///Update the State
     void update(const float& dt);
     ///Check for a user-requested quit from the state
@@ -90,6 +90,10 @@ public:
     ///Render all of the Gamestate elements
     void render(sf::RenderTarget* target);
     
+    
+    
+    
+    void updateEncounter(const float& dt); 
    
     
 private:
@@ -97,16 +101,16 @@ private:
     //View and Camera
     sf::View view;
     float cameraspeed;
+   class BattleState* battleState;
     
-    
-      
+  
     
     Player* player;
     PlayerGUI* playerGUI;
     PauseMenu* pMenu;
     TileMap* Tilemap;
     EnemySystem* enemysystem;
-    
+  
     
     sf::Font font;
     sf::RenderTexture rendertexture;
@@ -139,6 +143,7 @@ private:
     void initshaders();
     void initenemysystem();
     void initgamestatedata();
+    void initvariables(); 
  
 
     

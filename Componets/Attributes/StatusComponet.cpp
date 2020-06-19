@@ -34,6 +34,8 @@ StatusComponet::StatusComponet(int level)
     this->UpdateStats(true);
     
     
+    this->UpdateLevel();
+    this->UpdateStats(true);
     
     //init money
     this->coins = 0; 
@@ -96,13 +98,7 @@ void StatusComponet::createstats()
 
 
 void StatusComponet::UpdateLevel()
-{ /**
-            @class StatusComponet
-            @brief Updates the level of the entity if enough exp has been accumulated, updates and changes the exp needed to reach the next level
-            @param void
-            @return void
-   
-   */
+{
     
     if (this->exp >= this->expNextlvl)
     {
@@ -112,25 +108,10 @@ void StatusComponet::UpdateLevel()
         this->exp -= this->expNextlvl;
         this->expNextlvl = static_cast<int>((50 / 3) * (pow(this->level, 3) - 6 * pow(this->level, 2) + (this->level * 17) -12));
         //Formula Proof
-        ///// x  = (50/30) * (y^3) - 6 * (y-^2)  +  (y * 17) - 12
+        // x  = (50/30) * (y^3) - 6 * (y-^2)  +  (y * 17) - 12
         ++this->attributepts;
         
     }
-    
-}
-
-void StatusComponet::gainexp(const unsigned exp)
-{
-/**
-    @class StatusComponet
-    @brief adds exp
-    @param const_unsigned exp
-    @return void
-    
-*/
-    
-    this->exp += exp;
-    this->UpdateLevel();
     
 }
 
@@ -148,20 +129,42 @@ std::string StatusComponet::debugPrint() const
     
 }
 
-void StatusComponet::Debug_test_Algorithim()
+const bool StatusComponet::isdead() const
 {
+    return this->hp <= 0;
     
- /**
-          @class StatusComponet
-          @brief Debug ignore 
-          @param void
-          @return void
- 
- */
-
 }
 
-void StatusComponet::gaincoins(const int COINS)
+//Modifiers
+//Begin
+
+void StatusComponet::loseHP(const int hp)
 {
-    this->coins += coins;
+    this->hp -= hp;
+
+    if (this->hp < 0)
+        this->hp = 0;
+}
+
+void StatusComponet::gainHP(const int hp)
+{
+    this->hp += hp;
+
+    if (this->hp > this->hpMax)
+        this->hp = this->hpMax;
+}
+
+void StatusComponet::loseEXP(const int exp)
+{
+    this->exp -= exp;
+
+    if (this->exp < 0)
+        this->exp = 0;
+}
+
+void StatusComponet::gainEXP(const int exp)
+{
+    this->exp += exp;
+
+    this->UpdateLevel();
 }

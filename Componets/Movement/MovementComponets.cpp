@@ -172,7 +172,7 @@ void MovementComponets::move_rand(const float& dt, int seed)
     
     switch (seed) {
             
-        case 1:
+        case 1: 
             
             if(this->getmovetime())
             {

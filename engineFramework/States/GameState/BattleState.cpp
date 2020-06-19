@@ -9,11 +9,12 @@
 #include "BattleState.hpp"
 
 
-BattleState::BattleState(StateData* state_data, GameStateData* gamestatedata, Player* player, class PlayerGUI* PlayerGUI, Enemy* enemy) : State(state_data), Gamestatedata(gamestatedata), player(player), PlayerGUI(PlayerGUI), enemy(enemy)
+BattleState::BattleState(StateData* state_data, GameStateData* gamestatedata, Player* player, class PlayerGUI* PlayerGUI, Enemy* enemy) : State(state_data), Gamestatedata(gamestatedata), player(player), PlayerGUI(PlayerGUI), enemy(enemy), eventtimeMax(50.f)
 {
 
     try
     {
+        this->initVariables();
         this->initrender();
         this->initview();
         this->initpausemenu();
@@ -33,11 +34,24 @@ BattleState::BattleState(StateData* state_data, GameStateData* gamestatedata, Pl
 
 BattleState::~BattleState()
 {
-    delete this->player;
-    delete this->PlayerGUI;
-    delete this->enemy;
+    
+    delete this->battleGUI;
+    delete this->pMenu;
+    delete this->enemy; 
+
+    
+}
+
+
+void BattleState::initVariables()
+{
+    this->eventtime = 0.f;
 
 }
+
+
+
+
 
 void BattleState::initrender()
 {
@@ -110,14 +124,16 @@ void BattleState::updateButtons(const float& dt)
     this->battleGUI->updatebuttons(this->MousePosScreen);
     
 
-    if(this->battleGUI->isButtonPressed("ATTACK"))
+    if(this->battleGUI->isButtonPressed("ATTACK") && this->getEventtime())
     {
-        this->enemy->loseHP(this->player->attributes->strength);
         
-        if(this->PlayerTurn)
-            this->PlayerTurn = false;
-        else
-            this->PlayerTurn = true;
+        this->PlayerAttack();
+        
+            if(this->PlayerTurn)
+                this->PlayerTurn = false;
+            else
+                this->PlayerTurn = true;
+        
     }
     
     
@@ -125,6 +141,14 @@ void BattleState::updateButtons(const float& dt)
 
 }
 
+
+
+void BattleState::PlayerAttack()
+{
+    
+    this->enemy->getStatusComponent()->loseHP(this->player->attributes->strength * this->player->attributes->attributepts);
+    
+}
 
 
 
@@ -135,7 +159,7 @@ void BattleState::updateEnemies(const float& dt)
     
     if(this->PlayerTurn == false)
     {
-        this->player->loseHP(2);
+        this->player->getStatusComponet()->loseHP(this->enemy->attributes->strength);
         
         if(!this->PlayerTurn)
             this->PlayerTurn = true;
@@ -155,29 +179,40 @@ void BattleState::updatePlayerGUI(const float& dt)
 void BattleState::checkHP()
 {
     
-    if(this->player->attributes->hp <= 0)
+    if(this->player->attributes->hp > 0 && this->enemy->attributes->hp <=0)
     {
-        this->playerDed = true;
+        this->states->pop(); 
     }
     
-    if(this->enemy->attributes->hp <=0)
+    if(this->player->attributes->hp == 0 && this->enemy->attributes->hp == 0)
     {
-        this->enemyDed = true;
+    
+        
+    
+    }
+      
+    
+}
+
+
+void BattleState::updateeventtime(const float& dt)
+{
+    if (this->eventtime < this->eventtimeMax)
+    {
+        this->eventtime += 10.f * dt;
     }
 }
 
-void BattleState::updateEnemyAnimations(const float& dt)
-{
-    this->enemy->animtioncomponet->play("IDLE", dt, 5, 5);
-    
-}
+
 
 void BattleState::update(const float &dt)
 {
-    this->updateEnemyAnimations(dt);
+    this->updateeventtime(dt);
     this->updateMousePosition();
     this->updatePlayerGUI(dt);
     this->checkHP();
+
+    
     
     if(!this->paused) //Update while unpaused
       {
@@ -198,7 +233,7 @@ void BattleState::update(const float &dt)
       }
     
    
-    
+    this->updateCombat();
 }
 
 void BattleState::updateCombat()
@@ -210,7 +245,8 @@ void BattleState::updateCombat()
        
        if(this->enemyDed)
        {
-           //function to give exp, and return to gamestate
+           
+          
        }
        
 }
@@ -254,7 +290,7 @@ void BattleState::GiveEnemyDamage(const float& dt)
 {
     
     this->enemy->animtioncomponet->play("ATTACKED", dt);
-    this->enemy->loseHP(2);
+    this->enemy->getStatusComponent()->loseHP(2);
     
 }
 
@@ -266,7 +302,16 @@ void BattleState::initplayerGUI()
     this->battleGUI = new BattleGUI(this->player, this->enemy, vm);
 }
 
-bool BattleState::getwin()
+
+
+const bool BattleState::getEventtime()
 {
-    return this->win;
+    if (this->eventtime >= this->eventtimeMax)
+        {
+            this->eventtime = 0.f;
+            return true;
+        }
+
+        return false;
+    
 }
