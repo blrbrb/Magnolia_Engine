@@ -166,8 +166,17 @@ void Game::Update()
                 if (this->states.top()->getquit())
                 {
                     this->states.top()->endstate();
-                    delete this->states.top();
-                    this->states.pop();
+                    
+                    if(this->states.size() == 1)
+                    {
+                        this->window->close();
+                    }
+                    
+                    else
+                    {
+                        delete this->states.top();
+                        this->states.pop();
+                    }
                 }
             }
         }

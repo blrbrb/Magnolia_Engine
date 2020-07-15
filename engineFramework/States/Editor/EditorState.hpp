@@ -39,8 +39,8 @@ class EditorState : public State
         EditorState(StateData* state_data);
     
         virtual ~EditorState();
+
     
-        
         //Update Functions
         void updateInput(const float& dt);
         void updateEditorinput(const float& dt);

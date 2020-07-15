@@ -13,10 +13,8 @@ MovementComponets::MovementComponets(sf::Sprite& sprite, float maxVelocity, floa
 {
     this->Velocity.x = 0.f;
     this->Velocity.y = 0.f;
-    this->Mass = 10.f;
-    this->Volume = this->sprite.getLocalBounds().width * this->sprite.getLocalBounds().top;
-    this->Density = this->Volume / 25.f;
     
+
 }
 
 MovementComponets::~MovementComponets()
@@ -24,35 +22,7 @@ MovementComponets::~MovementComponets()
     
 }
 
-void MovementComponets::Updatephyiscs(const float& dt)
-{
-    //Acceleration and Deceleration
-    this->pastVelX = this->Velocity.x - dt;
-    this->pastVelY = this->Velocity.y - dt;
 
-    this->DeltaVelocityX = this->Velocity.x - this->pastVelX;
-    this->DeltaVelocityY = this->Velocity.y - this->pastVelY;
-    
-    this->AccelerationX = this->DeltaVelocityX / dt; 
-    this->AccelerationY = this->DeltaVelocityY / dt;
-    
-    this->Deceleration = this->Acceleration - this->DeltaVelocityX / dt;
-
-    //Force
-    this->Force = this->Mass * this->Acceleration;
-    
-    //Impulse
-    this->Impulse = this->Force * dt;
-    
-    
-    //Velocity
-    this->Velocity.x = (this->sprite.getPosition().x + dt) - (this->sprite.getPosition().x - dt);
-    this->Velocity.y = (this->sprite.getPosition().y + dt) - (this->sprite.getPosition().y - dt);
-    
-    
-    //Momentum
-    this->Momentum = this->Mass * this->Velocity;
-}
 
 /**
    move the object by supplying an incriment for the X and Y Velocity, and then apply Delta Time.
@@ -86,10 +56,7 @@ void MovementComponets::updateMoveTime(const float& dt)
 
 void MovementComponets::update(const float& dt)
 {
-    //update movetime
-    
-    
-    
+
     /*SLOWS DOWN THE SPRITE*/
     if (this->Velocity.x > 0.f) // Check for positive x
     {

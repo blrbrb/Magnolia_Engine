@@ -29,13 +29,17 @@ public:
      
     
     //Functions
-    void create(short type, const float x, const float y);
+    void SpawnEnemy(const short type, const float x, const float y, EnemySpawner& enemy_spawner_tile);
+    void RemoveEnemy(const int index);
+    
     void update(const float& dt);
+    
     void render(sf::RenderTarget* target);
     
 private:
     
 std::map<std::string, sf::Texture>& textures;
+    
 std::vector<Enemy*>& ActiveEnemies;
     
     

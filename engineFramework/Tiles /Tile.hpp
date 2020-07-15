@@ -32,7 +32,7 @@ protected:
 public:
     
     Tile();
-    Tile(short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false);
+    Tile( short type, int x, int y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, bool collision_enabled = false);
     virtual ~Tile();
     
     //Accessors
@@ -46,7 +46,7 @@ public:
     
     
     //Functions
-    virtual void update(const float& dt) =0;
+    virtual void update() =0;
     virtual void render(sf::RenderTarget & target, sf::Shader* shader = NULL,sf::Vector2f LightPosition = sf::Vector2f())=0;
     
 };

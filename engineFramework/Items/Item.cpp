@@ -11,9 +11,10 @@
 
 Item::Item(unsigned value)
 {
-    this->value = 0;
+    this->value = value; 
     this->type = ItemTypes::REG;
-    
+   
+
 }
 
 

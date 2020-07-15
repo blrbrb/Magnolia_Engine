@@ -40,6 +40,9 @@ public:
 private:
     sf::Sprite& sprite;
     sf::RectangleShape hitbox;
+    
+    b2PolygonShape hotbox;
+    
     float offsetX;
     float offsetY;
     sf::FloatRect nextpos;

@@ -33,7 +33,7 @@ const std::string LightTile::asString() const
 
 
 
-void LightTile::update(const float &dt)
+void LightTile::update()
 {
     
 }

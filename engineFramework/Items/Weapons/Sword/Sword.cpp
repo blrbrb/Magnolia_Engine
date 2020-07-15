@@ -9,11 +9,16 @@
 #include "Sword.hpp"
 
 Sword::Sword(unsigned value, std::string texture_file) : Weapon(value, texture_file)
-{
-    this->value = 1;
-    this->type = ItemTypes::WEAPON; 
+{ 
+    this->initvariables(); 
 }
 
+void Sword::initvariables()
+{
+    this->type = ItemTypes::WEAPON;
+    this->value = 1;
+    
+}
 
 
 Sword::~Sword()
@@ -24,19 +29,9 @@ Sword::~Sword()
 }
 
 
-void Sword::update(const sf::Vector2f &MousePosView, const sf::Vector2f center)
+void Sword::update(const sf::Vector2f position)
 {
-    this->weaponSprite.setPosition(center);
-    
-    float dx = MousePosView.x - weaponSprite.getPosition().x;
-    float dy = MousePosView.y - weaponSprite.getPosition().y;
-    
-    const float PI = 3.14159265;
-    float deg = atan2(dy,dx) * 180 / PI;
-    
-    this->weaponSprite.setRotation(deg + 90.f);
-    
-    
+    this->weaponSprite.setPosition(position.x, position.y);
 }
 
 void Sword::render(sf::RenderTarget &target, sf::Shader* shader)

@@ -8,7 +8,7 @@
 
 
 #include "TileMap.hpp"
-#include "ResourcePath.hpp"
+
 
 
 void TileMap::clear()
@@ -156,28 +156,28 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridposition,
     
         this->layer = 0;
         
-    this->FromX = gridposition.x - 27;
+    this->FromX = gridposition.x - 15;
        
            if(this->FromX < 0)
                this->FromX = 0;
            else if (this->FromX > this->MaxSizeWorldGrid.x)
                this->FromX = this->MaxSizeWorldGrid.x;
        
-       this->ToX = gridposition.x + 27;
+       this->ToX = gridposition.x + 15;
        
            if(this->ToX < 0)
                       this->ToX = 0;
                   else if (this->ToX > this->MaxSizeWorldGrid.x)
                       this->ToX = this->MaxSizeWorldGrid.x;
           
-       this->FromY = gridposition.y - 27;
+       this->FromY = gridposition.y - 15;
        
            if(this->FromY < 0)
                       this->FromY = 0;
                   else if (this->FromY > this->MaxSizeWorldGrid.x)
                       this->FromY = this->MaxSizeWorldGrid.x;
           
-       this->ToY = gridposition.y + 27;
+       this->ToY = gridposition.y + 15;
        
            if(this->ToY < 0)
                 this->ToY = 0;
@@ -713,21 +713,29 @@ void TileMap::updateTiles(Entity *entity, const float &dt, EnemySystem& enemysys
         {
             for (size_t k=0; k < this->Map[x][y][this->layer].size(); k++)
             {
-                this->Map[x][y][this->layer][k]->update(dt);
+                this->Map[x][y][this->layer][k]->update();
                  
                 if (this->Map[x][y][this->layer][k]->gettype() == TileTypes::SPAWNER)
                 {
                     EnemySpawner* es = dynamic_cast<EnemySpawner*>(this->Map[x][y][this->layer][k]);
                     if (es)
                     {
-                        if(!es->getSpawned())
+                        if(!es->getSpawned() && es->getEnemyCounter() < es->getEnemyAmount())
                         {
-                            enemysystem.create(BLRB, x*this->grid_sizeF, y*this->grid_sizeF);
+                            try
+                            {
+                            enemysystem.SpawnEnemy(BLRB, x*this->grid_sizeF, y*this->grid_sizeF, *es);
                             es->SetSpawned(true);
+                            }
+                            
+                            catch(std::invalid_argument& e)
+                            {
+                                std::cerr << e.what();
+                            }
                             
                             
                         
-                       
+
                         }
                     }
                 }

@@ -39,7 +39,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                                  }
                                  else
                                  {
-                                     std::cout << "Tile is already assigned to space, disable layer locking to place more than one tile on a spot" << std::endl;
+                                     std::cout << "Grid space is already assigned to a tile, disable layer locking to place more than one tile on a Grid space" << std::endl;
                                  }
                                
                            }
@@ -47,24 +47,16 @@ void EnemyEditorMode::updateInput(const float &dt)
                            else if (!this->tilemap->lock_layer)
                             {
                         
-                                this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, this->layer, this->TextureRect, this->Enemytype, this->Enemyamount, this->spawn_timer, this->maxDistance);
+                                this->tilemap->addTile(this->editorstatedata->mouseposGrid->x, this->editorstatedata->mouseposGrid->y, 0, this->TextureRect, this->Enemytype, this->Enemyamount, this->spawn_timer, this->maxDistance);
                                 
-                                std::cout << "Tile Added" << std::endl;
+                                std::cout << "Spawner Tile Added" << std::endl;
                                
                             }
 
                      }
                  
-                    //else play UI invalid sound for invalid tile placement
-                 
-                 
-             
-             //else set the selection rect to the texture the user's mouse is on in the texture selector
-            else
-            {
-                this->TextureRect = this->texture_selector->getTextureRect();
-                         
-            }
+         
+           
         }
     
         
@@ -88,7 +80,7 @@ void EnemyEditorMode::updateInput(const float &dt)
                                }
                                else
                                {
-                                   std::cout << "Tile is already assigned to space, disable layer locking to place more than one tile on a spot" << std::endl;
+                                   std::cout << "Grid space has already been assigned a tile , disable layer locking to place more than one tile on a Grid space" << std::endl;
                                }
                              
                          }
@@ -118,14 +110,16 @@ void EnemyEditorMode::updateInput(const float &dt)
                  }
           }
             
+    
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && this->getkeytime())
+    {
+        if (this->Enemyamount > 0)
+            this->Enemyamount--;
+              
+    }
         
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && this->getkeytime())
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-        {
-            if (this->Enemyamount > 0)
-                this->Enemyamount--;
-        }
         
         if (this->Enemyamount < 100)
             this->Enemyamount++;
@@ -133,13 +127,16 @@ void EnemyEditorMode::updateInput(const float &dt)
             this->Enemyamount = 0;
     }
     
+    
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K) && this->getkeytime())
+    {
+        
+        if (this->spawn_timer > 0)
+                this->spawn_timer--;
+    }
+    
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->getkeytime())
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-        {
-            if (this->spawn_timer > 0)
-                this->spawn_timer--;
-        }
         
         if (this->spawn_timer < 1000)
             this->spawn_timer++;
@@ -224,6 +221,8 @@ void EnemyEditorMode::renderGUI(sf::RenderTarget &target)
     target.draw(this->sidebar);
     target.draw(this->cursortext);
     target.draw(this->text_container);
+    target.draw(this->controlsContainer);
+    target.draw(this->controls); 
 }
 
 void EnemyEditorMode::render(sf::RenderTarget &target)
@@ -233,38 +232,41 @@ void EnemyEditorMode::render(sf::RenderTarget &target)
 
 void EnemyEditorMode::initGUI()
 {
-       this->sidebar.setSize(sf::Vector2f(80.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
+     sf::VideoMode vm = statedata->gfxsettings->resolution;
+    
+       this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
        this->sidebar.setFillColor(sf::Color(50,50,50, 100));
        this->sidebar.setOutlineColor(sf::Color(200,200,200,150));
        this->sidebar.setOutlineThickness(1.f);
        
         //config the selection rectangle
-       this->select_Rect.setSize(sf::Vector2f(statedata->gridsize, statedata->gridsize));
+        this->select_Rect.setSize(sf::Vector2f(statedata->gridsize, statedata->gridsize));
         this->select_Rect.setFillColor(sf::Color::White);
+    
+        //init the box to display controls information to the user
+        this->controlsContainer.setSize(sf::Vector2f(GUI::pixelpercentX(22.57, vm), GUI::pixelpercentY(30, vm)));
+        this->controlsContainer.setFillColor(sf::Color(50,50,50,100));
+        this->controlsContainer.setPosition(GUI::pixelpercentX(77.4, vm), GUI::pixelpercentY(30, vm));
+        this->controlsContainer.setOutlineThickness(1.f);
+        this->controlsContainer.setOutlineColor(sf::Color(200, 200, 200, 150));
+         
+        //init the box for the cursor text to be displayed in
+        this->text_container.setSize(sf::Vector2f(GUI::pixelpercentX(22.57, vm), (GUI::pixelpercentY(30, vm))));
+        this->text_container.setFillColor(sf::Color(50,50,50,100));
+        this->text_container.setPosition(GUI::pixelpercentX(77.4, vm), GUI::pixelpercentY(0, vm));
+        this->text_container.setOutlineThickness(1.f);
+        this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
         
-        
-        //this->select_Rect.setFillColor(sf::Color::Transparent);
-        //this->select_Rect.setOutlineColor(sf::Color::Green);
-        //this->select_Rect.setOutlineThickness(2);
-  
-        
-        //Config the TextureSelector from GUI.hpp
-        this->texture_selector = new GUI::TextureSelector(20.f, 20.f, 543.f, 560.f, this->statedata->gridsize, this->tilemap->getTileSheet(), *this->editorstatedata->font, "X");
-        
-       
-        
-       // this->buffer.loadFromFile(resourcePath() + "Beep.wav");
-        //this->UI_invalid.setBuffer(buffer
+    
 }
 
 void EnemyEditorMode::initvariables()
 {
     this->Enemytype = 1;
     this->Enemyamount = 1;
-    this->spawn_timer = 1;
-    this-> maxDistance = 5;
-    this->layer = 0;
-    this->type = TileTypes::SPAWNER; 
+    this->spawn_timer = 60;
+    this-> maxDistance = 1000.f;
+    this->type = 1;
       
 }
 
@@ -272,21 +274,21 @@ void EnemyEditorMode::inittext()
 {
     sf::VideoMode vm = statedata->gfxsettings->resolution;
         
-        
+          //init the cursor text
            this->cursortext.setFont(*this->editorstatedata->font);
            this->cursortext.setFillColor(sf::Color::White);
-           this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 100));
+           this->cursortext.setCharacterSize(GUI::calcCharSize(vm, 140));
            this->cursortext.setOutlineThickness(1.f);
-           this->cursortext.setPosition(GUI::pixelpercentX(73.4, vm), GUI::pixelpercentX(3, vm));
+           this->cursortext.setPosition(GUI::pixelpercentX(78.4, vm), GUI::pixelpercentX(3, vm));
         
-            
-        
-           this->text_container.setSize(sf::Vector2f(400.f, 200.f));
-           this->text_container.setFillColor(sf::Color(50,50,50,100));
-           this->text_container.setPosition(GUI::pixelpercentX(71.4, vm), GUI::pixelpercentY(0, vm));
-           this->text_container.setOutlineThickness(1.f);
-           this->text_container.setOutlineColor(sf::Color(200, 200, 200, 150));
     
+          //init the text describing the controls to the user
+          this->controls.setCharacterSize(GUI::calcCharSize(vm, 140));
+          this->controls.setFillColor(sf::Color::White);
+          this->controls.setFont(*this->editorstatedata->font);
+          this->controls.setPosition(GUI::pixelpercentX(78.4, vm), GUI::pixelpercentY(33, vm));
+          this->controls.setString("CONTROLS \n+ Enemies: Up \n - Enemies: Down \n + Spawn Time: J \n - Spawn Time: K");
+     
 }
 
 

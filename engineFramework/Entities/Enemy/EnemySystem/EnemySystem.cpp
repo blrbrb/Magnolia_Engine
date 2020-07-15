@@ -25,19 +25,31 @@ EnemySystem::~EnemySystem()
     
 }
 
-void EnemySystem::create(short type, const float x, const float y)
+void EnemySystem::SpawnEnemy(const short type, const float x, const float y, EnemySpawner& enemy_spawner_tile)
 {
     switch (type)
     {
         case EnemyTypes::BLRB:
-            this->ActiveEnemies.push_back(new Blrb(x, y, this->textures["ENEMY_SHEET"]));
+            this->ActiveEnemies.push_back(new Blrb(x, y, this->textures["ENEMY_SHEET"], enemy_spawner_tile));
+            enemy_spawner_tile.increaseEnemyCounter();
+            
             break;
             
         default:
-            std::cout << "LMAO you FUCKING idiot. YOU FUCKED IT UP YOur LIFE IS MEANINGLESS. GET A REAL FUCKING JOB AND STOP SITTING AROUNG MESSING WITH YOUR GAMES ALL DAY ELI. FUCK AROUND TIME IS OVER ~ Dad" << std::endl;
+            
+            throw std::invalid_argument("EnemySystem::SpawnEnemy" "Const Short Enemy Type: "  + std::to_string(type) + " is not a valid enemy type" );
              break;
    
     }
+    
+}
+
+
+void EnemySystem::RemoveEnemy(const int index)
+{
+    this->ActiveEnemies[index]->getEnemySpawnerTile().decreaseEnemyCounter();
+    delete this->ActiveEnemies[index];
+    this->ActiveEnemies.erase(this->ActiveEnemies.begin() + index);
     
 }
 

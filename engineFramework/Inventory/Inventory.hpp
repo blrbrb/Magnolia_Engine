@@ -10,6 +10,7 @@
 #define Inventory_hpp
 #include "Entity.hpp"
 
+class Item; 
 class Entity;
 class Player; 
 

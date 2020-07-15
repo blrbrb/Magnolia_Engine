@@ -11,6 +11,12 @@
 //All Enemy child classes
 //include this file in any place where enemy objects will be used :)
 
+//Core
+#include "Enemy.hpp"
+#include "EnemySystem/EnemySystem.hpp"
+
+
+//Blrb
 #include "Blrb.hpp"
 #include "Blerb.hpp"
 

@@ -8,11 +8,9 @@
 
 #ifndef TileMap_hpp
 #define TileMap_hpp
-
-#include "NormalTile.hpp"
+#include "Tiles_Include.h"
 #include "Entity.hpp"
-#include "EnemySystem.hpp"
-#include "EnemySpawner.hpp"
+#include "Enemies_Include.h"
 
 class EnemySpawner; 
 class Tile;

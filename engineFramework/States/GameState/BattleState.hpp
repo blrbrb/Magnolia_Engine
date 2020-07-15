@@ -38,11 +38,8 @@ public:
     void updateButtons(const float& dt);
     void updatePauseMenu(); 
     void updateBattleGUI(const float& dt);
-    void updateCombat();
-    void checkHP(); 
-   
-    void PlayerAttack(); 
-    
+    void PlayerAttack();
+
     
     //modifiers
     void GiveEnemyDamage(const float& dt);

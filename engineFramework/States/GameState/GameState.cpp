@@ -26,6 +26,7 @@ GameState::GameState(StateData* state_data)
         this->initplayerGUI();
         this->initenemysystem();
         this->inittilemap();
+        this->initdialougesystem();
         
     }
     catch (std::runtime_error& e)
@@ -47,7 +48,7 @@ GameState::~GameState()
     delete this->playerGUI;
     delete this->Tilemap;
     delete this->enemysystem;
-   
+    delete this->dialougeSystem;
     
     for (size_t i = 0; i < this->activEnemies.size(); i++ )
     {
@@ -62,6 +63,12 @@ GameState::~GameState()
 void GameState::initvariables()
 {
     
+}
+
+
+void GameState::initdialougesystem()
+{
+    this->dialougeSystem = new DialougeSystem("Resources/Fonts/PressStart2P.ttf");
 }
 
 void GameState::initdeferedrender() {
@@ -86,6 +93,15 @@ void GameState::initdeferedrender() {
   
 }
 
+
+void GameState::initworldbounds()
+{
+    this->worldbounds.lowerBound.Set(this->Tilemap->getMaxSize().x, this->Tilemap->getMaxSize().y);
+    this->worldbounds.upperBound.Set(0, 0);
+    b2Vec2 gravity(0.0, 9.8);
+
+    this->world = new b2World(gravity); 
+}
 
 
 void GameState::initshaders()
@@ -213,31 +229,34 @@ void GameState::inittilemap()
 
 
 
-void GameState::update(const float& dt) {
+void GameState::update(const float& dt)
+{
    
     srand(static_cast<unsigned>(time(NULL)));
     
     this->updateMousePosition(&this->view);
-    this->updateInput(dt);
     this->updatekeytime(dt);
+    this->updateInput(dt);
    
-    
     if(!this->paused) //Update while unpaused 
      {
-            this->updateEnemyMovements(dt);
+       
             this->updateView(dt);
-            this->updatePlayer(dt);
-            this->updateEncounter(dt);
+            this->updatePlayerInput(dt);
             this->updatetilemap(dt);
+            this->updatePlayer(dt);
             this->updatePlayerGUI(dt);
-    
+            this->updateEnemies(dt);
+            this->dialougeSystem->update(dt);
      }
-   
     else // Update while Paused
      {
          this->pMenu->update(this->MousePosWindow);
          this->updatebuttons();
      }
+         
+     
+    
 }
 
 void GameState::updateInput(const float& dt)
@@ -256,15 +275,6 @@ void GameState::updatetilemap(const float& dt)
     this->Tilemap->updateWorldBoundsCollision(this->player, dt);
     this->Tilemap->updateTileCollision(this->player, dt);
     this->Tilemap->updateTiles(this->player, dt, *this->enemysystem);
-    
-//Update enemy collision
-    for (auto *i : this->activEnemies)
-    {
-        this->Tilemap->updateWorldBoundsCollision(i, dt);
-        this->Tilemap->updateTileCollision(i, dt);
-        
-    }
-
     
 }
 
@@ -361,6 +371,7 @@ void GameState::updatePlayerInput(const float& dt)
         
         this->player->move(dt, 0.f, 1.f);
         std::cout << "DOWN" << std::endl;
+        this->dialougeSystem->addTextbox(DEFAULT_TAG); 
 
     }
     
@@ -396,6 +407,7 @@ void GameState::render(sf::RenderTarget* target) {
     
     this->Tilemap->DefferedRender(this->rendertexture, &this->core_shader,this->player->getCenter());
     
+    this->dialougeSystem->render(this->rendertexture);
     
     this->rendertexture.setView(this->rendertexture.getDefaultView());
     
@@ -430,62 +442,68 @@ void GameState::checkforendstate() {
 
 void GameState::updatePlayer(const float &dt)
 {
-    this->updatePlayerInput(dt);
     this->player->update(dt, this->MousePosView);
-}
-
-void GameState::updateEnemyMovements(const float& dt)
-{
-    
-    for (auto *i : this->activEnemies)
-    {
-        i->update(dt, this->MousePosView);
-        i->move_rand(dt, rand() % 3);
-    }
-    
-}
-
-
-
-
-void GameState::updateEncounter(const float &dt)
-{
-    for (auto i2 = this->activEnemies.begin(); i2 < this->activEnemies.end(); i2++)
-        {
-           
-    for (auto *i : this->activEnemies)
-    {
-           
-             if (i->getGlobalBounds().contains(this->player->getPosition().x, this->player->getPosition().y))
-             {
-                 this->battleState = new BattleState(this->state_data, &this->gamestatedata, this->player, this->playerGUI, i);
-                 this->state_data->states->push(battleState);
-                 
-               
-                 std::cout << this->activEnemies.size() << " pre deletion size" << std::endl;
-            
-               
-             }
-        
-        
-                  if(i->attributes->hp <=0)
-                 {
-                     this->activEnemies.erase(i2);
-                  
-                     std::cout << this->activEnemies.size() << " post deletion size" << std::endl;
-                     
-                    
-                 }
-        
-        }
    
 }
+
+
+
+
+
+void GameState::updateEnemies(const float &dt)
+{
+    
+    unsigned index = 0;
+    for (auto *enemy : this->activEnemies)
+    {
+        enemy->update(dt, this->MousePosView);
+        
+        enemy->move_rand(dt, rand() % 3);
+    
+
+        this->Tilemap->updateWorldBoundsCollision(enemy, dt);
+        this->Tilemap->updateTileCollision(enemy, dt);
+        
+        this->updateEncounter(enemy, index, dt);
+        
+        
+                if(enemy->isDead())
+                 {
+                     
+                     this->player->attributes->gainHP(enemy->getGainExp());
+                     this->enemysystem->RemoveEnemy(index);
+                     this->battleState = nullptr; 
+                     
+                     --index;
+                    
+                 }
+   
+        
+        }
+     ++index;
+   
+}
+
+void GameState::updateEncounter(Enemy* enemy, const int index, const float & dt)
+{
+    
+    if (enemy->getGlobalBounds().contains(this->player->getPosition().x, this->player->getPosition().y))
+    {
+        this->battleState = new BattleState(this->state_data, &this->gamestatedata, this->player, this->playerGUI, enemy);
+        this->state_data->states->push(battleState);
+                   
+    }
+    
+    
+    
+        
 }
 
 
 void GameState::initenemysystem()
 {
     this->enemysystem = new EnemySystem(this->activEnemies, this->textures);
+
 }
 
 

@@ -31,10 +31,11 @@ public:
 private:
         //GUI variables
          sf::Text cursortext;
-         GUI::TextureSelector* texture_selector;
+         sf::Text controls;
          sf::RectangleShape select_Rect;
          sf::RectangleShape sidebar;
          sf::RectangleShape sidebar_texture;
+         sf::RectangleShape controlsContainer; 
          sf::RectangleShape text_container;
          sf::IntRect TextureRect;
     

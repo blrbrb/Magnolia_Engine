@@ -19,6 +19,7 @@ engineFramework
 #include "PauseMenu.hpp"
 #include "EnemySystem.hpp"
 #include "TileMap.hpp"
+#include "DialougeSystem.hpp"
 #include "BattleState.hpp"
 
 
@@ -73,9 +74,8 @@ public:
     
     /// Check for an encounter between the player, and an enemy
     /// @param dt Delta-Time
+    void updateEncounter(Enemy* enemy, const int index, const float & dt);
   
-    
-    void updateEnemyMovements(const float& dt); 
     
     ///Update the State
     void update(const float& dt);
@@ -93,7 +93,7 @@ public:
     
     
     
-    void updateEncounter(const float& dt); 
+    void updateEnemies(const float& dt); 
    
     
 private:
@@ -101,7 +101,7 @@ private:
     //View and Camera
     sf::View view;
     float cameraspeed;
-   class BattleState* battleState;
+    class BattleState* battleState;
     
   
     
@@ -109,7 +109,10 @@ private:
     PlayerGUI* playerGUI;
     PauseMenu* pMenu;
     TileMap* Tilemap;
+    
+    
     EnemySystem* enemysystem;
+    DialougeSystem* dialougeSystem;
   
     
     sf::Font font;
@@ -119,6 +122,9 @@ private:
     //Shaders
     sf::Shader core_shader;
     
+    b2AABB worldbounds;
+    b2World* world; 
+    
     //Sounds
     sf::SoundBuffer buffer;
     sf::Sound sound; 
@@ -127,7 +133,7 @@ private:
     
     //Enemies
     std::vector<Enemy*> activEnemies;
-  
+   
     GameStateData gamestatedata; 
     
     //Init Functions
@@ -143,8 +149,10 @@ private:
     void initshaders();
     void initenemysystem();
     void initgamestatedata();
-    void initvariables(); 
- 
+    void initvariables();
+    void initdialougesystem();
+    void initworldbounds(); 
+  
 
     
 };

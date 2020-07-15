@@ -27,7 +27,8 @@
 #include <sstream>
 #include <fstream>
 #include <cmath>
-#include <GLFW/glfw3.h> 
+#include <GLFW/glfw3.h>
+
 
 //SFML
 #include <SFML/System.hpp>
@@ -36,7 +37,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-
+//Box2d
+#include "External/box2d/include/Box2D/Box2D.h"
 
 
 

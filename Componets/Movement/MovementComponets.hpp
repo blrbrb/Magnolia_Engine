@@ -8,7 +8,7 @@
 
 
 #ifndef MovementComponets_hpp
-#define MovementComponets_hpp
+#define MovementComponets_hpp 
 
 
 /**
@@ -50,8 +50,6 @@ private:
     float AccelerationX;
     float AccelerationY;
     float Acceleration; 
-    float Mass;
-    float Density;
     float Volume; 
     float Force;
     float Linear_Inertia;
@@ -99,10 +97,7 @@ public:
     
      void move(const float x, const float y, const float& dt);
     
-    /**
-        update basic physics associated with the object.
-     */
-     void Updatephyiscs(const float& dt); 
+
      void update(const float&dt);
     
     /// move_rand

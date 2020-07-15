@@ -15,7 +15,7 @@ class Blrb : public Enemy
     
 public:
     
-    Blrb(float x, float y, sf::Texture& texturesheet);
+    Blrb(float x, float y, sf::Texture& texturesheet, EnemySpawner& enemyspawner);
     virtual ~Blrb();
     
   
@@ -32,7 +32,7 @@ private:
     
     void initvariables();
     void initanimations();
-        
+                  
 };
 
 #endif /* Blrb_hpp */

@@ -9,7 +9,7 @@
 #ifndef State_hpp
 #define State_hpp
 #include "Entity.hpp"
-#include "GraphicsSettings.hpp"
+#include "GraphicsSettings.hpp"  
 
 
 class Player;

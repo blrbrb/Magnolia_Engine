@@ -21,15 +21,19 @@ public:
     virtual ~Item();
     
     virtual Item* clone() = 0; 
+   
     
 private:
     
- 
+
     
 protected:
+    
     //variables
       unsigned value;
       int type;
+    
+    
     
 };
 

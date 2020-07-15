@@ -22,24 +22,32 @@ private:
     sf::RectangleShape tile; 
     int Enemy_type;
     int Enemy_amount;
-    int spawn_timer;
+    int Enemy_counter;
+    sf::Clock SpawnTimer;
+    sf::Int32 timer;
     float maxDistance;
     bool Spawned;
     
 public:
     //construtor and destructor
-    EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, int Enemytype, int Enemyamount, int time_to_spawn, int max_distance);
+    EnemySpawner(float x, float y, float gridsize_f, sf::Texture& texture, const sf::IntRect& texturerect, int type, int amount, sf::Int32 time_to_spawn, float max_distance);
     virtual ~EnemySpawner();
   
     //modifiers
-    const bool SetSpawned(const bool spawned);
+    void SetSpawned(const bool spawned);
     
     //Accessors
     const std::string asString() const;
-    const bool& getSpawned() const; 
+    const bool& getSpawned() const;
+    const int& getEnemyAmount() const;
+    const int& getEnemyCounter() const; 
+    //Functions
+    const bool canSpawn() const;
+    void increaseEnemyCounter();
+    void decreaseEnemyCounter();
     
     void clear();
-    void update(const float& dt);
+    void update();
     void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f LightPosition = sf::Vector2f());
     
 };

@@ -23,7 +23,7 @@ public:
     const std::string asString() const;
     
     //Functions
-    void update(const float& dt);
+    void update();
     void render(sf::RenderTarget & target, sf::Shader* shader = NULL, sf::Vector2f LightPosition = sf::Vector2f());
     
 private:

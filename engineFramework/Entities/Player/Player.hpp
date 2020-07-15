@@ -9,7 +9,6 @@
 #ifndef Player_hpp
 #define Player_hpp
 #include "Entity.hpp"
-#include "Sword.hpp"
 #include "Inventory.hpp"
 
 class Entity; 

@@ -37,9 +37,9 @@ BattleState::~BattleState()
     
     delete this->battleGUI;
     delete this->pMenu;
-    delete this->enemy; 
+   
+  
 
-    
 }
 
 
@@ -48,9 +48,6 @@ void BattleState::initVariables()
     this->eventtime = 0.f;
 
 }
-
-
-
 
 
 void BattleState::initrender()
@@ -146,7 +143,7 @@ void BattleState::updateButtons(const float& dt)
 void BattleState::PlayerAttack()
 {
     
-    this->enemy->getStatusComponent()->loseHP(this->player->attributes->strength * this->player->attributes->attributepts);
+    this->enemy->loseHP(this->player->attributes->strength * this->player->attributes->attributepts);
     
 }
 
@@ -166,6 +163,12 @@ void BattleState::updateEnemies(const float& dt)
         else
             this->PlayerTurn = false;
     }
+    
+    if(this->enemy->isDead())
+    {
+        this->player->attributes->gainEXP(this->enemy->getGainExp());
+        this->states->pop();
+    }
    
 }
 
@@ -176,23 +179,7 @@ void BattleState::updatePlayerGUI(const float& dt)
 
 
 
-void BattleState::checkHP()
-{
-    
-    if(this->player->attributes->hp > 0 && this->enemy->attributes->hp <=0)
-    {
-        this->states->pop(); 
-    }
-    
-    if(this->player->attributes->hp == 0 && this->enemy->attributes->hp == 0)
-    {
-    
-        
-    
-    }
-      
-    
-}
+
 
 
 void BattleState::updateeventtime(const float& dt)
@@ -207,10 +194,11 @@ void BattleState::updateeventtime(const float& dt)
 
 void BattleState::update(const float &dt)
 {
+    
     this->updateeventtime(dt);
     this->updateMousePosition();
     this->updatePlayerGUI(dt);
-    this->checkHP();
+  
 
     
     
@@ -232,24 +220,10 @@ void BattleState::update(const float &dt)
           this->pMenu->update(this->MousePosWindow);
       }
     
-   
-    this->updateCombat();
+
 }
 
-void BattleState::updateCombat()
-{
-    if(this->playerDed)
-       {
-           //game over function
-       }
-       
-       if(this->enemyDed)
-       {
-           
-          
-       }
-       
-}
+
 
 void BattleState::renderBattleGUI(sf::RenderTarget& target)
 {
@@ -264,7 +238,11 @@ void BattleState::render(sf::RenderTarget *target)
     this->rendertexture.clear();
     this->renderBattleGUI(this->rendertexture);
     this->PlayerGUI->render(this->rendertexture);
-    this->enemy->render(this->rendertexture);
+    
+    if(this->enemy)
+    {
+        this->enemy->render(this->rendertexture);
+    }
     
     if(this->paused)
     {
@@ -290,7 +268,7 @@ void BattleState::GiveEnemyDamage(const float& dt)
 {
     
     this->enemy->animtioncomponet->play("ATTACKED", dt);
-    this->enemy->getStatusComponent()->loseHP(2);
+    this->enemy->loseHP(2);
     
 }
 

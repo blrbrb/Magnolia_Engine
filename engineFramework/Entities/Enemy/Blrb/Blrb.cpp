@@ -15,6 +15,7 @@ void Blrb::initvariables()
     this->createmovementcomponet(150.f , 2000.f, 500.f);
     this->create_hitbox_componet(this->sprite, 0, 0, 17.f, 17.f);
     
+    
 }
 
 void Blrb::initanimations()
@@ -30,7 +31,7 @@ void Blrb::initanimations()
 }
 
 
-Blrb::Blrb(float x, float y, sf::Texture &texturesheet) : Enemy()
+Blrb::Blrb(float x, float y, sf::Texture &texturesheet, EnemySpawner& enemyspawner) : Enemy(enemyspawner)
 {
     this->initvariables();
     this->create_animation_componet(texturesheet);

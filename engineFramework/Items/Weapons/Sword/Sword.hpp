@@ -20,12 +20,16 @@ public:
     virtual ~Sword();
     
     //Functions
-    virtual void update(const sf::Vector2f& MousePosView, const sf::Vector2f center);
+    virtual void update(const sf::Vector2f position);
     virtual void render(sf::RenderTarget& target, sf::Shader * shader = nullptr);
+
     
     virtual Sword* clone();
     
 private:
+    
+    void initvariables(); 
+
     
 };
 

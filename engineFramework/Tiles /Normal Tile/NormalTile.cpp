@@ -35,7 +35,7 @@ const std::string NormalTile::asString() const
        return out.str();
 }
 
-void NormalTile::update( const float& dt)
+void NormalTile::update()
 {
     
 }

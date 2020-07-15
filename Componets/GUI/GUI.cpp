@@ -514,7 +514,7 @@ GUI::TextureSelector::TextureSelector(float x, float y,float width, float height
     this->texturerect.height = 17;
     this->hidden = false;
     
-    this->hide = new GUI::Button(38, 36, x - 10, y - 5, "red_boxCross.png", "grey_box.png", "red_boxTick.png");
+    this->hide = new GUI::Button(x, y, 36, 35, "red_boxCross.png", "grey_box.png", "red_boxTick.png");
    
     
 }
@@ -540,6 +540,7 @@ void GUI::TextureSelector::update(const sf::Vector2i& MousePosWindow, const floa
         
         else
             this->hidden = true;
+           
     }
     
     
@@ -548,14 +549,12 @@ void GUI::TextureSelector::update(const sf::Vector2i& MousePosWindow, const floa
     
     if(!this->hidden)
     {
-        if (this->bounds.getGlobalBounds().contains(static_cast<sf::Vector2f>(MousePosWindow)))
-          
-              this->active = true;
-          else
-              this->active = false;
-          
-          if(this->active)
+    
+
+          if (this->bounds.getGlobalBounds().contains(static_cast<sf::Vector2f>(MousePosWindow)))
           {
+              this->active = true;
+              
               this->MousePosGrid.x = (MousePosWindow.x - static_cast<int>(this->bounds.getPosition().x)) / static_cast<unsigned>(17);
               this->MousePosGrid.y = (MousePosWindow.y - static_cast<int>(this->bounds.getPosition().y)) / static_cast<unsigned>(17);
               
@@ -568,9 +567,14 @@ void GUI::TextureSelector::update(const sf::Vector2i& MousePosWindow, const floa
               this->texturerect.top = static_cast<int>(this->selector.getPosition().y - this->bounds.getPosition().y);
               
               
+              
+              
+              
           }
           
     }
+    else if(this->hidden)
+        this->active = false;
     
 }
 
