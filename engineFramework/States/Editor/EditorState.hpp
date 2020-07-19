@@ -71,18 +71,19 @@ private:
         void initsidebar();
         void initGUI();
         void initmodes(); 
-         
+      
      
     
 
         //GUI
        std::map<std::string, GUI::Button*> buttons;
        float cameraspeed;
+      
     
         //Modes
         std::vector<EditorModes*> modes;
         unsigned activeMode;
-        
+                       
     
         //Text
         sf::Font font;
@@ -104,6 +105,8 @@ private:
         //Camera
         sf::View mainview;
 
+    
+   
 };
     
 

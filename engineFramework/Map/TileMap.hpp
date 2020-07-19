@@ -12,6 +12,7 @@
 #include "Entity.hpp"
 #include "Enemies_Include.h"
 
+
 class EnemySpawner; 
 class Tile;
 class NormalTile; 
@@ -26,7 +27,12 @@ private:
     float grid_sizeF;
     int gridsizeI; 
     int layers;
-   
+    
+    xmlDocPtr xml_doc;
+    xmlNodePtr node;
+    
+    void parsemap(xmlDocPtr doc, xmlNodePtr node);
+     void parsedoc(char *docname);
 
     std::string texture_file;
     sf::Vector2i MaxSizeWorldGrid;
@@ -100,6 +106,7 @@ public:
     ///@brief Get the Maximum size (in pixels) of the map
     ///@returns the maximum size of the map
     const sf::Vector2f getMaxSize() const;
+   
     
     
     //Functions

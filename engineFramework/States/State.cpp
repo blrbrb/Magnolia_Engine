@@ -65,9 +65,6 @@ void State::updateInput(const float& dt)
 }
 
 
-
-
-
 void State::updateMousePosition(sf::View* view)
 {
     

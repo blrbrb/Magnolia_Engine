@@ -22,6 +22,7 @@ EditorState::EditorState(StateData* state_data)
     this->initGUI();
     this->initmodes();
     this->activeMode = EDITOR_MODES::DEFAULT_MODE;
+    
      
 
 }
@@ -48,6 +49,8 @@ EditorState::~EditorState() {
     
     
 }
+
+
 
 //initalization functions
 void EditorState::initvariables()
@@ -429,8 +432,9 @@ void EditorState::render(sf::RenderTarget* target)
     this->renderModes(*target);
     //this->renderbuttons(*target);
     
+  
    
-    
+
     if(this->paused)
        {
            this->window->setView(this->window->getDefaultView());

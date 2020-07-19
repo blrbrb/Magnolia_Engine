@@ -22,7 +22,7 @@ class DefaultMode : public EditorModes
     
 private:
         
-        //interface variables
+        //Graphical interface sfml objects
           sf::Text cursortext;
           sf::Text controls;
           GUI::TextureSelector* texture_selector;
@@ -34,6 +34,8 @@ private:
           sf::RectangleShape text_container;
           sf::RectangleShape controlsContainer; 
           sf::IntRect TextureRect;
+    
+      
          
      
         //Tile variables
@@ -44,8 +46,9 @@ private:
     //initalizer functions
     void initvariables();
     void inittext();
-    void initGUI(); 
-    
+    void initGUI();
+    void initgrid(); 
+    std::vector<sf::RectangleShape> grid;
     
 public:
     

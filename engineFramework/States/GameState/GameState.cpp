@@ -96,11 +96,7 @@ void GameState::initdeferedrender() {
 
 void GameState::initworldbounds()
 {
-    this->worldbounds.lowerBound.Set(this->Tilemap->getMaxSize().x, this->Tilemap->getMaxSize().y);
-    this->worldbounds.upperBound.Set(0, 0);
-    b2Vec2 gravity(0.0, 9.8);
-
-    this->world = new b2World(gravity); 
+ 
 }
 
 

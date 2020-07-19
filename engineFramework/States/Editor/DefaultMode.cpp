@@ -13,7 +13,10 @@ DefaultMode::DefaultMode(StateData *statedata, TileMap* tilemap, EditorStateData
 {
     this->initvariables();
     this->inittext();
+    this->initgrid();
     this->initGUI();
+
+
 }
 
 DefaultMode::~DefaultMode()
@@ -242,6 +245,12 @@ void DefaultMode::renderGUI(sf::RenderTarget &target)
            target.setView(*this->editorstatedata->view);
            target.draw(this->select_Rect);
            
+           for(size_t i2 =0; i2 < grid.size(); i2++)
+             {
+                 target.draw(this->grid[i2]);
+             }
+           
+           
        }
        
        target.setView(this->statedata->window->getDefaultView());
@@ -299,10 +308,14 @@ void DefaultMode::inittext()
 }
     
     
+
+
+
     
 void DefaultMode::initGUI()
 {
     sf::VideoMode vm = statedata->gfxsettings->resolution;
+    
     
     //Config the sidebar
     this->sidebar.setSize(sf::Vector2f(64.f, static_cast<float>(this->statedata->gfxsettings->resolution.height)));
@@ -355,3 +368,35 @@ void DefaultMode::initGUI()
 }
 
 
+void DefaultMode::initgrid()
+{
+    this->grid.resize(10000);
+    
+    sf::VideoMode &vm = this->statedata->gfxsettings->resolution;
+    
+         float X= GUI::pixelpercentX(0, vm);
+         float Y = GUI::pixelpercentY(0, vm);
+         
+           for (int x =0; x <= 10000; x++)
+             {
+                 X += GUI::pixelpercentX(1.4166666667,vm);
+                 
+                 
+                 if(X >= GUI::pixelpercentX(100, vm) || Y >= GUI::pixelpercentY(100, vm))
+                 {
+                     Y += GUI::pixelpercentY(1.7, vm);
+                     X = GUI::pixelpercentX(0, vm);
+
+                 }
+       
+                    this->grid.push_back(sf::RectangleShape());
+                 this->grid.at(x).setSize(sf::Vector2f(16.f, 16.f));
+                    this->grid.at(x).setFillColor(sf::Color::Transparent);
+                    this->grid.at(x).setOutlineColor(sf::Color::White);
+                    this->grid.at(x).setOutlineThickness(1.f);
+                    this->grid.at(x).setPosition(X, Y);
+                           
+                 
+             }
+      
+}

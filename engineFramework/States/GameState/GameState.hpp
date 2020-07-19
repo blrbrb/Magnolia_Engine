@@ -122,8 +122,7 @@ private:
     //Shaders
     sf::Shader core_shader;
     
-    b2AABB worldbounds;
-    b2World* world; 
+    
     
     //Sounds
     sf::SoundBuffer buffer;

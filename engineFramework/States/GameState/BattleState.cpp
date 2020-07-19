@@ -125,6 +125,7 @@ void BattleState::updateButtons(const float& dt)
     {
         
         this->PlayerAttack();
+        this->enemy->animtioncomponet->play("ATTACKED", dt);
         
             if(this->PlayerTurn)
                 this->PlayerTurn = false;
@@ -156,6 +157,7 @@ void BattleState::updateEnemies(const float& dt)
     
     if(this->PlayerTurn == false)
     {
+        
         this->player->getStatusComponet()->loseHP(this->enemy->attributes->strength);
         
         if(!this->PlayerTurn)

@@ -176,6 +176,7 @@ void Game::Update()
                     {
                         delete this->states.top();
                         this->states.pop();
+    
                     }
                 }
             }

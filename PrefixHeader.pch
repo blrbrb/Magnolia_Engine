@@ -28,6 +28,7 @@
 #include <fstream>
 #include <cmath>
 #include <GLFW/glfw3.h>
+#include <libxml/xmlreader.h> 
 
 
 //SFML
@@ -37,8 +38,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-//Box2d
-#include "External/box2d/include/Box2D/Box2D.h"
+//Json parser
+#include <json.hpp>
 
 
 

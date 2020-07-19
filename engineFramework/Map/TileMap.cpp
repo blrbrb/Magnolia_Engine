@@ -413,8 +413,105 @@ void TileMap::savetofile(const std::string filename)
 
 }
 
+
+void TileMap::parsemap(xmlDocPtr doc, xmlNodePtr node)
+{
+    
+    xmlChar* key;
+    xmlChar* width;
+    xmlChar* height;
+    
+    node = node->xmlChildrenNode;
+    
+    while(node != NULL)
+    {
+        
+    if ((!xmlStrcmp(node->name, (const xmlChar *)"map")))
+    {
+        key = xmlNodeListGetString(doc, node->xmlChildrenNode, 1);
+
+
+        std::wcout << key << std::endl;
+        std::cout << "butthole" << std::endl; 
+        
+        xmlFree(key);
+    }
+        
+    if ((!xmlStrcmp(node->name, (const xmlChar *)"width")))
+    {
+        width = xmlGetProp(node, width);
+        
+        std::cout << width << std::endl;
+        
+      std::cout << key << std::endl;
+      xmlFree(key);
+    }
+       
+     node = node->next;
+}
+    return;
+}
+
+
+
+void TileMap::parsedoc(char *docname)
+{
+    
+    
+    this->xml_doc = xmlParseFile(docname);
+    
+    if (this->xml_doc == NULL )
+    {
+        
+    fprintf(stderr,"Document not parsed successfully. \n");
+    return;
+        
+    }
+       this->node = xmlDocGetRootElement(this->xml_doc);
+    
+    if (this->node == NULL)
+    {
+        
+        fprintf(stderr,"empty document\n");
+        xmlFreeDoc(this->xml_doc);
+        return;
+        
+    }
+    
+    if (xmlStrcmp(node->name, (const xmlChar *) "map"))
+    {
+        fprintf(stderr,"document of the wrong type, root node != map");
+        xmlFreeDoc(this->xml_doc);
+        return;
+    }
+    
+    this->node = node->xmlChildrenNode;
+    
+    while (node != NULL)
+    {
+        if ((!xmlStrcmp(node->name, (const xmlChar *)"storyinfo")))
+        {
+            this->parsemap(this->xml_doc, this->node);
+        }
+            this->node = node->next;
+    }
+    
+    
+    
+    xmlFreeDoc(this->xml_doc);
+    return;
+    
+    
+    
+    
+}
+
 void TileMap::loadfromfile(const std::string filename)
 {
+   
+    
+
+     
   std::ifstream in;
     
     in.open(filename);

@@ -26,7 +26,7 @@ protected:
     sf::Sprite rect;
     short type;
     bool collison_enabled;
-   
+    
     
     
 public:

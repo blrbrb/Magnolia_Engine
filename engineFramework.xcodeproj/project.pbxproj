@@ -12,7 +12,6 @@
 		450CA31123D9187800FF039F /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450CA30F23D9187800FF039F /* GameState.cpp */; };
 		4514513E24BE2A0A00026429 /* include in Resources */ = {isa = PBXBuildFile; fileRef = 4514513C24BE2A0A00026429 /* include */; };
 		4514513F24BE2A0A00026429 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 4514513D24BE2A0A00026429 /* lib */; };
-		4514514224BE2AFF00026429 /* libBox2D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4514514024BE2A4500026429 /* libBox2D.a */; };
 		4514514424BF655000026429 /* item_sheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 4514514324BF655000026429 /* item_sheet.png */; };
 		4514514724BF689900026429 /* Consumable_Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4514514524BF689900026429 /* Consumable_Item.cpp */; };
 		4514514A24BF69DC00026429 /* Potion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4514514824BF69DC00026429 /* Potion.cpp */; };
@@ -72,6 +71,8 @@
 		455318FB2409FEFE00433CD7 /* grey_boxCross.png in Resources */ = {isa = PBXBuildFile; fileRef = 455318DF2409FEFD00433CD7 /* grey_boxCross.png */; };
 		4553BC3923EE2C23002C68C0 /* Window.ini in Resources */ = {isa = PBXBuildFile; fileRef = 4553BC3823EE2C23002C68C0 /* Window.ini */; };
 		4553BC3C23EE2D99002C68C0 /* GraphicsSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4553BC3A23EE2D99002C68C0 /* GraphicsSettings.cpp */; };
+		4554030624C38BFF00625BE9 /* map.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4554030524C38BFF00625BE9 /* map.xml */; };
+		4554030824C3B41000625BE9 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4554030724C3B41000625BE9 /* libxml2.2.tbd */; };
 		4558082623F21F6900E36DFA /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4558082523F21E8000E36DFA /* PressStart2P.ttf */; };
 		4558082C23F4EF8000E36DFA /* text.slmp in Resources */ = {isa = PBXBuildFile; fileRef = 4558082B23F4EF8000E36DFA /* text.slmp */; };
 		4558083123F5CE5900E36DFA /* MenuState_Keys.ini in Resources */ = {isa = PBXBuildFile; fileRef = 4558083023F5CE5900E36DFA /* MenuState_Keys.ini */; };
@@ -256,6 +257,8 @@
 		4553BC3823EE2C23002C68C0 /* Window.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = Window.ini; sourceTree = "<group>"; };
 		4553BC3A23EE2D99002C68C0 /* GraphicsSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsSettings.cpp; sourceTree = "<group>"; };
 		4553BC3B23EE2D99002C68C0 /* GraphicsSettings.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GraphicsSettings.hpp; sourceTree = "<group>"; };
+		4554030524C38BFF00625BE9 /* map.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.xml; sourceTree = "<group>"; };
+		4554030724C3B41000625BE9 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		4558082523F21E8000E36DFA /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		4558082B23F4EF8000E36DFA /* text.slmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.slmp; sourceTree = "<group>"; };
 		4558083023F5CE5900E36DFA /* MenuState_Keys.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = MenuState_Keys.ini; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 		458EE408242324270040B75A /* coins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coins.png; sourceTree = "<group>"; };
 		458EE40D2423FFD30040B75A /* Coin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
 		458EE40E2423FFD30040B75A /* Coin.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Coin.hpp; sourceTree = "<group>"; };
+		45928F6F24C4E17100466384 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		45ADEC5224BBCB9600D7F7A1 /* libBox2D_2015.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBox2D_2015.lib; path = "../../../Shared/Files From c.localized/CocosCreator/resources/cocos2d-x/prebuilt/win32/libBox2D_2015.lib"; sourceTree = "<group>"; };
 		45B989D023E0697100B3C087 /* MONACO.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = MONACO.TTF; sourceTree = "<group>"; };
 		45B989D123E0909400B3C087 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -370,7 +374,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4514514224BE2AFF00026429 /* libBox2D.a in Frameworks */,
+				4554030824C3B41000625BE9 /* libxml2.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +501,7 @@
 				45460339240F521E00EAF628 /* Hero.png */,
 				45466C512408919B001F72E0 /* TileMap.png */,
 				455FB3A724070A1900146C3A /* vertex_shader.vert */,
+				4554030524C38BFF00625BE9 /* map.xml */,
 				455FB3A924070AA000146C3A /* fragment_shader.frag */,
 				455FB37E2404AB5200146C3A /* Sounds */,
 				458AB8FF23E0D94200C9E397 /* EngineLogo.png */,
@@ -790,6 +795,7 @@
 		45ADEC4F24BB838300D7F7A1 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				45928F6F24C4E17100466384 /* json.hpp */,
 				45ADEC5024BB83A800D7F7A1 /* box2d */,
 			);
 			path = External;
@@ -807,6 +813,7 @@
 		45ADEC5124BBCB9600D7F7A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4554030724C3B41000625BE9 /* libxml2.2.tbd */,
 				4514514024BE2A4500026429 /* libBox2D.a */,
 				45ADEC5224BBCB9600D7F7A1 /* libBox2D_2015.lib */,
 			);
@@ -1139,6 +1146,7 @@
 				455318F12409FEFD00433CD7 /* red_sliderRight.png in Resources */,
 				4558089A2400119900E36DFA /* red_circle.png in Resources */,
 				455808962400119100E36DFA /* red_cross.png in Resources */,
+				4554030624C38BFF00625BE9 /* map.xml in Resources */,
 				4558083923F5CEC000E36DFA /* SettingsState_Keys.ini in Resources */,
 				45466C522408919B001F72E0 /* TileMap.png in Resources */,
 				455FB3A2240593C500146C3A /* dropdownBottom.png in Resources */,

@@ -126,8 +126,8 @@
             filePath = "engineFramework/States/Editor/DefaultMode.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "DefaultMode::render(target)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "engineFramework/Map/TileMap.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "578"
-            endingLineNumber = "578"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
             landmarkName = "TileMap::DefferedRender(target, shader, PlayerPosition)"
             landmarkType = "7">
          </BreakpointContent>
